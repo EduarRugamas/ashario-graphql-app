@@ -1,6 +1,5 @@
 import { secret_key, public_key, url_base } from '../config/config.js';
 const local_storage = window.localStorage;
-let stores = {};
 
 const GetAllRetailerIds = () => {
 
@@ -77,9 +76,9 @@ const GetAllRetailerIds = () => {
         })
 };
 
-const GetAllProducts = () => {
+const GetAllProducts = (retailerID) => {
     const query_all_products = `
-    query GetAllProducts ($retailerId: ID="") {
+    query GetAllProducts ($retailerId: ID=`${retailerID}`) {
         menu (retailerId: $retailerId, filter: { category: FLOWER}) {
           products {
             id,
@@ -108,7 +107,9 @@ const GetAllProducts = () => {
         body: JSON.stringify({
             query: query_all_products
         })
-    }).then();
+    }).then( response => response.json()).then( data => {
+        console.log(data)
+    }).catch(error => console.log(error.message));
 }
 
 export {
