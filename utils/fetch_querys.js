@@ -28,11 +28,16 @@ const GetAllRetailerIds = () => {
         })
         .then( data => {
             console.log(data);
+            console.log(data.data.retailers[0].name)
         })
         .catch( error => {
             console.log(error.message);
         })
 };
+
+const GetAllProducts = () => {
+
+}
 
 export {
     GetAllRetailerIds
