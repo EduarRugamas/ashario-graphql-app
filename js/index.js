@@ -19,7 +19,7 @@ const GetAllRetailerIds = () => {
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Authorization": "Bearer6 " + public_key,
+            "Authorization": "Bearer " + public_key,
         },
         body: JSON.stringify({
             query: query_retailer
