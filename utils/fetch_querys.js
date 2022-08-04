@@ -30,51 +30,17 @@ const GetAllRetailerIds = () => {
         })
         .then( data => {
             console.log(data);
-            console.log(data.data.retailers[1].name);
+            console.log('0',data.data.retailers[0].name);
+            console.log('1', data.data.retailers[1].name);
+            console.log('2', data.data.retailers[2].name);
+            console.log('3', data.data.retailers[3].name);
+            console.log('4', data.data.retailers[4].name);
 
-            if (local_storage.getItem('Ashario_stores')){
-                stores = JSON.parse(local_storage.getItem('Ashario_stores'));
-            }
-
-            let store_Centrepoint_Mall = {
-                "name": data.data.retailers[1].name,
-                "id": data.data.retailers[1].id,
-                "address": data.data.retailers[1].address,
-            }
-            let store_North_York = {
-                "name": data.data.retailers[2].name,
-                "id": data.data.retailers[2].id,
-                "address": data.data.retailers[2].address,
-            }
-
-            let store_Aurora = {
-                "name": data.data.retailers[3].name,
-                "id": data.data.retailers[3].id,
-                "address": data.data.retailers[3].address,
-            }
-
-            if (store_Centrepoint_Mall in stores) {
-                console.log('Tienda centre point mall');
-            }else {
-                stores[store_Centrepoint_Mall] = store_Centrepoint_Mall;
-                local_storage.setItem('Ashario_stores', JSON.stringify(stores));
-            }
-
-            if (store_North_York in stores) {
-                console.log('Tienda North York');
-            }else {
-                stores[store_North_York] = store_North_York;
-                local_storage.setItem('Ashario_stores', JSON.stringify(stores));
-            }
-
-            if (store_Aurora in stores) {
-                console.log('Tienda Aurora');
-            }else {
-                stores[store_Aurora] = store_Aurora;
-                local_storage.setItem('Ashario_stores', JSON.stringify(stores));
-            }
-
-            console.log(stores);
+            // if (local_storage.getItem('Ashario_Centrepoint_Mall')){
+            //     console.log('ids de tiendas guardadas');
+            // }else {
+            //     local_storage.setItem('Ashario_Centrepoint_Mall', )
+            // }
 
 
         //    #1 Ashario_Centrepoint_Mall, #2 Ashario_North_York, #3 Ashario_Aurora
@@ -86,9 +52,40 @@ const GetAllRetailerIds = () => {
 };
 
 const GetAllProducts = () => {
+    const query_all_products = `
+    query GetAllProducts ($retailerId: ID="") {
+        menu (retailerId: $retailerId, filter: { category: FLOWER}) {
+          products {
+            id,
+            name,
+            brand{
+               name
+            },
+                description,
+                image,
+                subcategory,
+                category
+            },
+                productsCount 
+            }
+        }
+    }
+    `;
 
+    fetch(`${url_base}`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer " + public_key,
+        },
+        body: JSON.stringify({
+            query: query_all_products
+        })
+    }).then();
 }
 
 export {
-    GetAllRetailerIds
+    GetAllRetailerIds,
+    GetAllProducts
 }
