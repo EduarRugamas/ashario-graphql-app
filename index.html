@@ -1,13 +1,257 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--plugins-->
+    <link href="assets/plugins/OwlCarousel/css/owl.carousel.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"/>
+    <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/nouislider/nouislider.min.css" rel="stylesheet"/>
+    <!-- loader-->
+    <link href="assets/css/pace.min.css" rel="stylesheet"/>
+    <script src="assets/js/pace.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
+    <link href="assets/css/icons.css" rel="stylesheet">
+
+    <!--  Link de css de card views de algolia  -->
+    <link rel="stylesheet" href="css/card-views.css">
+
+
+    <title>ASHARIO</title>
 </head>
-<body>
-    <script src="./js/index.js" type="module"></script>
+
+<body >
+<b class="screen-overlay"></b>
+<!--wrapper-->
+<div class="wrapper">
+    <!--start top header wrapper-->
+    <div class="header-wrapper">
+        <div class="header-content pb-3 pb-md-0">
+            <div class="container-fluid">
+
+                <div class="row align-items-center">
+
+
+                </div>
+                <!--end row-->
+            </div>
+        </div>
+    </div>
+    <!--end top header wrapper-->
+    <!--start page wrapper -->
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--start breadcrumb-->
+            <section class="py-3 border-bottom border-top d-md-flex bg-light jcbreadcrumb">
+                <div class="container">
+                    <div class="page-breadcrumb d-flex align-items-center">
+                        <h3 class="breadcrumb-title pe-3">Ashario</h3>
+                        <div class="col-4 col-md-auto order-2 order-md-4 ms-auto">
+                            <div class="top-cart-icons float-start">
+                                <nav class="navbar navbar-expand">
+                                    <ul class="navbar-nav ms-auto">
+
+                                        <li class="nav-item">
+                                            <a href="/views/shop-cart.html" class="nav-link position-relative cart-link">
+                                                <span class="alert-count" id="count_quantity_cart">0</span>
+                                                <i class="bx bx-shopping-bag"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!--end breadcrumb-->
+            <!--start shop area-->
+            <section class="py-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-xl-2">
+                            <div class=" "></div>
+                            <div class="">
+                                <div class="card rounded-0 w-100">
+
+
+                                    <div class="accordion" id="jcaccord-filters">
+                                        <div class="accordion-item">
+                                            <h6 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne" aria-expanded="true"
+                                                        aria-controls="collapseOne">
+                                                    LINEAGE
+                                                </button>
+                                            </h6>
+                                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#jcaccord-filters">
+                                                <div class="card-body">
+                                                    <div class="product-categories">
+                                                        <ul class="list-unstyled mb-0 categories-list"
+                                                            id="clear-category"></ul>
+                                                        <ul class="list-unstyled mb-0 categories-list"
+                                                            id="container-menu"></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingTwo">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                    AVAILABLE WEIGHTS
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#jcaccord-filters">
+                                                <div class="card-body">
+                                                    <div class="product-categories">
+                                                        <ul class="list-unstyled mb-0 categories-list"
+                                                            id="clear-weight"></ul>
+                                                        <ul class="list-unstyled mb-0 categories-list"
+                                                            id="jcweight-list"></ul>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingThree">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                    PRICE
+                                                </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse"
+                                                 aria-labelledby="headingThree" data-bs-parent="#jcaccord-filters">
+                                                <div class="accordion-body">
+
+
+
+                                                    <div class="price-range">
+                                                        <div class="my-4" id="container-price"></div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFour">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                        aria-expanded="false" aria-controls="collapseFour">
+                                                    THC
+                                                </button>
+                                            </h2>
+                                            <div id="collapseFour" class="accordion-collapse collapse"
+                                                 aria-labelledby="headingFour" data-bs-parent="#jcaccord-filters">
+                                                <div class="accordion-body">
+                                                    <div class="price-range">
+                                                        <div class="my-4" id="container-thc"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFive">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                                                        aria-expanded="false" aria-controls="collapseFive">
+                                                    CBD
+                                                </button>
+                                            </h2>
+                                            <div id="collapseFive" class="accordion-collapse collapse"
+                                                 aria-labelledby="headingThree" data-bs-parent="#jcaccord-filters">
+                                                <div class="accordion-body">
+                                                    <div class="price-range">
+                                                        <div class="my-4" id="container-cbd"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-10">
+                            <div class="product-wrapper">
+                                <div class="col col-md order-4 order-md-2 mb-4">
+                                    <div id="searchBox"></div>
+                                    <div id="container-sortby-A-Z"></div>
+                                </div>
+
+                                <div class="product-grid">
+                                    <div id="container-hits-demo"></div>
+                                    <div class="javiergridrow row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4" id="container-hits"></div>
+
+                                </div>
+                                <hr>
+                                <div id="pagination-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+            </section>
+            <!--end shop area-->
+        </div>
+    </div>
+    <!--end page wrapper -->
+    <!--start footer section-->
+    <!--end footer section-->
+    <!--start quick view product-->
+
+    <!--end quick view product-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+    <!--End Back To Top Button-->
+</div>
+<!--end wrapper-->
+
+<!-- Bootstrap JS -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<!--plugins-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+<script src="assets/plugins/OwlCarousel/js/owl.carousel.min.js"></script>
+<script src="assets/plugins/OwlCarousel/js/owl.carousel2.thumbs.min.js"></script>
+<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
+<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="assets/plugins/nouislider/nouislider.min.js"></script>
+<script src="assets/js/product-gallery.js"></script>
+<!--app JS-->
+<script src="assets/js/app.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="./js/index.js" type="module"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
+
 </html>
+
+
+<!--Swal.fire({-->
+<!--title: 'Sweet!',-->
+<!--text: 'Modal with a custom image.',-->
+<!--imageUrl: 'https://unsplash.it/400/200',-->
+<!--imageWidth: 400,-->
+<!--imageHeight: 200,-->
+<!--imageAlt: 'Custom image',-->
+<!--})-->
