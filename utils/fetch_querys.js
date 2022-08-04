@@ -36,7 +36,7 @@ const GetAllRetailerIds = () => {
             console.log('3', data.data.retailers[3].name);
             console.log('4', data.data.retailers[4].name);
 
-            if (local_storage.getItem('Ashario_Centrepoint_Mall')){
+            if (local_storage.getItem('Ashario_Centrepoint_Mall') && local_storage.getItem('Ashario_North_York') && local_storage.getItem('Ashario_Aurora')){
                 console.log('ids de tiendas guardadas');
             }else {
                 let store_Centrepoint_Mall = {
@@ -62,7 +62,10 @@ const GetAllRetailerIds = () => {
                 console.log('store --> ', store_Ashario_Aurora);
 
 
-                // local_storage.setItem('Ashario_Centrepoint_Mall', JSON.stringify());
+
+                local_storage.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_Centrepoint_Mall));
+                local_storage.setItem('Ashario_North_York', JSON.stringify(store_Ashario_North_York));
+                local_storage.setItem('Ashario_Aurora', JSON.stringify(store_Ashario_Aurora));
             }
 
 
