@@ -1,9 +1,5 @@
 import {public_key, secret_key, url_base} from '../config/config.js';
 
-GetAllRetailerIds();
-
-
-
 const GetAllRetailerIds = () => {
 
     const query_retailer = `
@@ -38,4 +34,6 @@ const GetAllRetailerIds = () => {
         .catch( error => {
             console.log(error.message);
         })
-}
+};
+
+GetAllRetailerIds();
