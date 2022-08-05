@@ -341,8 +341,7 @@ const getProduct = (retailerID, id_product) => {
 
             reject('No se pudo obtener la informacion de la API' + response.status);
         }).then( result => {
-            console.log(result.data);
-            resolve(result.data);
+            resolve(result);
         }).catch( error => reject(error.message));
     });
 };
