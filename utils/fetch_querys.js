@@ -134,6 +134,9 @@ const GetAllProducts = (retailerID) => {
             let result = data.data.menu.products;
             console.log(result);
 
+            result.map(p => {
+                console.log(p);
+            })
 
 
         }).catch(error => console.log(error.message));
