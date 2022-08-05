@@ -1,5 +1,5 @@
 import {secret_key, public_key, url_base} from '../config/config.js';
-import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
+import { createElementHtml, appendElementHtml } from './elements_html';
 const local_storage = window.localStorage;
 
 const container_products = document.getElementById('container-products');
@@ -155,6 +155,7 @@ const GetAllProducts = (retailerID) => {
                 div_product_info.className='product-info';
 
                 let container_image = createElementHtml('a');
+                container_image.href=`/views/product-details.html?id=${info.id}`;
                 let image = createElementHtml('img');
                 image.className='card-img-top';
                 image.id='imagen-product';
@@ -162,6 +163,7 @@ const GetAllProducts = (retailerID) => {
                 image.alt=`${info.name}`;
 
                 let link_a_item_brand = createElementHtml('a');
+                link_a_item_brand.href=`/views/product-details.html?id=${info.id}`;
                 let etiqueta_p_item_brand = createElementHtml('p');
                 etiqueta_p_item_brand.className='product-catergory font-13 mb-1 itembrand';
                 let etiqueta_p_item_brand_sub_type = createElementHtml('p');
@@ -169,6 +171,7 @@ const GetAllProducts = (retailerID) => {
                 etiqueta_p_item_brand_sub_type.id='itemsubtype';
 
                 let etiqueta_a_link_item_name = createElementHtml('a');
+                etiqueta_a_link_item_name.href=`/views/product-details.html?id=${info.id}`;
                 let etiqueta_h6_item_name = createElementHtml('h6');
                 etiqueta_h6_item_name.className='product-name mb-2 itemname';
                 etiqueta_h6_item_name.textContent=`${info.name}`;
@@ -200,7 +203,7 @@ const GetAllProducts = (retailerID) => {
                 icon_add_to_cart.className='bx bxs-cart-add';
                 let btn_product_details = createElementHtml('a');
                 btn_product_details.className='btn btn-light btn-ecomm';
-                btn_product_details.href='/views/product-details.html';
+                btn_product_details.href=`/views/product-details.html?id=${info.id}`;
                 btn_product_details.textContent='Product Details';
 
 
@@ -241,9 +244,58 @@ const GetAllProducts = (retailerID) => {
 
 }
 
+const GetProduct = (retailerID, id_product) => {
+    const query_product = `
+        query GetProduct ($retailerId: ID="${retailerID}", $productId: ID="${id_product}") {
+          product(retailerId: $retailerId, id: $productId ) {
+            id
+            name,
+            description,
+            image,
+            images{
+              url
+            },
+            posId,
+            potencyCbd {
+              formatted,
+              unit,
+              range
+            },
+            potencyThc {
+              formatted,
+              range,
+              unit
+            },
+            strainType,
+            category,
+            brand {
+              name,
+              id
+            }
+          }
+        }
+    `;
+
+    fetch(url_base, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer " + public_key,
+        },
+        body: JSON.stringify({query: query_product})
+    }).then(response => response.json())
+    .then( item => {
+            console.log(item.data);
+            return item.data;
+    })
+    .catch(error => error.message);
+}
+
 export {
     GetAllRetailerIds,
-    GetAllProducts
+    GetAllProducts,
+    GetProduct
 }
 
 
