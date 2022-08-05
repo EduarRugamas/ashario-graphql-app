@@ -131,7 +131,7 @@ const GetAllProducts = (retailerID) => {
         .then(data => {
             console.log(data);
 
-            data.data.menu.products.forEach(item => {
+            data.data.menu.products.map(item => {
                 container_products.innerHTML = `
             
              <div class="col">
@@ -155,7 +155,7 @@ const GetAllProducts = (retailerID) => {
                             <div class="product-action mt-2" id="content">
                                <div class="d-grid gap-2">
                                     <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn"><i class="bx bxs-cart-add"></i>add to cart</a>
-                                    <a href="/views/product-details.html?objectID=${item.objectID}" class="btn btn-light btn-ecomm">Product Details</a>
+                                    <a href="/views/product-details.html?objectID=" class="btn btn-light btn-ecomm">Product Details</a>
                                </div> 
                             </div> 
                         </div>
@@ -165,7 +165,7 @@ const GetAllProducts = (retailerID) => {
             
             
             `
-            })
+            }).join('');
 
 
         }).catch(error => console.log(error.message));
