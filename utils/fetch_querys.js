@@ -275,18 +275,21 @@ const GetProduct = (retailerID, id_product) => {
           }
         }
     `;
+    const headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer " + public_key,
+    }
 
-    axios.post(`${url_base}`,  {
-        query: JSON.stringify(query_product)
-    }, {
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": "Bearer " + public_key,
-        }
-    }).then( res => {
-        console.log(res)
-    }).catch( error => console.log(error.message) );
+    const response = axios({
+        url: url_base,
+        method: 'POST',
+        headers,
+        data: query_product
+    });
+
+    console.log(response.data);
+    console.log(response.errors);
 
 }
 
