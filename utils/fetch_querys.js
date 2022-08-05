@@ -32,12 +32,6 @@ const GetAllRetailerIds = () => {
         })
         .then(data => {
             console.log(data);
-            console.log('0', data.data.retailers[0].name);
-            console.log('1', data.data.retailers[1].name);
-            console.log('2', data.data.retailers[2].name);
-            console.log('3', data.data.retailers[3].name);
-            console.log('4', data.data.retailers[4].name);
-
             if (local_storage.getItem('Ashario_Centrepoint_Mall') && local_storage.getItem('Ashario_North_York') && local_storage.getItem('Ashario_Aurora')) {
                 console.log('ids de tiendas guardadas');
             } else {
@@ -288,8 +282,16 @@ const GetProduct = (retailerID, id_product) => {
         data: query_product
     });
 
-    console.log(response.data);
-    console.log(response.errors);
+    let product = fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ query: query_product})
+    }).then(response => response.json())
+      .then(data => {
+        product = data.data;
+    }).catch(error => product = error.message)
+
+    console.log(product);
 
 }
 
