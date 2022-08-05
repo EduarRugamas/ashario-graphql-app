@@ -182,10 +182,10 @@ const GetAllProducts = (retailerID) => {
                 span_text_cad.textContent='CAD ';
                 let span_text_price = createElementHtml('span');
                 span_text_price.className='fs-5 jcpricingnw';
-                span_text_price.textContent='000.000';
+                span_text_price.textContent=`${info.variants[0].priceMed}`;
                 let span_text_weights = createElementHtml('span');
                 span_text_weights.className='er-each jceachformat';
-                span_text_weights.textContent='/3.5G';
+                span_text_weights.textContent=`/${info.variants[0].option}`;
 
                 let div_content_action = createElementHtml('div');
                 div_content_action.className='product-action mt-2';
