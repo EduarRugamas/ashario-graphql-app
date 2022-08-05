@@ -131,7 +131,7 @@ const GetAllProducts = (retailerID) => {
         .then(data => {
             console.log(data);
 
-            data.data.menu.products.map(item => {
+            data.data.menu.products.forEach(item => {
                 container_products.innerHTML = `
             
              <div class="col">
