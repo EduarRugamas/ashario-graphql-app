@@ -2,6 +2,8 @@ import {secret_key, public_key, url_base} from '../config/config.js';
 
 const local_storage = window.localStorage;
 
+const container_products = document.getElementById('container-products');
+
 const GetAllRetailerIds = () => {
 
     const query_retailer = `
@@ -129,8 +131,10 @@ const GetAllProducts = (retailerID) => {
     .then(data => {
         console.log(data);
 
-        data.data.menu.products.forEach( p => {
+        data.data.menu.products.map(p => {
             console.log(p);
+        })
+
         })
 
 
