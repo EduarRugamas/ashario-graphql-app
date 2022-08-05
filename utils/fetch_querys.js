@@ -208,13 +208,14 @@ const GetAllProducts = (retailerID) => {
 
 
                 appendElementHtml(div_col, div_product_card);
+
+                appendElementHtml(div_product_card, container_image);
+                appendElementHtml(container_image, image);
+
                 appendElementHtml(div_product_card, div_card_body);
                 appendElementHtml(div_card_body, div_product_info);
                 // div product info iran todos los demas elementos que se encuentran dentro de el div product info
                 // appendElementHtml(div_product_info, );
-
-                appendElementHtml(div_product_card, container_image);
-                appendElementHtml(container_image, image)
 
                 appendElementHtml(div_product_info, link_a_item_brand);
                 appendElementHtml(link_a_item_brand, etiqueta_p_item_brand);
