@@ -1,5 +1,5 @@
 import {secret_key, public_key, url_base} from '../config/config.js';
-import { createElementHtml, appendElementHtml } from './elements_html';
+import { createElementHtml, appendElementHtml } from './elements_html.js';
 const local_storage = window.localStorage;
 
 const container_products = document.getElementById('container-products');
