@@ -292,10 +292,66 @@ const GetProduct = (retailerID, id_product) => {
     .catch(error => error.message);
 }
 
+const getProduct = (retailerID, id_product) => {
+
+    const query_product = `
+        query GetProduct ($retailerId: ID="${retailerID}", $productId: ID="${id_product}") {
+          product(retailerId: $retailerId, id: $productId ) {
+            id
+            name,
+            description,
+            image,
+            images{
+              url
+            },
+            posId,
+            potencyCbd {
+              formatted,
+              unit,
+              range
+            },
+            potencyThc {
+              formatted,
+              range,
+              unit
+            },
+            strainType,
+            category,
+            brand {
+              name,
+              id
+            }
+          }
+        }
+    `;
+
+    return new Promise ( (resolve, reject) => {
+        fetch(`${url_base}`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": "Bearer " + public_key,
+            },
+            body: JSON.stringify({query: query_product})
+        }).then( response => {
+            if (response.ok) {
+                return response.json();
+            }
+
+            reject('No se pudo obtener la informacion de la API' + response.status);
+        }).then( result => {
+            console.log(result.data);
+            resolve(result.data);
+        }).catch( error => reject(error.message));
+    });
+};
+
 export {
     GetAllRetailerIds,
     GetAllProducts,
-    GetProduct
+    GetProduct,
+    getProduct
 }
 
 
