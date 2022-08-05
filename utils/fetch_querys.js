@@ -76,10 +76,29 @@ const GetAllRetailerIds = () => {
         })
 };
 
+const GetCountproduct = (retailerID) => {
+    const query_count_products = `query GetCountProducts($retailerId: ID="${retailerID}" ) { menu(retailerId: $retailerId) {productsCount }}`;
+
+    fetch(`${url_base}`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer " + public_key,
+        },
+        body: JSON.stringify({
+            query: query_count_products
+        })
+    }).then(response => response.json()).then(data => {
+        console.log(data);
+    })
+}
+
+
 const GetAllProducts = (retailerID) => {
     const query_all_products = `
     query GetAllProducts($retailerId: ID="${retailerID}" ) {
-        menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 5 } ) {
+        menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 } ) {
             products {
               id,
               name,
@@ -106,9 +125,18 @@ const GetAllProducts = (retailerID) => {
         body: JSON.stringify({
             query: query_all_products
         })
-    }).then(response => response.json()).then(data => {
-        console.log(data)
+    }).then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        data.data.menu.products.forEach( p => {
+            console.log(p);
+        })
+
+
     }).catch(error => console.log(error.message));
+
+    return data;
 }
 
 export {
