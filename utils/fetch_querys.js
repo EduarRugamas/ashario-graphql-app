@@ -200,9 +200,8 @@ const GetAllProducts = (retailerID) => {
                 icon_add_to_cart.className='bx bxs-cart-add';
                 let btn_product_details = createElementHtml('a');
                 btn_product_details.className='btn btn-light btn-ecomm';
+                btn_product_details.href='/views/product-details.html';
                 btn_product_details.textContent='Product Details';
-
-
 
 
                 appendElementHtml(div_col, div_product_card);
@@ -232,10 +231,8 @@ const GetAllProducts = (retailerID) => {
                 appendElementHtml(div_content_etiqueta_a, add_to_cart);
                 appendElementHtml(add_to_cart, icon_add_to_cart);
                 appendElementHtml(div_content_etiqueta_a, btn_product_details);
-
-
+                //container principal que almacena a TODO el card
                 appendElementHtml(container_products, div_col);
-
 
             })
 
