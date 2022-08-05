@@ -156,6 +156,13 @@ const GetAllProducts = (retailerID) => {
                 let div_product_info = createElementHtml('div');
                 div_product_info.className='product-info';
 
+                let container_image = createElementHtml('a');
+                let image = createElementHtml('img');
+                image.className='card-img-top';
+                image.id='imagen-product';
+                image.src=`${info.image !== null ? info.image : '../assets/images/errors-images/image-not-found.jpeg'}`;
+                image.alt=`${info.name}`;
+
                 let link_a_item_brand = createElementHtml('a');
                 let etiqueta_p_item_brand = createElementHtml('p');
                 etiqueta_p_item_brand.className='product-catergory font-13 mb-1 itembrand';
@@ -205,6 +212,9 @@ const GetAllProducts = (retailerID) => {
                 appendElementHtml(div_card_body, div_product_info);
                 // div product info iran todos los demas elementos que se encuentran dentro de el div product info
                 // appendElementHtml(div_product_info, );
+
+                appendElementHtml(div_product_card, container_image);
+                appendElementHtml(container_image, image)
 
                 appendElementHtml(div_product_info, link_a_item_brand);
                 appendElementHtml(link_a_item_brand, etiqueta_p_item_brand);
