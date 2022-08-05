@@ -276,7 +276,7 @@ const GetProduct = (retailerID, id_product) => {
         }
     `;
 
-    fetch(url_base, {
+    fetch(`${url_base}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
