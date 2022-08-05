@@ -269,26 +269,18 @@ const GetProduct = (retailerID, id_product) => {
           }
         }
     `;
-    const headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer " + public_key,
-    }
-
-    const response = axios({
-        url: url_base,
-        method: 'POST',
-        headers,
-        data: query_product
-    });
 
     let product = fetch(`${url_base}`, {
         method: 'POST',
-        headers: headers,
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer " + public_key,
+        },
         body: JSON.stringify({ query: query_product})
     }).then(response => response.json())
       .then(data => {
-        product = data.data;
+        product = data;
     }).catch(error => product = error.message)
 
     return product;
