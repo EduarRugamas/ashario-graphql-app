@@ -269,8 +269,9 @@ const GetProduct = (retailerID, id_product) => {
           }
         }
     `;
+    let product;
 
-    let product = fetch(`${url_base}`, {
+        fetch(`${url_base}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -278,10 +279,10 @@ const GetProduct = (retailerID, id_product) => {
             "Authorization": "Bearer " + public_key,
         },
         body: JSON.stringify({ query: query_product})
-    }).then(response => response.json())
-      .then(data => {
-        product = data;
-    }).catch(error => product = error.message)
+        }).then(response => response.json())
+          .then(data => {
+            product = data.data;
+        }).catch(error => product = error.message)
 
     return product;
 
