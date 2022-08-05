@@ -6,4 +6,4 @@ const id_product = urlParams.get('id');
 
 
 
-GetProduct(id_store_centre_point_mall, id_product);
+GetProduct(id_store_centre_point_mall, id_product.toString());
