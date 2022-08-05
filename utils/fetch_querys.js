@@ -291,7 +291,7 @@ const GetProduct = (retailerID, id_product) => {
         product = data.data;
     }).catch(error => product = error.message)
 
-    console.log(product);
+    return product;
 
 }
 

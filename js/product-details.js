@@ -6,4 +6,4 @@ const id_product = urlParams.get('id');
 
 console.log('aqui el id', id_product);
 
-GetProduct(id_store_centre_point_mall.id, id_product);
+GetProduct(id_store_centre_point_mall.id, id_product).then(r => console.log(r));
