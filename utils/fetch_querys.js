@@ -1,5 +1,5 @@
 import {secret_key, public_key, url_base} from '../config/config.js';
-
+import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const local_storage = window.localStorage;
 
 const container_products = document.getElementById('container-products');
@@ -110,7 +110,13 @@ const GetAllProducts = (retailerID) => {
               description,
               image,
               subcategory,
-              category
+              category,
+              variants {
+                 quantity,
+                 option,
+                 priceMed,
+                 priceRec,
+              }     
             },
             productsCount
         }
@@ -129,13 +135,100 @@ const GetAllProducts = (retailerID) => {
         })
     }).then(response => response.json())
         .then(data => {
-            console.log(data);
-
             let result = data.data.menu.products;
             console.log(result);
 
-            result.map(p => {
-                console.log(p);
+
+            return result.map( info => {
+
+                //div que encierra toda la card
+                let div_col = createElementHtml('div');
+                div_col.className= 'col';
+
+                //segundo div de la card
+                let div_product_card = createElementHtml('div');
+                div_product_card.className='card rounded-0 product-card';
+
+                //tercer div card_body
+                let div_card_body = createElementHtml('div');
+                div_card_body.className='card-body';
+
+                let div_product_info = createElementHtml('div');
+                div_product_info.className='product-info';
+
+                let link_a_item_brand = createElementHtml('a');
+                let etiqueta_p_item_brand = createElementHtml('p');
+                etiqueta_p_item_brand.className='product-catergory font-13 mb-1 itembrand';
+                let etiqueta_p_item_brand_sub_type = createElementHtml('p');
+                etiqueta_p_item_brand_sub_type.className='product-catergory font-13 mb-1 itemsubtype';
+                etiqueta_p_item_brand_sub_type.id='itemsubtype';
+
+                let etiqueta_a_link_item_name = createElementHtml('a');
+                let etiqueta_h6_item_name = createElementHtml('h6');
+                etiqueta_h6_item_name.className='product-name mb-2 itemname';
+                etiqueta_h6_item_name.textContent=`${info.name}`;
+
+                let div_container_info_price = createElementHtml('div');
+                div_container_info_price.className='d-flex align-items-center';
+                let div_container_span = createElementHtml('div');
+                div_container_span.className='mb-1 product-price itemprice jcitemprice';
+                let span_text_cad = createElementHtml('span');
+                span_text_cad.className='fs-5 currencyformat jcpriceformat';
+                span_text_cad.textContent='CAD ';
+                let span_text_price = createElementHtml('span');
+                span_text_price.className='fs-5 jcpricingnw';
+                span_text_price.textContent='000.000';
+                let span_text_weights = createElementHtml('span');
+                span_text_weights.className='er-each jceachformat';
+                span_text_weights.textContent='/3.5G';
+
+                let div_content_action = createElementHtml('div');
+                div_content_action.className='product-action mt-2';
+                div_content_action.id='content';
+                let div_content_etiqueta_a = createElementHtml('div');
+                div_content_etiqueta_a.className='d-grid gap-2';
+                let add_to_cart = createElementHtml('a');
+                add_to_cart.className='btn btn-dark btn-ecomm';
+                add_to_cart.id='add_to_cart_btn';
+                add_to_cart.textContent='add to cart';
+                let icon_add_to_cart = createElementHtml('i');
+                icon_add_to_cart.className='bx bxs-cart-add';
+                let btn_product_details = createElementHtml('a');
+                btn_product_details.className='btn btn-light btn-ecomm';
+                btn_product_details.textContent='Product Details';
+
+
+
+
+                appendElementHtml(div_col, div_product_card);
+                appendElementHtml(div_product_card, div_card_body);
+                appendElementHtml(div_card_body, div_product_info);
+                // div product info iran todos los demas elementos que se encuentran dentro de el div product info
+                // appendElementHtml(div_product_info, );
+
+                appendElementHtml(div_product_info, link_a_item_brand);
+                appendElementHtml(link_a_item_brand, etiqueta_p_item_brand);
+                appendElementHtml(link_a_item_brand, etiqueta_p_item_brand_sub_type);
+
+                appendElementHtml(div_product_info, etiqueta_a_link_item_name);
+                appendElementHtml(etiqueta_a_link_item_name, etiqueta_h6_item_name);
+
+                appendElementHtml(div_product_info, div_container_info_price);
+                appendElementHtml(div_container_info_price, div_container_span);
+                appendElementHtml(div_container_span, span_text_cad);
+                appendElementHtml(div_container_span, span_text_price);
+                appendElementHtml(div_container_span, span_text_weights);
+
+                appendElementHtml(div_product_info, div_content_action);
+                appendElementHtml(div_content_action, div_content_etiqueta_a);
+                appendElementHtml(div_content_etiqueta_a, add_to_cart);
+                appendElementHtml(add_to_cart, icon_add_to_cart);
+                appendElementHtml(div_content_etiqueta_a, btn_product_details);
+
+
+                appendElementHtml(container_products, div_col);
+
+
             })
 
 
@@ -149,32 +242,39 @@ export {
 }
 
 
-// <div className="col">
-//     <div className="card rounded-0 product-card">
-//         <div className="card-body">
-//             <div className="product-info">
+// <div class="col">
+//     <div class="card rounded-0 product-card">
+//         <div class="card-body">
+//             <div classe="product-info">
 //                 <a href="product-details.html?objectID=">
-//                     <p className="product-catergory font-13 mb-1 itembrand"></p>
-//                     <p className="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+//                     <p class="product-catergory font-13 mb-1 itembrand"></p>
+//                     <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
 //                 </a>
 //                 <a href="product-details.html?objectID=">
-//                     <h6 className="product-name mb-2 itemname">${item.name}</h6>
+//                     <h6 class="product-name mb-2 itemname">${item.name}</h6>
 //                 </a>
-//                 <div className="d-flex align-items-center">
-//                     <div className="mb-1 product-price itemprice jcitemprice">
-//                         <span className="fs-5 currencyformat jcpriceformat">CAD </span>
-//                         <span className="fs-5 jcpricingnw"></span>
-//                         <span className="er-each jceachformat" style="align-items: flex-end;"></span>
+//                 <div class="d-flex align-items-center">
+//                     <div class="mb-1 product-price itemprice jcitemprice">
+//                         <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+//                         <span class="fs-5 jcpricingnw"></span>
+//                         <span class="er-each jceachformat" style="align-items: flex-end;"></span>
 //                     </div>
 //                 </div>
-//                 <div className="product-action mt-2" id="content">
-//                     <div className="d-grid gap-2">
-//                         <a className="btn btn-dark btn-ecomm" id="add_to_cart_btn"><i className="bx bxs-cart-add"></i>add
+//
+//
+//
+//
+//                 <div class="product-action mt-2" id="content">
+//                     <div class="d-grid gap-2">
+//                         <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn"><i class="bx bxs-cart-add"></i>add
 //                             to cart</a>
-//                         <a href="/views/product-details.html?objectID=" className="btn btn-light btn-ecomm">Product
-//                             Details</a>
+//                         <a href="/views/product-details.html?objectID=" class="btn btn-light btn-ecomm">Product Details</a>
 //                     </div>
 //                 </div>
+//
+//
+//
+//
 //             </div>
 //         </div>
 //     </div>
