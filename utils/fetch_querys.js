@@ -102,21 +102,19 @@ const GetAllProducts = (retailerID) => {
     query GetAllProducts($retailerId: ID="${retailerID}" ) {
         menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 } ) {
             products {
-              id,
-              name,
-              brand{
-                name
-              },
-              description,
-              image,
-              subcategory,
-              category,
-              variants {
-                 quantity,
-                 option,
-                 priceMed,
-                 priceRec,
-              }     
+                id,
+                name,
+                brand{
+                  name
+                },
+                image,
+                category,
+                subcategory,
+                variants {
+                  option,
+                  priceMed,
+                  priceRec,
+                }
             },
             productsCount
         }
@@ -215,8 +213,7 @@ const GetAllProducts = (retailerID) => {
                 appendElementHtml(div_product_card, div_card_body);
                 appendElementHtml(div_card_body, div_product_info);
                 // div product info iran todos los demas elementos que se encuentran dentro de el div product info
-                // appendElementHtml(div_product_info, );
-
+                // a exepcion de el container de la imagen ese va fuera de el div product info
                 appendElementHtml(div_product_info, link_a_item_brand);
                 appendElementHtml(link_a_item_brand, etiqueta_p_item_brand);
                 appendElementHtml(link_a_item_brand, etiqueta_p_item_brand_sub_type);
