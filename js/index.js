@@ -3,8 +3,8 @@ import {GetAllProducts, GetAllRetailerIds} from '../utils/fetch_querys.js';
 const storage_local = window.localStorage;
 const retailerID_Ashario_Centrepoint_Mall = storage_local.getItem('Ashario_Centrepoint_Mall');
 
-console.log(retailerID_Ashario_Centrepoint_Mall.id);
+console.log(retailerID_Ashario_Centrepoint_Mall);
 
 GetAllRetailerIds();
 
-GetAllProducts(retailerID_Ashario_Centrepoint_Mall.id);
+// GetAllProducts(retailerID_Ashario_Centrepoint_Mall.id);
