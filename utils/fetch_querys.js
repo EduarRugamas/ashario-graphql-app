@@ -135,12 +135,9 @@ const GetAllProducts = (retailerID) => {
             console.log(p);
         })
 
-        })
-
 
     }).catch(error => console.log(error.message));
 
-    return data;
 }
 
 export {
