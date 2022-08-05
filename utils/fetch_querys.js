@@ -78,7 +78,7 @@ const GetAllRetailerIds = () => {
 
 const GetAllProducts = (retailerID) => {
     const query_all_products = `
-    query GetAllProducts($retailerId: ID=${retailerID} ) {
+    query GetAllProducts($retailerId: ID="${retailerID}" ) {
         menu(retailerId: $retailerId, filter: { category: FLOWER} ) {
             products {
               id,
