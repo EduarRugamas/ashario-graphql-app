@@ -1,4 +1,5 @@
 import {GetProduct} from '../utils/fetch_querys.js';
+import {appendElementHtml, createElementHtml} from "../utils/elements_html";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
 const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
@@ -11,8 +12,12 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
     console.log(item);
 
+   const p =  createElementHtml('p');
+   p.textContent=`${item.name}`;
+
+   appendElementHtml(container_product_details, p);
+
     container_product_details.innerHTML=`
-    
     <section class="py-3 border-bottom border-top d-md-flex bg-light jcbreadcrumb">
     <div class="container">
         <div class="page-breadcrumb d-flex align-items-center">
