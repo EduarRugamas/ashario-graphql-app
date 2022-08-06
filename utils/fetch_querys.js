@@ -318,11 +318,7 @@ const GetProduct = (retailerID, id_product) => {
     return new Promise( (resolve, reject) =>  {
         fetch(`${url_base}`, {
             method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": "Bearer " + public_key,
-            },
+            headers: headers,
             body: JSON.stringify({ query: query_product})
         }).then(response => {
             if (response.ok) {
@@ -335,7 +331,6 @@ const GetProduct = (retailerID, id_product) => {
     })
 
 }
-
 
 
 export {
