@@ -111,8 +111,8 @@ GetAllProducts(Ashario_Centre_point_Mall.id).then( items => {
                 //container principal que almacena a TODO el card
                 appendElementHtml(container_products, div_col);
 
-    }).catch( error => {
-        console.log(error.message);
     })
 
+}).catch( error => {
+    console.log(error.message);
 })
