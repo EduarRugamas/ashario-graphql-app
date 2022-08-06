@@ -4,7 +4,7 @@ const local_storage = window.localStorage;
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "Authorization": "Bearer " + public_key,
+    "Authorization": "Bearer " + secret_key,
 };
 
 const container_products = document.getElementById('container-products');
@@ -26,7 +26,7 @@ const GetAllRetailerIds = () => {
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Authorization": "Bearer " + public_key,
+            "Authorization": "Bearer " + secret_key,
         },
         body: JSON.stringify({
             query: query_retailer
@@ -269,15 +269,16 @@ const GetAllProducts = async (retailerID) => {
     return await new Promise(  (resolve, reject) => {
          fetch(`${url_base}`, {
             method: 'POST',
-             headers: headers,
+             headers: {
+                 "Content-Type": "application/json",
+                 "Accept": "application/json",
+                 "Authorization": "Bearer " + secret_key,
+             },
              body: JSON.stringify({
                  query: query_get_all_products
              })
          }).then( response => {
-             if (response.ok) {
                  return response.json();
-             }
-             reject('error en la api' + response.status);
          })
           .then( info => resolve(info.data))
           .catch(error => reject(error.message))
