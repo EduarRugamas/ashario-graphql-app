@@ -112,7 +112,7 @@ GetAllProducts(Ashario_Centre_point_Mall.id).then( items => {
                 appendElementHtml(container_products, div_col);
 
     }).catch( error => {
-
+        console.log(error.message);
     })
 
 })
