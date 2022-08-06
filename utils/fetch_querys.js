@@ -284,7 +284,7 @@ const GetAllProducts = async (retailerID) => {
     });
 }
 
-const GetProduct = (retailerID, id_product) => {
+const GetProduct = async (retailerID, id_product) => {
     const query_product = `
         query GetProduct ($retailerId: ID="${retailerID}", $productId: ID="${id_product}") {
           product(retailerId: $retailerId, id: $productId ) {
@@ -315,7 +315,7 @@ const GetProduct = (retailerID, id_product) => {
           }
         }
     `;
-    return new Promise( (resolve, reject) =>  {
+    return await new Promise( (resolve, reject) =>  {
         fetch(`${url_base}`, {
             method: 'POST',
             headers: headers,
@@ -328,8 +328,7 @@ const GetProduct = (retailerID, id_product) => {
         }).then(data => {
             resolve(data.data.product);
         }).catch(error => reject(error.message));
-    })
-
+    });
 }
 
 
@@ -358,10 +357,6 @@ export {
 //                         <span class="er-each jceachformat" style="align-items: flex-end;"></span>
 //                     </div>
 //                 </div>
-//
-//
-//
-//
 //                 <div class="product-action mt-2" id="content">
 //                     <div class="d-grid gap-2">
 //                         <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn"><i class="bx bxs-cart-add"></i>add
@@ -369,10 +364,6 @@ export {
 //                         <a href="/views/product-details.html?objectID=" class="btn btn-light btn-ecomm">Product Details</a>
 //                     </div>
 //                 </div>
-//
-//
-//
-//
 //             </div>
 //         </div>
 //     </div>
