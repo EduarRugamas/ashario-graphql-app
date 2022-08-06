@@ -284,7 +284,7 @@ const GetProduct = (retailerID, id_product) => {
             }
             reject('error en la api' + response.status);
         }).then(data => {
-            resolve(data);
+            resolve(data.data);
         }).catch(error => reject(error.message));
     })
 
