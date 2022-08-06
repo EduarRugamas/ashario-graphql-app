@@ -9,6 +9,8 @@ console.log('aqui el id', id_product);
 
 GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
+    console.log(item);
+
     container_product_details.innerHTML=`
     
     <section class="py-3 border-bottom border-top d-md-flex bg-light jcbreadcrumb">
@@ -55,21 +57,18 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
                                     </div>
                                 </div>
                             </div>
-                            <div id="selector-imgs-products" style="" class="border mb-2 p-2">
-                                <!-- <img src="${hits[0].image_urls[0]}" alt="" style="margin-right: 25px;" class="border p-1"> -->
-                                <!-- <img src="${hits[0].image_urls[1]}" alt="" class="border p-1"> -->
-                            </div>
+                            <div id="selector-imgs-products" style="" class="border mb-2 p-2"></div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-7">
                         <div class="product-info-section p-3">
                             <div class="badge bg-badge-category mb-2">
                                 <p style="text-transform: uppercase;"
-                                   class="m-1 align-content-center font-14">${hits[0].type}</p>
+                                   class="m-1 align-content-center font-14">${item.category}</p>
                             </div>
                             <h3 class="mt-4 mt-lg-0 mb-0">${item.name}</h3>
                             <div class="d-inline-block mt-2">
-                                <p class="badge bg-success font-13 ">${hits[0].brand}</p>
+                                <p class="badge bg-success font-13 ">${item.brand.name}</p>
                                 <p class="badge bg-success font-13" id="item_sub_type"></p>
                             </div>
 
