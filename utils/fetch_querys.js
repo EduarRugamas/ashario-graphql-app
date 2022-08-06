@@ -281,6 +281,7 @@ const GetProduct = (retailerID, id_product) => {
         body: JSON.stringify({ query: query_product})
         }).then(response => response.json())
           .then(data => {
+              console.log(data.data);
             product = data.data;
         }).catch(error => product = error.message)
 
