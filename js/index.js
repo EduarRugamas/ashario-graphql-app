@@ -45,7 +45,7 @@ fetch(`${url_base}`, {
         return response.error();
     }
 
-    }).then(((items) => {
+    }).then( (items) => {
         console.log(items);
         let products = items.data.menu;
         const container_products = document.getElementById('container-products');
@@ -153,7 +153,7 @@ fetch(`${url_base}`, {
 
 
     }
-)).catch( (error) => {
+).catch( (error) => {
         console.log(error);
         const container_products = document.getElementById('container-products');
 
