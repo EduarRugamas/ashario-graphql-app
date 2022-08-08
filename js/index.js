@@ -5,7 +5,13 @@ const storage_local = window.localStorage;
 const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
 
-GetAllRetailerIds();
+GetAllRetailerIds().then( retailers => {
+
+    console.log(retailers);
+
+}).catch( (error) => {
+    console.log(error.message);
+})
 
 let query_products_all = `
         query GetAllProducts($retailerId: ID="${Ashario_Centre_point_Mall.id}" ) {

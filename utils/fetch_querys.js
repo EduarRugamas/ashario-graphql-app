@@ -9,9 +9,9 @@ const headers = {
 
 const container_products = document.getElementById('container-products');
 
-const GetAllRetailerIds = () => {
+const GetAllRetailerIds = async () => {
 
-    const query_retailer = `
+    const query_retailers = `
     query GetRetailers {
         retailers {
            name,
@@ -21,62 +21,26 @@ const GetAllRetailerIds = () => {
         }
     }
     `
-    fetch(`${url_base}`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": "Bearer " + secret_key,
-        },
-        body: JSON.stringify({
-            query: query_retailer
+    return await new Promise( (resolve, reject) => {
+        fetch(`${url_base}`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": "Bearer " + secret_key,
+            },
+            body: JSON.stringify({
+                query: query_retailers
+            })
+        }).then( (response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            reject('error en el server ' + response.status);
         })
-    })
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            let retailers = data.data.retailers;
-            console.log(retailers);
-            // if (local_storage.getItem('Ashario_Centrepoint_Mall') && local_storage.getItem('Ashario_North_York') && local_storage.getItem('Ashario_Aurora')) {
-            //     console.log('ids de tiendas guardadas');
-            // } else {
-            //     let store_Centrepoint_Mall = {
-            //         name: data.data.retailers[0].name,
-            //         id: data.data.retailers[0].id,
-            //         address: data.data.retailers[0].address,
-            //     }
-            //
-            //     let store_Ashario_North_York = {
-            //         name: data.data.retailers[1].name,
-            //         id: data.data.retailers[1].id,
-            //         address: data.data.retailers[1].address,
-            //     }
-            //
-            //     let store_Ashario_Aurora = {
-            //         name: data.data.retailers[2].name,
-            //         id: data.data.retailers[2].id,
-            //         address: data.data.retailers[2].address,
-            //     }
-            //
-            //     console.log('store --> ', store_Centrepoint_Mall);
-            //     console.log('store --> ', store_Ashario_North_York);
-            //     console.log('store --> ', store_Ashario_Aurora);
-            //
-            //
-            //     local_storage.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_Centrepoint_Mall));
-            //     local_storage.setItem('Ashario_North_York', JSON.stringify(store_Ashario_North_York));
-            //     local_storage.setItem('Ashario_Aurora', JSON.stringify(store_Ashario_Aurora));
-            // }
-
-
-            //    #1 Ashario_Centrepoint_Mall, #2 Ashario_North_York, #3 Ashario_Aurora
-
-        })
-        .catch(error => {
-            console.log(error.message);
-        })
+        .then( (retailers) => resolve(retailers.data.retailers))
+            .catch(error => reject(error));
+    });
 };
 
 const GetCountproduct = (retailerID) => {
