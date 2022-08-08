@@ -41,12 +41,17 @@ fetch(`${url_base}`, {
 
     if (response.ok) {
         return response.json();
-    }else {
-        return response.error();
+    }else if (response.status === 400){
+        const container_products = document.getElementById('container-products');
+
+        console.log(response.error());
+        let div_error_400 = createElementHtml('p');
+        div_error_400.textContent='Error al obtener la informacion';
+        appendElementHtml(container_products, div_error_400);
     }
 
     }).then( (items) => {
-        console.log(items.data.menu);
+
         let products = items.data.menu.products;
         const container_products = document.getElementById('container-products');
         products.map( (product) => {
@@ -158,7 +163,7 @@ fetch(`${url_base}`, {
         const container_products = document.getElementById('container-products');
 
         let div_error = createElementHtml('p');
-
+        div_error.style='align-items: center;'
         div_error.textContent='No hay contenido a mostrar, surgio un error en el server';
 
         appendElementHtml(container_products, div_error);
