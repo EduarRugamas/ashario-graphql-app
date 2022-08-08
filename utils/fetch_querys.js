@@ -280,7 +280,7 @@ const GetAllProducts = async (retailerID) => {
          }).then( response => {
                  return response.json();
          })
-          .then( info => resolve(info.data))
+          .then( info => resolve(info.data.menu))
           .catch(error => reject(error.message))
     });
 }
