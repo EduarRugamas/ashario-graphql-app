@@ -332,11 +332,49 @@ const GetProduct = async (retailerID, id_product) => {
     });
 }
 
+const AllProduts = async (retailerID) => {
+    const query_all_products = `
+        query GetAllProducts($retailerId: ID="${retailerID}" ) {
+            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 } ) {
+                products {
+                    id,
+                    name,
+                    brand{
+                      name
+                    },
+                    image,
+                    category,
+                    subcategory,
+                    variants {
+                      option,
+                      priceMed,
+                      priceRec,
+                    }
+                },
+                productsCount
+            }
+        }
+    `;
+
+    return await axios.post(`${url_base}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + secret_key
+        },
+        body: JSON.stringify({query: query_all_products})
+    }).then( result => {
+        result.json();
+    }).catch( error => {throw new Error(`${error.message}`)} );
+
+};
+
 
 export {
     GetAllRetailerIds,
     GetAllProducts,
     GetProduct,
+    AllProduts
 }
 
 
