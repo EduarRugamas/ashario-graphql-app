@@ -8,7 +8,9 @@ GetAllRetailerIds();
 
 window.onload = function (){
 
-    GetAllProducts(Ashario_Centre_point_Mall.id).then( items => {
+
+
+    GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
 
         console.log(items);
         let information = items.products;
