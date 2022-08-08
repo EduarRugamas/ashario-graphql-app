@@ -36,7 +36,9 @@ const GetAllRetailerIds = () => {
             return response.json();
         })
         .then(data => {
-            console.log(data.data.retailers);
+            console.log(data);
+            let retailers = data.data.retailers;
+            console.log(retailers);
             // if (local_storage.getItem('Ashario_Centrepoint_Mall') && local_storage.getItem('Ashario_North_York') && local_storage.getItem('Ashario_Aurora')) {
             //     console.log('ids de tiendas guardadas');
             // } else {
