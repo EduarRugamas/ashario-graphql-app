@@ -11,7 +11,7 @@ window.onload = function (){
     GetAllProducts(Ashario_Centre_point_Mall.id).then( items => {
 
         console.log(items);
-        let information = items.menu.products;
+        let information = items.products;
 
         information.map( products => {
 
