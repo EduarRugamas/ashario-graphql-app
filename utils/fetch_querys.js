@@ -365,7 +365,7 @@ const AllProduts = async (retailerID) => {
         body: JSON.stringify({query: query_all_products})
     }).then( result => {
         result.json();
-    }).catch( error => {throw new Error(`${error.message}`)} );
+    }).then( data => console.log(data) ).catch( error => {throw new Error(`${error.message}`)} );
 
 };
 
