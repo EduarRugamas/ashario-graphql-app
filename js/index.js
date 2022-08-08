@@ -46,6 +46,7 @@ fetch(`${url_base}`, {
     }
 
     }).then(((items) => {
+        console.log(items);
         let products = items.data.menu;
         const container_products = document.getElementById('container-products');
         products.map( (product) => {
