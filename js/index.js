@@ -23,6 +23,34 @@ GetAllRetailerIds().then( retailers => {
             storage_local.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
             console.log('se guardo en el local storage');
         }
+
+        if (item.name === 'Ashario - Aurora') {
+            let store_aurora = {
+                name: item.name,
+                id: item.id,
+                menuTypes: item.menuTypes,
+                address: item.address
+            }
+
+            console.log(item);
+
+            storage_local.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
+            console.log('se guardo en el local storage');
+        }
+
+        if (item.name === 'Ashario - North York') {
+            let store_north_york = {
+                name: item.name,
+                id: item.id,
+                menuTypes: item.menuTypes,
+                address: item.address
+            }
+
+            console.log(item);
+
+            storage_local.setItem('Ashario_North_York', JSON.stringify(store_north_york));
+            console.log('se guardo en el local storage');
+        }
     })
 
 
