@@ -4,6 +4,9 @@ import { createElementHtml, appendElementHtml } from '../utils/elements_html.js'
 const storage_local = window.localStorage;
 const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
+
+GetAllRetailerIds();
+
 let query_products_all = `
         query GetAllProducts($retailerId: ID="${Ashario_Centre_point_Mall.id}" ) {
         menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 } ) {
