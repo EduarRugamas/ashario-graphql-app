@@ -9,6 +9,23 @@ GetAllRetailerIds().then( retailers => {
 
     console.log(retailers);
 
+    retailers.find( item => {
+        if (item.name === 'Ashario - Centrepoint Mall') {
+            let store_centre_point_mall = {
+                name: item.name,
+                id: item.id,
+                menuTypes: item.menuTypes,
+                address: item.address
+            }
+
+            console.log(item);
+
+            storage_local.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
+            console.log('se guardo en el local storage');
+        }
+    })
+
+
 }).catch( (error) => {
     console.log(error.message);
 })

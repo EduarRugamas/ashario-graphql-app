@@ -39,7 +39,7 @@ const GetAllRetailerIds = async () => {
             reject('error en el server ' + response.status);
         })
         .then( (retailers) => resolve(retailers.data.retailers))
-            .catch(error => reject(error));
+        .catch(error => reject(error));
     });
 };
 
