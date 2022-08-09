@@ -463,22 +463,22 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
     console.log(option_weight_current);
 
     if (option_weight_current === '1g') {
-        container_price.textContent = `$ ${item.variants[0].priceMed}`;
+        container_price.textContent = `$ ${item.variants[0].priceRec}`;
         text_weight_format.textContent = '/1G';
     } else if (option_weight_current === '3.5g') {
-        container_price.textContent = `$ ${item.variants[0].priceMed}`;
+        container_price.textContent = `$ ${item.variants[0].priceRec}`;
         text_weight_format.textContent = '/3.5G';
     } else if (option_weight_current === '7g') {
-        container_price.textContent = `$ ${item.variants[0].priceMed}`;
+        container_price.textContent = `$ ${item.variants[0].priceRec}`;
         text_weight_format.textContent = '/7G';
     } else if (option_weight_current === '14g') {
-        container_price.textContent = `$ ${item.variants[0].priceMed}`;
+        container_price.textContent = `$ ${item.variants[0].priceRec}`;
         text_weight_format.textContent = '/14G';
     } else if (option_weight_current === '28g') {
-        container_price.textContent = `$ ${item.variants[0].priceMed}`;
+        container_price.textContent = `$ ${item.variants[0].priceRec}`;
         text_weight_format.textContent = '/28G';
     } else if (option_weight_current === "0.5g") {
-        container_price.textContent = `$ ${item.variants[0].priceMed}`;
+        container_price.textContent = `$ ${item.variants[0].priceRec}`;
         text_weight_format.textContent = '/0.5G';
     }
 
@@ -491,39 +491,39 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         let selec_option_quantity = parseInt(document.getElementById('quantity').value);
         let select_option_weight = document.getElementById('select-weight').value;
         let h4_price_replace = document.getElementById('text_price');
-        let price_each_int = item.variants[0].priceMed;
+        let price_each_int = item.variants[0].priceRec;
 
 
         if (item.variants[0].option === 'each') {
             let price_each_string = (price_each_int * selec_option_quantity).toFixed(2);
             h4_price_replace.textContent = `$ ${price_each_string}`;
         } else if (select_option_weight === '1g') {
-            let price_gram_int = item.variants[0].priceMed;
+            let price_gram_int = item.variants[0].priceRec;
             let price_gram_string = (price_gram_int * selec_option_quantity).toFixed(2);
             h4_price_replace.textContent = `$ ${price_gram_string}`;
 
         } else if (select_option_weight === '3.5g') {
-            let price_eighth_ounce_int = item.variants[0].priceMed;
+            let price_eighth_ounce_int = item.variants[0].priceRec;
             let price_eighth_ounce_string = (price_eighth_ounce_int * selec_option_quantity).toFixed(2);
             h4_price_replace.textContent = `$ ${price_eighth_ounce_string}`;
 
         } else if (select_option_weight === '7g') {
-            let price_quarter_ounce_int = item.variants[0].priceMed;
+            let price_quarter_ounce_int = item.variants[0].priceRec;
             let price_quarter_ounce_string = (price_quarter_ounce_int * selec_option_quantity).toFixed(2);
             h4_price_replace.textContent = `$ ${price_quarter_ounce_string}`;
 
         } else if (select_option_weight === '14g') {
-            let price_half_ounce_int = item.variants[0].priceMed;
+            let price_half_ounce_int = item.variants[0].priceRec;
             let price_half_ounce_string = (price_half_ounce_int * selec_option_quantity).toFixed(2);
             h4_price_replace.textContent = `$ ${price_half_ounce_string}`;
 
         } else if (select_option_weight === '0.5g') {
-            let price_half_gram_int = item.variants[0].priceMed;
+            let price_half_gram_int = item.variants[0].priceRec;
             let price_half_gram_string = (price_half_gram_int * selec_option_quantity).toFixed(2);
             h4_price_replace.textContent = `$ ${price_half_gram_string}`;
 
         } else if (select_option_weight === '28g') {
-            let price_ounce_int = item.variants[0].priceMed;
+            let price_ounce_int = item.variants[0].priceRec;
             let price_ounce_string = (price_ounce_int * selec_option_quantity).toFixed(2);
             h4_price_replace.textContent = `$ ${price_ounce_string}`;
 
