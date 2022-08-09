@@ -5,6 +5,7 @@ const storage_local = window.localStorage;
 const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
+const title_product = document.getElementById('title_name_product_details');
 
 console.log('aqui el id', id_product);
 
@@ -12,46 +13,10 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
     console.log(item);
 
-    let section_container_first = createElementHtml('section');
-    section_container_first.className='py-3 border-bottom border-top d-md-flex bg-light jcbreadcrumb';
+    title_product.textContent=`${item.name}`
+
     let section_container_second = createElementHtml('section');
     section_container_second.className='py-4';
-
-    let div_container_section_firts = createElementHtml('div');
-    div_container_section_firts.className='container';
-    let div_container_content_page_breadcrum = createElementHtml('div');
-    div_container_content_page_breadcrum.className='page-breadcrumb d-flex align-items-center';
-    let etiqueta_a_content_icon = createElementHtml('a');
-    etiqueta_a_content_icon.href='../index.html';
-    etiqueta_a_content_icon.className='nav-link position-relative cart-link';
-    let icon_arrow_back = createElementHtml('i');
-    icon_arrow_back.className='bx bx-chevron-left bx-lg';
-    icon_arrow_back.style='color: #000000;';
-
-    let etiqueta_h3_name = createElementHtml('h3');
-    etiqueta_h3_name.className='breadcrumb-title pe-3';
-    etiqueta_h3_name.textContent=`${item.name}`;
-
-    let div_content_icon_cart_shop = createElementHtml('div');
-    div_content_icon_cart_shop.className='col-4 col-md-auto order-2 order-md-4 ms-auto';
-    let div_top_cart_icons = createElementHtml('div');
-    div_top_cart_icons.className='top-cart-icons float-start';
-    let nav_content_expand = createElementHtml('nav');
-    nav_content_expand.className='navbar navbar-expand';
-    let ul_nav_bar = createElementHtml('ul');
-    ul_nav_bar.className='navbar-nav ms-auto';
-    let li_nav_item = createElementHtml('li');
-    li_nav_item.className='nav-item';
-    let a_content_icon_cart = createElementHtml('a');
-    a_content_icon_cart.href='/views/shop-cart.html';
-    a_content_icon_cart.className='nav-link position-relative cart-link';
-    let span_alert_count = createElementHtml('span');
-    span_alert_count.className='alert-count';
-    span_alert_count.id='count_quantity_cart';
-    span_alert_count.textContent='0';
-    let icon_cart_count = createElementHtml('i');
-    icon_cart_count.className='bx bx-shopping-bag';
-
 
     let div_container_section_second = createElementHtml('div');
     div_container_section_second.className='container';
@@ -174,21 +139,6 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
     icon_add_to_cart.className='bx bxs-cart-add';
 
 
-
-    appendElementHtml(section_container_first, div_container_section_firts);
-    appendElementHtml(div_container_section_firts, div_container_content_page_breadcrum);
-    appendElementHtml(div_container_content_page_breadcrum, etiqueta_a_content_icon);
-    appendElementHtml(etiqueta_a_content_icon, icon_arrow_back);
-    appendElementHtml(div_container_content_page_breadcrum, etiqueta_h3_name);
-
-    appendElementHtml(div_container_content_page_breadcrum, div_content_icon_cart_shop);
-    appendElementHtml(div_content_icon_cart_shop, div_top_cart_icons);
-    appendElementHtml(div_top_cart_icons, nav_content_expand);
-    appendElementHtml(nav_content_expand, ul_nav_bar);
-    appendElementHtml(ul_nav_bar, li_nav_item);
-    appendElementHtml(li_nav_item, span_alert_count);
-    appendElementHtml(li_nav_item, icon_cart_count);
-
     appendElementHtml(section_container_second, div_container_section_second);
     appendElementHtml(div_container_section_second, div_product_details_card);
     appendElementHtml(div_product_details_card, div_product_details_body);
@@ -241,123 +191,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
     appendElementHtml(button_add_to_cart, icon_add_to_cart);
 
     //contenedores principales que almacenan el product details son dos section separados;
-    appendElementHtml(container_product_details, section_container_first);
     appendElementHtml(container_product_details, section_container_second);
-
-//     container_product_details.innerHTML=`
-//     <section class="py-3 border-bottom border-top d-md-flex bg-light jcbreadcrumb">
-//         <div class="container">
-//             <div class="page-breadcrumb d-flex align-items-center">
-//                 <a href="../index.html" class="nav-link position-relative cart-link">
-//                     <i class='bx bx-chevron-left bx-lg' style="color: #000000; "></i>
-//                 </a>
-//
-//                 <h3 class="breadcrumb-title pe-3">${item.name}</h3>
-//                 <div class="col-4 col-md-auto order-2 order-md-4 ms-auto">
-//                     <div class="top-cart-icons float-start">
-//                         <nav class="navbar navbar-expand">
-//                             <ul class="navbar-nav ms-auto">
-//                                 <li class="nav-item">
-//                                     <a href="/views/shop-cart.html" class="nav-link position-relative cart-link">
-//                                         <span class="alert-count" id="count_quantity_cart">0</span>
-//                                         <i class="bx bx-shopping-bag"></i>
-//                                     </a>
-//                                 </li>
-//                             </ul>
-//                         </nav>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     </section>
-// <!--end breadcrumb-->
-// <!--start product detail-->
-// <section class="py-4">
-//     <div class="container">
-//         <div class="product-detail-card">
-//             <div class="product-detail-body">
-//                 <div class="row g-0">
-//                     <div class="col-12 col-lg-5">
-//                         <div class="image-zoom-section">
-//                             <div class="product-gallery owl-carousel owl-theme border mb-3 p-3 owl-loaded owl-drag">
-//                                 <div class="owl-stage-outer">
-//                                     <div class="owl-item"
-//                                          style="width: 400px; align-items: center; object-fit: cover;">
-//                                         <div class="item">
-//                                             <img src="" alt="" class="img-fluid" id="imagen_carusel">
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                             <div id="selector-imgs-products" style="" class="border mb-2 p-2"></div>
-//                         </div>
-//                     </div>
-//                     //aqui me quede
-//                     <div class="col-12 col-lg-7">
-//                         <div class="product-info-section p-3">
-//                             <div class="badge bg-badge-category mb-2">
-//                                 <p style="text-transform: uppercase;" class="m-1 align-content-center font-14">${item.category}</p>
-//                             </div>
-//                             <h3 class="mt-4 mt-lg-0 mb-0">${item.name}</h3>
-//                             <div class="d-inline-block mt-2">
-//                                 <p class="badge bg-success font-13 ">${item.brand.name}</p>
-//                                 <p class="badge bg-success font-13" id="item_sub_type"></p>
-//                             </div>
-//                             <div class="d-flex align-items-center">
-//                                 <div class="mb-1 product-price itemprice jcitemprice">
-//                                     <span class="fs-5 currencyformat jcpriceformat">CAD</span>
-//                                     <span class="fs-5 jcpricingnw" id="text_price"></span>
-//                                     <span class="er-each jceachformat" id="text_weights_format"></span>
-//                                 </div>
-//                             </div>
-//                             <!--<div class="d-flex align-items-center mt-0 gap-2" id="text_price"></div>-->
-//                             <div class="mt-3">
-//                                 <h6>Details:</h6>
-//                                 <dl class="row mt-3" id="container-details-dl">
-//                                     <dt class="col-sm-3">Product id</dt>
-//                                     <dd class="col-sm-9"># ${item.id}</dd>
-//                                 </dl>
-//                                 <!--<p class="mb-0">${hits[0].description}</p>-->
-//
-//                                 <h6>Description:</h6>
-//                                 <p class="mb-0">${item.description}</p>
-//                             </div>
-//
-//
-//                             // aqui me quede
-//                             <div class="row row-cols-auto align-items-center mt-3">
-//                                 <div class="col" id="container_quantity">
-//                                     <label class="form-label">Quantity</label>
-//                                     <select class="form-select form-select-sm" id="quantity"></select>
-//                                 </div>
-//                                 <div class="col" id="container_weight">
-//                                     <label class="form-label">weight</label>
-//                                     <select class="form-select form-select-sm" id="select-weight"></select>
-//                                 </div>
-//                             </div>
-//
-//
-//
-//
-//
-//                             <div class="d-flex gap-2 mt-3">
-//                                 <!--                                            <a href="" class="btn btn-white btn-ecomm" id="add-to-cart"><i class="bx bxs-cart-add"></i>Add to Cart</a>-->
-//                                 <button type="submit" class="btn btn-dark btn-ecomm" id="add-to-cart"><i
-//                                     class="bx bxs-cart-add"></i>Add to Cart
-//                                 </button>
-//                             </div>
-//
-//
-//
-//                             <hr/>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-// </section>
-//     `;
 
     const images = item.images;
     let $container_img = document.querySelector('#imagen_carusel');
