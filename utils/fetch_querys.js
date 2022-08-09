@@ -253,8 +253,10 @@ const GetCountproduct = (retailerID) => {
 //
 // }
 
+GetAllRetailerIds();
+
 const GetAllProducts = async (retailerID) => {
-        GetAllRetailerIds();
+
 
         const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
