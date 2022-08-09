@@ -375,9 +375,9 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
             img_miniatura.className='border p-1';
             if (index === 0) {
                 img_miniatura.className='active_item';
-                $container_img.src=`${miniatura}`;
+                $container_img.src=`${miniatura.url}`;
             }
-            img_miniatura.src=`${miniatura}`;
+            img_miniatura.src=`${miniatura.url}`;
             miniatura_img.appendChild(img_miniatura);
             const img_mini_all = document.querySelectorAll('#images_miniaturas');
             img_mini_all.forEach(mini => {
