@@ -391,6 +391,18 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         })
     }
 
+    let dt_potency_cbd = createElementHtml('dt');
+    dt_potency_cbd.className='col-sm-3';
+    dt_potency_cbd.textContent='CBD';
+    let dd_potency_cbd = createElementHtml('dd');
+    dd_potency_cbd.className='col-sm-9';
+    dd_potency_cbd.textContent=`${item.potencyCbd.formatted}`;
+
+    appendElementHtml(dl_content, dt_potency_cbd);
+    appendElementHtml(dl_content, dd_potency_cbd);
+
+
+
 
 }).catch(error => console.log(error.message));
 
