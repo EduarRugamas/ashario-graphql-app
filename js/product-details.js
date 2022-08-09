@@ -391,7 +391,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         })
     }
 
-    if (item.potencyThc){
+    if (item.hasOwnProperty(item.potencyThc)){
         let dt_potency_cbd = createElementHtml('dt');
         dt_potency_cbd.className='col-sm-3';
         dt_potency_cbd.textContent='CBD';
@@ -402,7 +402,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         appendElementHtml(dl_content, dd_potency_thc);
     }
 
-    if (item.potencyThc) {
+    if (item.hasOwnProperty(item.potencyCbd)) {
         let dt_potency_thc = createElementHtml('dt');
         dt_potency_thc.className='col-sm-3';
         dt_potency_thc.textContent='THC';
