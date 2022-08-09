@@ -406,7 +406,10 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
     dt_potency_thc.textContent='THC';
     let dd_potency_thc = createElementHtml('dd');
     dd_potency_thc.className='col-sm-9';
-    dd_potency_thc.textContent=`${item.potencyThc.formatted}`
+    dd_potency_thc.textContent=`${item.potencyThc.formatted}`;
+
+    appendElementHtml(dl_content, dt_potency_thc);
+    appendElementHtml(dl_content, dd_potency_thc);
 
 
 
