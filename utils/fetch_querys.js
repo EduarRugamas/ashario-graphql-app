@@ -253,8 +253,6 @@ const GetCountproduct = (retailerID) => {
 //
 // }
 
-GetAllRetailerIds();
-
 const GetAllProducts = async (retailerID) => {
 
 
