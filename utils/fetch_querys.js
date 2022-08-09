@@ -357,8 +357,10 @@ const GetProduct = async (retailerID, id_product) => {
 
 
 export {
+    GetAllRetailerIds,
     GetAllProducts,
-    GetProduct
+    GetProduct,
+
 }
 
 
