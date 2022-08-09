@@ -6,10 +6,6 @@ const storage_local = window.localStorage;
 GetAllRetailerIds();
 
 window.onload =  function () {
-    setTimeout( () => {
-        const loading = document.getElementsByClassName('loader-page');
-        loading.style='display: none;'
-    }, 3000);
 
     const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
     GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
