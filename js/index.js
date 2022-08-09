@@ -3,59 +3,58 @@ import { createElementHtml, appendElementHtml } from '../utils/elements_html.js'
 const storage_local = window.localStorage;
 const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
+window.onload = function () {
+    GetAllRetailerIds().then( retailers => {
 
-GetAllRetailerIds().then( retailers => {
+        console.log(retailers);
 
-    console.log(retailers);
+        retailers.find( item => {
+            if (item.name === 'Ashario - Centrepoint Mall') {
+                let store_centre_point_mall = {
+                    name: item.name,
+                    id: item.id,
+                    menuTypes: item.menuTypes,
+                    address: item.address
+                }
 
-    retailers.find( item => {
-        if (item.name === 'Ashario - Centrepoint Mall') {
-            let store_centre_point_mall = {
-                name: item.name,
-                id: item.id,
-                menuTypes: item.menuTypes,
-                address: item.address
+                console.log(item);
+
+                storage_local.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
+                console.log('se guardo en el local storage');
             }
 
-            console.log(item);
+            if (item.name === 'Ashario - Aurora') {
+                let store_aurora = {
+                    name: item.name,
+                    id: item.id,
+                    menuTypes: item.menuTypes,
+                    address: item.address
+                }
 
-            storage_local.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
-            console.log('se guardo en el local storage');
-        }
+                console.log(item);
 
-        if (item.name === 'Ashario - Aurora') {
-            let store_aurora = {
-                name: item.name,
-                id: item.id,
-                menuTypes: item.menuTypes,
-                address: item.address
+                storage_local.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
+                console.log('se guardo en el local storage');
             }
 
-            console.log(item);
+            if (item.name === 'Ashario - North York') {
+                let store_north_york = {
+                    name: item.name,
+                    id: item.id,
+                    menuTypes: item.menuTypes,
+                    address: item.address
+                }
 
-            storage_local.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
-            console.log('se guardo en el local storage');
-        }
+                console.log(item);
 
-        if (item.name === 'Ashario - North York') {
-            let store_north_york = {
-                name: item.name,
-                id: item.id,
-                menuTypes: item.menuTypes,
-                address: item.address
+                storage_local.setItem('Ashario_North_York', JSON.stringify(store_north_york));
+                console.log('se guardo en el local storage');
             }
-
-            console.log(item);
-
-            storage_local.setItem('Ashario_North_York', JSON.stringify(store_north_york));
-            console.log('se guardo en el local storage');
-        }
-    })
+        })
 
 
-}).catch( (error) => {console.log(error.message);})
-
-
+    }).catch( (error) => {console.log(error.message);})
+}
 
     GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
 
