@@ -4,7 +4,7 @@ const storage_local = window.localStorage;
 
 
 window.onload = function () {
-    GetAllRetailerIds();
+
 }
 
 const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));

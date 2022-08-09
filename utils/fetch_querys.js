@@ -254,6 +254,7 @@ const GetCountproduct = (retailerID) => {
 // }
 
 const GetAllProducts = async (retailerID) => {
+        GetAllRetailerIds();
 
         const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
@@ -354,7 +355,6 @@ const GetProduct = async (retailerID, id_product) => {
 
 
 export {
-    GetAllRetailerIds,
     GetAllProducts,
     GetProduct
 }
