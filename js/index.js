@@ -1,10 +1,13 @@
 import {GetAllProducts, GetAllRetailerIds} from '../utils/fetch_querys.js';
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const storage_local = window.localStorage;
-const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
-    GetAllRetailerIds();
+
+GetAllRetailerIds();
+
+window.onload =  function () {
     setTimeout( () => {
+        const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
         GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
 
             const container_products = document.getElementById('container-products');
@@ -118,6 +121,10 @@ const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Cent
             throw new Error(`${error.message}`);
         });
     }, 3000);
+}
+
+
+
 
 
 
