@@ -391,6 +391,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         })
     }
 
+    // area de potency thc y cbd
     if (item.potencyThc.hasOwnProperty('formatted') !== null) {
         let dt_potency_thc = createElementHtml('dt');
         dt_potency_thc.className='col-sm-3';
@@ -413,6 +414,17 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         appendElementHtml(dl_content, dt_potency_cbd);
         appendElementHtml(dl_content, dd_potency_cbd);
     }
+    //fin de area thc and cbd
+
+    //area de quantity y weight
+
+
+
+
+
+    //fin de area de quantity and weight
+
+
 
 
 

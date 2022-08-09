@@ -211,7 +211,7 @@ const GetAllProducts = async (retailerID) => {
 
         const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
-            menu(retailerId: $retailerId, filter: { category: FLOWER}) {
+            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 20, limit: 40 }) {
                 products {
                     id,
                     name,
@@ -314,32 +314,3 @@ export {
 }
 
 
-// <div class="col">
-//     <div class="card rounded-0 product-card">
-//         <div class="card-body">
-//             <div classe="product-info">
-//                 <a href="product-details.html?objectID=">
-//                     <p class="product-catergory font-13 mb-1 itembrand"></p>
-//                     <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
-//                 </a>
-//                 <a href="product-details.html?objectID=">
-//                     <h6 class="product-name mb-2 itemname">${item.name}</h6>
-//                 </a>
-//                 <div class="d-flex align-items-center">
-//                     <div class="mb-1 product-price itemprice jcitemprice">
-//                         <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-//                         <span class="fs-5 jcpricingnw"></span>
-//                         <span class="er-each jceachformat" style="align-items: flex-end;"></span>
-//                     </div>
-//                 </div>
-//                 <div class="product-action mt-2" id="content">
-//                     <div class="d-grid gap-2">
-//                         <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn"><i class="bx bxs-cart-add"></i>add
-//                             to cart</a>
-//                         <a href="/views/product-details.html?objectID=" class="btn btn-light btn-ecomm">Product Details</a>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-// </div>
