@@ -278,6 +278,13 @@ const GetProduct = async (retailerID, id_product) => {
             brand {
               name,
               id
+            },
+            variants {
+                option,
+                priceMed,
+                priceRec,
+                quantity,
+                id
             }
           }
         }
