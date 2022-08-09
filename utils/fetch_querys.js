@@ -37,6 +37,7 @@ const GetAllRetailerIds = () => {
         }
     })
     .then( (retailers) => {
+        console.log(retailers)
 
         retailers.find( item => {
             if (item.name === 'Ashario - Centrepoint Mall') {
