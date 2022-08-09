@@ -368,8 +368,6 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         miniatura_img.style='display: none;';
     }else {
         images.forEach( (miniatura,  index) => {
-            console.log(miniatura);
-            console.log(index);
             let img_miniatura = document.createElement('img');
             img_miniatura.id='images_miniaturas';
             img_miniatura.className='border p-1';
@@ -418,7 +416,11 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
     //area de quantity y weight
 
-
+    if (item.variants[0].quantity === 0 || item.variants[0].quantity === null ) {
+        console.log('No hay cantidad disponible para el carrito');
+    }else {
+        console.log('cantidad maxima para enviar al carrito: ', item.variants[0].quantity);
+    }
 
 
 
