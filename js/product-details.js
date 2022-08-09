@@ -420,6 +420,17 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         console.log('No hay cantidad disponible para el carrito');
     }else {
         console.log('cantidad maxima para enviar al carrito: ', item.variants[0].quantity);
+
+        const container_select_quantity = document.querySelector('#quantity');
+        let max_cart_quantity = item.variants[0].quantity;
+
+        for (let quantity_select = 1; quantity_select <= max_cart_quantity; quantity_select++) {
+            console.log(quantity_select);
+            const options_quantity_select = createElementHtml('option');
+            options_quantity_select.value = quantity_select;
+            options_quantity_select.text = quantity_select;
+            appendElementHtml(container_select_quantity, options_quantity_select);
+        }
     }
 
 
