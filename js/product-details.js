@@ -416,6 +416,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
     //area de quantity y weight
 
+    //quantity
     if (item.variants[0].quantity === 0 || item.variants[0].quantity === null ) {
         console.log('No hay cantidad disponible para el carrito');
     }else {
@@ -431,6 +432,22 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
             options_quantity_select.text = quantity_select;
             appendElementHtml(container_select_quantity, options_quantity_select);
         }
+    }
+
+    //weight
+    if (item.variants[0].option === null) {
+        let container_select_weight = document.querySelector('#container_weight');
+        container_select_weight.style='display: none;';
+        console.log('No existe ningun elemento en el available weight');
+    }else {
+        let container_select_weight = document.querySelector('#select-weight');
+
+        console.log('weight ', item.variants[0].option);
+        let option_weight_variant = item.variants[0].option;
+        const options_weight_select = createElementHtml('option');
+        options_weight_select.value = option_weight_variant;
+        options_weight_select.text = option_weight_variant;
+        appendElementHtml(container_select_weight, options_weight_select);
     }
 
 
