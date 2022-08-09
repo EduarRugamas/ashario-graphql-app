@@ -9,7 +9,7 @@ const headers = {
 
 const container_products = document.getElementById('container-products');
 
-const GetAllRetailerIds = async () => {
+const GetAllRetailerIds = () => {
 
     const query_retailers = `
     query GetRetailers {
@@ -21,26 +21,69 @@ const GetAllRetailerIds = async () => {
         }
     }
     `
-    return await new Promise( (resolve, reject) => {
-        fetch(`${url_base}`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": "Bearer " + secret_key,
-            },
-            body: JSON.stringify({
-                query: query_retailers
-            })
-        }).then( (response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            reject('error en el server ' + response.status);
+    fetch(`${url_base}`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer " + secret_key,
+        },
+        body: JSON.stringify({
+            query: query_retailers
         })
-        .then( (retailers) => resolve(retailers.data.retailers))
-        .catch(error => reject(error));
-    });
+    }).then( (response) => {
+        if (response.ok) {
+            return response.json();
+        }
+    })
+    .then( (retailers) => {
+
+        retailers.find( item => {
+            if (item.name === 'Ashario - Centrepoint Mall') {
+                let store_centre_point_mall = {
+                    name: item.name,
+                    id: item.id,
+                    menuTypes: item.menuTypes,
+                    address: item.address
+                }
+
+                console.log(item);
+
+                local_storage.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
+                console.log('se guardo en el local storage');
+            }
+
+            if (item.name === 'Ashario - Aurora') {
+                let store_aurora = {
+                    name: item.name,
+                    id: item.id,
+                    menuTypes: item.menuTypes,
+                    address: item.address
+                }
+
+                console.log(item);
+
+                local_storage.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
+                console.log('se guardo en el local storage');
+            }
+
+            if (item.name === 'Ashario - North York') {
+                let store_north_york = {
+                    name: item.name,
+                    id: item.id,
+                    menuTypes: item.menuTypes,
+                    address: item.address
+                }
+
+                console.log(item);
+
+                local_storage.setItem('Ashario_North_York', JSON.stringify(store_north_york));
+                console.log('se guardo en el local storage');
+            }
+        });
+
+    })
+    .catch(error => console.log(error.message));
 };
 
 const GetCountproduct = (retailerID) => {
