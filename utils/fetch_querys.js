@@ -39,7 +39,9 @@ const GetAllRetailerIds = () => {
     .then( (retailers) => {
         console.log(retailers)
 
-        retailers.find( item => {
+        const array = retailers.data.retailers;
+
+        array.find( item => {
             if (item.name === 'Ashario - Centrepoint Mall') {
                 let store_centre_point_mall = {
                     name: item.name,
