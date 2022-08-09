@@ -359,6 +359,38 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 // </section>
 //     `;
 
+    const images = item.images;
+    let $container_img = document.querySelector('#imagen_carusel');
+    let miniatura_img = document.querySelector('#selector-imgs-products');
+
+    if (images.length === 0 ){
+        $container_img.src = '../assets/images/errors-images/image-not-found.jpeg';
+        miniatura_img.style='display: none;';
+    }else {
+        images.forEach( (miniatura,  index) => {
+            console.log(miniatura);
+            console.log(index);
+            let img_miniatura = document.createElement('img');
+            img_miniatura.id='images_miniaturas';
+            img_miniatura.className='border p-1';
+            if (index === 0) {
+                img_miniatura.className='active_item';
+                $container_img.src=`${miniatura}`;
+            }
+            img_miniatura.src=`${miniatura}`;
+            miniatura_img.appendChild(img_miniatura);
+            const img_mini_all = document.querySelectorAll('#images_miniaturas');
+            img_mini_all.forEach(mini => {
+                mini.addEventListener('click', function () {
+                    const active_item = document.querySelector('.active_item');
+                    active_item.classList.remove('active_item');
+                    this.classList.add('active_item');
+                    $container_img.src = this.src;
+                });
+            });
+        })
+    }
+
 
 }).catch(error => console.log(error.message));
 
