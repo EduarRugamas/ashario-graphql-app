@@ -117,7 +117,7 @@ const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Cent
         }).catch( error => {
             throw new Error(`${error.message}`);
         });
-    }, 2000)
+    }, 3000);
 
 
 
