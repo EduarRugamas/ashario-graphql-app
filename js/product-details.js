@@ -391,31 +391,28 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         })
     }
 
-    if (item.hasOwnProperty('potencyThc')){
-        let dt_potency_cbd = createElementHtml('dt');
-        dt_potency_cbd.className='col-sm-3';
-        dt_potency_cbd.textContent='CBD';
-        let dd_potency_cbd = createElementHtml('dd');
-        dd_potency_cbd.className='col-sm-9';
-        dd_potency_cbd.textContent=`${item.potencyCbd.formatted}`;
-        appendElementHtml(dl_content, dt_potency_thc);
-        appendElementHtml(dl_content, dd_potency_thc);
-    }
-
-    if (item.hasOwnProperty('potencyCbd')) {
+    if (item.hasOwnProperty('potencyThc')) {
         let dt_potency_thc = createElementHtml('dt');
         dt_potency_thc.className='col-sm-3';
         dt_potency_thc.textContent='THC';
         let dd_potency_thc = createElementHtml('dd');
         dd_potency_thc.className='col-sm-9';
         dd_potency_thc.textContent=`${item.potencyThc.formatted}`;
+        appendElementHtml(dl_content, dt_potency_thc);
+        appendElementHtml(dl_content, dd_potency_thc);
 
+    }
+
+    if (item.hasOwnProperty('potencyCbd')){
+        let dt_potency_cbd = createElementHtml('dt');
+        dt_potency_cbd.className='col-sm-3';
+        dt_potency_cbd.textContent='CBD';
+        let dd_potency_cbd = createElementHtml('dd');
+        dd_potency_cbd.className='col-sm-9';
+        dd_potency_cbd.textContent=`${item.potencyCbd.formatted}`;
         appendElementHtml(dl_content, dt_potency_cbd);
         appendElementHtml(dl_content, dd_potency_cbd);
     }
-
-
-
 
 
 
