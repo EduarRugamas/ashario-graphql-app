@@ -130,7 +130,7 @@ window.onload =  function () {
 
     let li_content_all_lineage = createElementHtml('li');
     let input_checkbox_all_lineage = createElementHtml('input');
-    input_checkbox_all_lineage.textContent='All lineage';
+    li_content_all_lineage.text='All lineage';
     input_checkbox_all_lineage.type='checkbox';
     input_checkbox_all_lineage.id='checkbox_all_lineage';
 
