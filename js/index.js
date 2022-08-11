@@ -1,4 +1,4 @@
-import {GetAllProducts, GetAllRetailerIds} from '../utils/fetch_querys.js';
+import {GetAllProducts, GetAllRetailerIds, filter_all_lineage} from '../utils/fetch_querys.js';
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const storage_local = window.localStorage;
 
@@ -6,9 +6,9 @@ const storage_local = window.localStorage;
 GetAllRetailerIds();
 
 window.onload =  function () {
-    setTimeout( () => {
 
-        const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+    const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+    setTimeout( () => {
 
         GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
 
@@ -130,6 +130,7 @@ window.onload =  function () {
 
     let li_content_all_lineage = createElementHtml('li');
     let input_checkbox_all_lineage = createElementHtml('input');
+    input_checkbox_all_lineage.textContent='All lineage';
     input_checkbox_all_lineage.type='checkbox';
     input_checkbox_all_lineage.id='checkbox_all_lineage';
 
@@ -142,6 +143,16 @@ window.onload =  function () {
         if (checkbox_linea_all.checked) {
             console.log('el check esta activo');
             console.log('se ejecutara la query de filtrado por lineage all');
+
+            filter_all_lineage(Ashario_Centre_point_Mall.id).then( results => {
+
+                console.log(results);
+
+            }).catch( error => {
+                console.log(error.message);
+            });
+
+
         }else {
             console.log('el check no esta activo');
         }

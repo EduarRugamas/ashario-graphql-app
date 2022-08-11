@@ -277,6 +277,7 @@ export {
     GetAllRetailerIds,
     GetAllProducts,
     GetProduct,
+    filter_all_lineage
 
 }
 
