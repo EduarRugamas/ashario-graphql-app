@@ -126,6 +126,27 @@ window.onload =  function () {
     }, 1000);
 
 
+    const container_ul_checkbox_all_lineage = document.getElementById('clear-category');
+
+    let li_content_all_lineage = createElementHtml('li');
+    let input_checkbox_all_lineage = createElementHtml('input');
+    input_checkbox_all_lineage.type='checkbox';
+    input_checkbox_all_lineage.id='checkbox_all_lineage';
+
+    appendElementHtml(container_ul_checkbox_all_lineage, li_content_all_lineage);
+    appendElementHtml(li_content_all_lineage, input_checkbox_all_lineage);
+
+    const checkbox_linea_all = document.getElementById('checkbox_all_lineage');
+
+    checkbox_linea_all.addEventListener('click', function () {
+        if (checkbox_linea_all.checked) {
+            console.log('el check esta activo');
+            console.log('se ejecutara la query de filtrado por lineage all');
+        }else {
+            console.log('el check no esta activo');
+        }
+    });
+
 }
 
 
