@@ -110,7 +110,7 @@ const GetCountproduct = (retailerID) => {
 const GetAllProducts = async (retailerID) => {
         const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
-            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 40 }) {
+            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 }) {
                 products {
                     id,
                     name,
