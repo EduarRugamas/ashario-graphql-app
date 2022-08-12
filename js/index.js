@@ -3,10 +3,12 @@ import { createElementHtml, appendElementHtml } from '../utils/elements_html.js'
 const storage_local = window.localStorage;
 
 
-GetAllRetailerIds();
+
 
 
 window.addEventListener('DOMContentLoaded',  async () => {
+    GetAllRetailerIds();
+
 
     const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
