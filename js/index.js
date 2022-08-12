@@ -133,9 +133,12 @@ window.onload =  function () {
     li_content_all_lineage.text='All lineage';
     input_checkbox_all_lineage.type='checkbox';
     input_checkbox_all_lineage.id='checkbox_all_lineage';
+    let label_all_lineage = createElementHtml('label');
+    label_all_lineage.textContent='All lineage';
 
     appendElementHtml(container_ul_checkbox_all_lineage, li_content_all_lineage);
-    appendElementHtml(li_content_all_lineage, input_checkbox_all_lineage);
+    appendElementHtml(label_all_lineage, input_checkbox_all_lineage)
+    appendElementHtml(li_content_all_lineage, label_all_lineage);
 
     const checkbox_linea_all = document.getElementById('checkbox_all_lineage');
 
