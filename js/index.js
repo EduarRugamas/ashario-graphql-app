@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 </div>
         </div>
          `
-    }).join('');
+    }).join(' ');
 
 
     });
