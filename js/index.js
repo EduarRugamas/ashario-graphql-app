@@ -21,11 +21,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         function renderItems(Listproducts) {
             const string_items = createCardItems(Listproducts);
-            container_products.innerHTML=string_items;
+            container_products.innerHTML=`${string_items}`;
         }
 
     const createCardItems = Array_products => Array_products.map(product => {
-        container_products.innerHTML = `
+            `
             <div class="col">
             <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
