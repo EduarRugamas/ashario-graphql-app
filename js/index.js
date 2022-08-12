@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 function renderItems(Listproducts) {
     console.log(Listproducts);
-    appendElementHtml(container_products, createCardItems(Listproducts));
+    createCardItems(Listproducts)
 }
 
 const createCardItems = Array_products => Array_products.map(product => {
