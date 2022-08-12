@@ -270,22 +270,14 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
         }
     `;
 
-    return await new Promise( (resolve, reject) => {
-        fetch(`${url_base}`, {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify( { query: query_filter_strain_type } )
-        }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            console.log('error al ejecutar la query', response.status);
-        }).then( results => {
-            resolve(results.data.menu);
-        }).catch(error => {
-            reject(error.message);
-        })
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify( { query: query_filter_strain_type } )
     });
+
+    const data = await response.json();
+    return data.data.menu;
 }
 
 async function getAllProducts (retailerID) {
@@ -326,7 +318,6 @@ async function getAllProducts (retailerID) {
 
 export {
     GetAllRetailerIds,
-    GetAllProducts,
     getAllProducts,
     GetProduct,
     filter_all_lineage,
