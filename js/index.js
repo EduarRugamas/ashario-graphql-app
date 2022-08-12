@@ -8,7 +8,7 @@ GetAllRetailerIds();
 
 window.addEventListener('DOMContentLoaded', () => {
     const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-    setTimeout( () => {
+
 
         GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
 
@@ -123,7 +123,7 @@ window.addEventListener('DOMContentLoaded', () => {
             throw new Error(`${error.message}`);
         });
 
-    }, 1000);
+
 });
 
 
