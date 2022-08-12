@@ -1,6 +1,5 @@
 import { getAllProducts, GetAllRetailerIds} from '../utils/fetch_querys.js';
-
-const container_products = document.getElementById('container-products');
+const container_products = document.querySelector('#container-products');
 const storage_local = window.localStorage;
 
 
@@ -56,7 +55,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         function renderItems(Listproducts) {
-            container_products.innerHTML = createCardItems(Listproducts);
+            let string_items = createCardItems(Listproducts)
+            container_products.innerHTML=string_items;
         }
 
 
