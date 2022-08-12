@@ -1,4 +1,4 @@
-import {GetAllProducts, getAllProducts, GetAllRetailerIds} from '../utils/fetch_querys.js';
+import { getAllProducts, GetAllRetailerIds} from '../utils/fetch_querys.js';
 
 const container_products = document.getElementById('container-products');
 const storage_local = window.localStorage;
