@@ -4,22 +4,22 @@ const container_products = document.getElementById('container-products');
 const storage_local = window.localStorage;
 
 
-window.addEventListener('DOMContentLoaded',
-    async () => {
+window.addEventListener('DOMContentLoaded', async () => {
         GetAllRetailerIds();
 
         setTimeout(async () => {
 
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
-
             let data = await getAllProducts(store_centre_point_mall.id);
             console.table(data.products);
-            console.log(data.products);
+
+            renderItems(data.products);
+
 
         }, 1000);
 
-        const createCardItems = (products) => products.map(product => {
+        const createCardItems = Array_products => Array_products.map(product => {
             `
             <div class="col">
             <div class="card rounded-0 product-card">
