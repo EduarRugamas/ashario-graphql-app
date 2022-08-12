@@ -142,6 +142,7 @@ window.onload =  function () {
     checkbox_indica.addEventListener('click', () => {
 
         if (checkbox_indica.checked) {
+            console.log('activo el checked');
             filter_strain_type_lineage(Ashario_Centre_point_Mall.id, 'indica').then( results => {
 
                 const container_products = document.getElementById('container-products');
@@ -250,7 +251,7 @@ window.onload =  function () {
                 })
             })
         }else {
-
+            console.log('eliminado el check');
             GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
 
                 const container_products = document.getElementById('container-products');
