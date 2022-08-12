@@ -242,7 +242,7 @@ const filter_all_lineage = async (retailerID) => {
 
 };
 
-const filter_strain_type_lineage = (retailerID, strain_type) => {
+const filter_strain_type_lineage = async (retailerID, strain_type) => {
 
     let strain_type_uppercase = strain_type.toUpperCase();
     console.log(strain_type_uppercase);
@@ -269,6 +269,23 @@ const filter_strain_type_lineage = (retailerID, strain_type) => {
             }
         }
     `;
+
+    return await new Promise( (resolve, reject) => {
+        fetch(`${url_base}`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify( { query: query_filter_strain_type } )
+        }).then(response => {
+            if (response.ok) {
+                response.json();
+            }
+            console.log('error al ejecutar la query', response.status);
+        }).then( results => {
+            resolve(results.data.menu);
+        }).catch(error => {
+            reject(error.message);
+        })
+    })
 }
 
 
@@ -277,7 +294,8 @@ export {
     GetAllRetailerIds,
     GetAllProducts,
     GetProduct,
-    filter_all_lineage
+    filter_all_lineage,
+    filter_strain_type_lineage
 
 }
 
