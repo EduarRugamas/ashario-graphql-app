@@ -13,19 +13,21 @@ window.addEventListener('DOMContentLoaded', async () => {
             let data = await getAllProducts(store_centre_point_mall.id);
             console.table(data.products);
 
-            createCardItems(data.products);
+            renderItems(data.products);
 
 
         }, 1000);
 
+    });
 
-        function renderItems(Listproducts) {
-            const string_items = createCardItems(Listproducts);
-            container_products.innerHTML=`${string_items}`;
-        }
+function renderItems(Listproducts) {
+    console.log(Listproducts);
+    const string_items = createCardItems(Listproducts);
+    container_products.innerHTML=`${string_items}`;
+}
 
-    const createCardItems = Array_products => Array_products.map(product => {
-            `
+const createCardItems = Array_products => Array_products.map(product => {
+    `
             <div class="col">
             <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
@@ -57,10 +59,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 </div>
         </div>
          `
-    }).join(' ');
-
-
-    });
+}).join(' ');
 
 
 
