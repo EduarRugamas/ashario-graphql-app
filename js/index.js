@@ -143,6 +143,9 @@ window.onload =  function () {
 
         if (checkbox_indica.checked) {
             filter_strain_type_lineage(Ashario_Centre_point_Mall.id, 'indica').then( results => {
+
+                const container_products = document.getElementById('container-products');
+
                 let filter_indica = results.products;
                 filter_indica.map( products => {
 
