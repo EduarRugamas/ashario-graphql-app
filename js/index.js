@@ -6,22 +6,26 @@ const storage_local = window.localStorage;
 window.addEventListener('DOMContentLoaded', async () => {
         GetAllRetailerIds();
 
-        const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-
-        let data = await getAllProducts(store_centre_point_mall.id);
-        console.table(data.products);
-
-        renderItems(data.products);
-
         setTimeout(async () => {
 
+            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
+            let data = await getAllProducts(store_centre_point_mall.id);
+            console.table(data.products);
+
+            renderItems(data.products);
 
 
         }, 1000);
 
-        const createCardItems = Array_products => Array_products.map(product => {
-            `
+
+        function renderItems(Listproducts) {
+            const string_items = createCardItems(Listproducts)
+            container_products.innerHTML=string_items;
+        }
+
+    const createCardItems = Array_products => Array_products.map(product => {
+        `
             <div class="col">
             <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
@@ -53,13 +57,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 </div>
         </div>
          `
-        }).join('');
-
-
-        function renderItems(Listproducts) {
-            const string_items = createCardItems(Listproducts)
-            container_products.innerHTML=string_items;
-        }
+    }).join('');
 
 
     });
