@@ -21,6 +21,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     });
 
+
+
+
+
+
+
 function renderItems(Listproducts) {
     console.log(Listproducts);
     createCardItems(Listproducts)
@@ -31,6 +37,7 @@ const createCardItems = Array_products => Array_products.map(product => {
     //div que encierra toda la card
     let div_col = createElementHtml('div');
     div_col.className= 'col';
+    div_col.category=`${product.strai}`
     //segundo div de la card
     let div_product_card = createElementHtml('div');
     div_product_card.className='card rounded-0 product-card';

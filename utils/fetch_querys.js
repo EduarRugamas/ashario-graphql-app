@@ -293,6 +293,7 @@ async function getAllProducts (retailerID) {
                     image,
                     category,
                     subcategory,
+                    strainType,
                     variants {
                       option,
                       priceMed,
