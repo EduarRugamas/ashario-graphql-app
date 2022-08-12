@@ -195,7 +195,7 @@ const GetProduct = async (retailerID, id_product) => {
             body: JSON.stringify({ query: query_product})
         }).then(response => {
             if (response.ok) {
-                return response.json()
+                return response.json();
             }
             reject('Error al ejecutar la query ' + response.status);
         }).then(data => {
@@ -277,7 +277,7 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
             body: JSON.stringify( { query: query_filter_strain_type } )
         }).then(response => {
             if (response.ok) {
-                response.json();
+                return response.json();
             }
             console.log('error al ejecutar la query', response.status);
         }).then( results => {
@@ -285,7 +285,7 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
         }).catch(error => {
             reject(error.message);
         })
-    })
+    });
 }
 
 
