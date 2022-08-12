@@ -288,11 +288,46 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
     });
 }
 
+async function getAllProducts (retailerID) {
+    const query_get_all_products = `
+        query GetAllProducts($retailerId: ID="${retailerID}" ) {
+            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 }) {
+                products {
+                    id,
+                    name,
+                    brand{
+                      name
+                    },
+                    image,
+                    category,
+                    subcategory,
+                    variants {
+                      option,
+                      priceMed,
+                      priceRec,
+                    }
+                },
+                productsCount
+            }
+        }
+    `;
+
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify( { query: query_get_all_products } )
+    });
+    return await response.json();
+
+}
+
+
 
 
 export {
     GetAllRetailerIds,
     GetAllProducts,
+    getAllProducts,
     GetProduct,
     filter_all_lineage,
     filter_strain_type_lineage
