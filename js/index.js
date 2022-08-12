@@ -138,8 +138,8 @@ window.onload =  function () {
 
 
     appendElementHtml(container_ul_checkbox_all_lineage, li_content_all_lineage);
-    appendElementHtml(li_content_all_lineage, label_all_lineage)
-    appendElementHtml(li_content_all_lineage,input_checkbox_all_lineage);
+    appendElementHtml(li_content_all_lineage, input_checkbox_all_lineage)
+    appendElementHtml(li_content_all_lineage, label_all_lineage);
 
     const checkbox_linea_all = document.getElementById('checkbox_all_lineage');
 
