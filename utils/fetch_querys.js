@@ -249,7 +249,7 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
 
     const query_filter_strain_type = `
         query FilterAllLineage ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { strainType: ${strain_type_uppercase} }, pagination: { offset: 0, limit: 20 } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, strainType: ${strain_type_uppercase} }, pagination: { offset: 0, limit: 5 } ) {
                 products {
                     id,
                     name,
