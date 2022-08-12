@@ -13,19 +13,19 @@ window.addEventListener('DOMContentLoaded', async () => {
             let data = await getAllProducts(store_centre_point_mall.id);
             console.table(data.products);
 
-            renderItems(data.products);
+            createCardItems(data.products);
 
 
         }, 1000);
 
 
         function renderItems(Listproducts) {
-            const string_items = createCardItems(Listproducts)
+            const string_items = createCardItems(Listproducts);
             container_products.innerHTML=string_items;
         }
 
     const createCardItems = Array_products => Array_products.map(product => {
-        `
+        container_products.innerHTML = `
             <div class="col">
             <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
