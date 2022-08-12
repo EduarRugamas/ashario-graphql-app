@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
         const data = getAllProducts(Ashario_Centre_point_Mall.id);
-        console.log(data.data.menu);
+        console.log(data.menu);
 
     //
     //     GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
