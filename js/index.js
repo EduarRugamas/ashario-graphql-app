@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded',  async () => {
         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
         let data = await getAllProducts(store_centre_point_mall.id);
-        console.log(data.products[0].name);
+        console.log(data);
 
 
 
