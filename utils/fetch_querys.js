@@ -317,8 +317,8 @@ async function getAllProducts (retailerID) {
         headers: headers,
         body: JSON.stringify( { query: query_get_all_products } )
     });
-    return await response.json();
-
+    const data = await response.json();
+    return data.data.menu;
 }
 
 
