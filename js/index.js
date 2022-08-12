@@ -6,14 +6,16 @@ const storage_local = window.localStorage;
 window.addEventListener('DOMContentLoaded', async () => {
         GetAllRetailerIds();
 
+        const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+
+        let data = await getAllProducts(store_centre_point_mall.id);
+        console.table(data.products);
+
+        renderItems(data.products);
+
         setTimeout(async () => {
 
-            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
-            let data = await getAllProducts(store_centre_point_mall.id);
-            console.table(data.products);
-
-            renderItems(data.products);
 
 
         }, 1000);
