@@ -14,8 +14,8 @@ window.addEventListener('DOMContentLoaded',
 
 
             let data = await getAllProducts(store_centre_point_mall.id);
-            console.table(data);
-            console.log(data);
+            console.table(data.products);
+            console.log(data.products);
 
         }, 1000);
 
