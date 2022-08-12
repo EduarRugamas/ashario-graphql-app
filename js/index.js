@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         function renderItems(Listproducts) {
-            let string_items = createCardItems(Listproducts)
+            const string_items = createCardItems(Listproducts)
             container_products.innerHTML=string_items;
         }
 
