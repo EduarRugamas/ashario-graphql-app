@@ -10,20 +10,14 @@ window.addEventListener('DOMContentLoaded',  async () => {
     GetAllRetailerIds();
 
 
-
-    if (storage_local.getItem('Ashario_Centrepoint_Mall')) {
-
-        const Ashario_Centre_point_Mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-
-        let data = await getAllProducts(Ashario_Centre_point_Mall.id);
-        console.log(data.products[0].name);
-    }
-
-
-
     setTimeout( async () => {
 
-        console.log('en el time out');
+        const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+
+        let data = await getAllProducts(store_centre_point_mall.id);
+        console.log(data.products[0].name);
+
+
 
     //
     //     GetAllProducts(Ashario_Centre_point_Mall.id).then( (items) => {
