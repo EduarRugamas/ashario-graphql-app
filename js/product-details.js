@@ -391,7 +391,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
             console.log('id de el producto --> ',product_id);
 
             MutationAddCart(id_store_centre_point_mall.id).then( data => {
-                btn_cart_link.setAttribute('href', data.data.createCheckout.redirectUrl);
+                btn_cart_link.setAttribute('href', data.createCheckout.redirectUrl);
             })
 
 
