@@ -1,4 +1,4 @@
-import {GetProduct} from '../utils/fetch_querys.js';
+import {GetProduct, MutationAddCart} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
@@ -6,6 +6,7 @@ const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Cen
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
 const title_product = document.getElementById('title_name_product_details');
+const btn_cart_link = document.querySelector('#btn_cart');
 
 console.log('aqui el id', id_product);
 
@@ -369,6 +370,36 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
 
     //fin de area de cambio de precio segun cantidad seleccionada
+
+    //area de add to cart item product
+
+        let btn_add_to_cart = document.getElementById('add-to-cart');
+
+        let count = 0;
+
+        if (storage_local.getItem('count')) {
+            count = parseInt(storage_local.getItem('count'));
+        }
+
+
+        btn_add_to_cart.addEventListener('click', btn_add_cart);
+
+
+        function btn_add_cart () {
+
+            const product_id = item.id;
+            console.log('id de el producto --> ',product_id);
+
+            MutationAddCart(id_store_centre_point_mall.id).then( data => {
+                btn_cart_link.setAttribute('href', data.data.createCheckout.redirectUrl);
+            })
+
+
+        }
+
+        function updateCount() {}
+
+    //fin de area add to cart product
 
 
 

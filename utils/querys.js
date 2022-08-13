@@ -314,6 +314,42 @@ async function getAllProducts (retailerID) {
     return data.data.menu;
 }
 
+async function MutationAddCart (retailerId) {
+        const query_mutation_add_cart = `
+            mutation CreateCheckout($retailerId: ID="${retailerId}") {
+                createCheckout (retailerId: $retailerId, orderType: PICKUP, pricingType: RECREATIONAL) {
+                  id,
+                  items{
+                    product{
+                      id,
+                      name,
+                      category,
+                      strainType
+                    },
+                    id,
+                    quantity,
+                    productId,
+                    option
+                  },
+                  redirectUrl,
+                  pricingType
+                }
+            }
+        `;
+
+        return await new Promise( (resolve, reject) => {
+            fetch(`${url_base}`, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({query: query_mutation_add_cart})
+            }).then( response => {
+                return response.json();
+            }).then( result => {
+                resolve(result.data);
+            }).catch( error => reject(error.message))
+        });
+}
+
 
 
 
@@ -322,8 +358,8 @@ export {
     getAllProducts,
     GetProduct,
     filter_all_lineage,
-    filter_strain_type_lineage
-
+    filter_strain_type_lineage,
+    MutationAddCart
 }
 
 
