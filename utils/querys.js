@@ -360,7 +360,7 @@ async function CreateCheckout (retailerId, orderType, pricingType) {
 async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, option) {
     const query_add_item_cart = `
         
-       mutation AddItemToCart ($retailerId: ID="${retailer_Id}", $checkoutId: ID="${checkout_Id}", $productId:ID="${product_Id}", $quantity: INT=${quantity}, $option: String="${option}") {
+       mutation AddItemToCart ($retailerId: ID="${retailer_Id}", $checkoutId: ID="${checkout_Id}", $productId:ID="${product_Id}", $quantity: Int=${quantity}, $option: String="${option}") {
           addItem (retailerId: $retailerId, checkoutId: $checkoutId, productId: $productId, quantity: $quantity, option: $option) {
             id,
             orderType,
