@@ -324,7 +324,7 @@ async function CreateCheckout (retailerId, orderType, pricingType) {
         //orderType: PICKUP, pricingType: RECREATIONAL
         const query_create_checkout = `
             mutation CreateCheckout($retailerId: ID="${retailerId}", $orderType: ${orderType_uppercase}, $pricingType: ${pricinType_uppercase} ) {
-                createCheckout (retailerId: $retailerId, orderType: $orderType, pricingType: $pricingType) {
+                createCheckout (retailerId: $retailerId, orderType: PICKUP, pricingType: RECREATIONAL) {
                   id,
                   items{
                     product{
