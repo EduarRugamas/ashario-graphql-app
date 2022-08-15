@@ -352,7 +352,7 @@ async function CreateCheckout (retailerId, orderType, pricingType) {
             }).then( response => {
                 return response.json();
             }).then( result => {
-                resolve(result);
+                resolve(result.data);
             }).catch( error => reject(error.message))
         });
 }
