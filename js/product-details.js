@@ -398,6 +398,8 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
                 // const { id, redirectUrl, pricingType, orderType  } = data.data.createCheckout;
 
+                console.log(data);
+
                 btn_cart_link.setAttribute('href', data.createCheckout.redirectUrl);
 
                 addItemCart(id_store_centre_point_mall.id, data.createCheckout.id, product_id, quantity, option).then(result => {
