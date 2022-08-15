@@ -394,7 +394,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
             console.log('quantity: '+ quantity + 'weight: ' + option + 'productid: ' + product_id)
 
 
-            CreateCheckout(id_store_centre_point_mall.id).then( data => {
+            CreateCheckout(id_store_centre_point_mall.id, "PICKUP", "RECREATIONAL").then( data => {
 
                 // const { id, redirectUrl, pricingType, orderType  } = data.data.createCheckout;
 
