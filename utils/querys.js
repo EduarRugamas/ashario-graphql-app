@@ -314,10 +314,17 @@ async function getAllProducts (retailerID) {
     return data.data.menu;
 }
 
-async function MutationAddCart (retailerId) {
-        const query_mutation_add_cart = `
-            mutation CreateCheckout($retailerId: ID="${retailerId}") {
-                createCheckout (retailerId: $retailerId, orderType: PICKUP, pricingType: RECREATIONAL) {
+async function CreateCheckout (retailerId, orderType, pricingType) {
+
+        orderType = orderType.toUpperCase();
+        pricingType = pricingType.toUpperCase();
+
+        console.log('En mayusculas', orderType, pricingType);
+
+        //orderType: PICKUP, pricingType: RECREATIONAL
+        const query_create_checkout = `
+            mutation CreateCheckout($retailerId: ID="${retailerId}", $orderType: ${orderType}, $pricingType: ${pricingType} ) {
+                createCheckout (retailerId: $retailerId, orderType: $orderType, pricingType: $pricingType) {
                   id,
                   items{
                     product{
@@ -341,13 +348,69 @@ async function MutationAddCart (retailerId) {
             fetch(`${url_base}`, {
                 method: 'POST',
                 headers: headers,
-                body: JSON.stringify({query: query_mutation_add_cart})
+                body: JSON.stringify({query: query_create_checkout})
             }).then( response => {
                 return response.json();
             }).then( result => {
                 resolve(result.data);
             }).catch( error => reject(error.message))
         });
+}
+
+async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, option) {
+    const query_add_item_cart = `
+        
+       mutation AddItemToCart ($retailerId: ID="${retailer_Id}", $checkoutId: ID="${checkout_Id}", $productId:ID="${product_Id}", $quantity: INT=${quantity}, $option: String="${option}") {
+          addItem (retailerId: $retailerId, checkoutId: $checkoutId, productId: $productId, quantity: $quantity, option: $option) {
+            id,
+            orderType,
+            pricingType,
+            redirectUrl,
+            updatedAt,
+            createdAt,
+            items {
+              id,
+              productId,
+              option,
+              taxes {
+                total,
+                sales
+              },
+              product {
+                id,
+                name,
+                category,
+                variants {
+                  id,
+                  option,
+                  priceRec,
+                  quantity
+                }
+              }
+            },
+            priceSummary {
+              total,
+              fees,
+              taxes,
+              subtotal
+            },
+            
+          }
+        }
+        
+    `;
+
+    return await new Promise( (resolve, reject) =>  {
+        fetch(`${url_base}`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify( { query: query_add_item_cart } )
+        }).then( response => {
+            return response.json();
+        }).then( result => {
+            resolve(result)
+        }).catch(error => reject(error.message))
+    });
 }
 
 
@@ -359,7 +422,8 @@ export {
     GetProduct,
     filter_all_lineage,
     filter_strain_type_lineage,
-    MutationAddCart
+    CreateCheckout,
+    addItemCart
 }
 
 

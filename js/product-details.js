@@ -1,4 +1,4 @@
-import {GetProduct, MutationAddCart} from '../utils/querys.js';
+import {GetProduct, CreateCheckout, addItemCart} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
@@ -389,9 +389,20 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
             const product_id = item.id;
             console.log('id de el producto --> ',product_id);
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const option = document.getElementById('select-weight').value;
 
-            MutationAddCart(id_store_centre_point_mall.id).then( data => {
-                btn_cart_link.setAttribute('href', data.createCheckout.redirectUrl);
+
+            CreateCheckout(id_store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL').then( data => {
+
+                const { id, redirectUrl, pricingType, orderType  } = data.createCheckout;
+
+                btn_cart_link.setAttribute('href', redirectUrl);
+
+                addItemCart(id_store_centre_point_mall.id, id, product_id, quantity, option).then(result => {
+                    console.log(result);
+                    console.table(result);
+                })
             })
 
 
