@@ -395,7 +395,7 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 
             CreateCheckout(id_store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL').then( data => {
 
-                const { id, redirectUrl, pricingType, orderType  } = data.createCheckout;
+                const { id, redirectUrl, pricingType, orderType  } = data.data.createCheckout;
 
                 btn_cart_link.setAttribute('href', redirectUrl);
 
