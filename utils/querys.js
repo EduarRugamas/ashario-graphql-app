@@ -316,14 +316,14 @@ async function getAllProducts (retailerID) {
 
 async function CreateCheckout (retailerId, orderType, pricingType) {
 
-        orderType = orderType.toUpperCase();
-        pricingType = pricingType.toUpperCase();
+        const orderType_uppercase = orderType.toUpperCase();
+        const pricinType_uppercase = pricingType.toUpperCase();
 
         console.log('En mayusculas', orderType, pricingType);
 
         //orderType: PICKUP, pricingType: RECREATIONAL
         const query_create_checkout = `
-            mutation CreateCheckout($retailerId: ID="${retailerId}", $orderType: ${orderType}, $pricingType: ${pricingType} ) {
+            mutation CreateCheckout($retailerId: ID="${retailerId}", $orderType: ${orderType_uppercase}, $pricingType: ${pricinType_uppercase} ) {
                 createCheckout (retailerId: $retailerId, orderType: $orderType, pricingType: $pricingType) {
                   id,
                   items{
