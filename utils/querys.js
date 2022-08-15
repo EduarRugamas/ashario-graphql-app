@@ -323,8 +323,8 @@ async function CreateCheckout (retailerId, orderType, pricingType) {
 
         //orderType: PICKUP, pricingType: RECREATIONAL
         const query_create_checkout = `
-            mutation CreateCheckout($retailerId: ID="${retailerId}", $orderType: ${orderType_uppercase}, $pricingType: ${pricinType_uppercase} ) {
-                createCheckout (retailerId: $retailerId, orderType: PICKUP, pricingType: RECREATIONAL) {
+            mutation CreateCheckout($retailerId: ID="${retailerId}") {
+                createCheckout (retailerId: $retailerId, orderType: ${orderType_uppercase}, pricingType: ${pricinType_uppercase}) {
                   id,
                   items{
                     product{
@@ -352,7 +352,7 @@ async function CreateCheckout (retailerId, orderType, pricingType) {
             }).then( response => {
                 return response.json();
             }).then( result => {
-                resolve(result);
+                resolve(result.data);
             }).catch( error => reject(error.message))
         });
 }
