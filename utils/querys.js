@@ -319,7 +319,7 @@ async function CreateCheckout (retailerId, orderType, pricingType) {
         const orderType_uppercase = orderType.toUpperCase();
         const pricinType_uppercase = pricingType.toUpperCase();
 
-        console.log('En mayusculas', orderType, pricingType);
+        console.log('En mayusculas', orderType_uppercase, pricinType_uppercase);
 
         //orderType: PICKUP, pricingType: RECREATIONAL
         const query_create_checkout = `
