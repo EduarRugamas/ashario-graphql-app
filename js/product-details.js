@@ -388,18 +388,19 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         function btn_add_cart () {
 
             const product_id = item.id;
-            console.log('id de el producto --> ',product_id);
             const quantity = parseInt(document.getElementById('quantity').value);
             const option = document.getElementById('select-weight').value;
+
+            console.log('quantity: '+ quantity + 'weight: ' + option + 'productid: ' + product_id)
 
 
             CreateCheckout(id_store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL').then( data => {
 
-                const { id, redirectUrl, pricingType, orderType  } = data.data.createCheckout;
+                // const { id, redirectUrl, pricingType, orderType  } = data.data.createCheckout;
 
-                btn_cart_link.setAttribute('href', redirectUrl);
+                btn_cart_link.setAttribute('href', data.data.createCheckout.redirectUrl);
 
-                addItemCart(id_store_centre_point_mall.id, id, product_id, quantity, option).then(result => {
+                addItemCart(id_store_centre_point_mall.id, data.data.createCheckout.id, product_id, quantity, option).then(result => {
                     console.log(result);
                     console.table(result);
                 })
