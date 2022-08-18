@@ -5,7 +5,7 @@ const storage_local = window.localStorage;
 
 
 window.addEventListener('DOMContentLoaded', async () => {
-        GetAllRetailerIds();
+        await GetAllRetailerIds();
 
         setTimeout(async () => {
 
@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         //div que encierra toda la card
         let div_col = createElementHtml('div');
         div_col.className= 'col';
-        div_col.category=`${product.strainType}`;
+        div_col.setAttribute('filter_lineage', product.strainType);
         //segundo div de la card
         let div_product_card = createElementHtml('div');
         div_product_card.className='card rounded-0 product-card';
