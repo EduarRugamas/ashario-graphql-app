@@ -151,7 +151,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     function renderProductAll (container_products, array_products) {
-        let render = array_products.map( product => {
+        let render = `${ array_products.map( product => {
             `
               <div class="col">
                 <div class="card rounded-0 product-card">
@@ -185,7 +185,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 </div>
         </div>  
             `
-        }).join('');
+        }).join('')}`;
 
         container_products.innerHTML= `${render}`;
     }
