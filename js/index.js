@@ -166,7 +166,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                                 <p class="product-catergory font-13 mb-1 itembrand">${product.brand}</p>
                                 <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">null</p>
                             </a>
-                            <a href="product-details.html?objectID=${product.objectID}">
+                            <a href="product-details.html?objectID=${product.id}">
                                 <h6 class="product-name mb-2 itemname">${product.name}</h6>
                             </a>
                             <div class="d-flex align-items-center">
