@@ -19,10 +19,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             let data = await getAllProducts(store_centre_point_mall.id);
             console.log(data.products);
-            createProductsAll(data.products);
-            console.log(createProductsAll(data.products));
-
-
+            renderProductAll(container_products, data.products);
         }, 400);
 
 
@@ -44,7 +41,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
     const createProductsAll = Array_products => {
-        return Array_products.map(product => {
+            Array_products.map(product => {
 
             //div que encierra toda la card
             let div_col = createElementHtml('div');
@@ -147,10 +144,50 @@ window.addEventListener('DOMContentLoaded', async () => {
             appendElementHtml(add_to_cart, icon_add_to_cart);
             appendElementHtml(div_content_etiqueta_a, btn_product_details);
             //container principal que almacena a TODO el card
-            appendElementHtml(container_products, div_col);
 
         }).join(' ');
 
+
+    }
+
+    function renderProductAll (container_products, array_products) {
+        let render = array_products.map( product => {
+            `
+              <div class="col">
+            <div class="card rounded-0 product-card">
+                        <a href="/views/product-details.html?objectID=${product.id}" id="container_carrousel_imgs">
+                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}" id="imagen-product">
+                        </a>
+                    <div class="card-body">
+                        <div class="product-info">
+                            <a href="product-details.html?objectID=${product.id}">
+                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand}</p>
+                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">null</p>
+                            </a>
+                            <a href="product-details.html?objectID=${product.objectID}">
+                                <h6 class="product-name mb-2 itemname">${product.name}</h6>
+                            </a>
+                            <div class="d-flex align-items-center">
+                                <div class="mb-1 product-price itemprice jcitemprice">
+                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+                                    <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
+                                    <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
+                                </div>
+                            </div>
+                            <div class="product-action mt-2" id="content">
+                               <div class="d-grid gap-2">
+                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
+                                    <a href="/views/product-details.html?objectID=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
+                               </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+        </div>  
+            `
+        }).join('');
+
+        container_products.innerHTML=render;
     }
 
 
