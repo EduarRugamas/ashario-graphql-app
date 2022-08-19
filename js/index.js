@@ -19,41 +19,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         }, 1000);
 
-        // $('.filter_list .filter-item[filter_lineage="ALL"]').addClass('.ft_item-active');
-        //
-        // $('.filter-item').click( function () {
-        //     let FilProduct = $(this).attr('filter_lineage');
-        //     console.log('filtro de busqueda: ' + FilProduct);
-        //
-        //     $('.filter-item').removeClass('.ft_item-active');
-        //     $(this).addClass('.ft_item-active');
-        //
-        //     $('.product-item').css('transform', 'scale(0)');
-        //     function hideProduct() {
-        //         $('.product-item').hide();
-        //     }
-        //     setTimeout(hideProduct, 400);
-        //
-        //     //mostrando los products
-        //     function showProduct() {
-        //         $('.product-item[filter_lineage="'+ FilProduct +'"]').show();
-        //         $('.product-item[filter_lineage="'+ FilProduct +'"]').css('transform', 'scale(1)');
-        //     }
-        //     setTimeout(showProduct, 400)
-        //
-        // });
-        //
-        // $('.filter-item[filter_lineage="ALL"]').click( function (){
-        //     function showAll () {
-        //         $('.product-item').show();
-        //         $('.product-item').css('transform', 'scale(1)');
-        //     }
-        //     setTimeout(showAll, 400);
-        // });
-
-
-
-
 
     });
 
@@ -166,11 +131,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     }).join(' ');
     const createProductFilter = (Array_products) => {
-        Array_products.map( product_filter => {
-
-
-
-        }).join('');
+        Array_products.map( product_filter => {}).join('');
     }
 
 
