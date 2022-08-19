@@ -187,7 +187,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             `
         }).join('');
 
-        container_products.innerHTML=render;
+        appendElementHtml(container_products, render);
     }
 
 
