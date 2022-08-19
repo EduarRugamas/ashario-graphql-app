@@ -26,6 +26,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         check_indica.addEventListener('click', function () {
+
+            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+
             if (check_indica.checked) {
                 console.log('checkbox TRUE');
                const data = filter_strain_type_lineage(store_centre_point_mall.id, "INDICA");
