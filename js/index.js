@@ -18,11 +18,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
             let data = await getAllProducts(store_centre_point_mall.id);
 
-            check_all_lineage.addEventListener('change', () => {
-                if (check_all_lineage.checked) {
-                    renderProductAll(container_products, data.products);
-                }
-            });
+            if (check_all_lineage.checked) {
+                renderProductAll(container_products,data.products)
+            }
 
 
         }, 400);
