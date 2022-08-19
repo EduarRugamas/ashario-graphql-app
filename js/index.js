@@ -151,9 +151,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     function renderProductAll (container_products, array_products) {
-        let render = `${ array_products.map( product => {
-            `
-              <div class="col">
+        container_products.innerHTML = `
+        
+            ${ array_products.map( product =>  `
+            
+             <div class="col">
                 <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?objectID=${product.id}" id="container_carrousel_imgs">
                             <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
@@ -183,11 +185,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>
                 </div>
-        </div>  
-            `
-        }).join('')}`;
-
-        container_products.innerHTML= render;
+             </div>  
+            
+            `).join('')}
+        
+        `;
     }
 
 
