@@ -1,0 +1,17 @@
+.filter_list .ft_item-active {
+    background: #000000;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.filter-item {
+    background: #FFFFFF;
+    color: #000000;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.product-list .product-item {
+    transition: all .4s;
+}

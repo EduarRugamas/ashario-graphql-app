@@ -20,6 +20,7 @@
     <link href="assets/css/app.css" rel="stylesheet">
     <link href="assets/css/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/page-loader.css">
+    <link rel="stylesheet" href="./css/filter.css">
 
     <!--  Link de css de card views de algolia  -->
     <link rel="stylesheet" href="css/card-views.css">
@@ -95,39 +96,39 @@
                                             </h6>
                                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#jcaccord-filters">
                                                 <div class="card-body">
-                                                    <div class="product-categories">
+                                                    <div class="product-categories filter_list">
                                                         <ul class="list-unstyled mb-0 categories-list" id="clear-category">
                                                             <li>
 <!--                                                                <label for="filter_all_lineage">ALL LINEAGE</label>-->
 <!--                                                                <input type="checkbox" id="filter_all_lineage">-->
-                                                                <a href="#" class="filter_item" filter_lineage="all">All lineage</a>
+                                                                <a class="filter-item" filter_lineage="ALL">All lineage</a>
                                                             </li>
                                                         </ul>
                                                         <ul class="list-unstyled mb-0 categories-list" id="container-menu">
                                                             <li>
 <!--                                                                <label for="filter_indica">INDICA</label>-->
 <!--                                                                <input type="checkbox" id="filter_indica">-->
-                                                                <a href="#" filter_lineage="INDICA">INDICA</a>
+                                                                <a class="filter-item" filter_lineage="INDICA">INDICA</a>
                                                             </li>
                                                             <li>
 <!--                                                                <label for="filter_sativa">SATIVA</label>-->
 <!--                                                                <input type="checkbox" id="filter_sativa">-->
-                                                                <a href="#" filter_lineage="SATIVA">SATIVA</a>
+                                                                <a class="filter-item" filter_lineage="SATIVA">SATIVA</a>
                                                             </li>
                                                             <li>
 <!--                                                                <label for="filter_hybrid">HYBRID</label>-->
 <!--                                                                <input type="checkbox" id="filter_hybrid">-->
-                                                                <a href="#" filter_lineage="HYBRID">HYBRID</a>
+                                                                <a class="filter-item" filter_lineage="HYBRID">HYBRID</a>
                                                             </li>
                                                             <li>
 <!--                                                                <label for="filter_high_cbd">HIGH CBD</label>-->
 <!--                                                                <input type="checkbox" id="filter_high_cbd">-->
-                                                                <a href="#" filter_lineage="HIGH_CBD">HIGH CBD</a>
+                                                                <a class="filter-item" filter_lineage="HIGH_CBD">HIGH CBD</a>
                                                             </li>
                                                             <li>
 <!--                                                                <label for="filter_not_applicable">NOT_APPLICABLE</label>-->
 <!--                                                                <input type="checkbox" id="filter_not_applicable">-->
-                                                                <a href="#" filter_lineage="NOT_APPLICABLE">NOT APPLICABLE</a>
+                                                                <a class="filter-item" filter_lineage="NOT_APPLICABLE">NOT APPLICABLE</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -228,7 +229,7 @@
 
                                 <div class="product-grid">
                                     <!--  <div class="loader-page"></div>-->
-                                    <div class="javiergridrow row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4" id="container-products"></div>
+                                    <div class="javiergridrow row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4 products-list" id="container-products"></div>
                                 </div>
                                 <hr>
                                 <div id="pagination-container"></div>
