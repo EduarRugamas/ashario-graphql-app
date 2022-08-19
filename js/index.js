@@ -19,6 +19,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         }, 1000);
 
+
+
+
+
     });
 
 
@@ -134,7 +138,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         //container principal que almacena a TODO el card
         appendElementHtml(container_products, div_col);
 
-    }).join('');
+    }).join(' ');
+
+
 
 
 
