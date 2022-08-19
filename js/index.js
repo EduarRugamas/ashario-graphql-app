@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         setTimeout(async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
             let data = await getAllProducts(store_centre_point_mall.id);
-            let filter_indica = filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
+            let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
 
             if (check_all_lineage.checked) {
                 renderProductAll(container_products, data.products)
@@ -186,10 +186,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
 
-    const createProductFilter = (container_products, Array_products) => {
+    const createProductFilter = (container_products, array_products) => {
         container_products.innerHTML = `
-        
-            ${ Array_products.map( product =>  `
+            ${array_products.map( product =>  `
             
              <div class="col">
                 <div class="card rounded-0 product-card">
