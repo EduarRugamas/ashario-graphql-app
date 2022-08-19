@@ -28,9 +28,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         check_indica.addEventListener('click', function () {
             if (check_indica.checked) {
                 console.log('checkbox TRUE');
-                filter_strain_type_lineage.then( response => {
-                    console.log(response);
-                })
+               const data = filter_strain_type_lineage(store_centre_point_mall.id, "INDICA");
+                console.log(data);
             } else {
                 console.log('checkbox FALSE');
             }
