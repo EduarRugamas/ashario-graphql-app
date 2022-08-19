@@ -30,20 +30,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         }, 400);
 
 
-        check_indica.addEventListener('click', function () {
-
-            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-
-            if (check_indica.checked) {
-                console.log('checkbox TRUE');
-               const data = filter_strain_type_lineage(store_centre_point_mall.id, "INDICA");
-                console.log(data);
-            } else {
-                console.log('checkbox FALSE');
-            }
-        });
-
-
     });
 
 
