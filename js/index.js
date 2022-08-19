@@ -154,7 +154,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         let render = array_products.map( product => {
             `
               <div class="col">
-            <div class="card rounded-0 product-card">
+                <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?objectID=${product.id}" id="container_carrousel_imgs">
                             <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
                         </a>
@@ -187,7 +187,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             `
         }).join('');
 
-        appendElementHtml(container_products, render);
+        container_products.innerHTML= `${render}`;
     }
 
 
