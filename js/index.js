@@ -156,7 +156,7 @@ window.addEventListener('DOMContentLoaded', async () => {
               <div class="col">
             <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?objectID=${product.id}" id="container_carrousel_imgs">
-                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}" id="imagen-product">
+                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
                         </a>
                     <div class="card-body">
                         <div class="product-info">
