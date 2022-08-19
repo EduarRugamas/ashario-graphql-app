@@ -1,6 +1,7 @@
 import {filter_strain_type_lineage, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const container_products = document.querySelector('#container-products');
+const check_all_lineage = document.querySelector('#filter_all_lineage');
 const check_indica = document.querySelector('#filter_indica');
 const check_sativa = document.querySelector('#filter_sativa');
 const check_hybrid = document.querySelector('#filter_hybrid');
@@ -14,12 +15,16 @@ window.addEventListener('DOMContentLoaded', async () => {
         await GetAllRetailerIds();
 
         setTimeout(async () => {
-
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-
             let data = await getAllProducts(store_centre_point_mall.id);
-            console.log(data.products);
-            renderProductAll(container_products, data.products);
+
+            check_all_lineage.addEventListener('change', () => {
+                if (check_all_lineage.checked) {
+                    renderProductAll(container_products, data.products);
+                }
+            });
+
+
         }, 400);
 
 
