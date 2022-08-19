@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             createProductsAll(data.products);
 
 
-        }, 600);
+        }, 400);
 
 
         check_indica.addEventListener('click', function () {
