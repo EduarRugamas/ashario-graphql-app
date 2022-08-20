@@ -1,6 +1,6 @@
 .price-input {
     width: 20%;
-    display: flex;
+    display: block;
 }
 
 .price-input .field {
