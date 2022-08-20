@@ -27,11 +27,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
-            groupRadio.forEach( radio => {
+            groupRadio.forEach( (radio, position) => {
                 radio.addEventListener('change', () => {
-                    if (radio.checked === true) {
+                    if (radio[position].checked) {
                         console.log(radio.checked);
-                        if (radio.value === 'all'){
+                        if (radio[position].value === 'all'){
                             renderProductAll(container_products, data.products);
                         }
                     }
