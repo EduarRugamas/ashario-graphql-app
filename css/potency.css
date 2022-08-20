@@ -11,7 +11,7 @@
     align-items: center;
     margin-right: 10px;
 }
-.field .input-min .input-max {
+.field input[type="number"] {
     width: 100%;
     height: 100%;
     outline: none;
