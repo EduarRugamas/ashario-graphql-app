@@ -9,8 +9,10 @@
     width: 100%;
     display: flex;
     align-items: center;
+    background: #0c4128;
 }
 .field input[type="number"] {
+    background: red;
     width: 50px;
     height: 60%;
     outline: none;
