@@ -18,6 +18,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         setTimeout(async () => {
             let position;
             let groupRadio = document.getElementsByName('filter_lineage');
+            let radio_all = document.querySelector('#filter_all_lineage');
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
             let data = await getAllProducts(store_centre_point_mall.id);
@@ -27,12 +28,17 @@ window.addEventListener('DOMContentLoaded', async () => {
             let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
-            groupRadio.forEach( (radio, position) => {
+            if (radio_all.checked && radio_all.value === 'all'){
+                renderProductAll(container_products, data.products);
+            }
+
+            groupRadio.forEach( (radio) => {
                 radio.addEventListener('change', () => {
-                    if (radio.value === 'all' && radio.checked) {
-                        renderProductAll(container_products, data.products);
-                    }else if (radio.value === 'indica' && radio.checked){
+                    if (radio.value === 'indica' && radio.checked) {
+                        console.log('')
                         createProductFilter(container_products, filter_indica.products);
+                    }else if (radio.value === 'sativa' && radio.checked){
+                        createProductFilter(container_products, filter_sativa.products);
                     }
                 })
             })
