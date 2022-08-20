@@ -8,6 +8,7 @@ const check_hybrid = document.querySelector('#filter_hybrid');
 const check_high_cbd = document.querySelector('#filter_high_cbd');
 const check_not_applicable = document.querySelector('#filter_not_applicable');
 
+
 const storage_local = window.localStorage;
 
 
@@ -15,16 +16,25 @@ window.addEventListener('DOMContentLoaded', async () => {
         await GetAllRetailerIds();
 
         setTimeout(async () => {
+            let position;
+            let groupRadio = document.getElementsByName('filter_lineage');
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+
             let data = await getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
+            let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
+            let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
+            let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
+            let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
-            if (check_all_lineage.checked) {
-                renderProductAll(container_products, data.products)
+            for (position = 0; position < groupRadio.length; position++) {
+                console.log(position);
+                if (groupRadio[position].checked) {
+                    console.log(groupRadio[position]);
+                }
             }
-            if (check_indica.checked) {
-                createProductFilter(container_products, filter_indica.products)
-            }
+
+
 
 
         }, 400);
@@ -156,7 +166,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     <div class="card-body">
                         <div class="product-info">
                             <a href="product-details.html?id=${product.id}">
-                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand}</p>
+                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
                                 <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">null</p>
                             </a>
                             <a href="product-details.html?objectID=${product.id}">
@@ -198,7 +208,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     <div class="card-body">
                         <div class="product-info">
                             <a href="product-details.html?id=${product.id}">
-                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand}</p>
+                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
                                 <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">null</p>
                             </a>
                             <a href="product-details.html?objectID=${product.id}">
