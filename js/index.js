@@ -1,6 +1,7 @@
 import {filter_strain_type_lineage, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const container_products = document.querySelector('#container-products');
+let groupRadio = document.getElementsByName('filter_lineage');
 const check_all_lineage = document.querySelector('#filter_all_lineage');
 const check_indica = document.querySelector('#filter_indica');
 const check_sativa = document.querySelector('#filter_sativa');
@@ -16,45 +17,65 @@ window.addEventListener('DOMContentLoaded', async () => {
         await GetAllRetailerIds();
 
         setTimeout(async () => {
-            let position;
-            let groupRadio = document.getElementsByName('filter_lineage');
+
             let radio_all = document.querySelector('#filter_all_lineage');
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
             let data = await getAllProducts(store_centre_point_mall.id);
-            let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
-            let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
-            let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
-            let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
-            let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
             if (radio_all.checked && radio_all.value === 'all'){
                 renderProductAll(container_products, data.products);
             }
 
-            groupRadio.forEach( (radio) => {
-                radio.addEventListener('change', () => {
-                    if (radio.checked  && radio.value === 'all') {
-                        renderProductAll(container_products, data.products);
-                    }
-                    if (radio.value === 'indica' && radio.checked) {
-                        console.log('')
-                        createProductFilter(container_products, filter_indica.products);
-                    }else if (radio.value === 'sativa' && radio.checked){
-                        createProductFilter(container_products, filter_sativa.products);
-                    }else if (radio.value === 'hybrid' && radio.checked) {
-                        createProductFilter(container_products, filter_hybrid.products);
-                    }
-                })
-            })
+        }, 100);
 
 
+    groupRadio.forEach(  (radio) => {
+        radio.addEventListener('change', () => {
 
+            if (radio.checked  && radio.value === 'all') {
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+                let data = getAllProducts(store_centre_point_mall.id);
+                renderProductAll(container_products, data.products);
+            }
 
-        }, 400);
+            if (radio.value === 'indica' && radio.checked) {
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+                let filter_indica = filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
 
+                createProductFilter(container_products, filter_indica.products);
+            }
 
+            if (radio.value === 'sativa' && radio.checked){
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+                let filter_sativa = filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
+                createProductFilter(container_products, filter_sativa.products);
+            }
+
+            if (radio.value === 'hybrid' && radio.checked) {
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+                let filter_hybrid =  filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
+                createProductFilter(container_products, filter_hybrid.products);
+            }
+
+            if (radio.value === 'high_cbd' && radio.checked) {
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+                let filter_high_cbd = filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
+                createProductFilter(container_products, filter_high_cbd.products);
+            }
+
+            if (radio.value === 'not_applicable' && radio.checked) {
+                console.log('entro a not applicable');
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+                let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
+                createProductFilter(container_products, filter_not_applicable.products);
+            }
+        })
     });
+
+
+
+});
 
 
     const createProductsAll = Array_products => {
