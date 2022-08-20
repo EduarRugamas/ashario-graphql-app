@@ -28,30 +28,31 @@ window.addEventListener('DOMContentLoaded', async () => {
             let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
-            if (radio_all.checked && radio_all.value === 'all'){
-                renderProductAll(container_products, data.products);
-            }
+            setTimeout(()=> {
+                if (radio_all.checked && radio_all.value === 'all'){
+                    renderProductAll(container_products, data.products);
+                }
 
-            if (radio_indica.checked && radio_indica.value === 'indica') {
-                renderProductAll(container_products, filter_indica.products);
-            }
-            if (radio_sativa.checked && radio_sativa.value === 'sativa') {
-                renderProductAll(container_products, filter_sativa.products);
-            }
-            if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
-                renderProductAll(container_products, filter_hybrid.products);
-            }
-            if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
-                renderProductAll(container_products, filter_high_cbd.products);
-            }
-            if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
-                renderProductAll(container_products, filter_not_applicable.products);
-            }
+                if (radio_indica.checked && radio_indica.value === 'indica') {
+                    renderProductAll(container_products, filter_indica.products);
+                }
+                if (radio_sativa.checked && radio_sativa.value === 'sativa') {
+                    renderProductAll(container_products, filter_sativa.products);
+                }
+                if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
+                    renderProductAll(container_products, filter_hybrid.products);
+                }
+                if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
+                    renderProductAll(container_products, filter_high_cbd.products);
+                }
+                if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
+                    renderProductAll(container_products, filter_not_applicable.products);
+                }
+            }, 100);
 
 
             groupRadio.forEach( (radio) => {
                 radio.addEventListener('change', () => {
-
                     if (radio.checked  && radio.value === 'all') {
                         renderProductAll(container_products, data.products);
                     }
@@ -230,7 +231,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             `).join('')}
         
         `;
-    }
+    };
 
 
     const createProductFilter = (container_products, array_products) => {
@@ -272,7 +273,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             `).join('')}
         
         `;
-    }
+    };
 
 
 
