@@ -2,12 +2,7 @@ import {filter_strain_type_lineage, getAllProducts, GetAllRetailerIds} from '../
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const container_products = document.querySelector('#container-products');
 let groupRadio = document.getElementsByName('filter_lineage');
-const check_all_lineage = document.querySelector('#filter_all_lineage');
-const check_indica = document.querySelector('#filter_indica');
-const check_sativa = document.querySelector('#filter_sativa');
-const check_hybrid = document.querySelector('#filter_hybrid');
-const check_high_cbd = document.querySelector('#filter_high_cbd');
-const check_not_applicable = document.querySelector('#filter_not_applicable');
+
 
 
 const storage_local = window.localStorage;
@@ -67,7 +62,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (radio.value === 'not_applicable' && radio.checked) {
                 console.log('entro a not applicable');
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-                let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
+                let filter_not_applicable = filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
                 createProductFilter(container_products, filter_not_applicable.products);
             }
         })
