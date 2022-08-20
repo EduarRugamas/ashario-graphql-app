@@ -33,33 +33,24 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let data = getAllProducts(store_centre_point_mall.id);
                 renderProductAll(container_products, data.products);
             }
-
             if (radio.value === 'indica' && radio.checked) {
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let filter_indica = filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
 
                 createProductFilter(container_products, filter_indica.products);
-            }
-
-            if (radio.value === 'sativa' && radio.checked){
+            }else if (radio.value === 'sativa' && radio.checked){
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let filter_sativa = filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
                 createProductFilter(container_products, filter_sativa.products);
-            }
-
-            if (radio.value === 'hybrid' && radio.checked) {
+            }else if (radio.value === 'hybrid' && radio.checked) {
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let filter_hybrid =  filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
                 createProductFilter(container_products, filter_hybrid.products);
-            }
-
-            if (radio.value === 'high_cbd' && radio.checked) {
+            }else if (radio.value === 'high_cbd' && radio.checked) {
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let filter_high_cbd = filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
                 createProductFilter(container_products, filter_high_cbd.products);
-            }
-
-            if (radio.value === 'not_applicable' && radio.checked) {
+            }else if (radio.value === 'not_applicable' && radio.checked) {
                 console.log('entro a not applicable');
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let filter_not_applicable = filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
