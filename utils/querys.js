@@ -278,7 +278,66 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
 
     const data = await response.json();
     return data.data.menu;
-}
+};
+const filter_weights = async (retailerID, weigths) => {
+    const query_filter_weights = `
+            query FilterWeights ($retailerId: ID="${retailerID}"){
+            menu (retailerId: $retailerId, filter: { category: FLOWER, weights: ["${weigths}"] }, pagination: { offset: 0, limit: 5 } ) {
+                products {
+                    id,
+                    name,
+                    brand{
+                      name
+                    },
+                    image,
+                    category,
+                    subcategory,
+                    variants {
+                      option,
+                      priceMed,
+                      priceRec,
+                    }
+                },
+                productsCount
+            }
+        }
+    `;
+
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({query: query_filter_weights})
+    });
+
+    const data = await response.json();
+    return data.data.menu;
+};
+
+const filter_thc = (retailerID, min, max) => {
+    const query_filter_thc = `
+            query FilterWeights ($retailerId: ID="${retailerID}"){
+            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${min}, max: ${max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 5 } ) {
+                products {
+                    id,
+                    name,
+                    brand{
+                      name
+                    },
+                    image,
+                    category,
+                    subcategory,
+                    variants {
+                      option,
+                      priceMed,
+                      priceRec,
+                    }
+                },
+                productsCount
+            }
+        }
+    `;
+};
+
 
 async function getAllProducts (retailerID) {
     const query_get_all_products = `

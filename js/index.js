@@ -2,6 +2,7 @@ import {filter_strain_type_lineage, getAllProducts, GetAllRetailerIds} from '../
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const container_products = document.querySelector('#container-products');
 const groupRadio = document.getElementsByName('filter_lineage');
+const groupWeigths = document.getElementsByName('filter_weights');
 let radio_all = document.querySelector('#filter_all_lineage');
 let radio_indica = document.querySelector('#filter_indica');
 let radio_sativa = document.querySelector('#filter_sativa');
@@ -74,6 +75,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                         createProductFilter(container_products, filter_not_applicable.products);
                     }
                 })
+            });
+            groupWeigths.forEach(weights => {
+                weights.addEventListener('change', () => {
+                    console.log(weights);
+                });
             });
 
         }, 100);

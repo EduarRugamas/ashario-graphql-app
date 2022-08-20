@@ -20,7 +20,7 @@
     <link href="assets/css/app.css" rel="stylesheet">
     <link href="assets/css/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/page-loader.css">
-    <link rel="stylesheet" href="./css/filter.css">
+    <link rel="stylesheet" href="css/potency.css">
 
     <!--  Link de css de card views de algolia  -->
     <link rel="stylesheet" href="css/card-views.css">
@@ -83,8 +83,6 @@
                             <div class=" "></div>
                             <div class="">
                                 <div class="card rounded-0 w-100">
-
-
                                     <div class="accordion" id="jcaccord-filters">
                                         <div class="accordion-item">
                                             <h6 class="accordion-header" id="headingOne">
@@ -132,53 +130,63 @@
                                         </div>
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="headingTwo">
-                                                <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                     AVAILABLE WEIGHTS
                                                 </button>
                                             </h2>
                                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#jcaccord-filters">
                                                 <div class="card-body">
                                                     <div class="product-categories">
-                                                        <ul class="list-unstyled mb-0 categories-list"
-                                                            id="clear-weight"></ul>
-                                                        <ul class="list-unstyled mb-0 categories-list"
-                                                            id="jcweight-list"></ul>
+                                                        <ul class="list-unstyled mb-0 categories-list" id="clear-weight">
+                                                            <li>
+                                                                <input type="radio" id="filter_all_weights" name="filter_weights" checked="checked" value="all" autocomplete="off">
+                                                                <label for="filter_all_weights">ALL WEIGHTS</label>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="list-unstyled mb-0 categories-list" id="jcweight-list">
+                                                            <li>
+                                                                <input type="radio" id="filter_3.5G" name="filter_weights" value="3.5G" autocomplete="off">
+                                                                <label for="filter_3.5G">3.5G</label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio" id="filter_28G" name="filter_weights" value="28G" autocomplete="off">
+                                                                <label for="filter_28G">28G</label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio" id="filter_1G" name="filter_weights"  value="1G" autocomplete="off">
+                                                                <label for="filter_1G">1G</label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio" id="filter_7G" name="filter_weights" value="7G" autocomplete="off">
+                                                                <label for="filter_7G">7G</label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio" id="filter_14G" name="filter_weights" value="14G" autocomplete="off">
+                                                                <label for="filter_14G">7G</label>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="headingThree">
-                                                <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                                     PRICE
                                                 </button>
                                             </h2>
                                             <div id="collapseThree" class="accordion-collapse collapse"
                                                  aria-labelledby="headingThree" data-bs-parent="#jcaccord-filters">
                                                 <div class="accordion-body">
-
-
-
                                                     <div class="price-range">
                                                         <div class="my-4" id="container-price"></div>
                                                     </div>
-
-
-
-
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="headingFour">
-                                                <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                                        aria-expanded="false" aria-controls="collapseFour">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                                     THC
                                                 </button>
                                             </h2>
@@ -186,16 +194,27 @@
                                                  aria-labelledby="headingFour" data-bs-parent="#jcaccord-filters">
                                                 <div class="accordion-body">
                                                     <div class="price-range">
-                                                        <div class="my-4" id="container-thc"></div>
+                                                        <div class="my-4 price-input" id="container-thc">
+                                                            <div class="field">
+                                                                <label for="range-min">Min</label>
+                                                                <input type="number" class="input-min" value="0" id="range-min">
+                                                            </div>
+                                                            <div class="separator">-</div>
+                                                            <div class="field">
+                                                                <label for="range-max">Max</label>
+                                                                <input type="number" class="input-max" value="36" id="range-max">
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider">
+                                                            <div class="progress"></div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="headingFive">
-                                                <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseFive"
-                                                        aria-expanded="false" aria-controls="collapseFive">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                                     CBD
                                                 </button>
                                             </h2>
