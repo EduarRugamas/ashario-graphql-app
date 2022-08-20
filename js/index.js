@@ -27,9 +27,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
-            groupRadio.forEach( value => {
-                value.addEventListener('change', () => {
-                    console.log(value.value);
+            groupRadio.forEach( radio => {
+                radio.addEventListener('change', () => {
+                    if (value.value === 'all') {
+                        renderProductAll(container_products, data.products);
+                    }
                 })
             })
 
