@@ -2,6 +2,7 @@ import {filter_strain_type_lineage, getAllProducts, GetAllRetailerIds} from '../
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const container_products = document.querySelector('#container-products');
 const groupRadio = document.getElementsByName('filter_lineage');
+let radio_all = document.querySelector('#filter_all_lineage');
 
 const storage_local = window.localStorage;
 
@@ -12,7 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         setTimeout(async () => {
             let position;
 
-            let radio_all = document.querySelector('#filter_all_lineage');
+
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
             let data = await getAllProducts(store_centre_point_mall.id);
@@ -24,6 +25,26 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             if (radio_all.checked && radio_all.value === 'all'){
                 renderProductAll(container_products, data.products);
+            }
+
+            if (groupRadio.checked && radio_all.value === 'indica') {
+                createProductFilter(container_products, filter_indica.products);
+            }
+
+            if (groupRadio.checked && radio_all.value === 'sativa') {
+                createProductFilter(container_products, filter_sativa.products);
+            }
+
+            if (groupRadio.checked && radio_all.value === 'hybrid') {
+                createProductFilter(container_products, filter_hybrid.products);
+            }
+
+            if (groupRadio.checked && radio_all.value === 'high_cbd') {
+                createProductFilter(container_products, filter_high_cbd.products);
+            }
+
+            if (groupRadio.checked && radio_all.value === 'not_applicable') {
+                createProductFilter(container_products, filter_not_applicable.products);
             }
 
 
