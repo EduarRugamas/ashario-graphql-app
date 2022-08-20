@@ -27,25 +27,30 @@ window.addEventListener('DOMContentLoaded', async () => {
                 renderProductAll(container_products, data.products);
             }
 
-            if (groupRadio.checked && radio_all.value === 'indica') {
-                createProductFilter(container_products, filter_indica.products);
-            }
 
-            if (groupRadio.checked && radio_all.value === 'sativa') {
-                createProductFilter(container_products, filter_sativa.products);
-            }
+            groupRadio.forEach( radio => {
+                if (radio.checked && radio_all.value === 'indica') {
+                    createProductFilter(container_products, filter_indica.products);
+                }
 
-            if (groupRadio.checked && radio_all.value === 'hybrid') {
-                createProductFilter(container_products, filter_hybrid.products);
-            }
+                if (radio.checked && radio_all.value === 'sativa') {
+                    createProductFilter(container_products, filter_sativa.products);
+                }
 
-            if (groupRadio.checked && radio_all.value === 'high_cbd') {
-                createProductFilter(container_products, filter_high_cbd.products);
-            }
+                if (radio.checked && radio_all.value === 'hybrid') {
+                    createProductFilter(container_products, filter_hybrid.products);
+                }
 
-            if (groupRadio.checked && radio_all.value === 'not_applicable') {
-                createProductFilter(container_products, filter_not_applicable.products);
-            }
+                if (radio.checked && radio_all.value === 'high_cbd') {
+                    createProductFilter(container_products, filter_high_cbd.products);
+                }
+
+                if (radio.checked && radio_all.value === 'not_applicable') {
+                    createProductFilter(container_products, filter_not_applicable.products);
+                }
+            })
+
+
 
 
             groupRadio.forEach( (radio) => {
