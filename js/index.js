@@ -34,11 +34,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             groupRadio.forEach( (radio) => {
                 radio.addEventListener('change', () => {
+                    if (radio.checked  && radio.value === 'all') {
+                        renderProductAll(container_products, data.products);
+                    }
                     if (radio.value === 'indica' && radio.checked) {
                         console.log('')
                         createProductFilter(container_products, filter_indica.products);
                     }else if (radio.value === 'sativa' && radio.checked){
                         createProductFilter(container_products, filter_sativa.products);
+                    }else if (radio.value === 'hybrid' && radio.checked) {
+                        createProductFilter(container_products, filter_hybrid.products);
                     }
                 })
             })
