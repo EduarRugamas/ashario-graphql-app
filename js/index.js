@@ -194,7 +194,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     }
 
-    function renderProductAll (container_products, array_products) {
+    const renderProductAll = (container_products, array_products) => {
         container_products.innerHTML = `
         
             ${ array_products.map( product =>  `
