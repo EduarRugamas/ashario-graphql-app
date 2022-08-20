@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             for (position = 0; position < groupRadio.length; position++) {
                 console.log(position);
                 if (groupRadio[position].checked) {
-                    console.log(groupRadio[position]);
+                    console.log(position);
                 }
             }
 
