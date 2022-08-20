@@ -19,9 +19,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         await GetAllRetailerIds();
 
         setTimeout(async () => {
-            let position;
-
-
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
 
             let data = await getAllProducts(store_centre_point_mall.id);
@@ -35,19 +32,19 @@ window.addEventListener('DOMContentLoaded', async () => {
                 renderProductAll(container_products, data.products);
             }
 
-            if (radio_all.checked && radio_all.value === 'indica') {
+            if (radio_indica.checked && radio_indica.value === 'indica') {
                 renderProductAll(container_products, filter_indica.products);
             }
-            if (radio_all.checked && radio_all.value === 'sativa') {
+            if (radio_sativa.checked && radio_sativa.value === 'sativa') {
                 renderProductAll(container_products, filter_sativa.products);
             }
-            if (radio_all.checked && radio_all.value === 'hybrid') {
+            if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
                 renderProductAll(container_products, filter_hybrid.products);
             }
-            if (radio_all.checked && radio_all.value === 'high_cbd') {
+            if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
                 renderProductAll(container_products, filter_high_cbd.products);
             }
-            if (radio_all.checked && radio_all.value === 'not_applicable') {
+            if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
                 renderProductAll(container_products, filter_not_applicable.products);
             }
 
