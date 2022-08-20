@@ -29,9 +29,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             groupRadio.forEach( (radio, position) => {
                 radio.addEventListener('change', () => {
-                    if (radio.checked) {
-                        console.log(radio.checked);
-
+                    if (radio.checked && radio.value === 'all') {
+                        renderProductAll(container_products, data.products);
                     }
                 })
             })
