@@ -9,7 +9,6 @@
     width: 100%;
     display: flex;
     align-items: center;
-    margin-right: 10px;
 }
 .field input[type="number"] {
     width: 100%;
