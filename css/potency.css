@@ -6,11 +6,9 @@
 .price-input .field {
     height: 45px;
     width: 100%;
-    display: flex;
+    display: block;
     align-items: center;
-    background: rebeccapurple;
 }
-
 .field .input-min .input-max {
     width: 100%;
     height: 100%;
@@ -20,5 +18,12 @@
     margin-left: 15px;
     border-radius: 5px;
     border: 1px solid #999999;
+    -moz-appearance: none;
 }
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+
 
