@@ -1,6 +1,6 @@
 .price-input {
     width: 100%;
-    display: table-column;
+    display: block;
 }
 
 .price-input .field {
