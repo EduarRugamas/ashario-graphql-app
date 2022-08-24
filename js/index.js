@@ -30,6 +30,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
             let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
+            let filter_28G = await filter_weights(store_centre_point_mall.id, 28);
+            let filter_1G = await filter_weights(store_centre_point_mall.id, 28);
+            let filter_7G = await filter_weights(store_centre_point_mall.id, 28);
+            let filter_14G = await filter_weights(store_centre_point_mall.id, 28);
 
             setTimeout(()=> {
                 if (radio_all.checked && radio_all.value === 'all'){
@@ -86,8 +90,22 @@ window.addEventListener('DOMContentLoaded', async () => {
                     }
                     if (weights.value === '3.5G' && weights.checked) {
                         console.log(filter_35G);
-                        //createProductFilter(container_products, filter_35G.products);
+                        createProductFilter(container_products, filter_35G.products);
                     }
+                    if (weights.value === '28G' && weights.checked) {
+                        createProductFilter(container_products, filter_28G.products);
+                    }
+
+                    if (weights.value === '1G' && weights.checked) {
+                        createProductFilter(container_products, filter_1G.products);
+                    }
+                    if (weights.value === '7G' && weights.checked) {
+                        createProductFilter(container_products, filter_7G.products);
+                    }
+                    if (weights.value === '14G' && weights.checked) {
+                        createProductFilter(container_products, filter_14G.products);
+                    }
+                    
                 });
             });
 

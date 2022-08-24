@@ -284,7 +284,7 @@ const filter_weights = async (retailerID, weigths) => {
     console.log(weigths);
     const query_filter_weights = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER, weights: ["${weight_transform}"] }, pagination: { offset: 0, limit: 5 } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, weights: ["${weight_transform}"] }, pagination: { offset: 0, limit: 20 } ) {
                 products {
                     id,
                     name,
