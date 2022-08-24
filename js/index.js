@@ -1,4 +1,4 @@
-import {filter_strain_type_lineage, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
+import {filter_strain_type_lineage,filter_weights, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
 import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
 const container_products = document.querySelector('#container-products');
 const groupRadio = document.getElementsByName('filter_lineage');
