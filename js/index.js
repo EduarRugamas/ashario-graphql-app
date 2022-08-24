@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     if (weights.value === '3.5G' && weights.checked) {
                        try {
 
-                        let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
+                        let filter_35G = filter_weights(store_centre_point_mall.id, 3.5);
                         console.log(filter_35G.data);
 
                         createProductFilter(container_products, filter_35G.data);
@@ -225,7 +225,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         <div class="product-info">
                             <a href="product-details.html?id=${product.id}">
                                 <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
-                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">null</p>
+                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                             </a>
                             <a href="product-details.html?objectID=${product.id}">
                                 <h6 class="product-name mb-2 itemname">${product.name}</h6>
