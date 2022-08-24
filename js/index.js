@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
-            let filter_35G = await filter_weights(store_centre_point_mall.id, "3.5g");
+            let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
 
             setTimeout(()=> {
                 if (radio_all.checked && radio_all.value === 'all'){
