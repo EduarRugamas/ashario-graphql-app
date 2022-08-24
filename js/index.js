@@ -78,7 +78,21 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
             groupWeigths.forEach(weights => {
                 weights.addEventListener('change', () => {
-                    console.log(weights);
+                    if (weights.checked  && weights.value === 'all') {
+                        renderProductAll(container_products, data.products);
+                    }
+                    if (weights.value === '3.5G' && weights.checked) {
+                       try {
+
+                        let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
+                        console.log(filter_35G.data);
+
+                        createProductFilter(container_products, filter_35G.data);
+                       
+                    } catch (error) {
+                        console.log("Error en la query");
+                       }
+                    }
                 });
             });
 
