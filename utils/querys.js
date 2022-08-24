@@ -481,6 +481,7 @@ export {
     GetProduct,
     filter_all_lineage,
     filter_strain_type_lineage,
+    filter_weights,
     CreateCheckout,
     addItemCart
 }
