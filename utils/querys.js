@@ -280,9 +280,10 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
     return data.data.menu;
 };
 const filter_weights = async (retailerID, weigths) => {
+    console.log(weigths);
     const query_filter_weights = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER, weights: [${weigths}] }, pagination: { offset: 0, limit: 5 } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, weights: ["${weigths}"] }, pagination: { offset: 0, limit: 5 } ) {
                 products {
                     id,
                     name,
@@ -310,7 +311,7 @@ const filter_weights = async (retailerID, weigths) => {
     });
 
     const data = await response.json();
-    return data.data;
+    return data;
 };
 
 const filter_thc = (retailerID, min, max) => {
