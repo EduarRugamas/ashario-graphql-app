@@ -31,9 +31,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
             let filter_28G = await filter_weights(store_centre_point_mall.id, 28);
-            let filter_1G = await filter_weights(store_centre_point_mall.id, 28);
-            let filter_7G = await filter_weights(store_centre_point_mall.id, 28);
-            let filter_14G = await filter_weights(store_centre_point_mall.id, 28);
+            let filter_1G = await filter_weights(store_centre_point_mall.id, 1);
+            let filter_7G = await filter_weights(store_centre_point_mall.id, 7);
+            let filter_14G = await filter_weights(store_centre_point_mall.id, 14);
 
             setTimeout(()=> {
                 if (radio_all.checked && radio_all.value === 'all'){
