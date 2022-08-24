@@ -84,13 +84,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                     if (weights.value === '3.5G' && weights.checked) {
                        try {
 
-                        let filter_35G = filter_weights(store_centre_point_mall.id, 3.5);
+                        let filter_35G = filter_weights(store_centre_point_mall.id, "3.5G");
                         console.log(filter_35G.products);
 
                         createProductFilter(container_products, filter_35G.products);
                        
                     } catch (error) {
-                        console.log("Error en la query");
+                        console.log("Error en la query", error.message);
                        }
                     }
                 });
