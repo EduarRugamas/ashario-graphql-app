@@ -85,7 +85,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                         renderProductAll(container_products, data.products);
                     }
                     if (weights.value === '3.5G' && weights.checked) {
-                        createProductFilter(container_products, filter_35G.products);
+                        console.log(filter_35G);
+                        //createProductFilter(container_products, filter_35G.products);
                     }
                 });
             });
