@@ -280,7 +280,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         <div class="product-info">
                             <a href="product-details.html?id=${product.id}">
                                 <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
-                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">null</p>
+                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                             </a>
                             <a href="product-details.html?objectID=${product.id}">
                                 <h6 class="product-name mb-2 itemname">${product.name}</h6>
