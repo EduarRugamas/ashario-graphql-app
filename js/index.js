@@ -85,9 +85,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                        try {
 
                         let filter_35G = filter_weights(store_centre_point_mall.id, 3.5);
-                        console.log(filter_35G.data);
+                        console.log(filter_35G.products);
 
-                        createProductFilter(container_products, filter_35G.data);
+                        createProductFilter(container_products, filter_35G.products);
                        
                     } catch (error) {
                         console.log("Error en la query");
