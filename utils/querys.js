@@ -312,7 +312,7 @@ const filter_weights = async (retailerID, weigths) => {
     });
 
     const data = await response.json();
-    return data;
+    return data.data.menu;
 };
 
 const filter_thc = (retailerID, min, max) => {
