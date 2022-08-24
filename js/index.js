@@ -29,6 +29,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
 
+            let filter_35G = await filter_weights(store_centre_point_mall.id, "3.5G");
+
             setTimeout(()=> {
                 if (radio_all.checked && radio_all.value === 'all'){
                     renderProductAll(container_products, data.products);
@@ -76,22 +78,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                     }
                 })
             });
+
             groupWeigths.forEach(weights => {
                 weights.addEventListener('change', () => {
                     if (weights.checked  && weights.value === 'all') {
                         renderProductAll(container_products, data.products);
                     }
                     if (weights.value === '3.5G' && weights.checked) {
-                       try {
-
-                        let filter_35G = filter_weights(store_centre_point_mall.id, "3.5G");
-                        console.log(filter_35G.products);
-
                         createProductFilter(container_products, filter_35G.products);
-                       
-                    } catch (error) {
-                        console.log("Error en la query", error.message);
-                       }
                     }
                 });
             });
