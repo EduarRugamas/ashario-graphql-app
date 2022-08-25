@@ -1,31 +1,22 @@
-.price-input {
-    width: 100%;
-    display: block;
-    margin: 30px 0 30px;
+.slider {
+    background-color: #FFFFFF;
+    padding: 30px;
+    position: absolute;
 }
 
-.price-input .field {
-    height: 45px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background: #0c4128;
-}
-.field input[type="number"] {
-    background: red;
-    width: 50px;
-    height: 60%;
-    outline: none;
-    margin-left: 12px;
+.range-slider {
+    width: auto;
     text-align: center;
-    border-radius: 5px;
-    border: 1px solid #999999;
-    -moz-appearance: none;
+    position: relative;
+    padding-bottom: 20px;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+.rangeValues {
+    display: block;
+    box-shadow: 0 0 20px rgba(0,139,253,0.25);
+    padding: 20px;
+    font-size: 16px;
+    margin-bottom: 35px;
 }
 
 
