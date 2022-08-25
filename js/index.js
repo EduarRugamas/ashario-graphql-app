@@ -114,6 +114,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             noUiSlider.create(slider_thc, {
                 start: [0, 36],
                 behaviour: 'snap',
+                step: 1,
                 connect: true,
                 range: {
                     min: 0,
