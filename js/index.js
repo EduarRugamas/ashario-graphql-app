@@ -109,11 +109,17 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
             });
 
-            let slider_thc_potency = new rSlider({
-                target: '#slider_thc',
-                values: {min:0, max: 36},
-                range: true
-            });
+            let slider_thc = document.querySelector('#slider_thc');
+
+            noUiSlider.create(slider_thc, {
+                start: [0, 36],
+                behaviour: 'snap',
+                connect: true,
+                range: {
+                    min: 0,
+                    max: 36
+                }
+            })
 
 
 
