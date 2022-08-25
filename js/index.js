@@ -110,7 +110,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
 
             let slider_thc = document.querySelector('#slider_thc');
-
+            let thc = document.querySelector('#title_slider_thc');
             noUiSlider.create(slider_thc, {
                 start: [0, 36],
                 behaviour: 'snap',
@@ -120,8 +120,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                     min: 0,
                     max: 36
                 }
-            })
+            });
 
+
+            slider_thc.noUiSlider.on('update', function (values) {
+                thc.innerHTML = values.join(' - ');
+            })
 
 
 
