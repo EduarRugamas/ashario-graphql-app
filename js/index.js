@@ -112,7 +112,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             let slider_thc_potency = new rSlider({
                 target: '#slider_thc',
                 values: {min:0, max: 36},
-                labels: true,
                 range: true
             });
 
