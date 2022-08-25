@@ -1,6 +1,6 @@
 
 .range-slider {
-    width: 100%;
+    width: 50%;
     text-align: center;
     position: relative;
     padding-bottom: 20px;
@@ -12,6 +12,27 @@
     padding: 20px;
     font-size: 16px;
     margin-bottom: 35px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 50%;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type="range"]::-webkit-media-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 1px;
+    width: 18px;
+    border-radius: 50%;
+    background: #0c4128;
+    margin-top: -6px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 
