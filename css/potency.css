@@ -1,6 +1,6 @@
 
 .range-slider {
-    width: 50%;
+    width: 100%;
     text-align: center;
     position: relative;
     padding-bottom: 20px;
@@ -15,7 +15,7 @@
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-    width: 50%;
+    width: 100px;
     height: 5px;
     background: #ddd;
     border: none;
