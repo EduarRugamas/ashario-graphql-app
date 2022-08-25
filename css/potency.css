@@ -1,6 +1,6 @@
 
 .range-slider {
-    width: auto;
+    width: 300px;
     text-align: center;
     position: relative;
     padding-bottom: 20px;
@@ -8,7 +8,7 @@
 
 .rangeValues {
     display: block;
-    box-shadow: 0 0 20px rgba(0,139,253,0.25);
+    box-shadow: 0 0 20px rgba(119, 122, 125, 0.25);
     padding: 20px;
     font-size: 16px;
     margin-bottom: 35px;
