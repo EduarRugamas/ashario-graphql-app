@@ -132,8 +132,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let data_thc = slider_thc.noUiSlider.get();
                 console.log(data_thc);
 
-                data_thc.forEach( thc => {
-                    console.log(thc)
+                data_thc.forEach( (thc, position) => {
+                    console.log(thc, position);
+
                 });
             });
 

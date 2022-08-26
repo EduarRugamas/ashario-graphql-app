@@ -1,5 +1,4 @@
 import {secret_key, public_key, url_base} from '../config/config.js';
-import { createElementHtml, appendElementHtml } from './elements_html.js';
 const local_storage = window.localStorage;
 const headers = {
     "Content-Type": "application/json",
@@ -7,7 +6,6 @@ const headers = {
     "Authorization": "Bearer " + secret_key,
 };
 
-const container_products = document.getElementById('container-products');
 
 const GetAllRetailerIds = () => {
 
@@ -315,10 +313,10 @@ const filter_weights = async (retailerID, weigths) => {
     return data.data.menu;
 };
 
-const filter_thc = (retailerID, min, max) => {
+const filter_thc = async (retailerID, min, max) => {
     const query_filter_thc = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${min}, max: ${max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 5 } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${min}, max: ${max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 20 } ) {
                 products {
                     id,
                     name,
@@ -338,6 +336,48 @@ const filter_thc = (retailerID, min, max) => {
             }
         }
     `;
+
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify( { query: query_filter_thc } )
+    });
+
+    const data = await response.json();
+    return data.data.menu;
+};
+const filter_cbd = async (retailerID, min, max) => {
+    const query_filter_thc = `
+            query FilterWeights ($retailerId: ID="${retailerID}"){
+            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${min}, max: ${max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 20 } ) {
+                products {
+                    id,
+                    name,
+                    brand{
+                      name
+                    },
+                    image,
+                    category,
+                    subcategory,
+                    variants {
+                      option,
+                      priceMed,
+                      priceRec,
+                    }
+                },
+                productsCount
+            }
+        }
+    `;
+
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify( { query: query_filter_thc } )
+    });
+
+    const data = await response.json();
+    return data.data.menu;
 };
 
 
@@ -484,6 +524,8 @@ export {
     filter_all_lineage,
     filter_strain_type_lineage,
     filter_weights,
+    filter_thc,
+    filter_cbd,
     CreateCheckout,
     addItemCart
 }
