@@ -314,9 +314,13 @@ const filter_weights = async (retailerID, weigths) => {
 };
 
 const filter_thc = async (retailerID, min, max) => {
+
+    const Min = parseInt(min);
+    const Max = parseInt(max);
+
     const query_filter_thc = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${min}, max: ${max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 20 } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${Min}, max: ${Max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 20 } ) {
                 products {
                     id,
                     name,
