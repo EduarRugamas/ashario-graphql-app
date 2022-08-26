@@ -124,7 +124,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
             slider_thc.noUiSlider.on('update', function (values) {
-                thc.innerHTML = `$ ${values.join(' - $ ')}`;
+                thc.innerHTML = values.join(' % - %');
             });
 
             btn_thc.addEventListener('click', () => {
