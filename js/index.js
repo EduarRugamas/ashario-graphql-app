@@ -124,7 +124,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
             slider_thc.noUiSlider.on('update', function (values) {
-                thc.innerHTML = values.join(' % - %');
+                thc.innerHTML = `${values.join(' % - ')} %`;
             });
 
             btn_thc.addEventListener('click', () => {
@@ -132,8 +132,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let data_thc = slider_thc.noUiSlider.get();
                 console.log(data_thc);
 
-                data_thc.forEach( (thc, position) => {
-                    console.log(thc, position);
+                data_thc.forEach( (thc) => {
+                    console.log('min y max',thc[0], thc[1]);
                     const filt_thc = filter_thc(store_centre_point_mall.id, thc[0], thc[1]);
                     console.log(filt_thc);
                     // createProductFilter(container_products, filt_thc.products);
