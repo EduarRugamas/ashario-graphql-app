@@ -1,5 +1,4 @@
-import {filter_strain_type_lineage,filter_weights, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
-import { createElementHtml, appendElementHtml } from '../utils/elements_html.js';
+import {filter_strain_type_lineage,filter_weights, filter_thc, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
 const container_products = document.querySelector('#container-products');
 const groupRadio = document.getElementsByName('filter_lineage');
 const groupWeigths = document.getElementsByName('filter_weights');
@@ -129,12 +128,14 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
 
             btn_thc.addEventListener('click', () => {
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let data_thc = slider_thc.noUiSlider.get();
                 console.log(data_thc);
 
                 data_thc.forEach( (thc, position) => {
                     console.log(thc, position);
-
+                    const filt_thc = filter_thc(store_centre_point_mall.id, thc[0], thc[1]);
+                    createProductFilter(container_products, filt_thc.products);
                 });
             });
 
