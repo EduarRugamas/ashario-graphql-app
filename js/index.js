@@ -131,6 +131,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             btn_thc.addEventListener('click', () => {
                 let data_thc = slider_thc.noUiSlider.get();
                 console.log(data_thc);
+
+                data_thc.forEach( thc => {
+                    console.log(thc)
+                });
             });
 
 
