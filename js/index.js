@@ -135,7 +135,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                 data_thc.forEach( (thc, position) => {
                     console.log(thc, position);
                     const filt_thc = filter_thc(store_centre_point_mall.id, thc[0], thc[1]);
-                    createProductFilter(container_products, filt_thc.products);
+                    console.log(filt_thc);
+                    // createProductFilter(container_products, filt_thc.products);
                 });
             });
 
