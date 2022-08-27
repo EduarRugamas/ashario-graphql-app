@@ -18,7 +18,7 @@ const storage_local = window.localStorage;
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-        await GetAllRetailerIds();
+
 
         // getRetailersIds().then( retailers => {
         //     if (retailers.ok) {
@@ -28,6 +28,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         setTimeout(async () => {
+            
+            await GetAllRetailerIds();
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
 
             console.log(store_centre_point_mall);
