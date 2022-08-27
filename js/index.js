@@ -9,10 +9,6 @@ let radio_hybrid = document.querySelector('#filter_hybrid');
 let radio_high_cbd = document.querySelector('#filter_high_cbd');
 let radio_not_applicable = document.querySelector('#filter_not_applicable');
 
-
-
-
-
 const storage_local = window.localStorage;
 
 
@@ -20,12 +16,15 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
 
-        await getRetailersIds().then( retailers => {
-           if (retailers.length === 0) {
-               console.log('error en la query');
-           }
-            console.log(retailers);
-        }).catch(error => console.log(error));
+        const result = await getRetailersIds();
+
+        if (result.length !== 0 ) {
+            console.table(result);
+        }else {
+            console.log('retailers vacio');
+        }
+
+
 
 
         // setTimeout(async () => {
