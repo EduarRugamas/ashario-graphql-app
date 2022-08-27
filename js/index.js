@@ -21,10 +21,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         await getRetailersIds().then( retailers => {
-            if (retailers.status === 'OK') {
-                console.log('peticion ejecutada satisfactoriamente');
-            }
-
+           if (retailers.length === 0) {
+               console.log('error en la query');
+           }
             console.log(retailers);
         }).catch(error => console.log(error));
 

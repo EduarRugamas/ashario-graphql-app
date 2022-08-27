@@ -104,7 +104,12 @@ const getRetailersIds = async () => {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({query: query_retailers})
-        }).then( response => response.json() ).then( result => resolve(result.data.retailers) ).catch( error => reject(error));
+        }).then( response => {
+            if (!response.ok) {
+                return resolve(response.error());
+            }
+            return response.json();
+        }).then( result => resolve(result.data.retailers) ).catch( error => reject(error));
     });
 }
 
