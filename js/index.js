@@ -16,6 +16,56 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         await getRetailersIds().then(result => {
             console.table(result);
+
+            result.find( item => {
+                if (item.name === 'Ashario - Centrepoint Mall') {
+                    let store_centre_point_mall = {
+                        name: item.name,
+                        id: item.id,
+                        menuTypes: item.menuTypes,
+                        address: item.address
+                    }
+
+                    console.log(item);
+
+                    storage_local.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
+                    console.log('se guardo en el local storage');
+                }
+
+                if (item.name === 'Ashario - Aurora') {
+                    let store_aurora = {
+                        name: item.name,
+                        id: item.id,
+                        menuTypes: item.menuTypes,
+                        address: item.address
+                    }
+
+                    console.log(item);
+
+                    storage_local.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
+                    console.log('se guardo en el local storage');
+                }
+
+                if (item.name === 'Ashario - North York') {
+                    let store_north_york = {
+                        name: item.name,
+                        id: item.id,
+                        menuTypes: item.menuTypes,
+                        address: item.address
+                    }
+
+                    console.log(item);
+
+                    storage_local.setItem('Ashario_North_York', JSON.stringify(store_north_york));
+                    console.log('se guardo en el local storage');
+                }
+            });
+
+
+
+
+
+
         }).catch(error => {
             console.log('Error query', error.message);
             ViewEmpty(container_products);
@@ -396,7 +446,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const ViewEmpty = (container_products) => {
         container_products.innerHTML= `
             <div class="col align-items-center">
-                <p class="text-uppercase font-18 text-black">Empty Result</p>
+                <p class="text-uppercase font-18 text-black align-items-center">Empty Result</p>
             </div>
             `;
     }
