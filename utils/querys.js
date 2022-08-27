@@ -350,7 +350,7 @@ const filter_thc = async (retailerID, min, max) => {
     });
 
     const data = await response.json();
-    return data.data;
+    return data.data.menu;
 };
 const filter_cbd = async (retailerID, min, max) => {
     const query_filter_thc = `
