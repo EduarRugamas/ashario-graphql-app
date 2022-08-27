@@ -243,7 +243,6 @@ const filter_all_lineage = async (retailerID) => {
 const filter_strain_type_lineage = async (retailerID, strain_type) => {
 
     let strain_type_uppercase = strain_type.toUpperCase();
-    console.log(strain_type_uppercase);
 
     const query_filter_strain_type = `
         query FilterAllLineage ($retailerId: ID="${retailerID}"){
@@ -311,7 +310,6 @@ const filter_weights = async (retailerID, weigths) => {
     const data = await response.json();
     return data.data.menu;
 };
-
 const filter_thc = async (retailerID, min, max) => {
 
     const Min = parseInt(min);
@@ -349,11 +347,10 @@ const filter_thc = async (retailerID, min, max) => {
     const data = await response.json();
     return data.data.menu;
 };
-
 const filter_cbd = async (retailerID, min, max) => {
-    const query_filter_thc = `
+    const query_filter_cbd = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${min}, max: ${max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 20 } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, potencyCbd: { min: ${min}, max: ${max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 20 } ) {
                 products {
                     id,
                     name,
@@ -377,7 +374,7 @@ const filter_cbd = async (retailerID, min, max) => {
     const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify( { query: query_filter_thc } )
+        body: JSON.stringify( { query: query_filter_cbd } )
     });
 
     const data = await response.json();

@@ -1,4 +1,4 @@
-import {filter_strain_type_lineage,filter_weights, filter_thc, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
+import {filter_strain_type_lineage,filter_weights, filter_thc, filter_cbd, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
 const container_products = document.querySelector('#container-products');
 const groupRadio = document.getElementsByName('filter_lineage');
 const groupWeigths = document.getElementsByName('filter_weights');
@@ -112,6 +112,12 @@ window.addEventListener('DOMContentLoaded', async () => {
             let thc = document.querySelector('#title_slider_thc');
             let btn_thc = document.querySelector('#btn-filter-thc');
             let btn_reset_thc = document.querySelector('#btn-reset-filter-thc');
+
+            let slider_cbd = document.querySelector('#slider_cbd');
+            let cbd = document.querySelector('#title_slider_cbd');
+            let btn_cbd = document.querySelector('#btn-filter-cbd');
+            let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
+
             noUiSlider.create(slider_thc, {
                 start: [0, 36],
                 behaviour: 'snap',
@@ -126,9 +132,27 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
+            noUiSlider.create(slider_cbd, {
+                start: [0, 16],
+                behaviour: 'snap',
+                step: 1,
+                connect: true,
+                format: wNumb({
+                    decimals: 0
+                }),
+                range: {
+                    min: 0,
+                    max: 16
+                }
+            });
+
 
             slider_thc.noUiSlider.on('update', function (values) {
                 thc.innerHTML = `${values.join(' % - ')} %`;
+            });
+
+            slider_cbd.noUiSlider.on('update', function (values) {
+                cbd.innerHTML = `${values.join(' % - ')} %`;
             });
 
             btn_thc.addEventListener('click', async () => {
@@ -143,13 +167,26 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             });
 
+            btn_cbd.addEventListener('click', async () => {
+                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+                let data_cbd = slider_cbd.noUiSlider.get();
+                console.log('position 0', data_cbd[0], 'position 1', data_cbd[1]);
+
+                const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_thc[0], data_thc[1]);
+                console.log(filt_cbd.products);
+
+                createProductFilter(container_products, filt_thc.products);
+            });
+
             btn_reset_thc.addEventListener('click', () => {
                 slider_thc.noUiSlider.reset();
                 renderProductAll(container_products, data.products);
             });
 
-
-
+            btn_reset_cbd.addEventListener('click', () => {
+                slider_cbd.noUiSlider.reset();
+                renderProductAll(container_products, data.products);
+            });
         }, 100);
 
 });
