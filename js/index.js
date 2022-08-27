@@ -15,9 +15,14 @@ const storage_local = window.localStorage;
 window.addEventListener('DOMContentLoaded', async () => {
         const result = await getRetailersIds();
 
-        console.table(result.data.retailers);
+        const data = result.data.retailers;
 
-
+        if (data !== 0 ){
+            console.log(data);
+        }else {
+            console.log('query error', data);
+            ViewEmpty(container_products);
+        }
 
 
         // setTimeout(async () => {
@@ -391,6 +396,14 @@ window.addEventListener('DOMContentLoaded', async () => {
         
         `;
     };
+
+    const ViewEmpty = (container_products) => {
+        container_products.innerHTML= `
+            <div class="col align-items-center">
+                <p class="text-uppercase font-18 text-black">Empty Result</p>
+            </div>
+            `;
+    }
 
 
 

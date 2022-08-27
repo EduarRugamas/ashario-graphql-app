@@ -1,4 +1,5 @@
-import {secret_key, public_key, url_base} from '../config/config.js';
+import {public_key, secret_key, url_base} from '../config/config.js';
+
 const local_storage = window.localStorage;
 const headers = {
     "Content-Type": "application/json",
@@ -90,7 +91,7 @@ const GetAllRetailerIds = () => {
 
 const getRetailersIds = async () => {
     const query_retailers = `
-    query GetRetailers {
+    query GetRetailersssss {
         retailers {
            name,
            id,
@@ -104,8 +105,7 @@ const getRetailersIds = async () => {
         headers: headers,
         body: JSON.stringify({query: query_retailers})
     });
-    const data = response.json();
-    return data;
+    return response.json();
 }
 
 
