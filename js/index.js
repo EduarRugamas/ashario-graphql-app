@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         if (data !== 0 ){
             console.log(data);
-        }else {
+        }else if (data === undefined || data === null ){
             console.log('query error', data);
             ViewEmpty(container_products);
         }
