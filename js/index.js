@@ -18,13 +18,14 @@ const storage_local = window.localStorage;
 
 window.addEventListener('DOMContentLoaded', async () => {
 
+        await GetAllRetailerIds();
+
         getRetailersIds().then( retailers => {
-              if (retailers.ok) {
-                  console.log('peticion ejecutada satisfactoriamente');
-              }
+            if (retailers.ok) {
+                console.log('peticion ejecutada satisfactoriamente');
+            }
         }).catch(error => console.log(error));
 
-        await GetAllRetailerIds();
 
         setTimeout(async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
