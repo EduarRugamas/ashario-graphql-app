@@ -21,9 +21,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         await getRetailersIds().then( retailers => {
-            if (retailers.ok) {
+            if (retailers.status === 'OK') {
                 console.log('peticion ejecutada satisfactoriamente');
             }
+
+            console.log(retailers);
         }).catch(error => console.log(error));
 
 
