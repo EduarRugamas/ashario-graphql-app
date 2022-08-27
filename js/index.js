@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                     console.log(item);
 
-                    storage_local.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
+                    storage_local.setItem('Ashario_Centre_point_Mall', JSON.stringify(store_centre_point_mall));
                     console.log('se guardo en el local storage');
                 }
 
@@ -69,7 +69,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
-            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
+            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
+            console.log(store_centre_point_mall);
 
             let data = await getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
