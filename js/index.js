@@ -1,4 +1,4 @@
-import {getRetailersIds, filter_strain_type_lineage,filter_weights, filter_thc, filter_cbd, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
+import {getRetailersIds, filter_weights, filter_thc, filter_cbd, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
 const container_products = document.querySelector('#container-products');
 const groupRadio = document.getElementsByName('filter_lineage');
 const groupWeigths = document.getElementsByName('filter_weights');
@@ -20,187 +20,187 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
 
-        // getRetailersIds().then( retailers => {
-        //     if (retailers.ok) {
-        //         console.log('peticion ejecutada satisfactoriamente');
-        //     }
-        // }).catch(error => console.log(error));
+        await getRetailersIds().then( retailers => {
+            if (retailers.ok) {
+                console.log('peticion ejecutada satisfactoriamente');
+            }
+        }).catch(error => console.log(error));
 
 
-        setTimeout(async () => {
-            
-            await GetAllRetailerIds();
-            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
-
-            console.log(store_centre_point_mall);
-
-            let data = await getAllProducts(store_centre_point_mall.id);
-            let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
-            let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
-            let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
-            let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
-            let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
-
-            let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
-            let filter_28G = await filter_weights(store_centre_point_mall.id, 28);
-            let filter_1G = await filter_weights(store_centre_point_mall.id, 1);
-            let filter_7G = await filter_weights(store_centre_point_mall.id, 7);
-            let filter_14G = await filter_weights(store_centre_point_mall.id, 14);
-
-            setTimeout(()=> {
-                if (radio_all.checked && radio_all.value === 'all'){
-                    renderProductAll(container_products, data.products);
-                }
-
-                if (radio_indica.checked && radio_indica.value === 'indica') {
-                    renderProductAll(container_products, filter_indica.products);
-                }
-                if (radio_sativa.checked && radio_sativa.value === 'sativa') {
-                    renderProductAll(container_products, filter_sativa.products);
-                }
-                if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
-                    renderProductAll(container_products, filter_hybrid.products);
-                }
-                if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
-                    renderProductAll(container_products, filter_high_cbd.products);
-                }
-                if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
-                    renderProductAll(container_products, filter_not_applicable.products);
-                }
-            }, 100);
-
-
-            groupRadio.forEach( (radio) => {
-                radio.addEventListener('change', () => {
-                    if (radio.checked  && radio.value === 'all') {
-                        renderProductAll(container_products, data.products);
-                    }
-                    if (radio.value === 'indica' && radio.checked) {
-                        createProductFilter(container_products, filter_indica.products);
-                    }
-                    if (radio.value === 'sativa' && radio.checked){
-                        createProductFilter(container_products, filter_sativa.products);
-                    }
-                    if (radio.value === 'hybrid' && radio.checked) {
-                        createProductFilter(container_products, filter_hybrid.products);
-                    }
-                    if (radio.value === 'high_cbd' && radio.checked) {
-                        console.log('entro a high_cbd');
-                        createProductFilter(container_products, filter_high_cbd.products);
-                    }
-                    if (radio.value === 'not_applicable' && radio.checked) {
-                        console.log('entro a not applicable');
-                        createProductFilter(container_products, filter_not_applicable.products);
-                    }
-                })
-            });
-
-            groupWeigths.forEach(weights => {
-                weights.addEventListener('change', () => {
-                    if (weights.checked  && weights.value === 'all') {
-                        renderProductAll(container_products, data.products);
-                    }
-                    if (weights.value === '3.5G' && weights.checked) {
-                        console.log(filter_35G);
-                        createProductFilter(container_products, filter_35G.products);
-                    }
-                    if (weights.value === '28G' && weights.checked) {
-                        createProductFilter(container_products, filter_28G.products);
-                    }
-
-                    if (weights.value === '1G' && weights.checked) {
-                        createProductFilter(container_products, filter_1G.products);
-                    }
-                    if (weights.value === '7G' && weights.checked) {
-                        createProductFilter(container_products, filter_7G.products);
-                    }
-                    if (weights.value === '14G' && weights.checked) {
-                        createProductFilter(container_products, filter_14G.products);
-                    }
-
-                });
-            });
-
-            let slider_thc = document.querySelector('#slider_thc');
-            let thc = document.querySelector('#title_slider_thc');
-            let btn_thc = document.querySelector('#btn-filter-thc');
-            let btn_reset_thc = document.querySelector('#btn-reset-filter-thc');
-
-            let slider_cbd = document.querySelector('#slider_cbd');
-            let cbd = document.querySelector('#title_slider_cbd');
-            let btn_cbd = document.querySelector('#btn-filter-cbd');
-            let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
-
-            noUiSlider.create(slider_thc, {
-                start: [0, 36],
-                behaviour: 'snap',
-                step: 1,
-                connect: true,
-                format: wNumb({
-                  decimals: 0
-                }),
-                range: {
-                    min: 0,
-                    max: 36
-                }
-            });
-
-            noUiSlider.create(slider_cbd, {
-                start: [0, 16],
-                behaviour: 'snap',
-                step: 1,
-                connect: true,
-                format: wNumb({
-                    decimals: 0
-                }),
-                range: {
-                    min: 0,
-                    max: 16
-                }
-            });
-
-
-            slider_thc.noUiSlider.on('update', function (values) {
-                thc.innerHTML = `${values.join(' % - ')} %`;
-            });
-
-            slider_cbd.noUiSlider.on('update', function (values) {
-                cbd.innerHTML = `${values.join(' % - ')} %`;
-            });
-
-            btn_thc.addEventListener('click', async () => {
-                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-                let data_thc = slider_thc.noUiSlider.get();
-                console.log('position 0', data_thc[0], 'position 1', data_thc[1]);
-
-                const filt_thc = await filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
-                console.log(filt_thc.products);
-
-                createProductFilter(container_products, filt_thc.products);
-
-            });
-
-            btn_cbd.addEventListener('click', async () => {
-                const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
-                let data_cbd = slider_cbd.noUiSlider.get();
-                console.log('position 0', data_cbd[0], 'position 1', data_cbd[1]);
-
-                const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_cbd[0], data_cbd[1]);
-                console.log(filt_cbd.products);
-
-                createProductFilter(container_products, filt_cbd.products);
-            });
-
-            btn_reset_thc.addEventListener('click', () => {
-                slider_thc.noUiSlider.reset();
-                renderProductAll(container_products, data.products);
-            });
-
-            btn_reset_cbd.addEventListener('click', () => {
-                slider_cbd.noUiSlider.reset();
-                renderProductAll(container_products, data.products);
-            });
-        }, 400);
+        // setTimeout(async () => {
+        //
+        //     await GetAllRetailerIds();
+        //     const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
+        //
+        //     console.log(store_centre_point_mall);
+        //
+        //     let data = await getAllProducts(store_centre_point_mall.id);
+        //     let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
+        //     let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
+        //     let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
+        //     let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
+        //     let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
+        //
+        //     let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
+        //     let filter_28G = await filter_weights(store_centre_point_mall.id, 28);
+        //     let filter_1G = await filter_weights(store_centre_point_mall.id, 1);
+        //     let filter_7G = await filter_weights(store_centre_point_mall.id, 7);
+        //     let filter_14G = await filter_weights(store_centre_point_mall.id, 14);
+        //
+        //     setTimeout(()=> {
+        //         if (radio_all.checked && radio_all.value === 'all'){
+        //             renderProductAll(container_products, data.products);
+        //         }
+        //
+        //         if (radio_indica.checked && radio_indica.value === 'indica') {
+        //             renderProductAll(container_products, filter_indica.products);
+        //         }
+        //         if (radio_sativa.checked && radio_sativa.value === 'sativa') {
+        //             renderProductAll(container_products, filter_sativa.products);
+        //         }
+        //         if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
+        //             renderProductAll(container_products, filter_hybrid.products);
+        //         }
+        //         if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
+        //             renderProductAll(container_products, filter_high_cbd.products);
+        //         }
+        //         if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
+        //             renderProductAll(container_products, filter_not_applicable.products);
+        //         }
+        //     }, 100);
+        //
+        //
+        //     groupRadio.forEach( (radio) => {
+        //         radio.addEventListener('change', () => {
+        //             if (radio.checked  && radio.value === 'all') {
+        //                 renderProductAll(container_products, data.products);
+        //             }
+        //             if (radio.value === 'indica' && radio.checked) {
+        //                 createProductFilter(container_products, filter_indica.products);
+        //             }
+        //             if (radio.value === 'sativa' && radio.checked){
+        //                 createProductFilter(container_products, filter_sativa.products);
+        //             }
+        //             if (radio.value === 'hybrid' && radio.checked) {
+        //                 createProductFilter(container_products, filter_hybrid.products);
+        //             }
+        //             if (radio.value === 'high_cbd' && radio.checked) {
+        //                 console.log('entro a high_cbd');
+        //                 createProductFilter(container_products, filter_high_cbd.products);
+        //             }
+        //             if (radio.value === 'not_applicable' && radio.checked) {
+        //                 console.log('entro a not applicable');
+        //                 createProductFilter(container_products, filter_not_applicable.products);
+        //             }
+        //         })
+        //     });
+        //
+        //     groupWeigths.forEach(weights => {
+        //         weights.addEventListener('change', () => {
+        //             if (weights.checked  && weights.value === 'all') {
+        //                 renderProductAll(container_products, data.products);
+        //             }
+        //             if (weights.value === '3.5G' && weights.checked) {
+        //                 console.log(filter_35G);
+        //                 createProductFilter(container_products, filter_35G.products);
+        //             }
+        //             if (weights.value === '28G' && weights.checked) {
+        //                 createProductFilter(container_products, filter_28G.products);
+        //             }
+        //
+        //             if (weights.value === '1G' && weights.checked) {
+        //                 createProductFilter(container_products, filter_1G.products);
+        //             }
+        //             if (weights.value === '7G' && weights.checked) {
+        //                 createProductFilter(container_products, filter_7G.products);
+        //             }
+        //             if (weights.value === '14G' && weights.checked) {
+        //                 createProductFilter(container_products, filter_14G.products);
+        //             }
+        //
+        //         });
+        //     });
+        //
+        //     let slider_thc = document.querySelector('#slider_thc');
+        //     let thc = document.querySelector('#title_slider_thc');
+        //     let btn_thc = document.querySelector('#btn-filter-thc');
+        //     let btn_reset_thc = document.querySelector('#btn-reset-filter-thc');
+        //
+        //     let slider_cbd = document.querySelector('#slider_cbd');
+        //     let cbd = document.querySelector('#title_slider_cbd');
+        //     let btn_cbd = document.querySelector('#btn-filter-cbd');
+        //     let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
+        //
+        //     noUiSlider.create(slider_thc, {
+        //         start: [0, 36],
+        //         behaviour: 'snap',
+        //         step: 1,
+        //         connect: true,
+        //         format: wNumb({
+        //           decimals: 0
+        //         }),
+        //         range: {
+        //             min: 0,
+        //             max: 36
+        //         }
+        //     });
+        //
+        //     noUiSlider.create(slider_cbd, {
+        //         start: [0, 16],
+        //         behaviour: 'snap',
+        //         step: 1,
+        //         connect: true,
+        //         format: wNumb({
+        //             decimals: 0
+        //         }),
+        //         range: {
+        //             min: 0,
+        //             max: 16
+        //         }
+        //     });
+        //
+        //
+        //     slider_thc.noUiSlider.on('update', function (values) {
+        //         thc.innerHTML = `${values.join(' % - ')} %`;
+        //     });
+        //
+        //     slider_cbd.noUiSlider.on('update', function (values) {
+        //         cbd.innerHTML = `${values.join(' % - ')} %`;
+        //     });
+        //
+        //     btn_thc.addEventListener('click', async () => {
+        //         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+        //         let data_thc = slider_thc.noUiSlider.get();
+        //         console.log('position 0', data_thc[0], 'position 1', data_thc[1]);
+        //
+        //         const filt_thc = await filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
+        //         console.log(filt_thc.products);
+        //
+        //         createProductFilter(container_products, filt_thc.products);
+        //
+        //     });
+        //
+        //     btn_cbd.addEventListener('click', async () => {
+        //         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+        //         let data_cbd = slider_cbd.noUiSlider.get();
+        //         console.log('position 0', data_cbd[0], 'position 1', data_cbd[1]);
+        //
+        //         const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_cbd[0], data_cbd[1]);
+        //         console.log(filt_cbd.products);
+        //
+        //         createProductFilter(container_products, filt_cbd.products);
+        //     });
+        //
+        //     btn_reset_thc.addEventListener('click', () => {
+        //         slider_thc.noUiSlider.reset();
+        //         renderProductAll(container_products, data.products);
+        //     });
+        //
+        //     btn_reset_cbd.addEventListener('click', () => {
+        //         slider_cbd.noUiSlider.reset();
+        //         renderProductAll(container_products, data.products);
+        //     });
+        // }, 400);
 
 });
 
