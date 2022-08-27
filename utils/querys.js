@@ -406,7 +406,7 @@ const filter_cbd = async (retailerID, min, max) => {
 };
 
 
-async function getAllProducts (retailerID) {
+ const getAllProducts = async (retailerID) => {
     const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
             menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 }) {
