@@ -198,7 +198,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 slider_cbd.noUiSlider.reset();
                 renderProductAll(container_products, data.products);
             });
-        }, 100);
+        }, 400);
 
 });
 
