@@ -1,4 +1,4 @@
-import {filter_strain_type_lineage,filter_weights, filter_thc, filter_cbd, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
+import {getRetailersIds, filter_strain_type_lineage,filter_weights, filter_thc, filter_cbd, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
 const container_products = document.querySelector('#container-products');
 const groupRadio = document.getElementsByName('filter_lineage');
 const groupWeigths = document.getElementsByName('filter_weights');
@@ -12,14 +12,22 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 
 
 
+
 const storage_local = window.localStorage;
 
 
 window.addEventListener('DOMContentLoaded', async () => {
+
+        getRetailersIds().then( retailers => {
+              if (retailers.ok) {
+                  console.log('peticion ejecutada satisfactoriamente');
+              }
+        }).catch(error => console.log(error));
+
         await GetAllRetailerIds();
 
         setTimeout(async () => {
-            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
 
             let data = await getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');

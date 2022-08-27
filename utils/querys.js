@@ -87,6 +87,30 @@ const GetAllRetailerIds = () => {
     .catch(error => console.log(error.message));
 };
 
+
+const getRetailersIds = async () => {
+    const query_retailers = `
+    query GetRetailers {
+        retailers {
+           name,
+           id,
+           menuTypes,
+           address 
+        }
+    }`;
+
+    return await new Promise((resolve, reject) => {
+        fetch(`${url_base}`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({query: query_retailers})
+        }).then( response => response.json() ).then( result => resolve(result.data.retailers) ).catch( error => reject(error));
+    });
+}
+
+
+
+
 const GetCountproduct = (retailerID) => {
     const query_count_products = `query GetCountProducts($retailerId: ID="${retailerID}" ) { menu(retailerId: $retailerId) {productsCount}}`;
 
@@ -519,6 +543,7 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
 
 
 export {
+    getRetailersIds,
     GetAllRetailerIds,
     getAllProducts,
     GetProduct,
