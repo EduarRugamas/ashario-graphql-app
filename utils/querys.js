@@ -105,7 +105,7 @@ const getRetailersIds = async () => {
         body: JSON.stringify({query: query_retailers})
     });
     const data = response.json();
-    return data.data.retailers;
+    return data;
 }
 
 

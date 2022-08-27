@@ -15,7 +15,7 @@ const storage_local = window.localStorage;
 window.addEventListener('DOMContentLoaded', async () => {
         const result = await getRetailersIds();
 
-        console.table(result);
+        console.table(result.data.retailers);
 
 
 
