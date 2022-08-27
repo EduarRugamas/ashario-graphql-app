@@ -91,7 +91,7 @@ const GetAllRetailerIds = () => {
 const getRetailersIds = async () => {
     const query_retailers = `
     query GetRetailers {
-        retailers {
+        retailersssss {
            name,
            id,
            menuTypes,
