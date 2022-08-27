@@ -13,9 +13,6 @@ const storage_local = window.localStorage;
 
 
 window.addEventListener('DOMContentLoaded', async () => {
-
-
-
         const result = await getRetailersIds();
 
         if (result.length !== 0 ) {
