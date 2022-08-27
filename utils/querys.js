@@ -91,7 +91,7 @@ const GetAllRetailerIds = () => {
 const getRetailersIds = async () => {
     const query_retailers = `
     query GetRetailers {
-        retailersssss {
+        retailers {
            name,
            id,
            menuTypes,
@@ -105,7 +105,7 @@ const getRetailersIds = async () => {
             headers: headers,
             body: JSON.stringify({query: query_retailers})
         }).then( response => {
-            if (response.ok) return response.json();
+            response.json();
         }).then( result => resolve(result.data.retailers) ).catch( error => reject(error));
     });
 }
