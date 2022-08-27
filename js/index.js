@@ -130,15 +130,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                 thc.innerHTML = `${values.join(' % - ')} %`;
             });
 
-            btn_thc.addEventListener('click', () => {
+            btn_thc.addEventListener('click', async () => {
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let data_thc = slider_thc.noUiSlider.get();
                 console.log('position 0', data_thc[0], 'position 1', data_thc[1]);
 
-                const filt_thc = filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
-                console.log(filt_thc)
+                const filt_thc = await filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
+                console.log(filt_thc.products);
 
-                createProductFilter(container_products, filt_thc.menu.products);
+                // createProductFilter(container_products, filt_thc.menu.products);
 
             });
 

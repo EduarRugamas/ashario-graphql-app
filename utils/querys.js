@@ -279,7 +279,6 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
 };
 const filter_weights = async (retailerID, weigths) => {
     let weight_transform = weigths+"g"
-    console.log(weigths);
     const query_filter_weights = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
             menu (retailerId: $retailerId, filter: { category: FLOWER, weights: ["${weight_transform}"] }, pagination: { offset: 0, limit: 20 } ) {
@@ -318,8 +317,6 @@ const filter_thc = async (retailerID, min, max) => {
     const Min = parseInt(min);
     const Max = parseInt(max);
 
-    console.log(Min, Max);
-
     const query_filter_thc = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
             menu (retailerId: $retailerId, filter: { category: FLOWER, potencyThc: { min: ${Min}, max: ${Max}, unit: PERCENTAGE } }, pagination: { offset: 0, limit: 20 } ) {
@@ -350,8 +347,9 @@ const filter_thc = async (retailerID, min, max) => {
     });
 
     const data = await response.json();
-    return data.data;
+    return data.data.menu;
 };
+
 const filter_cbd = async (retailerID, min, max) => {
     const query_filter_thc = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
