@@ -116,6 +116,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 behaviour: 'snap',
                 step: 1,
                 connect: true,
+                format: {
+                    decimals: 0
+                },
                 range: {
                     min: 0,
                     max: 36
@@ -130,7 +133,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             btn_thc.addEventListener('click', () => {
                 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
                 let data_thc = slider_thc.noUiSlider.get();
-                console.log('position 0', data_thc[0]);
+                console.log('position 0', data_thc[0], 'position 1', data_thc[1]);
 
 
 
