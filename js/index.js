@@ -1,5 +1,10 @@
-import {getRetailersIds, filter_weights, filter_thc, filter_cbd, getAllProducts, GetAllRetailerIds} from '../utils/querys.js';
+import {getRetailersIds, filter_strain_type_lineage, filter_weights, filter_thc, filter_cbd, getAllProducts} from '../utils/querys.js';
+
+// contenedor principal de productos
 const container_products = document.querySelector('#container-products');
+// fin contenedor principal de productos
+
+//declacion de botones de filtro lineage and weights
 const groupRadio = document.getElementsByName('filter_lineage');
 const groupWeigths = document.getElementsByName('filter_weights');
 let radio_all = document.querySelector('#filter_all_lineage');
@@ -8,16 +13,19 @@ let radio_sativa = document.querySelector('#filter_sativa');
 let radio_hybrid = document.querySelector('#filter_hybrid');
 let radio_high_cbd = document.querySelector('#filter_high_cbd');
 let radio_not_applicable = document.querySelector('#filter_not_applicable');
+// fin declacion de botones de filtro lineage and weights
 
+// declaracion de variable local storage
 const storage_local = window.localStorage;
+// fin declaracion de variable local storage
 
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-        await getRetailersIds().then(result => {
+        await getRetailersIds().then( async result => {
             console.table(result);
 
-            result.find( item => {
+            result.find(item => {
                 if (item.name === 'Ashario - Centrepoint Mall') {
                     let store_centre_point_mall = {
                         name: item.name,
@@ -61,9 +69,92 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
+            const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
+
+            let data = await getAllProducts(store_centre_point_mall.id);
+            let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
+            let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
+            let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
+            let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd');
+            let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable');
+
+            let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
+            let filter_28G = await filter_weights(store_centre_point_mall.id, 28);
+            let filter_1G = await filter_weights(store_centre_point_mall.id, 1);
+            let filter_7G = await filter_weights(store_centre_point_mall.id, 7);
+            let filter_14G = await filter_weights(store_centre_point_mall.id, 14);
 
 
+            if (radio_all.checked && radio_all.value === 'all'){
+                renderProductAll(container_products, data.products);
+            }
 
+            if (radio_indica.checked && radio_indica.value === 'indica') {
+                renderProductAll(container_products, filter_indica.products);
+            }
+            if (radio_sativa.checked && radio_sativa.value === 'sativa') {
+                renderProductAll(container_products, filter_sativa.products);
+            }
+            if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
+                renderProductAll(container_products, filter_hybrid.products);
+            }
+            if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
+                renderProductAll(container_products, filter_high_cbd.products);
+            }
+            if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
+                renderProductAll(container_products, filter_not_applicable.products);
+            }
+
+
+            groupRadio.forEach( (radio) => {
+                radio.addEventListener('change', () => {
+                    if (radio.checked  && radio.value === 'all') {
+                        renderProductAll(container_products, data.products);
+                    }
+                    if (radio.value === 'indica' && radio.checked) {
+                        createProductFilter(container_products, filter_indica.products);
+                    }
+                    if (radio.value === 'sativa' && radio.checked){
+                        createProductFilter(container_products, filter_sativa.products);
+                    }
+                    if (radio.value === 'hybrid' && radio.checked) {
+                        createProductFilter(container_products, filter_hybrid.products);
+                    }
+                    if (radio.value === 'high_cbd' && radio.checked) {
+                        console.log('entro a high_cbd');
+                        createProductFilter(container_products, filter_high_cbd.products);
+                    }
+                    if (radio.value === 'not_applicable' && radio.checked) {
+                        console.log('entro a not applicable');
+                        createProductFilter(container_products, filter_not_applicable.products);
+                    }
+                })
+            });
+
+            groupWeigths.forEach(weights => {
+                weights.addEventListener('change', () => {
+                    if (weights.checked  && weights.value === 'all') {
+                        renderProductAll(container_products, data.products);
+                    }
+                    if (weights.value === '3.5G' && weights.checked) {
+                        createProductFilter(container_products, filter_35G.products);
+                    }
+                    if (weights.value === '28G' && weights.checked) {
+                        createProductFilter(container_products, filter_28G.products);
+                    }
+
+                    if (weights.value === '1G' && weights.checked) {
+                        createProductFilter(container_products, filter_1G.products);
+                    }
+                    if (weights.value === '7G' && weights.checked) {
+                        createProductFilter(container_products, filter_7G.products);
+                    }
+                    if (weights.value === '14G' && weights.checked) {
+                        createProductFilter(container_products, filter_14G.products);
+                    }
+
+                });
+            });
 
 
         }).catch(error => {
