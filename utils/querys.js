@@ -100,12 +100,13 @@ const getRetailersIds = async () => {
         }
     }`;
 
-    const response = await fetch(`${url_base}`, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({query: query_retailers})
+    return await new Promise( (resolve, reject) => {
+        fetch(`${url_base}`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({query: query_retailers})
+        }).then(response => response.json()).then(result => resolve(result.data.retailers)).catch(error => reject(error));
     });
-    return response.json();
 }
 
 

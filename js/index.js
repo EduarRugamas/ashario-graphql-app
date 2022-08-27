@@ -13,17 +13,13 @@ const storage_local = window.localStorage;
 
 
 window.addEventListener('DOMContentLoaded', async () => {
-        const result = await getRetailersIds();
 
-        const data = result.data.retailers;
-
-        if (data !== 0 ){
-            console.log(data);
-        }else if (data === undefined || data === null ){
-            console.log('query error', data);
+        await getRetailersIds().then(result => {
+            console.table(result);
+        }).catch(error => {
+            console.log('Error query', error.message);
             ViewEmpty(container_products);
-        }
-
+        })
 
         // setTimeout(async () => {
         //
