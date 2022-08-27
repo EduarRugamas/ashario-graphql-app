@@ -136,6 +136,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log('position 0', data_thc[0], 'position 1', data_thc[1]);
 
                 const filt_thc = filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
+                console.log(filt_thc)
 
                 createProductFilter(container_products, filt_thc.products);
 
