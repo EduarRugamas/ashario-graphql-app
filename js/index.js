@@ -172,10 +172,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let data_cbd = slider_cbd.noUiSlider.get();
                 console.log('position 0', data_cbd[0], 'position 1', data_cbd[1]);
 
-                const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_thc[0], data_thc[1]);
+                const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_cbd[0], data_cbd[1]);
                 console.log(filt_cbd.products);
 
-                createProductFilter(container_products, filt_thc.products);
+                createProductFilter(container_products, filt_cbd.products);
             });
 
             btn_reset_thc.addEventListener('click', () => {
