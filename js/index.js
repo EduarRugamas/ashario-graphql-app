@@ -135,14 +135,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let data_thc = slider_thc.noUiSlider.get();
                 console.log('position 0', data_thc[0], 'position 1', data_thc[1]);
 
+                const filt_thc = filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
 
+                createProductFilter(container_products, filt_thc.products);
 
-                // data_thc.forEach( (thc) => {
-                //     console.log('min y max',thc[0], thc[1]);
-                //     const filt_thc = filter_thc(store_centre_point_mall.id, thc[0], thc[1]);
-                //     console.log(filt_thc);
-                //     // createProductFilter(container_products, filt_thc.products);
-                // });
             });
 
 
