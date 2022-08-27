@@ -111,6 +111,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             let slider_thc = document.querySelector('#slider_thc');
             let thc = document.querySelector('#title_slider_thc');
             let btn_thc = document.querySelector('#btn-filter-thc');
+            let btn_reset_thc = document.querySelector('#btn-reset-filter-thc');
             noUiSlider.create(slider_thc, {
                 start: [0, 36],
                 behaviour: 'snap',
@@ -140,6 +141,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 createProductFilter(container_products, filt_thc.products);
 
+            });
+
+            btn_reset_thc.addEventListener('click', () => {
+                slider_thc.noUiSlider.reset();
+                renderProductAll(container_products, data.products);
             });
 
 
