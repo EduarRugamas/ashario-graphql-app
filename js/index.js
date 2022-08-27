@@ -116,9 +116,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 behaviour: 'snap',
                 step: 1,
                 connect: true,
-                format: {
-                    decimals: 0
-                },
+                format: wNumb({
+                  decimals: 0
+                }),
                 range: {
                     min: 0,
                     max: 36
