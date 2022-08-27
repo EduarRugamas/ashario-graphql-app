@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         setTimeout(async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario _Centrepoint_Mall'));
 
-            let data = await getAllProducts(store_centre_point_mall.id);
+            let data = getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
             let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
