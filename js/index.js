@@ -280,6 +280,21 @@ window.addEventListener('DOMContentLoaded', async () => {
                         let quantity = 1;
                         let option = btn.getAttribute('option_product');
                         console.log(product_id);
+
+                        addItemCart(store_centre_point_mall.id, checkout_id, product_id, quantity, option).then( result => {
+                            console.log(result);
+
+                            Swal.fire({
+                            title: 'Added to cart!',
+                            text: `${result.data.addItem.items[0].product.name}`,
+                            imageUrl: `${result.data.addItem.items[0].product.image}`,
+                            imageWidth: 350,
+                            imageHeight: 600,
+                            imageAlt: `${result.data.addItem.items[0].product.name}`,
+                            });
+                        });
+
+
                     });
                 })
 
