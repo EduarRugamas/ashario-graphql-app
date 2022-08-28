@@ -9,6 +9,7 @@ import {
 
 // contenedor principal de productos
 const container_products = document.querySelector('#container-products');
+const div_loader = document.querySelector('.loader');
 // fin contenedor principal de productos
 
 // declacion de botones de filtro lineage and weights
@@ -108,7 +109,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 if (data === undefined && data.length === 0) {
                     setTimeout(() => {
-                        ViewLoader(container_products);
+                        div_loader.style='display: none;';
                     }, 1000);
                 }
 
@@ -634,11 +635,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             `;
     };
 
-    const ViewLoader = (container) => {
-        container.innerHTML=`
-            <div class="loader"></div>
-        `
-    }
 
 
 
