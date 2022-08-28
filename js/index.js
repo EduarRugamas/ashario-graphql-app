@@ -49,7 +49,7 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 window.addEventListener('DOMContentLoaded', async () => {
 
         await getRetailersIds().then( async result => {
-            
+
             result.find(item => {
                 if (item.name === 'Ashario - Centrepoint Mall') {
                     let store_centre_point_mall = {
@@ -100,6 +100,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.table(response);
 
             if (response !== undefined || null) {
+                console.log('fue true');
                 const { id, redirectUrl} = response;
                 btn_shop_cart_link.setAttribute('href', redirectUrl);
             }else {
