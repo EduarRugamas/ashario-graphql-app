@@ -97,10 +97,18 @@ window.addEventListener('DOMContentLoaded', async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
-            console.table(response);
             response.then( result => {
                 console.log(result);
                 btn_shop_cart_link.setAttribute('href', result.redirectUrl);
+                let cart_centre_point_mall = {
+                    id: result.id,
+                    items: result.items,
+                    pricingType: result.pricingType,
+                    redirectUrl: result.redirectUrl
+                };
+
+                storage_local.setItem('cart_centre_point_mall', JSON.stringify(cart_centre_point_mall));
+
             }).catch(error => {
                 console.log('error query', error.message);
             })
