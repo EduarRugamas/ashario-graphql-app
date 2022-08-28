@@ -288,8 +288,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                             title: 'Added to cart!',
                             text: `${last.product.name}`,
                             imageUrl: `${last.product.image}`,
-                            imageWidth: 350,
-                            imageHeight: 600,
+                            imageWidth: 400,
+                            imageHeight: 300,
                             imageAlt: `${last.product.name}`,
                             });
                         });
