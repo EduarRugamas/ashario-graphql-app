@@ -271,10 +271,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
 
-                const btn_add_cart_grid = document.querySelector('#add_to_cart_btn');
+                const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
                 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 
-                btn_add_cart_grid.addEventListener('click', Add_To_Cart_Grid(store_centre_point_mall.id, checkout_id.id, btn_add_cart_grid));
+                btn_add_cart_grid.forEach( btn => {
+                    btn.addEventListener('click', Add_To_Cart_Grid(store_centre_point_mall.id, checkout_id.id, btn_add_cart_grid));
+                })
+
+
 
 
 
