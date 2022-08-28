@@ -282,13 +282,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                         addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, quantity, option).then( result => {
                             console.log(result);
 
+                            const [last] = result.data.addItem.items.slice(-1);
+
                             Swal.fire({
                             title: 'Added to cart!',
-                            text: `${result.data.addItem.items[0].product.name}`,
-                            imageUrl: `${result.data.addItem.items[0].product.image}`,
+                            text: `${last.product.name}`,
+                            imageUrl: `${last.product.image}`,
                             imageWidth: 350,
                             imageHeight: 600,
-                            imageAlt: `${result.data.addItem.items[0].product.name}`,
+                            imageAlt: `${last.product.name}`,
                             });
                         });
 
