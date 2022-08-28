@@ -109,9 +109,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (radio_all.checked && radio_all.value === 'all'){
 
                 if (data === undefined && data.length === 0) {
-                        // div_loader.style='transition: opacity 1.5s ease; display: none;';
+                        div_loader.style='transition: opacity 1.5s linear; display: none;';
                         // div_loader.fadeOut(1000);
-                    FadeOut(div_loader);
                 }
 
                 renderProductAll(container_products, data.products);
