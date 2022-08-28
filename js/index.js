@@ -282,16 +282,19 @@ window.addEventListener('DOMContentLoaded', async () => {
                         addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, quantity, option).then( result => {
                             console.log(result);
 
-                            const last = result.data.addItem.items.slice(-1).pop();
+                            const results = result.data.addItem.items;
 
-                            Swal.fire({
-                            title: 'Added to cart!',
-                            text: `${last.product.name}`,
-                            imageUrl: `${last.product.image}`,
-                            imageWidth: 250,
-                            imageHeight: 300,
-                            imageAlt: `${last.product.name}`,
-                            });
+                            let card_view_product = results.find(item => item.productId === product_id);
+                            console.log(card_view_product.product.name)
+
+                            // Swal.fire({
+                            // title: 'Added to cart!',
+                            // text: `${last.product.name}`,
+                            // imageUrl: `${last.product.image}`,
+                            // imageWidth: 250,
+                            // imageHeight: 300,
+                            // imageAlt: `${last.product.name}`,
+                            // });
                         });
 
 
