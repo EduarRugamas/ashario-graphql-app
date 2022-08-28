@@ -558,18 +558,20 @@ window.addEventListener('DOMContentLoaded', async () => {
         let quantity = 1;
         let option = btn.getAttribute('option_product');
 
-        addItemCart(retailer_Id, checkout_Id, product_id, quantity, option).then( result => {
-            console.log(result);
+        console.log(product_id);
 
-            Swal.fire({
-            title: 'Added to cart!',
-            text: `${result.data.addItem.items[0].product.name}`,
-            imageUrl: `${result.data.addItem.items[0].product.image}`,
-            imageWidth: 400,
-            imageHeight: 200,
-            imageAlt: `${result.data.addItem.items[0].product.name}`,
-            });
-        })
+        // addItemCart(retailer_Id, checkout_Id, product_id, quantity, option).then( result => {
+        //     console.log(result);
+        //
+        //     Swal.fire({
+        //     title: 'Added to cart!',
+        //     text: `${result.data.addItem.items[0].product.name}`,
+        //     imageUrl: `${result.data.addItem.items[0].product.image}`,
+        //     imageWidth: 400,
+        //     imageHeight: 200,
+        //     imageAlt: `${result.data.addItem.items[0].product.name}`,
+        //     });
+        // })
     }
 
 
