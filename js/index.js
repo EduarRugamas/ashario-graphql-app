@@ -279,11 +279,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         let product_id = btn.getAttribute('id_product');
                         let quantity = 1;
                         let option = btn.getAttribute('option_product');
-                        console.log(product_id);
-                        console.log(option);
-                        console.log(checkout_id);
-
-                        addItemCart(store_centre_point_mall.id, checkout_id, product_id, quantity, option).then( result => {
+                        addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, quantity, option).then( result => {
                             console.log(result);
 
                             Swal.fire({
