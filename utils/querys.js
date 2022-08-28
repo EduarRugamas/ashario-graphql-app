@@ -518,7 +518,7 @@ const createCheckout = async (retailerId, orderType, pricingType) => {
     });
 
     const result = await response.json();
-    return result;
+    return result.data;
 }
 
 async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, option) {
