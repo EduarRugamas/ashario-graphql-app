@@ -5,7 +5,8 @@ import {
     filter_thc,
     filter_cbd,
     getAllProducts,
-    createCheckout
+    createCheckout,
+    addItemCart
     } from '../utils/querys.js';
 import {FadeOut} from '../utils/utils.js'
 
@@ -28,7 +29,7 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 //declaracion de botones o contenedores no principales
 
 // fin declaracion de botones o contenedores no principales
-    const btn_shop_cart_link = document.querySelector('.cart-link');
+const btn_shop_cart_link = document.querySelector('.cart-link');
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -270,6 +271,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
 
+                const btn_add_cart_grid = document.querySelector('#add_to_cart_btn');
+                const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
+
+                btn_add_cart_grid.addEventListener('click', Add_To_Cart_Grid(store_centre_point_mall.id, checkout_id.id, btn_add_cart_grid));
+
+
+
         }).catch(error => {
             console.log('Error query', error.message);
             ViewEmpty(container_products);
@@ -481,7 +489,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                             </div>
                             <div class="product-action mt-2" id="content">
                                <div class="d-grid gap-2">
-                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
+                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
                                     <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
                                </div> 
                             </div> 
@@ -543,6 +551,17 @@ window.addEventListener('DOMContentLoaded', async () => {
             </div>
             `;
     };
+
+    function Add_To_Cart_Grid (retailer_Id, checkout_Id, btn) {
+
+        let product_id = btn.getAttribute('id_product');
+        let quantity = 1;
+        let option = btn.getAttribute('option_product');
+
+        addItemCart(retailer_Id, checkout_Id, product_id, quantity, option).then( result => {
+            console.log(result);
+        })
+    }
 
 
 
