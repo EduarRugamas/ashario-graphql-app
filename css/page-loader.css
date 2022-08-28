@@ -1,5 +1,5 @@
 #container-menu {
-    transition: all 5s linear !important;
+    transition: linear 5s linear !important;
 }
 
 .content-loader {
@@ -20,7 +20,6 @@
     width: 80px;
     height: 80px;
     animation: spin 2s linear infinite;
-
 }
 
 @keyframes spin {
