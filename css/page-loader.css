@@ -1,9 +1,11 @@
 .content-loader {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    transition: linear 1s linear;
 }
 
 .loader {
