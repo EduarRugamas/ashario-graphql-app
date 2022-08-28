@@ -98,7 +98,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
-            console.log(response.data);
+            console.log(response);
 
             // btn_shop_cart_link.setAttribute('href', response.redirectUrl);
 
