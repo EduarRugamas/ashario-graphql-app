@@ -275,7 +275,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 
                 btn_add_cart_grid.forEach( btn => {
-                    btn.addEventListener('click', Add_To_Cart_Grid(store_centre_point_mall.id, checkout_id.id, btn_add_cart_grid));
+                    btn.addEventListener('click', () => {
+                        let product_id = btn.getAttribute('id_product');
+                        let quantity = 1;
+                        let option = btn.getAttribute('option_product');
+                        console.log(product_id);
+                    });
                 })
 
 
@@ -558,9 +563,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     function Add_To_Cart_Grid (retailer_Id, checkout_Id, btn) {
 
-        let product_id = btn.getAttribute('id_product');
-        let quantity = 1;
-        let option = btn.getAttribute('option_product');
+
 
         console.log(product_id);
 
