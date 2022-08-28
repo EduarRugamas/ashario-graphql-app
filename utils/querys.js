@@ -544,6 +544,7 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
                 id,
                 name,
                 category,
+                image,
                 variants {
                   id,
                   option,
