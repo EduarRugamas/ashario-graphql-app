@@ -108,9 +108,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (radio_all.checked && radio_all.value === 'all'){
 
                 if (data === undefined && data.length === 0) {
-                    setTimeout(() => {
                         div_loader.style='display: none;';
-                    }, 1000);
                 }
 
                 renderProductAll(container_products, data.products);
