@@ -105,7 +105,15 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
             if (radio_all.checked && radio_all.value === 'all'){
+
+                if (data === undefined && data.length === 0) {
+                    setTimeout(() => {
+                        ViewLoader(container_products);
+                    }, 1000);
+                }
+
                 renderProductAll(container_products, data.products);
+
             }
 
             if (radio_indica.checked && radio_indica.value === 'indica') {
@@ -217,7 +225,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     let data_thc = slider_thc.noUiSlider.get();
 
                     const filt_thc = await filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
-                    console.log(filt_thc.products);
 
                     createProductFilter(container_products, filt_thc.products);
 
@@ -227,7 +234,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     let data_cbd = slider_cbd.noUiSlider.get();
 
                     const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_cbd[0], data_cbd[1]);
-                    console.log(filt_cbd.products);
 
                     createProductFilter(container_products, filt_cbd.products);
                 });
@@ -626,6 +632,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <p class="text-uppercase font-18 text-black align-items-center">Empty Result</p>
             </div>
             `;
+    };
+
+    const ViewLoader = (container) => {
+        container.innerHTML=`
+            <div class="loader"></div>
+        `
     }
 
 
