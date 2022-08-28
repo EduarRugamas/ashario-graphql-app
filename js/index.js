@@ -280,6 +280,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         let quantity = 1;
                         let option = btn.getAttribute('option_product');
                         console.log(product_id);
+                        console.log(option);
 
                         addItemCart(store_centre_point_mall.id, checkout_id, product_id, quantity, option).then( result => {
                             console.log(result);
