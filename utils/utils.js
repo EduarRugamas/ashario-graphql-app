@@ -21,7 +21,7 @@ const FadeIn = (ElementHtml) => {
     })();
 }
 
-exports = {
+export {
     FadeOut,
     FadeIn
 }
