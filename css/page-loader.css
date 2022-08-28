@@ -5,6 +5,7 @@
     width: 80px;
     height: 80px;
     animation: spin 2s linear infinite;
+    align-items: center;
 }
 
 @keyframes spin {
