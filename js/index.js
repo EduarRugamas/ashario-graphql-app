@@ -98,9 +98,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
-            console.log(response);
+            console.log(response.data);
 
-            btn_shop_cart_link.setAttribute('href', response.redirectUrl);
+            // btn_shop_cart_link.setAttribute('href', response.redirectUrl);
 
             let data = await getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
