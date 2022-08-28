@@ -282,7 +282,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, quantity, option).then( result => {
                             console.log(result);
 
-                            const [last] = result.data.addItem.items.slice(-1);
+                            const last = result.data.addItem.items.slice(-1).pop();
 
                             Swal.fire({
                             title: 'Added to cart!',
