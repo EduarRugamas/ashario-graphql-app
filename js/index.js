@@ -49,8 +49,7 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 window.addEventListener('DOMContentLoaded', async () => {
 
         await getRetailersIds().then( async result => {
-            console.table(result);
-
+            
             result.find(item => {
                 if (item.name === 'Ashario - Centrepoint Mall') {
                     let store_centre_point_mall = {
@@ -98,9 +97,15 @@ window.addEventListener('DOMContentLoaded', async () => {
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
-            console.log(response);
+            console.table(response);
 
-            btn_shop_cart_link.setAttribute('href', response.redirectUrl);
+            if (response !== undefined || null) {
+                const { id, redirectUrl} = response;
+                btn_shop_cart_link.setAttribute('href', redirectUrl);
+            }else {
+                console.log('no se a creado el carrito correctamente');
+            }
+
 
             let data = await getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
