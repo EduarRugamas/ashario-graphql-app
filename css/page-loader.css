@@ -3,9 +3,9 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    transition: linear 1s linear;
+    margin-top: 50%;
+    margin-bottom: 50%;
+    transition: linear 5s linear;
 }
 
 .loader {
