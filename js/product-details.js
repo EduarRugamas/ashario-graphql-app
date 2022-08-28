@@ -2,7 +2,7 @@ import {GetProduct, CreateCheckout, addItemCart} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
-const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centrepoint_Mall'));
+const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
 const title_product = document.getElementById('title_name_product_details');
