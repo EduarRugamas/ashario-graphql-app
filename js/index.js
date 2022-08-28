@@ -9,7 +9,7 @@ import {
 
 // contenedor principal de productos
 const container_products = document.querySelector('#container-products');
-const div_loader = document.querySelector('.loader');
+const div_loader = document.querySelector('.content-loader');
 // fin contenedor principal de productos
 
 // declacion de botones de filtro lineage and weights
