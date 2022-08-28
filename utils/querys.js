@@ -484,6 +484,43 @@ async function CreateCheckout (retailerId, orderType, pricingType) {
         });
 }
 
+const createCheckout = async (retailerId, orderType, pricingType) => {
+    const query_create_checkout = `
+            mutation CreateCheckout($retailerId: ID="${retailerId}") {
+                createCheckout (retailerId: $retailerId, orderType: ${orderType.toUpperCase()}, pricingType: ${pricingType.toUpperCase()}) {
+                  id,
+                  items{
+                    product{
+                      id,
+                      name,
+                      category,
+                      strainType,
+                      variants {
+                        option,
+                        priceRec
+                      }
+                    },
+                    id,
+                    quantity,
+                    productId,
+                    option
+                  },
+                  redirectUrl,
+                  pricingType
+                }
+            }
+        `;
+
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({query: query_create_checkout})
+    });
+
+    const result = response.json();
+    return result.data.createCheckout;
+}
+
 async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, option) {
     const query_add_item_cart = `
         
@@ -554,6 +591,7 @@ export {
     filter_thc,
     filter_cbd,
     CreateCheckout,
+    createCheckout,
     addItemCart
 }
 
