@@ -1,14 +1,15 @@
 import {
-    getRetailersIds,
-    filter_strain_type_lineage,
-    filter_weights,
-    filter_thc,
-    filter_cbd,
-    getAllProducts,
+    addItemCart,
     createCheckout,
-    addItemCart
-    } from '../utils/querys.js';
+    filter_cbd,
+    filter_strain_type_lineage,
+    filter_thc,
+    filter_weights,
+    getAllProducts,
+    getRetailersIds
+} from '../utils/querys.js';
 import {FadeOut} from '../utils/utils.js'
+import {appendElementHtml, createElementHtml} from "../utils/elements_html";
 
 // contenedor principal de productos
 const container_products = document.querySelector('#container-products');
@@ -298,9 +299,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
                     });
-                })
+                });
 
-
+                const select_quantitys = document.querySelector('#quantity');
+                const select_weighths = document.querySelector('#select-weight');
 
 
 
@@ -516,7 +518,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity"></select>
+                                    <select class="form-select form-select-sm" id="quantity">
+                                    ${
+                                        (product.variants[0].quantity !== undefined || null ) ? quantity(product.variants[0].quantity) : disableQuantity(product.variants[0].quantity)  
+                                    }
+                                    </select>
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
@@ -564,13 +570,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                                     <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
                                 </div>
                             </div>
-                            
-                            <div class="d-flex align-items-center justify-content-center align-content-center">
-                                <div class="d-flex align-content-center justify-content-center" id="container_quantity">
+                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
+                                <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
                                     <select class="form-select form-select-sm" id="quantity"></select>
                                 </div>
-                                <div class="d-flex align-content-center justify-content-center" id="container_weight">
+                                <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
                                     <select class="form-select form-select-sm" id="select-weight"></select>
                                 </div>
@@ -593,11 +598,34 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const ViewEmpty = (container_products) => {
         container_products.innerHTML= `
-            <div class="col d-flex justify-content-center align-content-center">
+            <div class=" d-flex justify-content-center align-content-center align-items-center">
                 <p class="text-uppercase font-18 text-black ">Empty Result</p>
             </div>
             `;
     };
+
+    function quantity(quantity) {
+            console.log('cantidad maxima para enviar al carrito: ', quantity);
+
+            const container_select_quantity = document.querySelector('#quantity');
+
+            for (let quantity_select = 1; quantity_select <= quantity; quantity_select++) {
+                console.log(quantity_select);
+                const options_quantity_select = createElementHtml('option');
+                options_quantity_select.value = quantity_select;
+                options_quantity_select.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_select);
+            }
+
+    }
+
+    function disableQuantity(quantity) {
+        if (quantity === 0 || quantity === undefined ) {
+            console.log('No hay cantidad disponible para el carrito');
+            const select_quantitys = document.querySelector('#quantity');
+            select_quantitys.style='display: none;';
+        }
+    }
 
   // <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">${(item.brand_subtype) === null || undefined ? '' : item.brand_subtype}</p>
 
