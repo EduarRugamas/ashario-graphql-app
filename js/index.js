@@ -302,8 +302,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 const select_quantitys = document.querySelectorAll('#quantity');
-                const get_product_id = select_quantitys.getAttribute('id_product');
-                const get_product_info = data.find(item => item.item.productId === get_product_id);
+                // const get_product_id = select_quantitys.getAttribute('id_product');
+                // const get_product_info = data.find(item => item.item.productId === get_product_id);
 
                 select_quantitys.forEach(selects => {
                     console.log(selects);
