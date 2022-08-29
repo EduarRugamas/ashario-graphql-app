@@ -566,16 +566,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                             </div>
                             
                             <div class="d-flex align-items-center justify-content-center align-content-center">
-                                <div class="d-flex" id="container_quantity">
+                                <div class="d-flex align-content-center justify-content-center" id="container_quantity">
                                     <label class="form-label">Quantity</label>
                                     <select class="form-select form-select-sm" id="quantity"></select>
                                 </div>
-                                <div class="d-flex" id="container_weight">
+                                <div class="d-flex align-content-center justify-content-center" id="container_weight">
                                     <label class="form-label">weight</label>
                                     <select class="form-select form-select-sm" id="select-weight"></select>
                                 </div>
                             </div>
-                            
                             <div class="product-action" id="content">
                                <div class="d-grid gap-2">
                                     <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
