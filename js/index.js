@@ -576,7 +576,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                                 </div>
                             </div>
                             
-                            <div class="product-action mt-2" id="content">
+                            <div class="product-action" id="content">
                                <div class="d-grid gap-2">
                                     <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
                                     <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
