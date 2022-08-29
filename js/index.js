@@ -706,6 +706,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         container_select_weights.forEach(items => {
             const get_id_product_weights = items.getAttribute('product_id');
             console.log(get_id_product_weights);
+
+            let weights_product = data.products.find(item => item.id === get_id_product_weights);
+            console.log(weights_product);
+
         });
     }
 
