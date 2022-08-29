@@ -697,7 +697,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
         container_select_weights.forEach(items => {
             const get_weights = items.getAttribute('product_variants');
-            console.table(get_weights.option);
+            console.table(get_weights[0].option);
         });
 
     }
