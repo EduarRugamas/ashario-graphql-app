@@ -1,9 +1,9 @@
-const createElementHtml = (element) => {
-    return document.createElement(element);
+const createElementHtml = (Tagelement) => {
+    return document.createElement(Tagelement);
 }
 
-const appendElementHtml = (elementhtml, element) =>  {
-    return elementhtml.appendChild(element);
+const appendElementHtml = (fatherElement, childElement) =>  {
+    return fatherElement.appendChild(childElement);
 }
 
 
