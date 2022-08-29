@@ -423,8 +423,9 @@ const filter_cbd = async (retailerID, min, max) => {
                     strainType,
                     variants {
                       option,
-                      priceMed,
                       priceRec,
+                      quantity,
+                      id
                     }
                 },
                 productsCount
