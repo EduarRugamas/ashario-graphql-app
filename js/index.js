@@ -632,7 +632,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const cartProduct = (container_products, array_products) => {
         container_products.innerHTML = `
         
-            ${ array_products.map( product =>  `
+            ${ array_products.map( product => `
             
              <div class="col">
                 <div class="card rounded-0 product-card">
@@ -662,7 +662,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight" product_variants="${product.variants}"></select>
+                                    <select class="form-select form-select-sm" id="select-weight" product_variants="${JSON.stringify(product.variants)}"></select>
                                 </div>
                             </div>
                             <div class="product-action mt-2" id="content">
@@ -676,8 +676,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                 </div>
              </div>  
             
-            `).join('')}
-        `;
+            `
+        ).join('')}`;
     };
 
     function ViewQuantityWeight () {
