@@ -565,7 +565,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                                 </div>
                             </div>
                             
-                            <div class="row row-cols-auto align-items-center mt-3">
+                            <div class="d-flex align-items-center justify-content-center align-content-center">
                                 <div class="col" id="container_quantity">
                                     <label class="form-label">Quantity</label>
                                     <select class="form-select form-select-sm" id="quantity"></select>
