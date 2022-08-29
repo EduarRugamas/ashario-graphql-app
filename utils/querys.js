@@ -1,6 +1,5 @@
 import {public_key, secret_key, url_base} from '../config/config.js';
 
-const local_storage = window.localStorage;
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -8,85 +7,85 @@ const headers = {
 };
 
 
-const GetAllRetailerIds = () => {
-
-    const query_retailers = `
-    query GetRetailers {
-        retailers {
-           name,
-           id,
-           menuTypes,
-           address 
-        }
-    }
-    `
-    fetch(`${url_base}`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": "Bearer " + secret_key,
-        },
-        body: JSON.stringify({
-            query: query_retailers
-        })
-    }).then( (response) => {
-        if (response.ok) {
-            return response.json();
-        }
-    })
-    .then( (retailers) => {
-        console.log(retailers)
-
-        const array = retailers.data.retailers;
-
-        array.find( item => {
-            if (item.name === 'Ashario - Centrepoint Mall') {
-                let store_centre_point_mall = {
-                    name: item.name,
-                    id: item.id,
-                    menuTypes: item.menuTypes,
-                    address: item.address
-                }
-
-                console.log(item);
-
-                local_storage.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
-                console.log('se guardo en el local storage');
-            }
-
-            if (item.name === 'Ashario - Aurora') {
-                let store_aurora = {
-                    name: item.name,
-                    id: item.id,
-                    menuTypes: item.menuTypes,
-                    address: item.address
-                }
-
-                console.log(item);
-
-                local_storage.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
-                console.log('se guardo en el local storage');
-            }
-
-            if (item.name === 'Ashario - North York') {
-                let store_north_york = {
-                    name: item.name,
-                    id: item.id,
-                    menuTypes: item.menuTypes,
-                    address: item.address
-                }
-
-                console.log(item);
-
-                local_storage.setItem('Ashario_North_York', JSON.stringify(store_north_york));
-                console.log('se guardo en el local storage');
-            }
-        });
-
-    })
-    .catch(error => console.log(error.message));
-};
+// const GetAllRetailerIds = () => {
+//
+//     const query_retailers = `
+//     query GetRetailers {
+//         retailers {
+//            name,
+//            id,
+//            menuTypes,
+//            address
+//         }
+//     }
+//     `
+//     fetch(`${url_base}`, {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Accept": "application/json",
+//             "Authorization": "Bearer " + secret_key,
+//         },
+//         body: JSON.stringify({
+//             query: query_retailers
+//         })
+//     }).then( (response) => {
+//         if (response.ok) {
+//             return response.json();
+//         }
+//     })
+//     .then( (retailers) => {
+//         console.log(retailers)
+//
+//         const array = retailers.data.retailers;
+//
+//         array.find( item => {
+//             if (item.name === 'Ashario - Centrepoint Mall') {
+//                 let store_centre_point_mall = {
+//                     name: item.name,
+//                     id: item.id,
+//                     menuTypes: item.menuTypes,
+//                     address: item.address
+//                 }
+//
+//                 console.log(item);
+//
+//                 local_storage.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
+//                 console.log('se guardo en el local storage');
+//             }
+//
+//             if (item.name === 'Ashario - Aurora') {
+//                 let store_aurora = {
+//                     name: item.name,
+//                     id: item.id,
+//                     menuTypes: item.menuTypes,
+//                     address: item.address
+//                 }
+//
+//                 console.log(item);
+//
+//                 local_storage.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
+//                 console.log('se guardo en el local storage');
+//             }
+//
+//             if (item.name === 'Ashario - North York') {
+//                 let store_north_york = {
+//                     name: item.name,
+//                     id: item.id,
+//                     menuTypes: item.menuTypes,
+//                     address: item.address
+//                 }
+//
+//                 console.log(item);
+//
+//                 local_storage.setItem('Ashario_North_York', JSON.stringify(store_north_york));
+//                 console.log('se guardo en el local storage');
+//             }
+//         });
+//
+//     })
+//     .catch(error => console.log(error.message));
+// };
 
 
 const getRetailersIds = async () => {
@@ -109,9 +108,6 @@ const getRetailersIds = async () => {
     });
 }
 
-
-
-
 const GetCountproduct = (retailerID) => {
     const query_count_products = `query GetCountProducts($retailerId: ID="${retailerID}" ) { menu(retailerId: $retailerId) {productsCount}}`;
 
@@ -128,49 +124,6 @@ const GetCountproduct = (retailerID) => {
     }).then(response => response.json()).then(data => {
         console.log(data);
     })
-}
-
-const GetAllProducts = async (retailerID) => {
-        const query_get_all_products = `
-        query GetAllProducts($retailerId: ID="${retailerID}" ) {
-            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 }) {
-                products {
-                    id,
-                    name,
-                    brand{
-                      name
-                    },
-                    image,
-                    category,
-                    subcategory,
-                    variants {
-                      option,
-                      priceMed,
-                      priceRec,
-                    }
-                },
-                productsCount
-            }
-        }
-    `;
-
-    return await new Promise(  (resolve, reject) => {
-         fetch(`${url_base}`, {
-            method: 'POST',
-             headers: {
-                 "Content-Type": "application/json",
-                 "Accept": "application/json",
-                 "Authorization": "Bearer " + secret_key,
-             },
-             body: JSON.stringify({
-                 query: query_get_all_products
-             })
-         }).then( response => {
-                 return response.json();
-         })
-          .then( info => resolve(info.data.menu))
-          .catch(error => reject(error.message))
-    });
 }
 
 const GetProduct = async (retailerID, id_product) => {
@@ -283,8 +236,9 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
                     subcategory,
                     variants {
                       option,
-                      priceMed,
                       priceRec,
+                      quantity,
+                      id
                     }
                 },
                 productsCount
@@ -584,7 +538,6 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
 
 export {
     getRetailersIds,
-    GetAllRetailerIds,
     getAllProducts,
     GetProduct,
     filter_all_lineage,

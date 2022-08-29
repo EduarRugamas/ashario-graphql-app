@@ -1,5 +1,5 @@
-const createElementHtml = (Tagelement) => {
-    return document.createElement(Tagelement);
+const createElementHtml = (TagElement) => {
+    return document.createElement(TagElement);
 }
 
 const appendElementHtml = (fatherElement, childElement) =>  {
