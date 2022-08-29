@@ -112,7 +112,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             }).catch(error => {
                 console.log('error query', error.message);
-            })
+            });
 
             let data = await getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
@@ -285,16 +285,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                             const results = result.data.addItem.items;
 
                             let card_view_product = results.find(item => item.productId === product_id);
-                            console.log(card_view_product.product.name)
 
-                            // Swal.fire({
-                            // title: 'Added to cart!',
-                            // text: `${last.product.name}`,
-                            // imageUrl: `${last.product.image}`,
-                            // imageWidth: 250,
-                            // imageHeight: 300,
-                            // imageAlt: `${last.product.name}`,
-                            // });
+                            Swal.fire({
+                            title: 'Added to cart!',
+                            text: `${card_view_product.product.name}`,
+                            imageUrl: `${card_view_product.product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.product.name}`,
+                            });
                         });
 
 
@@ -514,6 +513,16 @@ window.addEventListener('DOMContentLoaded', async () => {
                                     <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
                                 </div>
                             </div>
+                            <div class="row row-cols-auto align-items-center mt-3">
+                                <div class="col" id="container_quantity">
+                                    <label class="form-label">Quantity</label>
+                                    <select class="form-select form-select-sm" id="quantity"></select>
+                                </div>
+                                <div class="col" id="container_weight">
+                                    <label class="form-label">weight</label>
+                                    <select class="form-select form-select-sm" id="select-weight"></select>
+                                </div>
+                            </div>
                             <div class="product-action mt-2" id="content">
                                <div class="d-grid gap-2">
                                     <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
@@ -555,6 +564,18 @@ window.addEventListener('DOMContentLoaded', async () => {
                                     <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
                                 </div>
                             </div>
+                            
+                            <div class="row row-cols-auto align-items-center mt-3">
+                                <div class="col" id="container_quantity">
+                                    <label class="form-label">Quantity</label>
+                                    <select class="form-select form-select-sm" id="quantity"></select>
+                                </div>
+                                <div class="col" id="container_weight">
+                                    <label class="form-label">weight</label>
+                                    <select class="form-select form-select-sm" id="select-weight"></select>
+                                </div>
+                            </div>
+                            
                             <div class="product-action mt-2" id="content">
                                <div class="d-grid gap-2">
                                     <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
@@ -578,30 +599,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             </div>
             `;
     };
-
-    function Add_To_Cart_Grid (retailer_Id, checkout_Id, btn) {
-
-
-
-        console.log(product_id);
-
-        // addItemCart(retailer_Id, checkout_Id, product_id, quantity, option).then( result => {
-        //     console.log(result);
-        //
-        //     Swal.fire({
-        //     title: 'Added to cart!',
-        //     text: `${result.data.addItem.items[0].product.name}`,
-        //     imageUrl: `${result.data.addItem.items[0].product.image}`,
-        //     imageWidth: 400,
-        //     imageHeight: 200,
-        //     imageAlt: `${result.data.addItem.items[0].product.name}`,
-        //     });
-        // })
-    }
-
-
-
-
 
   // <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">${(item.brand_subtype) === null || undefined ? '' : item.brand_subtype}</p>
 
