@@ -9,8 +9,6 @@ import {
     getRetailersIds
 } from '../utils/querys.js';
 import {FadeOut} from '../utils/utils.js'
-import {appendElementHtml, createElementHtml} from "../utils/elements_html";
-
 
 // contenedor principal de productos
 const container_products = document.querySelector('#container-products');
