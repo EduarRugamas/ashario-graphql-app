@@ -9,6 +9,7 @@ import {
     getRetailersIds
 } from '../utils/querys.js';
 import {FadeOut} from '../utils/utils.js'
+import {appendElementHtml, createElementHtml} from "../utils/elements_html";
 
 
 // contenedor principal de productos
@@ -301,13 +302,22 @@ window.addEventListener('DOMContentLoaded', async () => {
                     });
                 });
 
-                const select_quantitys = document.querySelectorAll('#quantity');
+                const container_select_quantitys = document.querySelectorAll('#quantity');
 
                 // const get_product_info = data.find(item => item.item.productId === get_product_id);
 
-                select_quantitys.forEach(items => {
+                container_select_quantitys.forEach(items => {
                     const get_quantity = items.getAttribute('count_quantity');
                     console.log(get_quantity);
+
+                    for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
+                        console.log(quantity_select);
+                        const options_quantity_select = createElementHtml('option');
+                        options_quantity_select.value = quantity_select;
+                        options_quantity_select.text = quantity_select;
+                        appendElementHtml(container_select_quantitys, options_quantity_select);
+                    }
+
                 })
 
 
