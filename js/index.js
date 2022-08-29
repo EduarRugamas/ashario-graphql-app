@@ -9,7 +9,7 @@ import {
     getRetailersIds
 } from '../utils/querys.js';
 import {FadeOut} from '../utils/utils.js'
-import {appendElementHtml, createElementHtml} from "../utils/elements_html";
+
 
 // contenedor principal de productos
 const container_products = document.querySelector('#container-products');
@@ -300,11 +300,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                     });
                 });
-
-                const select_quantitys = document.querySelector('#quantity');
-                const select_weighths = document.querySelector('#select-weight');
-
-
 
         }).catch(error => {
             console.log('Error query', error.message);
