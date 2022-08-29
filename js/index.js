@@ -135,7 +135,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
-
+                ViewQuantity();
             }
 
             if (radio_indica.checked && radio_indica.value === 'indica') {
@@ -159,23 +159,29 @@ window.addEventListener('DOMContentLoaded', async () => {
                 radio.addEventListener('change', () => {
                     if (radio.checked  && radio.value === 'all') {
                         cartProduct(container_products, data.products);
+                        ViewQuantity();
                     }
                     if (radio.value === 'indica' && radio.checked) {
                         cartProduct(container_products, filter_indica.products);
+                        ViewQuantity();
                     }
                     if (radio.value === 'sativa' && radio.checked){
                         cartProduct(container_products, filter_sativa.products);
+                        ViewQuantity();
                     }
                     if (radio.value === 'hybrid' && radio.checked) {
                         cartProduct(container_products, filter_hybrid.products);
+                        ViewQuantity();
                     }
                     if (radio.value === 'high_cbd' && radio.checked) {
                         console.log('entro a high_cbd');
                         cartProduct(container_products, filter_high_cbd.products);
+                        ViewQuantity();
                     }
                     if (radio.value === 'not_applicable' && radio.checked) {
                         console.log('entro a not applicable');
                         cartProduct(container_products, filter_not_applicable.products);
+                        ViewQuantity();
                     }
                 })
             });
@@ -184,22 +190,28 @@ window.addEventListener('DOMContentLoaded', async () => {
                 weights.addEventListener('change', () => {
                     if (weights.checked  && weights.value === 'all') {
                         cartProduct(container_products, data.products);
+                        ViewQuantity();
                     }
                     if (weights.value === '3.5G' && weights.checked) {
                         cartProduct(container_products, filter_35G.products);
+                        ViewQuantity();
                     }
                     if (weights.value === '28G' && weights.checked) {
                         cartProduct(container_products, filter_28G.products);
+                        ViewQuantity();
                     }
 
                     if (weights.value === '1G' && weights.checked) {
                         cartProduct(container_products, filter_1G.products);
+                        ViewQuantity();
                     }
                     if (weights.value === '7G' && weights.checked) {
                         cartProduct(container_products, filter_7G.products);
+                        ViewQuantity();
                     }
                     if (weights.value === '14G' && weights.checked) {
                         cartProduct(container_products, filter_14G.products);
+                        ViewQuantity();
                     }
 
                 });
@@ -249,7 +261,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const filt_thc = await filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
 
                     cartProduct(container_products, filt_thc.products);
-
+                    ViewQuantity();
                 });
 
                 btn_cbd.addEventListener('click', async () => {
@@ -258,16 +270,19 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_cbd[0], data_cbd[1]);
 
                     cartProduct(container_products, filt_cbd.products);
+                    ViewQuantity();
                 });
 
                 btn_reset_thc.addEventListener('click', () => {
                     slider_thc.noUiSlider.reset();
                     cartProduct(container_products, data.products);
+                    ViewQuantity();
                 });
 
                 btn_reset_cbd.addEventListener('click', () => {
                     slider_cbd.noUiSlider.reset();
                     cartProduct(container_products, data.products);
+                    ViewQuantity();
                 });
 
 
@@ -301,8 +316,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 const container_select_quantitys = document.querySelectorAll('#quantity');
-
-                // const get_product_info = data.find(item => item.item.productId === get_product_id);
 
                 container_select_quantitys.forEach(items => {
                     const get_quantity = items.getAttribute('count_quantity');
@@ -502,108 +515,108 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-    const renderProductAll = (container_products, array_products) => {
-        container_products.innerHTML = `
-        
-            ${ array_products.map( product =>  `
-            
-             <div class="col">
-                <div class="card rounded-0 product-card">
-                        <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
-                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
-                        </a>
-                    <div class="card-body">
-                        <div class="product-info">
-                            <a href="product-details.html?id=${product.id}">
-                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
-                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
-                            </a>
-                            <a href="product-details.html?objectID=${product.id}">
-                                <h6 class="product-name mb-2 itemname">${product.name}</h6>
-                            </a>
-                            <div class="d-flex align-items-center">
-                                <div class="mb-1 product-price itemprice jcitemprice">
-                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-                                    <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
-                                    <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
-                                <div class="me-4" id="container_quantity">
-                                    <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
-                                </div>
-                                <div class="" id="container_weight">
-                                    <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight" id_product="${product.id}"></select>
-                                </div>
-                            </div>
-                            <div class="product-action mt-2" id="content">
-                               <div class="d-grid gap-2">
-                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
-                                    <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
-                               </div> 
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-             </div>  
-            
-            `).join('')}
-        
-        `;
-    };
+    // const renderProductAll = (container_products, array_products) => {
+    //     container_products.innerHTML = `
+    //
+    //         ${ array_products.map( product =>  `
+    //
+    //          <div class="col">
+    //             <div class="card rounded-0 product-card">
+    //                     <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
+    //                         <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
+    //                     </a>
+    //                 <div class="card-body">
+    //                     <div class="product-info">
+    //                         <a href="product-details.html?id=${product.id}">
+    //                             <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
+    //                             <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+    //                         </a>
+    //                         <a href="product-details.html?objectID=${product.id}">
+    //                             <h6 class="product-name mb-2 itemname">${product.name}</h6>
+    //                         </a>
+    //                         <div class="d-flex align-items-center">
+    //                             <div class="mb-1 product-price itemprice jcitemprice">
+    //                                 <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+    //                                 <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
+    //                                 <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
+    //                             </div>
+    //                         </div>
+    //                         <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
+    //                             <div class="me-4" id="container_quantity">
+    //                                 <label class="form-label">Quantity</label>
+    //                                 <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
+    //                             </div>
+    //                             <div class="" id="container_weight">
+    //                                 <label class="form-label">weight</label>
+    //                                 <select class="form-select form-select-sm" id="select-weight" id_product="${product.id}"></select>
+    //                             </div>
+    //                         </div>
+    //                         <div class="product-action mt-2" id="content">
+    //                            <div class="d-grid gap-2">
+    //                                 <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
+    //                                 <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
+    //                            </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //          </div>
+    //
+    //         `).join('')}
+    //
+    //     `;
+    // };
 
-    const createProductFilter = (container_products, array_products) => {
-        container_products.innerHTML = `
-            ${array_products.map( product =>  `
-            
-             <div class="col">
-                <div class="card rounded-0 product-card">
-                        <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
-                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
-                        </a>
-                    <div class="card-body">
-                        <div class="product-info">
-                            <a href="product-details.html?id=${product.id}">
-                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
-                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
-                            </a>
-                            <a href="product-details.html?objectID=${product.id}">
-                                <h6 class="product-name mb-2 itemname">${product.name}</h6>
-                            </a>
-                            <div class="d-flex align-items-center">
-                                <div class="mb-1 product-price itemprice jcitemprice">
-                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-                                    <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
-                                    <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
-                                <div class="me-4" id="container_quantity">
-                                    <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
-                                </div>
-                                <div class="" id="container_weight">
-                                    <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight" id_product="${product.id}"></select>
-                                </div>
-                            </div>
-                            <div class="product-action mb-3" id="content">
-                               <div class="d-grid gap-2">
-                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
-                                    <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
-                               </div> 
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-             </div>  
-            
-            `).join('')}
-        
-        `;
-    };
+    // const createProductFilter = (container_products, array_products) => {
+    //     container_products.innerHTML = `
+    //         ${array_products.map( product =>  `
+    //
+    //          <div class="col">
+    //             <div class="card rounded-0 product-card">
+    //                     <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
+    //                         <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
+    //                     </a>
+    //                 <div class="card-body">
+    //                     <div class="product-info">
+    //                         <a href="product-details.html?id=${product.id}">
+    //                             <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
+    //                             <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+    //                         </a>
+    //                         <a href="product-details.html?objectID=${product.id}">
+    //                             <h6 class="product-name mb-2 itemname">${product.name}</h6>
+    //                         </a>
+    //                         <div class="d-flex align-items-center">
+    //                             <div class="mb-1 product-price itemprice jcitemprice">
+    //                                 <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+    //                                 <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
+    //                                 <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
+    //                             </div>
+    //                         </div>
+    //                         <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
+    //                             <div class="me-4" id="container_quantity">
+    //                                 <label class="form-label">Quantity</label>
+    //                                 <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
+    //                             </div>
+    //                             <div class="" id="container_weight">
+    //                                 <label class="form-label">weight</label>
+    //                                 <select class="form-select form-select-sm" id="select-weight" id_product="${product.id}"></select>
+    //                             </div>
+    //                         </div>
+    //                         <div class="product-action mb-3" id="content">
+    //                            <div class="d-grid gap-2">
+    //                                 <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
+    //                                 <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
+    //                            </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //          </div>
+    //
+    //         `).join('')}
+    //
+    //     `;
+    // };
 
     const ViewEmpty = (container_products) => {
         container_products.innerHTML= `
@@ -663,6 +676,22 @@ window.addEventListener('DOMContentLoaded', async () => {
             `).join('')}
         `;
     };
+
+    function ViewQuantity () {
+        const container_select_quantitys = document.querySelectorAll('#quantity');
+
+        container_select_quantitys.forEach(items => {
+            const get_quantity = items.getAttribute('count_quantity');
+
+            for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
+                const options_quantity_select = createElementHtml('option');
+                options_quantity_select.value = quantity_select;
+                options_quantity_select.text = quantity_select;
+                appendElementHtml(items, options_quantity_select)
+            }
+
+        });
+    }
 
 
 

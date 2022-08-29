@@ -182,42 +182,6 @@ const GetProduct = async (retailerID, id_product) => {
 
 // fetch de filters brand and category
 
-const filter_all_lineage = async (retailerID) => {
-    const query_filter_all_lineage = `
-        query FilterAllLineage ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 } ) {
-                products {
-                    id,
-                    name,
-                    brand{
-                      name
-                    },
-                    image,
-                    category,
-                    subcategory,
-                    variants {
-                      option,
-                      priceMed,
-                      priceRec,
-                    }
-                },
-                productsCount
-            }
-        }
-    `;
-
-    return await new Promise( (resolve, reject) => {
-        fetch(`${url_base}`, {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify({query: query_filter_all_lineage})
-        }).then( response => response.json() ).then( products => {
-            resolve(products.data.menu);
-        }).catch( error => { reject(error.message) })
-    });
-
-};
-
 const filter_strain_type_lineage = async (retailerID, strain_type) => {
 
     let strain_type_uppercase = strain_type.toUpperCase();
@@ -396,49 +360,6 @@ const filter_cbd = async (retailerID, min, max) => {
     return data.data.menu;
 }
 
-async function CreateCheckout (retailerId, orderType, pricingType) {
-
-        const orderType_uppercase = orderType.toUpperCase();
-        const pricinType_uppercase = pricingType.toUpperCase();
-
-        console.log('En mayusculas', orderType_uppercase, pricinType_uppercase);
-
-        //orderType: PICKUP, pricingType: RECREATIONAL
-        const query_create_checkout = `
-            mutation CreateCheckout($retailerId: ID="${retailerId}") {
-                createCheckout (retailerId: $retailerId, orderType: ${orderType_uppercase}, pricingType: ${pricinType_uppercase}) {
-                  id,
-                  items{
-                    product{
-                      id,
-                      name,
-                      category,
-                      strainType
-                    },
-                    id,
-                    quantity,
-                    productId,
-                    option
-                  },
-                  redirectUrl,
-                  pricingType
-                }
-            }
-        `;
-
-        return await new Promise( (resolve, reject) => {
-            fetch(`${url_base}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify({query: query_create_checkout})
-            }).then( response => {
-                return response.json();
-            }).then( result => {
-                resolve(result.data);
-            }).catch( error => reject(error.message))
-        });
-}
-
 const createCheckout = async (retailerId, orderType, pricingType) => {
     const query_create_checkout = `
             mutation CreateCheckout($retailerId: ID="${retailerId}") {
@@ -540,12 +461,10 @@ export {
     getRetailersIds,
     getAllProducts,
     GetProduct,
-    filter_all_lineage,
     filter_strain_type_lineage,
     filter_weights,
     filter_thc,
     filter_cbd,
-    CreateCheckout,
     createCheckout,
     addItemCart
 }
