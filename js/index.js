@@ -711,6 +711,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(weights_product);
             for (let i of weights_product.variants){
                 console.log(i);
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = i.option;
+                option_weigths.text = i.option;
+                appendElementHtml(container_select_weights, option_weigths);
             }
         });
     }
