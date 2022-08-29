@@ -714,7 +714,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const option_weigths = createElementHtml('option');
                 option_weigths.value = i.option;
                 option_weigths.text = i.option;
-                appendElementHtml(container_select_weights, option_weigths);
+                appendElementHtml(items, option_weigths);
             }
         });
     }
