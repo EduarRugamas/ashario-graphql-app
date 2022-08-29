@@ -333,6 +333,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 //
                 // });
                 ViewQuantityWeight();
+                ViewWeigths();
 
 
         }).catch(error => {
@@ -682,7 +683,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     function ViewQuantityWeight () {
         const container_select_quantitys = document.querySelectorAll('#quantity');
-        const container_select_weights = document.querySelectorAll('#select-weight');
+
 
         container_select_quantitys.forEach(items => {
             const get_quantity = items.getAttribute('count_quantity');
@@ -695,11 +696,17 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
 
         });
+
+
+    }
+
+    function ViewWeigths () {
+        const container_select_weights = document.querySelectorAll('#select-weight');
+
         container_select_weights.forEach(items => {
             const get_id_product_weights = items.getAttribute('product_id');
             console.log(get_id_product_weights);
         });
-
     }
 
 
