@@ -524,7 +524,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity.toString()}"></select>
+                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].option}"></select>
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
