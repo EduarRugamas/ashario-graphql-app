@@ -514,11 +514,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                                 </div>
                             </div>
                             <div class="d-flex align-content-center align-items-center justify-content-center">
-                                <div class="ms-2" id="container_quantity">
+                                <div class="ms-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
                                     <select class="form-select form-select-sm" id="quantity"></select>
                                 </div>
-                                <div class="me-2" id="container_weight">
+                                <div class="me-4" id="container_weight">
                                     <label class="form-label">weight</label>
                                     <select class="form-select form-select-sm" id="select-weight"></select>
                                 </div>
