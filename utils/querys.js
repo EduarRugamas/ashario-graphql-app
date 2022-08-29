@@ -181,7 +181,6 @@ const GetProduct = async (retailerID, id_product) => {
 }
 
 // fetch de filters brand and category
-
 const filter_strain_type_lineage = async (retailerID, strain_type) => {
 
     let strain_type_uppercase = strain_type.toUpperCase();
@@ -235,8 +234,9 @@ const filter_weights = async (retailerID, weigths) => {
                     subcategory,
                     variants {
                       option,
-                      priceMed,
                       priceRec,
+                      quantity,
+                      id
                     }
                 },
                 productsCount
@@ -272,8 +272,9 @@ const filter_thc = async (retailerID, min, max) => {
                     subcategory,
                     variants {
                       option,
-                      priceMed,
                       priceRec,
+                      quantity,
+                      id
                     }
                 },
                 productsCount
@@ -305,8 +306,9 @@ const filter_cbd = async (retailerID, min, max) => {
                     subcategory,
                     variants {
                       option,
-                      priceMed,
                       priceRec,
+                      quantity,
+                      id
                     }
                 },
                 productsCount
@@ -323,9 +325,9 @@ const filter_cbd = async (retailerID, min, max) => {
     const data = await response.json();
     return data.data.menu;
 };
+//fin de fetch de filter
 
-
- const getAllProducts = async (retailerID) => {
+const getAllProducts = async (retailerID) => {
     const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
             menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 }) {
@@ -453,9 +455,6 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
         }).catch(error => reject(error.message))
     });
 }
-
-
-
 
 export {
     getRetailersIds,
