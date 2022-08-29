@@ -108,7 +108,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     pricingType: result.pricingType,
                     redirectUrl: result.redirectUrl
                 };
-
                 storage_local.setItem('cart_centre_point_mall', JSON.stringify(cart_centre_point_mall));
 
             }).catch(error => {
@@ -135,7 +134,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     FadeOut(div_loader);
                 }
 
-                renderProductAll(container_products, data.products);
+                cartProduct(container_products, data.products);
 
             }
 
@@ -307,10 +306,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 container_select_quantitys.forEach(items => {
                     const get_quantity = items.getAttribute('count_quantity');
-                    console.log(get_quantity);
 
                     for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
-                        console.log(quantity_select);
                         const options_quantity_select = document.createElement('option');
                         options_quantity_select.value = quantity_select;
                         options_quantity_select.text = quantity_select;
@@ -584,11 +581,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity"></select>
+                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight"></select>
+                                    <select class="form-select form-select-sm" id="select-weight" id_product="${product.id}"></select>
                                 </div>
                             </div>
                             <div class="product-action mb-3" id="content">
@@ -613,6 +610,57 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <p class="text-uppercase font-18 text-black ">Empty Result</p>
             </div>
             `;
+    };
+
+    const cartProduct = (container_products, array_products) => {
+        container_products.innerHTML = `
+        
+            ${ array_products.map( product =>  `
+            
+             <div class="col">
+                <div class="card rounded-0 product-card">
+                        <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
+                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
+                        </a>
+                    <div class="card-body">
+                        <div class="product-info">
+                            <a href="product-details.html?id=${product.id}">
+                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
+                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+                            </a>
+                            <a href="product-details.html?objectID=${product.id}">
+                                <h6 class="product-name mb-2 itemname">${product.name}</h6>
+                            </a>
+                            <div class="d-flex align-items-center">
+                                <div class="mb-1 product-price itemprice jcitemprice">
+                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+                                    <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
+                                    <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
+                                <div class="me-4" id="container_quantity">
+                                    <label class="form-label">Quantity</label>
+                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
+                                </div>
+                                <div class="" id="container_weight">
+                                    <label class="form-label">weight</label>
+                                    <select class="form-select form-select-sm" id="select-weight" product_variants="${product.variants}"></select>
+                                </div>
+                            </div>
+                            <div class="product-action mt-2" id="content">
+                               <div class="d-grid gap-2">
+                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
+                                    <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
+                               </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+             </div>  
+            
+            `).join('')}
+        `;
     };
 
 
