@@ -697,7 +697,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
         container_select_weights.forEach(items => {
             const get_weights = items.getAttribute('product_variants');
-            console.log(get_weights);
+            console.log(JSON.parse(get_weights));
         });
 
     }
