@@ -302,11 +302,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 const select_quantitys = document.querySelectorAll('#quantity');
-                // const get_product_id = select_quantitys.getAttribute('id_product');
+
                 // const get_product_info = data.find(item => item.item.productId === get_product_id);
 
-                select_quantitys.forEach(selects => {
-                    console.log(selects);
+                select_quantitys.forEach(items => {
+                    const get_count_quantity = items.getAttribute('count_quantity');
+                    console.log(items);
+                    console.log(get_count_quantity);
                 })
 
 
@@ -522,7 +524,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" id_product="${product.id}"></select>
+                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
