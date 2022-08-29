@@ -709,7 +709,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
             console.log(weights_product);
-
+            for (let i of weights_product.variants){
+                console.log(i);
+            }
         });
     }
 
