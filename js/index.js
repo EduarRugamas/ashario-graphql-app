@@ -680,8 +680,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         `;
     };
 
-    function ViewQuantity () {
+    function ViewQuantityWeight () {
         const container_select_quantitys = document.querySelectorAll('#quantity');
+        const container_select_weights = document.querySelectorAll('#select-weight');
 
         container_select_quantitys.forEach(items => {
             const get_quantity = items.getAttribute('count_quantity');
@@ -694,6 +695,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
 
         });
+        container_select_weights.forEach(items => {
+            const get_weights = items.getAttribute('product_variants');
+            console.log(get_weights);
+        });
+
     }
 
 
