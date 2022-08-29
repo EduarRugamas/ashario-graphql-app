@@ -513,7 +513,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                                     <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
                                 </div>
                             </div>
-                            <div class="d-flex align-content-center align-items-center justify-content-center">
+                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
                                     <select class="form-select form-select-sm" id="quantity"></select>
