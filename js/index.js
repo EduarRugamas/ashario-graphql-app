@@ -333,7 +333,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 //
                 // });
                 ViewQuantityWeight();
-                ViewWeigths();
+                ViewWeigths(data);
 
 
         }).catch(error => {
@@ -700,14 +700,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     }
 
-    function ViewWeigths () {
+    function ViewWeigths (array_products) {
         const container_select_weights = document.querySelectorAll('#select-weight');
 
         container_select_weights.forEach(items => {
             const get_id_product_weights = items.getAttribute('product_id');
             console.log(get_id_product_weights);
 
-            let weights_product = data.products.find(item => item.id === get_id_product_weights);
+            let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
             console.log(weights_product);
 
         });
