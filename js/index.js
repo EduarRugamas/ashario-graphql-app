@@ -309,7 +309,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const get_product_id = items.getAttribute('id_product');
                     console.log(items);
                     console.log(get_product_id);
-                    const get_product_info = data.find(item => item.id === get_product_id);
+                    const get_product_info = data.products.find(item => item.id === get_product_id);
                     console.log(get_product_info);
                 })
 
