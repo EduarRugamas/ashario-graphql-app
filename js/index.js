@@ -312,13 +312,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                     for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
                         console.log(quantity_select);
-                        const options_quantity_select = createElementHtml('option');
+                        const options_quantity_select = document.createElement('option');
                         options_quantity_select.value = quantity_select;
                         options_quantity_select.text = quantity_select;
-                        appendElementHtml(container_select_quantitys, options_quantity_select);
+                        items.appendChild(options_quantity_select);
                     }
 
-                })
+                });
+
 
 
         }).catch(error => {
