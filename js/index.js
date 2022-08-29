@@ -139,19 +139,24 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
 
             if (radio_indica.checked && radio_indica.value === 'indica') {
-                renderProductAll(container_products, filter_indica.products);
+                cartProduct(container_products, filter_indica.products);
+                ViewQuantity();
             }
             if (radio_sativa.checked && radio_sativa.value === 'sativa') {
-                renderProductAll(container_products, filter_sativa.products);
+                cartProduct(container_products, filter_sativa.products);
+                ViewQuantity();
             }
             if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
-                renderProductAll(container_products, filter_hybrid.products);
+                cartProduct(container_products, filter_hybrid.products);
+                ViewQuantity();
             }
             if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
-                renderProductAll(container_products, filter_high_cbd.products);
+                cartProduct(container_products, filter_high_cbd.products);
+                ViewQuantity();
             }
             if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
-                renderProductAll(container_products, filter_not_applicable.products);
+                cartProduct(container_products, filter_not_applicable.products);
+                ViewQuantity();
             }
 
 
@@ -310,26 +315,24 @@ window.addEventListener('DOMContentLoaded', async () => {
                             imageAlt: `${card_view_product.product.name}`,
                             });
                         });
-
-
                     });
                 });
 
-                const container_select_quantitys = document.querySelectorAll('#quantity');
-
-                container_select_quantitys.forEach(items => {
-                    const get_quantity = items.getAttribute('count_quantity');
-
-                    for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
-                        const options_quantity_select = createElementHtml('option');
-                        options_quantity_select.value = quantity_select;
-                        options_quantity_select.text = quantity_select;
-                        items.appendChild(options_quantity_select);
-                        appendElementHtml(items, options_quantity_select)
-                    }
-
-                });
-
+                // const container_select_quantitys = document.querySelectorAll('#quantity');
+                //
+                // container_select_quantitys.forEach(items => {
+                //     const get_quantity = items.getAttribute('count_quantity');
+                //
+                //     for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
+                //         const options_quantity_select = createElementHtml('option');
+                //         options_quantity_select.value = quantity_select;
+                //         options_quantity_select.text = quantity_select;
+                //         items.appendChild(options_quantity_select);
+                //         appendElementHtml(items, options_quantity_select)
+                //     }
+                //
+                // });
+                ViewQuantity();
 
 
         }).catch(error => {
