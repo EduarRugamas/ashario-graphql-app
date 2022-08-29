@@ -566,11 +566,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                             </div>
                             
                             <div class="d-flex align-items-center justify-content-center align-content-center">
-                                <div class="col" id="container_quantity">
+                                <div class="" id="container_quantity">
                                     <label class="form-label">Quantity</label>
                                     <select class="form-select form-select-sm" id="quantity"></select>
                                 </div>
-                                <div class="col" id="container_weight">
+                                <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
                                     <select class="form-select form-select-sm" id="select-weight"></select>
                                 </div>
