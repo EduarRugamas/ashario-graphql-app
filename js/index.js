@@ -307,10 +307,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 select_quantitys.forEach(items => {
                     const get_product_id = items.getAttribute('id_product');
-                    console.log(items);
-                    console.log(get_product_id);
                     const get_product_info = data.products.find(item => item.id === get_product_id);
                     console.log(get_product_info);
+                    let max_cart_quantity = get_product_info.variants[0].quantity;
+                    console.log(max_cart_quantity);
                 })
 
 
