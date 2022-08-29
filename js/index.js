@@ -307,7 +307,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 select_quantitys.forEach(items => {
                     const get_product_id = items.getAttribute('id_product');
-                    const get_product_info = data.find(item => item.id === get_product_id);
+                    const get_product_info = data.filter(item => {
+                        console.log(item);
+                    });
                     console.log(items);
                     console.log(get_product_id);
                     console.log(get_product_info);
