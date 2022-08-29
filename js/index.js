@@ -611,20 +611,19 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             for (let quantity_select = 1; quantity_select <= quantity; quantity_select++) {
                 console.log(quantity_select);
-                const options_quantity_select = createElementHtml('option');
+                const options_quantity_select = document.createElement('option');
                 options_quantity_select.value = quantity_select;
                 options_quantity_select.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity_select);
+                 container_select_quantity.appendChild(options_quantity_select);
             }
 
     }
 
-    function disableQuantity(quantity) {
-        if (quantity === 0 || quantity === undefined ) {
+    function disableQuantity() {
             console.log('No hay cantidad disponible para el carrito');
             const select_quantitys = document.querySelector('#quantity');
             select_quantitys.style='display: none;';
-        }
+
     }
 
   // <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">${(item.brand_subtype) === null || undefined ? '' : item.brand_subtype}</p>
