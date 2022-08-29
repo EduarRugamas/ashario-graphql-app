@@ -306,11 +306,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                 // const get_product_info = data.find(item => item.item.productId === get_product_id);
 
                 select_quantitys.forEach(items => {
-                    const get_product_id = items.getAttribute('id_product');
+                    // const get_product_id = items.getAttribute('id_product');
                     // const get_product_info = data.find(item => item.id === get_product_id);
                     console.log(items);
-                    console.log(get_product_id);
-                    console.log(get_product_info);
+                    // console.log(get_product_id);
                 })
 
 
