@@ -1,4 +1,4 @@
-import {GetProduct, CreateCheckout, addItemCart} from '../utils/querys.js';
+import {GetProduct} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
