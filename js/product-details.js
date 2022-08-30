@@ -382,34 +382,34 @@ GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
         }
 
 
-        btn_add_to_cart.addEventListener('click', btn_add_cart);
-
-
-        function btn_add_cart () {
-
-            const product_id = item.id;
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const option = document.getElementById('select-weight').value;
-
-            console.log('quantity:'+ ' ' + quantity + 'weight: '+ ' ' + option + 'productid:'+ ' ' + product_id)
-
-
-            CreateCheckout(id_store_centre_point_mall.id, "PICKUP", "RECREATIONAL").then( data => {
-
-                const { id, redirectUrl, pricingType, orderType  } = data.createCheckout;
-
-                console.log(data);
-
-                btn_cart_link.setAttribute('href', redirectUrl);
-
-                addItemCart(id_store_centre_point_mall.id, id, product_id, quantity, option).then(result => {
-                    console.log(result);
-                    console.table(result);
-                })
-            })
-
-
-        }
+        // btn_add_to_cart.addEventListener('click', btn_add_cart);
+        //
+        //
+        // function btn_add_cart () {
+        //
+        //     const product_id = item.id;
+        //     const quantity = parseInt(document.getElementById('quantity').value);
+        //     const option = document.getElementById('select-weight').value;
+        //
+        //     console.log('quantity:'+ ' ' + quantity + 'weight: '+ ' ' + option + 'productid:'+ ' ' + product_id)
+        //
+        //
+        //     CreateCheckout(id_store_centre_point_mall.id, "PICKUP", "RECREATIONAL").then( data => {
+        //
+        //         const { id, redirectUrl, pricingType, orderType  } = data.createCheckout;
+        //
+        //         console.log(data);
+        //
+        //         btn_cart_link.setAttribute('href', redirectUrl);
+        //
+        //         addItemCart(id_store_centre_point_mall.id, id, product_id, quantity, option).then(result => {
+        //             console.log(result);
+        //             console.table(result);
+        //         })
+        //     })
+        //
+        //
+        // }
 
         function updateCount() {}
 
