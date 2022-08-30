@@ -863,6 +863,11 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
     }
 
     //value change weights
+    container_select_weight.addEventListener('change', () => {
+        let get_change_weight = document.getElementById(`${id_select_weight}`);
+        console.log('El valor cambio a ',get_change_weight);
+    });
+
 
 
 
