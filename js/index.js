@@ -213,23 +213,27 @@ window.addEventListener('DOMContentLoaded', async () => {
                     if (weights.value === '3.5G' && weights.checked) {
                         cartProduct(container_products, filter_35G.products);
                         ViewQuantity();
-                        ViewWeigths(filter_35G);
+                        // ViewWeigths(filter_35G);
+                        ViewWeigthsSpecial(filter_35G, "3.5g");
                     }
                     if (weights.value === '28G' && weights.checked) {
                         cartProduct(container_products, filter_28G.products);
                         ViewQuantity();
-                        ViewWeigths(filter_28G);
+                        // ViewWeigths(filter_28G);
+                        ViewWeigthsSpecial(filter_28G, "28g");
                     }
 
                     if (weights.value === '1G' && weights.checked) {
                         cartProduct(container_products, filter_1G.products);
                         ViewQuantity();
-                        ViewWeigths(filter_1G);
+                        // ViewWeigths(filter_1G);
+                        ViewWeigthsSpecial(filter_1G, "1g");
                     }
                     if (weights.value === '7G' && weights.checked) {
                         cartProduct(container_products, filter_7G.products);
                         ViewQuantity();
-                        ViewWeigths(filter_7G);
+                        // ViewWeigths(filter_7G);
+                        ViewWeigthsSpecial(filter_7G, "7g");
                     }
                     if (weights.value === '14G' && weights.checked) {
                         cartProduct(container_products, filter_14G.products);
@@ -751,8 +755,41 @@ window.addEventListener('DOMContentLoaded', async () => {
             let get_variant = weights_product.variants.find(option => option.option === variant)
             console.log(get_variant);
 
-            if (get_variant.option === '14g') {
-                console.log('true');
+            if (get_variant.option === '3.5g') {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === '28g') {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === '1g') {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === '7g') {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === '14g') {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
             }
 
 
