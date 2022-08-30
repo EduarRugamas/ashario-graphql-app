@@ -724,7 +724,7 @@ const renderPotency_CBD_THC = (container_dl_id, potency_thc, potency_cbd) => {
 };
 const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
     const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
-    const container_select_weight = document.querySelector(`#${id_select_weight}`).value;
+    const container_select_weight = document.getElementById(`${id_select_weight}`).value;
 
     if (variants.length === undefined) {
         console.log('no hay variantes para este producto');
