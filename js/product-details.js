@@ -434,7 +434,7 @@ product.then( (item) => {
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
-    renderQuantity(item.variants, 'quantity');
+    renderQuantity(item.variants, 'quantity', 'select-weight');
 
     //     //area de quantity y weight
 //
@@ -456,21 +456,21 @@ product.then( (item) => {
 //         }
 //     }
 //
-//     //weight
-//     if (item.variants[0].option === null) {
-//         let container_select_weight = document.querySelector('#container_weight');
-//         container_select_weight.style='display: none;';
-//         console.log('No existe ningun elemento en el available weight');
-//     }else {
-//         let container_select_weight = document.querySelector('#select-weight');
-//
-//         console.log('weight ', item.variants[0].option);
-//         let option_weight_variant = item.variants[0].option;
-//         const options_weight_select = createElementHtml('option');
-//         options_weight_select.value = option_weight_variant;
-//         options_weight_select.text = option_weight_variant;
-//         appendElementHtml(container_select_weight, options_weight_select);
-//     }
+    //weight
+    if (item.variants[0].option === null) {
+        let container_select_weight = document.querySelector('#container_weight');
+        container_select_weight.style='display: none;';
+        console.log('No existe ningun elemento en el available weight');
+    }else {
+        let container_select_weight = document.querySelector('#select-weight');
+
+        console.log('weight ', item.variants[0].option);
+        let option_weight_variant = item.variants[0].option;
+        const options_weight_select = createElementHtml('option');
+        options_weight_select.value = option_weight_variant;
+        options_weight_select.text = option_weight_variant;
+        appendElementHtml(container_select_weight, options_weight_select);
+    }
 //
 //     //fin de area de quantity and weight
 
@@ -722,16 +722,15 @@ const renderPotency_CBD_THC = (container_dl_id, potency_thc, potency_cbd) => {
     }
 //     //fin de area thc and cbd
 };
-const renderQuantity = (variants, id_select_quantity) => {
+const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
     const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
+    const container_select_weight = document.querySelector(`#${id_select_weight}`).value;
 
     if (variants.length === undefined) {
         console.log('no hay variantes para este producto');
         container_select_quantity.style='display: none;';
     }else {
-        variants.forEach(variant => {
-            console.log(variant.option);
-        });
+        console.log('variante ?', container_select_weight);
     }
 
 
