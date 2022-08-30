@@ -730,7 +730,7 @@ const renderQuantity = (variants, id_select_quantity) => {
         container_select_quantity.style='display: none;';
     }else {
         variants.forEach(variant => {
-            console.log(variant);
+            console.log(variant.option);
         });
     }
 
