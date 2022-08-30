@@ -421,7 +421,7 @@ const btn_cart_link = document.querySelector('#btn_cart');
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
 
-product.then( item => {
+product.then( ({item}) => {
     console.log(item);
 
     renderProduct(container_product_details, item);
