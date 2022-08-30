@@ -436,7 +436,7 @@ product.then( (item) => {
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
 
 
-    renderWeight(item.variants);
+    renderWeight(item.variants, 'select-weight');
 
 
 }).catch(error => {
