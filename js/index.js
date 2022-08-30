@@ -234,7 +234,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                     if (weights.value === '14G' && weights.checked) {
                         cartProduct(container_products, filter_14G.products);
                         ViewQuantity();
-                        ViewWeigths(filter_14G);
+                        // ViewWeigths(filter_14G);
+                        ViewWeigthsSpecial(filter_14G, '14g');
                     }
 
                 });
@@ -738,6 +739,21 @@ window.addEventListener('DOMContentLoaded', async () => {
                 option_weigths.text = i.option;
                 appendElementHtml(items, option_weigths);
             }
+        });
+    }
+
+    function ViewWeigthsSpecial (array_products, variant) {
+        const container_select_weights = document.querySelectorAll('#select-weight');
+        container_select_weights.forEach(items => {
+            const get_id_product_weights = items.getAttribute('product_id');
+            let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
+            let get_variant = weights_product.variants.find(option => option.option === variant)
+
+            if (get_variant === '14g'){
+                console.log(get_variant)
+            }
+
+
         });
     }
 
