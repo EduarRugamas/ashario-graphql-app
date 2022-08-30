@@ -425,7 +425,7 @@ const product = getProduct(id_store_centre_point_mall.id, id_product);
 
 product.then( (item) => {
 
-    btn_cart_link.setAttribute('href', id_store_cart_centre_point_mall.redirectUrl);
+    btn_cart_link.setAttribute('href', checkoutId.redirectUrl);
 
     console.log(checkoutId);
     console.log(item);
