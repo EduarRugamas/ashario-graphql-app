@@ -724,13 +724,17 @@ const renderPotency_CBD_THC = (container_dl_id, potency_thc, potency_cbd) => {
 };
 const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
     const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
-    const container_select_weight = document.getElementById(`${id_select_weight}`).value;
+    const get_variant_selected = document.getElementById(`${id_select_weight}`).value;
 
     if (variants.length === undefined) {
         console.log('no hay variantes para este producto');
         container_select_quantity.style='display: none;';
     }else {
-        console.log('variante ?', container_select_weight);
+        console.log('variante ?', get_variant_selected);
+        if (get_variant_selected === '3.5g') {
+            const option_3_5 = variants.find(item => item.option === get_variant_selected);
+            console.log(option_3_5);
+        }
     }
 
 
