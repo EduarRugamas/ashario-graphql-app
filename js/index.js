@@ -755,8 +755,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log('llego aqui', get_id_product_weights);
             let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
             console.log(weights_product);
-            // let get_variant = weights_product.variants.find(option => option.option === variant)
-            // console.log(get_variant);
+            let get_variant = weights_product.variants.find(option => option.option === variant)
+            console.log(get_variant);
             //
             // if (get_variant.option === '3.5g') {
             //
