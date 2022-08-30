@@ -421,5 +421,9 @@ const btn_cart_link = document.querySelector('#btn_cart');
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
 
-console.log(product);
+product.then( item => {
+    console.log(item);
+}).catch(error => {
+    console.log('Error en product details --> ',error.message)
+})
 
