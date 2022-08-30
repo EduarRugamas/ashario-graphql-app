@@ -427,20 +427,58 @@ product.then( (item) => {
 
     btn_cart_link.setAttribute('href', id_store_cart_centre_point_mall.redirectUrl);
 
-
     console.log(id_store_cart_centre_point_mall);
-
-
     console.log(item);
+
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
+    renderQuantity(item.variants, 'quantity');
+
+    //     //area de quantity y weight
+//
+//     //quantity
+//     if (item.variants[0].quantity === 0 || item.variants[0].quantity === null ) {
+//         console.log('No hay cantidad disponible para el carrito');
+//     }else {
+//         console.log('cantidad maxima para enviar al carrito: ', item.variants[0].quantity);
+//
+//         const container_select_quantity = document.querySelector('#quantity');
+//         let max_cart_quantity = item.variants[0].quantity;
+//
+//         for (let quantity_select = 1; quantity_select <= max_cart_quantity; quantity_select++) {
+//             console.log(quantity_select);
+//             const options_quantity_select = createElementHtml('option');
+//             options_quantity_select.value = quantity_select;
+//             options_quantity_select.text = quantity_select;
+//             appendElementHtml(container_select_quantity, options_quantity_select);
+//         }
+//     }
+//
+//     //weight
+//     if (item.variants[0].option === null) {
+//         let container_select_weight = document.querySelector('#container_weight');
+//         container_select_weight.style='display: none;';
+//         console.log('No existe ningun elemento en el available weight');
+//     }else {
+//         let container_select_weight = document.querySelector('#select-weight');
+//
+//         console.log('weight ', item.variants[0].option);
+//         let option_weight_variant = item.variants[0].option;
+//         const options_weight_select = createElementHtml('option');
+//         options_weight_select.value = option_weight_variant;
+//         options_weight_select.text = option_weight_variant;
+//         appendElementHtml(container_select_weight, options_weight_select);
+//     }
+//
+//     //fin de area de quantity and weight
+
 
 
 
 }).catch(error => {
-    console.log('Error en product details --> ',error.message)
+    console.log('Error en product details --> ', error.message)
 });
 
 
@@ -683,5 +721,21 @@ const renderPotency_CBD_THC = (container_dl_id, potency_thc, potency_cbd) => {
         appendElementHtml(container_dl, dd_potency_cbd);
     }
 //     //fin de area thc and cbd
-}
+};
+const renderQuantity = (variants, id_select_quantity) => {
+    const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
+
+    if (variants.length === undefined) {
+        console.log('no hay variantes para este producto');
+        container_select_quantity.style='display: none;';
+    }else {
+        variants.forEach(variant => {
+            console.log(variant);
+        });
+    }
+
+
+
+
+};
 
