@@ -449,13 +449,13 @@ product.then( (item) => {
         const container_select_quantity = document.querySelector('#quantity');
         const get_variant_selected = document.getElementById('select-weight').value;
 
-        if (variants.length === undefined) {
+        if (item.variants.length === undefined) {
             console.log('no hay variantes para este producto');
             container_select_quantity.style='display: none;';
         }else {
             console.log('variante ?', get_variant_selected);
             if (get_variant_selected === '3.5g') {
-                const option_3_5 = variants.find(item => item.option === get_variant_selected);
+                const option_3_5 = item.variants.find(item => item.option === get_variant_selected);
                 console.log('encontre la variante', option_3_5);
 
                 for (let quantity_select = 1; quantity_select <= option_3_5.quantity; quantity_select++) {
@@ -468,7 +468,7 @@ product.then( (item) => {
 
 
             }else if (get_variant_selected === '28g') {
-                const option_28 = variants.find(item => item.option === get_variant_selected);
+                const option_28 = item.variants.find(item => item.option === get_variant_selected);
                 console.log('encontre la variante', option_28);
 
                 for (let quantity_select = 1; quantity_select <= option_28.quantity; quantity_select++) {
@@ -481,7 +481,7 @@ product.then( (item) => {
 
 
             }else if (get_variant_selected === '1g') {
-                const option_1 = variants.find(item => item.option === get_variant_selected);
+                const option_1 = item.variants.find(item => item.option === get_variant_selected);
                 console.log('encontre la variante', option_1);
 
                 for (let quantity_select = 1; quantity_select <= option_1.quantity; quantity_select++) {
@@ -493,7 +493,7 @@ product.then( (item) => {
                 }
 
             }else  if (get_variant_selected === '7g') {
-                const option_7 = variants.find(item => item.option === get_variant_selected);
+                const option_7 = item.variants.find(item => item.option === get_variant_selected);
                 console.log('encontre la variante', option_7);
 
                 for (let quantity_select = 1; quantity_select <= option_7.quantity; quantity_select++) {
@@ -505,7 +505,7 @@ product.then( (item) => {
                 }
 
             }else if (get_variant_selected === '14g') {
-                const option_14 = variants.find(item => item.option === get_variant_selected);
+                const option_14 = item.variants.find(item => item.option === get_variant_selected);
                 console.log('encontre la variante', option_14);
 
                 for (let quantity_select = 1; quantity_select <= option_14.quantity; quantity_select++) {
