@@ -171,7 +171,7 @@ const getProduct = async (retailerID, id_product) => {
     });
 
     const data = await response.json();
-    return data;
+    return data.data;
 
 }
 
