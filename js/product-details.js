@@ -886,10 +886,11 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
             console.log('encontro la variante 28g', get_variant_28);
             for (let quantity_select = 1; quantity_select <= get_variant_28.quantity; quantity_select++) {
                 console.log(quantity_select);
-                const options_quantity_28 = createElementHtml('option');
-                options_quantity_28.value = quantity_select;
-                options_quantity_28.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity_28);
+                // const options_quantity_28 = createElementHtml('option');
+                // options_quantity_28.value = quantity_select;
+                // options_quantity_28.text = quantity_select;
+                // appendElementHtml(container_select_quantity, options_quantity_28);
+                container_select_quantity.add(new Option(get_variant_28.quantity, get_variant_28.quantity) );
             }
         }
 
