@@ -423,7 +423,88 @@ const product = getProduct(id_store_centre_point_mall.id, id_product);
 
 product.then( item => {
     console.log(item);
+
+    renderProduct(container_product_details, item);
+
+
 }).catch(error => {
     console.log('Error en product details --> ',error.message)
-})
+});
+
+
+
+const renderProduct = (container, informatio_product) => {
+    container.innerHTML=`
+            <!--start product detail-->
+       <section class="py-4">
+            <div class="container">
+                <div class="product-detail-card">
+                    <div class="product-detail-body">
+                        <div class="row g-0">
+                            <div class="col-12 col-lg-5">
+                                <div class="image-zoom-section">
+                                    <div class="product-gallery owl-carousel owl-theme border mb-3 p-3 owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-item" style="width: 400px; align-items: center; object-fit: cover;">
+                                                <div class="item">
+                                                    <img src="" alt="" class="img-fluid" id="imagen_carusel">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="selector-imgs-products" style="" class="border mb-2 p-2"></div>
+                                </div>                                
+                            </div>
+                            <div class="col-12 col-lg-7">
+                                <div class="product-info-section p-3">
+                                        <div class="badge bg-badge-category mb-2">
+                                            <p style="text-transform: uppercase;" class="m-1 align-content-center font-14"></p>
+                                        </div>
+                                        <h3 class="mt-4 mt-lg-0 mb-0"></h3>
+                                        <div class="d-inline-block mt-2" >
+                                            <p class="badge bg-success font-13 "></p>
+                                            <p class="badge bg-success font-13" id="item_sub_type"></p> 
+                                        </div>
+                                        
+                                        <div class="d-flex align-items-center">
+                                            <div class="mb-1 product-price itemprice jcitemprice">
+                                                <span class="fs-5 currencyformat jcpriceformat">CAD</span>
+                                                <span class="fs-5 jcpricingnw" id="text_price"></span>
+                                                <span class="er-each jceachformat" id="text_weights_format"></span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <h6>Details:</h6>
+                                            <dl class="row mt-3" id="container-details-dl">
+                                                <dt class="col-sm-3">Product id</dt>
+                                                <dd class="col-sm-9">#</dd>
+                                            </dl>
+                                            <!--<p class="mb-0">${hits[0].description}</p>-->
+                                        
+                                            <h6>Description:</h6>
+                                             <p class="mb-0"></p>
+                                        </div>
+                                        <div class="row row-cols-auto align-items-center mt-3">
+                                            <div class="col" id="container_quantity">
+                                                <label class="form-label">Quantity</label>
+                                                <select class="form-select form-select-sm" id="quantity"></select>
+                                            </div>
+                                            <div class="col" id="container_weight">
+                                                <label class="form-label">weight</label>
+                                                <select class="form-select form-select-sm" id="select-weight"></select>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex gap-2 mt-3">
+                                            <button type="submit" class="btn btn-dark btn-ecomm" id="add-to-cart"><i class="bx bxs-cart-add"></i>Add to Cart</button>
+                                        </div>
+                                        <hr/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </section>
+    `;
+}
 
