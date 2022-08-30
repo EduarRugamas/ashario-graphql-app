@@ -437,7 +437,9 @@ product.then( (item) => {
     renderQuantityWeight(item.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
     //renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
     const btn_add_cart = document.getElementById('add-to-cart');
-    btn_add_cart.addEventListener('click', renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight'));
+    btn_add_cart.addEventListener('click', () => {
+        renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
+    });
 
 }).catch(error => {
     console.log('Error en product details --> ', error.message)
