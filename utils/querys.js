@@ -126,7 +126,7 @@ const GetCountproduct = (retailerID) => {
     })
 }
 
-const GetProduct = async (retailerID, id_product) => {
+const getProduct = async (retailerID, id_product) => {
     const query_product = `
         query GetProduct ($retailerId: ID="${retailerID}", $productId: ID="${id_product}") {
           product(retailerId: $retailerId, id: $productId ) {
@@ -156,7 +156,6 @@ const GetProduct = async (retailerID, id_product) => {
             },
             variants {
                 option,
-                priceMed,
                 priceRec,
                 quantity,
                 id
@@ -164,20 +163,16 @@ const GetProduct = async (retailerID, id_product) => {
           }
         }
     `;
-    return await new Promise( (resolve, reject) =>  {
-        fetch(`${url_base}`, {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify({ query: query_product})
-        }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            reject('Error al ejecutar la query ' + response.status);
-        }).then(data => {
-            resolve(data.data.product);
-        }).catch(error => reject(error.message));
+
+    const response = fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({query: query_product})
     });
+
+    const data = await response.json();
+    return data;
+
 }
 
 // fetch de filters brand and category
@@ -459,7 +454,7 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
 export {
     getRetailersIds,
     getAllProducts,
-    GetProduct,
+    getProduct,
     filter_strain_type_lineage,
     filter_weights,
     filter_thc,
