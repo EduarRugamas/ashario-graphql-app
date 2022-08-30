@@ -731,7 +731,7 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
         container_select_quantity.style='display: none;';
     }else {
         console.log('variante ?', get_variant_selected);
-        if (get_variant_selected === '3.5g') {
+        if (get_variant_selected === '7g') {
             const option_3_5 = variants.find(item => item.option === get_variant_selected);
             console.log('encontre la variante', option_3_5);
         }
