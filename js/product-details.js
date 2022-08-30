@@ -866,6 +866,31 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
     container_select_weight.addEventListener('change', () => {
         let get_change_weight = document.getElementById(`${id_select_weight}`).value;
         console.log('El valor cambio a ',get_change_weight);
+
+        if (get_change_weight === '3.5g') {
+            const get_variant_35 = variants.find(item => item.option === get_change_weight);
+            console.log('encontro la variante 3.5g', get_variant_35);
+            for (let quantity_select = 1; quantity_select <= get_variant_35.quantity; quantity_select++) {
+                console.log(quantity_select);
+                const options_quantity_35 = createElementHtml('option');
+                options_quantity_35.value = quantity_select;
+                options_quantity_35.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_35);
+            }
+            container_select_quantity.selectedIndex = 0;
+        }else if (get_change_weight === '28g') {
+            const get_variant_28 = variants.find(item => item.option === get_change_weight);
+            console.log('encontro la variante 28g', get_variant_28);
+            for (let quantity_select = 1; quantity_select <= get_variant_28.quantity; quantity_select++) {
+                console.log(quantity_select);
+                const options_quantity_28 = createElementHtml('option');
+                options_quantity_28.value = quantity_select;
+                options_quantity_28.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_28);
+            }
+        }
+
+
     });
 
 
