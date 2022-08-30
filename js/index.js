@@ -747,50 +747,53 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     function ViewWeigthsSpecial (array_products, variant) {
+
         const container_select_weights = document.querySelectorAll('#select-weight');
+
         container_select_weights.forEach(items => {
             const get_id_product_weights = items.getAttribute('product_id');
-            let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
-            console.log(weights_product);
-            let get_variant = weights_product.variants.find(option => option.option === variant)
-            console.log(get_variant);
-
-            if (get_variant.option === '3.5g') {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-
-            }else if (get_variant.option === '28g') {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-
-            }else if (get_variant.option === '1g') {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-
-            }else if (get_variant.option === '7g') {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-
-            }else if (get_variant.option === '14g') {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-
-            }
+            console.log('llego aqui', get_id_product_weights);
+            // let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
+            // console.log(weights_product);
+            // let get_variant = weights_product.variants.find(option => option.option === variant)
+            // console.log(get_variant);
+            //
+            // if (get_variant.option === '3.5g') {
+            //
+            //     const option_weigths = createElementHtml('option');
+            //     option_weigths.value = get_variant.option;
+            //     option_weigths.text = get_variant.option;
+            //     appendElementHtml(items, option_weigths);
+            //
+            // }else if (get_variant.option === '28g') {
+            //
+            //     const option_weigths = createElementHtml('option');
+            //     option_weigths.value = get_variant.option;
+            //     option_weigths.text = get_variant.option;
+            //     appendElementHtml(items, option_weigths);
+            //
+            // }else if (get_variant.option === '1g') {
+            //
+            //     const option_weigths = createElementHtml('option');
+            //     option_weigths.value = get_variant.option;
+            //     option_weigths.text = get_variant.option;
+            //     appendElementHtml(items, option_weigths);
+            //
+            // }else if (get_variant.option === '7g') {
+            //
+            //     const option_weigths = createElementHtml('option');
+            //     option_weigths.value = get_variant.option;
+            //     option_weigths.text = get_variant.option;
+            //     appendElementHtml(items, option_weigths);
+            //
+            // }else if (get_variant.option === '14g') {
+            //
+            //     const option_weigths = createElementHtml('option');
+            //     option_weigths.value = get_variant.option;
+            //     option_weigths.text = get_variant.option;
+            //     appendElementHtml(items, option_weigths);
+            //
+            // }
 
 
         });
