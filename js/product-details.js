@@ -434,7 +434,7 @@ product.then( (item) => {
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
-    renderQuantity(item.variants, 'quantity', 'select-weight');
+
 
     //     //area de quantity y weight
 //
@@ -471,7 +471,7 @@ product.then( (item) => {
         options_weight_select.text = option_weight_variant;
         appendElementHtml(container_select_weight, options_weight_select);
     }
-//
+    renderQuantity(item.variants, 'quantity', 'select-weight');
 //     //fin de area de quantity and weight
 
 
