@@ -434,23 +434,9 @@ product.then( (item) => {
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
-    //weight
-
-    //fin de area de quantity and weight
-
-    // area de quantity y weight
-
-    //
-
-    // valores de change en variantes de weigths y quantity
-    let container_select_weight = document.querySelector('#select-weight');
-    container_select_weight.addEventListener('change', () => {
-        renderWeight(item.variants, 'select-weight');
-        renderQuantity(item.variants, 'quantity', 'select-weight');
-    });
-    //fin de chabge en variantes de weights and quantity
 
 
+    renderWeight(item.variants);
 
 
 }).catch(error => {
