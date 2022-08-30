@@ -423,11 +423,17 @@ const btn_cart_link = document.querySelector('#btn_cart');
 const product = getProduct(id_store_centre_point_mall.id, id_product);
 
 product.then( (item) => {
+
+    const id_store_centre_point_mall = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
+
+    console.log(id_store_centre_point_mall);
+
+
     console.log(item);
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
-    renderPotency_CBD_THC('container-details-dl',item.potencyThc, item.potencyCbd);
+    renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
 
 
 
