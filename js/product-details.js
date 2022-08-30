@@ -424,9 +424,10 @@ const product = getProduct(id_store_centre_point_mall.id, id_product);
 
 product.then( (item) => {
     console.log(item);
-
+    title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
+    renderPotency_CBD_THC('container-details-dl',item.potencyThc, item.potencyCbd);
 
 
 
@@ -645,5 +646,34 @@ const renderSelectedImages = (array_images) => {
             });
         })
     }
+};
+const renderPotency_CBD_THC = (container_dl_id, potency_thc, potency_cbd) => {
+
+    const container_dl = document.getElementById(`${container_dl_id}`)
+
+    // area de potency thc y cbd
+    if (potency_thc.hasOwnProperty('formatted') !== null) {
+        let dt_potency_thc = createElementHtml('dt');
+        dt_potency_thc.className='col-sm-3';
+        dt_potency_thc.textContent='THC';
+        let dd_potency_thc = createElementHtml('dd');
+        dd_potency_thc.className='col-sm-9';
+        dd_potency_thc.textContent=`${potency_thc.formatted}`;
+        appendElementHtml(container_dl, dt_potency_thc);
+        appendElementHtml(container_dl, dd_potency_thc);
+
+    }
+
+    if (potency_cbd.hasOwnProperty('formatted') !== null){
+        let dt_potency_cbd = createElementHtml('dt');
+        dt_potency_cbd.className='col-sm-3';
+        dt_potency_cbd.textContent='CBD';
+        let dd_potency_cbd = createElementHtml('dd');
+        dd_potency_cbd.className='col-sm-9';
+        dd_potency_cbd.textContent=`${potency_cbd.formatted}`;
+        appendElementHtml(container_dl, dt_potency_cbd);
+        appendElementHtml(container_dl, dd_potency_cbd);
+    }
+//     //fin de area thc and cbd
 }
 
