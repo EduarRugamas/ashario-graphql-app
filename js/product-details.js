@@ -435,7 +435,7 @@ product.then( (item) => {
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
     renderQuantityWeight(item.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
-    //renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
+
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
         renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
@@ -538,6 +538,9 @@ const renderProduct = (container, informatio_product) => {
     let dd_content_straint = createElementHtml('dd');
     dd_content_straint.className='col-sm-9';
     dd_content_straint.textContent=`${informatio_product.strainType}`;
+    let div_content_effects = createElementHtml('div');
+    div_content_effects.className='d-flex';
+    div_content_effects.id='content_effects';
     let h6_description = createElementHtml('h6');
     h6_description.textContent='Description:';
     let p_content_description = createElementHtml('p');
@@ -615,6 +618,7 @@ const renderProduct = (container, informatio_product) => {
     appendElementHtml(dl_content, dd_content_id);
     appendElementHtml(dl_content, dt_content_straint);
     appendElementHtml(dl_content, dd_content_straint);
+    appendElementHtml(div_container_details, div_content_effects);
     appendElementHtml(div_container_details, h6_description);
     appendElementHtml(div_container_details, p_content_description);
 
