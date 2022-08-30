@@ -464,8 +464,8 @@ product.then( (item) => {
     }else {
         let container_select_weight = document.querySelector('#select-weight');
 
-        console.log('weight ', item.variants[0].option);
-        let option_weight_variant = item.variants[0].option;
+        console.log('weight ', item.variants[1].option);
+        let option_weight_variant = item.variants[1].option;
         const options_weight_select = createElementHtml('option');
         options_weight_select.value = option_weight_variant;
         options_weight_select.text = option_weight_variant;
