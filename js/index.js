@@ -235,7 +235,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         cartProduct(container_products, filter_14G.products);
                         ViewQuantity();
                         // ViewWeigths(filter_14G);
-                        ViewWeigthsSpecial(filter_14G, '14g');
+                        ViewWeigthsSpecial(filter_14G, "14g");
                     }
 
                 });
