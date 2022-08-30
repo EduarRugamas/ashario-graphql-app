@@ -434,7 +434,7 @@ product.then( (item) => {
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
-    renderQuantityWeight(item.variants, 'quantity', 'select-weight');
+    renderQuantityWeight(item.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
 
 
 }).catch(error => {
@@ -690,9 +690,13 @@ const renderPotency_CBD_THC = (container_dl_id, potency_thc, potency_cbd) => {
     }
 //     //fin de area thc and cbd
 };
-const renderQuantityWeight = (variants, id_select_quantity, id_select_weight) => {
+const renderQuantityWeight = (variants, id_select_quantity, id_select_weight, content_id_text_price, content_id_text_format_weight) => {
     const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
     let container_select_weight = document.querySelector(`#${id_select_weight}`);
+    let h4_price_string = document.getElementById(`${content_id_text_price}`);
+    let text_weight_format = document.getElementById(`${content_id_text_format_weight}`);
+    // let h4_price_string = document.getElementById('text_price');
+    // let text_weight_format = document.getElementById('text_weights_format');
 
     if (variants === undefined || 0) {
         container_select_quantity.style = 'display: none;';
@@ -714,6 +718,8 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight) =>
     if (get_seleted_value_weight === '3.5g') {
         const get_variant_35 = variants.find(item => item.option === get_seleted_value_weight);
         console.log('encontro la variante 3.5g', get_variant_35);
+        h4_price_string.textContent=`$${get_variant_35.priceRec}`;
+        text_weight_format.textContent='/3.5G';
         for (let quantity_select = 1; quantity_select <= get_variant_35.quantity; quantity_select++) {
             console.log(quantity_select);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
@@ -721,6 +727,8 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight) =>
     }else if (get_seleted_value_weight === '28g') {
         const get_variant_28 = variants.find(item => item.option === get_seleted_value_weight);
         console.log('encontro la variante 28g', get_variant_28);
+        h4_price_string.textContent=`$${get_variant_28.priceRec}`;
+        text_weight_format.textContent='/28G';
         for (let quantity_select = 1; quantity_select <= get_variant_28.quantity; quantity_select++) {
             console.log(quantity_select);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
@@ -728,6 +736,8 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight) =>
     }else if (get_seleted_value_weight === '1g') {
         const get_variant_1 = variants.find(item => item.option === get_seleted_value_weight);
         console.log('encontro la variante 1g', get_variant_1);
+        h4_price_string.textContent=`$${get_variant_1.priceRec}`;
+        text_weight_format.textContent='/1G';
         for (let quantity_select = 1; quantity_select <= get_variant_1.quantity; quantity_select++) {
             console.log(quantity_select);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
@@ -735,6 +745,8 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight) =>
     }else if (get_seleted_value_weight === '7g') {
         const get_variant_7 = variants.find(item => item.option === get_seleted_value_weight);
         console.log('encontro la variante 7g', get_variant_7);
+        h4_price_string.textContent=`$${get_variant_7.priceRec}`;
+        text_weight_format.textContent='/7G';
         for (let quantity_select = 1; quantity_select <= get_variant_7.quantity; quantity_select++) {
             console.log(quantity_select);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
@@ -742,6 +754,8 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight) =>
     }else if (get_seleted_value_weight === '14g') {
         const get_variant_14 = variants.find(item => item.option === get_seleted_value_weight);
         console.log('encontro la variante 14g', get_variant_14);
+        h4_price_string.textContent=`$${get_variant_14.priceRec}`;
+        text_weight_format.textContent='/14G';
         for (let quantity_select = 1; quantity_select <= get_variant_14.quantity; quantity_select++) {
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
         }
