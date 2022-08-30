@@ -436,7 +436,8 @@ product.then( (item) => {
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
 
 
-    renderWeight(item.variants, 'select-weight');
+    // renderWeight(item.variants, 'select-weight');
+    renderQuantityWeight(item.variants, 'quantity', 'select-weight');
 
 
 }).catch(error => {
@@ -787,4 +788,24 @@ const renderWeight = (variants, id_select_weight) => {
         appendElementHtml(container_select_weight, options);
     }
 };
+
+function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
+    const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
+    let container_select_weight = document.querySelector(`#${id_select_weight}`);
+
+    if (variants === undefined || 0) {
+        container_select_quantity.style = 'display: none;';
+        container_select_weight.style = 'display: none;';
+        console.log('No hay weights disponibles')
+    }
+
+    for (let i of variants) {
+        console.log('weight: ', i.option);
+        const options = createElementHtml('option');
+        options.value = i.option;
+        options.text = i.option;
+        appendElementHtml(container_select_weight, options);
+    }
+
+}
 
