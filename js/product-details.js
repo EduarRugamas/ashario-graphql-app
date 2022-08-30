@@ -807,5 +807,8 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
         appendElementHtml(container_select_weight, options);
     }
 
+    let get_seleted_value_weight = document.getElementById(`${id_select_weight}`).value;
+    console.log(get_seleted_value_weight);
+
 }
 
