@@ -4,7 +4,7 @@ import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
 const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-const id_store_cart_centre_point_mall = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
+const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
 const title_product = document.getElementById('title_name_product_details');
@@ -427,7 +427,7 @@ product.then( (item) => {
 
     btn_cart_link.setAttribute('href', id_store_cart_centre_point_mall.redirectUrl);
 
-    console.log(id_store_cart_centre_point_mall);
+    console.log(checkoutId);
     console.log(item);
 
     title_product.textContent=`${item.name}`;
@@ -435,7 +435,7 @@ product.then( (item) => {
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
     renderQuantityWeight(item.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
-    renderaddItemCart(id_store_cart_centre_point_mall, id_store_cart_centre_point_mall.id, id_product, 'quantity', 'select-weight');
+    renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
 
 
 }).catch(error => {
@@ -866,7 +866,7 @@ const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id
             const id_product = product_id;
             const quantity = parseInt(document.getElementById(`${id_select_quantity}`).value);
             const option = document.getElementById(`${id_select_weight}`).value;
-            console.log('quantity:'+ ' ' + quantity + 'weight: '+ ' ' + option + 'productid:'+ ' ' + product_id)
+            console.log(`${id_store}, ${id_cart}, ${id_product}, quantity:${quantity}, option: ${option}`);
             addItemCart(id_store, id_cart, id_product, quantity, option).then( result => {
 
                 console.log(result);
