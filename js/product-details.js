@@ -770,7 +770,7 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
             }
 
         }else  if (get_variant_selected === '7g') {
-            const option_7 = variants14.find(item => item.option === get_variant_selected);
+            const option_7 = variants.find(item => item.option === get_variant_selected);
             console.log('encontre la variante', option_7);
 
             for (let quantity_select = 1; quantity_select <= option_7.quantity; quantity_select++) {
