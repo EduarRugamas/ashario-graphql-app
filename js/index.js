@@ -750,6 +750,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const container_select_weights = document.querySelectorAll('#select-weight');
 
+
         container_select_weights.forEach(items => {
             const get_id_product_weights = items.getAttribute('product_id');
             console.log('llego aqui', get_id_product_weights);
@@ -757,13 +758,15 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(weights_product);
             let get_variant = weights_product.variants.find(option => option.option === variant)
             console.log(get_variant);
-            //
+
             if (get_variant.option === "3.5g") {
 
                 const option_weigths = createElementHtml('option');
                 option_weigths.value = get_variant.option;
                 option_weigths.text = get_variant.option;
                 appendElementHtml(items, option_weigths);
+                FormatWeigths("3.5g");
+
 
             }else if (get_variant.option === "28g") {
 
@@ -771,6 +774,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 option_weigths.value = get_variant.option;
                 option_weigths.text = get_variant.option;
                 appendElementHtml(items, option_weigths);
+                FormatWeigths("28g");
 
             }else if (get_variant.option === "1g") {
 
@@ -778,6 +782,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 option_weigths.value = get_variant.option;
                 option_weigths.text = get_variant.option;
                 appendElementHtml(items, option_weigths);
+                FormatWeigths("1g");
 
             }else if (get_variant.option === "7g") {
 
@@ -785,6 +790,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 option_weigths.value = get_variant.option;
                 option_weigths.text = get_variant.option;
                 appendElementHtml(items, option_weigths);
+                FormatWeigths("7g");
 
             }else if (get_variant.option === "14g") {
 
@@ -792,10 +798,37 @@ window.addEventListener('DOMContentLoaded', async () => {
                 option_weigths.value = get_variant.option;
                 option_weigths.text = get_variant.option;
                 appendElementHtml(items, option_weigths);
+                FormatWeigths("14g");
 
             }
 
 
+        });
+    }
+
+    function FormatWeigths (variant) {
+        const format_weights = document.querySelectorAll('.jceachformat');
+        format_weights.forEach(items => {
+
+            if (variant === "3.5g") {
+                items.textContent='/3.5g'
+
+            }else if (variant === "28g") {
+                items.textContent='/28g'
+
+            }else if (variant === "1g") {
+
+                items.textContent='/1g'
+
+            }else if (variant === "7g") {
+
+                items.textContent='/7g'
+
+            }else if (variant === "14g") {
+
+                items.textContent='/14g'
+
+            }
         });
     }
 
