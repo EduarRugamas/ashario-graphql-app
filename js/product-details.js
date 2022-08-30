@@ -434,9 +434,6 @@ product.then( (item) => {
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
-
-
-    // renderWeight(item.variants, 'select-weight');
     renderQuantityWeight(item.variants, 'quantity', 'select-weight');
 
 
@@ -693,103 +690,7 @@ const renderPotency_CBD_THC = (container_dl_id, potency_thc, potency_cbd) => {
     }
 //     //fin de area thc and cbd
 };
-const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
-    const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
-    const get_variant_selected = document.getElementById(`${id_select_weight}`).value;
-
-    if (variants.length === undefined) {
-        console.log('no hay variantes para este producto');
-        container_select_quantity.style='display: none;';
-    }else {
-        console.log('variante ?', get_variant_selected);
-        if (get_variant_selected === '3.5g') {
-            const option_3_5 = variants.find(item => item.option === get_variant_selected);
-            console.log('encontre la variante', option_3_5);
-
-            for (let quantity_select = 1; quantity_select <= option_3_5.quantity; quantity_select++) {
-                console.log(quantity_select);
-                const options_quantity_35 = createElementHtml('option');
-                options_quantity_35.value = quantity_select;
-                options_quantity_35.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity_35);
-            }
-
-
-        }else if (get_variant_selected === '28g') {
-            const option_28 = variants.find(item => item.option === get_variant_selected);
-            console.log('encontre la variante', option_28);
-
-            for (let quantity_select = 1; quantity_select <= option_28.quantity; quantity_select++) {
-                console.log(quantity_select);
-                const options_quantity_28 = createElementHtml('option');
-                options_quantity_28.value = quantity_select;
-                options_quantity_28.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity_28);
-            }
-
-
-        }else if (get_variant_selected === '1g') {
-            const option_1 = variants.find(item => item.option === get_variant_selected);
-            console.log('encontre la variante', option_1);
-
-            for (let quantity_select = 1; quantity_select <= option_1.quantity; quantity_select++) {
-                console.log(quantity_select);
-                const options_quantity_1 = createElementHtml('option');
-                options_quantity_1.value = quantity_select;
-                options_quantity_1.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity_1);
-            }
-
-        }else  if (get_variant_selected === '7g') {
-            const option_7 = variants.find(item => item.option === get_variant_selected);
-            console.log('encontre la variante', option_7);
-
-            for (let quantity_select = 1; quantity_select <= option_7.quantity; quantity_select++) {
-                console.log(quantity_select);
-                const options_quantity_7 = createElementHtml('option');
-                options_quantity_7.value = quantity_select;
-                options_quantity_7.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity_7);
-            }
-
-        }else if (get_variant_selected === '14g') {
-            const option_14 = variants.find(item => item.option === get_variant_selected);
-            console.log('encontre la variante', option_14);
-
-            for (let quantity_select = 1; quantity_select <= option_14.quantity; quantity_select++) {
-                console.log(quantity_select);
-                const options_quantity_14 = createElementHtml('option');
-                options_quantity_14.value = quantity_select;
-                options_quantity_14.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity_14);
-            }
-        }
-
-    }
-
-
-
-
-};
-const renderWeight = (variants, id_select_weight) => {
-
-    let container_select_weight = document.querySelector(`#${id_select_weight}`);
-
-    if (variants === undefined || 0) {
-        container_select_weight.style = 'display: none;';
-        console.log('No hay weights disponibles')
-    }
-
-    for (let i of variants) {
-        console.log('weight: ', i.option);
-        const options = createElementHtml('option');
-        options.value = i.option;
-        options.text = i.option;
-        appendElementHtml(container_select_weight, options);
-    }
-};
-
-function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
+const renderQuantityWeight = (variants, id_select_quantity, id_select_weight) => {
     const container_select_quantity = document.querySelector(`#${id_select_quantity}`);
     let container_select_weight = document.querySelector(`#${id_select_weight}`);
 
@@ -815,10 +716,6 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
         console.log('encontro la variante 3.5g', get_variant_35);
         for (let quantity_select = 1; quantity_select <= get_variant_35.quantity; quantity_select++) {
             console.log(quantity_select);
-            // const options_quantity_35 = createElementHtml('option');
-            // options_quantity_35.value = quantity_select;
-            // options_quantity_35.text = quantity_select;
-            // appendElementHtml(container_select_quantity, options_quantity_35);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
         }
     }else if (get_seleted_value_weight === '28g') {
@@ -826,10 +723,6 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
         console.log('encontro la variante 28g', get_variant_28);
         for (let quantity_select = 1; quantity_select <= get_variant_28.quantity; quantity_select++) {
             console.log(quantity_select);
-            // const options_quantity_28 = createElementHtml('option');
-            // options_quantity_28.value = quantity_select;
-            // options_quantity_28.text = quantity_select;
-            // appendElementHtml(container_select_quantity, options_quantity_28);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
         }
     }else if (get_seleted_value_weight === '1g') {
@@ -837,10 +730,6 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
         console.log('encontro la variante 1g', get_variant_1);
         for (let quantity_select = 1; quantity_select <= get_variant_1.quantity; quantity_select++) {
             console.log(quantity_select);
-            // const options_quantity_1 = createElementHtml('option');
-            // options_quantity_1.value = quantity_select;
-            // options_quantity_1.text = quantity_select;
-            // appendElementHtml(container_select_quantity, options_quantity_1);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
         }
     }else if (get_seleted_value_weight === '7g') {
@@ -848,21 +737,12 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
         console.log('encontro la variante 7g', get_variant_7);
         for (let quantity_select = 1; quantity_select <= get_variant_7.quantity; quantity_select++) {
             console.log(quantity_select);
-            // const options_quantity_7 = createElementHtml('option');
-            // options_quantity_7.value = quantity_select;
-            // options_quantity_7.text = quantity_select;
-            // appendElementHtml(container_select_quantity, options_quantity_7);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
         }
     }else if (get_seleted_value_weight === '14g') {
         const get_variant_14 = variants.find(item => item.option === get_seleted_value_weight);
         console.log('encontro la variante 14g', get_variant_14);
         for (let quantity_select = 1; quantity_select <= get_variant_14.quantity; quantity_select++) {
-            // console.log(quantity_select);
-            // const options_quantity_14 = createElementHtml('option');
-            // options_quantity_14.value = quantity_select;
-            // options_quantity_14.text = quantity_select;
-            // appendElementHtml(container_select_quantity, options_quantity_14);
             container_select_quantity.add(new Option(quantity_select, quantity_select) );
         }
     }
@@ -884,11 +764,6 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
 
             for (let quantity_select = 1; quantity_select <= get_variant_35.quantity; quantity_select++) {
                 console.log(quantity_select);
-                // const options_quantity_35 = createElementHtml('option');
-                // options_quantity_35.value = quantity_select;
-                // options_quantity_35.text = quantity_select;
-                // appendElementHtml(container_select_quantity, options_quantity_35);
-
                 container_select_quantity.add(new Option(quantity_select, quantity_select) );
 
             }
@@ -903,10 +778,42 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
             }
             for (let quantity_select = 1; quantity_select <= get_variant_28.quantity; quantity_select++) {
                 console.log(quantity_select);
-                // const options_quantity_28 = createElementHtml('option');
-                // options_quantity_28.value = quantity_select;
-                // options_quantity_28.text = quantity_select;
-                // appendElementHtml(container_select_quantity, options_quantity_28);
+                container_select_quantity.add(new Option(quantity_select, quantity_select) );
+            }
+        }else if (get_change_weight === '1g') {
+            const get_variant_1 = variants.find(item => item.option === get_change_weight);
+            console.log('encontro la variante 28g', get_variant_1);
+            if (container_select_quantity.length) {
+                for (let i = container_select_quantity.length; i >= 0; i--) {
+                    container_select_quantity.remove(i);
+                }
+            }
+            for (let quantity_select = 1; quantity_select <= get_variant_1.quantity; quantity_select++) {
+                console.log(quantity_select);
+                container_select_quantity.add(new Option(quantity_select, quantity_select) );
+            }
+        }else if (get_change_weight === '7g') {
+            const get_variant_7 = variants.find(item => item.option === get_change_weight);
+            console.log('encontro la variante 28g', get_variant_7);
+            if (container_select_quantity.length) {
+                for (let i = container_select_quantity.length; i >= 0; i--) {
+                    container_select_quantity.remove(i);
+                }
+            }
+            for (let quantity_select = 1; quantity_select <= get_variant_7.quantity; quantity_select++) {
+                console.log(quantity_select);
+                container_select_quantity.add(new Option(quantity_select, quantity_select) );
+            }
+        }else if (get_change_weight === '14g') {
+            const get_variant_14 = variants.find(item => item.option === get_change_weight);
+            console.log('encontro la variante 28g', get_variant_14);
+            if (container_select_quantity.length) {
+                for (let i = container_select_quantity.length; i >= 0; i--) {
+                    container_select_quantity.remove(i);
+                }
+            }
+            for (let quantity_select = 1; quantity_select <= get_variant_14.quantity; quantity_select++) {
+                console.log(quantity_select);
                 container_select_quantity.add(new Option(quantity_select, quantity_select) );
             }
         }
