@@ -434,45 +434,13 @@ product.then( (item) => {
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
-
-
-    //     //area de quantity y weight
-//
-//     //quantity
-//     if (item.variants[0].quantity === 0 || item.variants[0].quantity === null ) {
-//         console.log('No hay cantidad disponible para el carrito');
-//     }else {
-//         console.log('cantidad maxima para enviar al carrito: ', item.variants[0].quantity);
-//
-//         const container_select_quantity = document.querySelector('#quantity');
-//         let max_cart_quantity = item.variants[0].quantity;
-//
-//         for (let quantity_select = 1; quantity_select <= max_cart_quantity; quantity_select++) {
-//             console.log(quantity_select);
-//             const options_quantity_select = createElementHtml('option');
-//             options_quantity_select.value = quantity_select;
-//             options_quantity_select.text = quantity_select;
-//             appendElementHtml(container_select_quantity, options_quantity_select);
-//         }
-//     }
-//
     //weight
-    if (item.variants[0].option === null) {
-        let container_select_weight = document.querySelector('#container_weight');
-        container_select_weight.style='display: none;';
-        console.log('No existe ningun elemento en el available weight');
-    }else {
-        let container_select_weight = document.querySelector('#select-weight');
+    renderWeight(item.variants, 'select-weight');
+    //fin de area de quantity and weight
 
-        console.log('weight ', item.variants[3].option);
-        let option_weight_variant = item.variants[3].option;
-        const options_weight_select = createElementHtml('option');
-        options_weight_select.value = option_weight_variant;
-        options_weight_select.text = option_weight_variant;
-        appendElementHtml(container_select_weight, options_weight_select);
-    }
+    // area de quantity y weight
     renderQuantity(item.variants, 'quantity', 'select-weight');
-//     //fin de area de quantity and weight
+    //
 
 
 
@@ -807,5 +775,22 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
 
 
 
+};
+const renderWeight = (variants, id_select_weight) => {
+
+    let container_select_weight = document.querySelector(`#${id_select_weight}`);
+
+    if (variants === undefined || 0) {
+        container_select_weight.style = 'display: none;';
+        console.log('No hay weights disponibles')
+    }
+
+    for (let i of variants) {
+        console.log('weight: ', i.option);
+        const options = createElementHtml('option');
+        options.value = i.option;
+        options.text = i.option;
+        appendElementHtml(container_select_weight, options);
+    }
 };
 
