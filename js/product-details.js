@@ -875,6 +875,13 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
         if (get_change_weight === '3.5g') {
             const get_variant_35 = variants.find(item => item.option === get_change_weight);
             console.log('encontro la variante 3.5g', get_variant_35);
+
+            if (container_select_quantity.length) {
+                for (let i = container_select_quantity.length; i >= 0; i--) {
+                    container_select_quantity.remove(i);
+                }
+            }
+
             for (let quantity_select = 1; quantity_select <= get_variant_35.quantity; quantity_select++) {
                 console.log(quantity_select);
                 // const options_quantity_35 = createElementHtml('option');
@@ -882,13 +889,18 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
                 // options_quantity_35.text = quantity_select;
                 // appendElementHtml(container_select_quantity, options_quantity_35);
 
-                container_select_quantity.add(new Option(get_variant_35.quantity, get_variant_35.quantity) );
+                container_select_quantity.add(new Option(quantity_select, quantity_select) );
 
             }
             container_select_quantity.selectedIndex = 0;
         }else if (get_change_weight === '28g') {
             const get_variant_28 = variants.find(item => item.option === get_change_weight);
             console.log('encontro la variante 28g', get_variant_28);
+            if (container_select_quantity.length) {
+                for (let i = container_select_quantity.length; i >= 0; i--) {
+                    container_select_quantity.remove(i);
+                }
+            }
             for (let quantity_select = 1; quantity_select <= get_variant_28.quantity; quantity_select++) {
                 console.log(quantity_select);
                 // const options_quantity_28 = createElementHtml('option');
