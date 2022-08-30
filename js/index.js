@@ -750,9 +750,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(weights_product);
             let get_variant = weights_product.variants.find(option => option.option === variant)
             console.log(get_variant);
-            
-            if (get_variant === '14g'){
 
+            if (get_variant.option === '14g') {
+                console.log('true');
             }
 
 
