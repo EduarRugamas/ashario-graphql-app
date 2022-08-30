@@ -720,10 +720,10 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
 
             for (let quantity_select = 1; quantity_select <= option_3_5.quantity; quantity_select++) {
                 console.log(quantity_select);
-                const options_quantity = createElementHtml('option');
-                options_quantity.value = quantity_select;
-                options_quantity.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity);
+                const options_quantity_35 = createElementHtml('option');
+                options_quantity_35.value = quantity_select;
+                options_quantity_35.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_35);
             }
 
 
@@ -733,10 +733,10 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
 
             for (let quantity_select = 1; quantity_select <= option_28.quantity; quantity_select++) {
                 console.log(quantity_select);
-                const options_quantity = createElementHtml('option');
-                options_quantity.value = quantity_select;
-                options_quantity.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity);
+                const options_quantity_28 = createElementHtml('option');
+                options_quantity_28.value = quantity_select;
+                options_quantity_28.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_28);
             }
 
 
@@ -746,10 +746,10 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
 
             for (let quantity_select = 1; quantity_select <= option_1.quantity; quantity_select++) {
                 console.log(quantity_select);
-                const options_quantity = createElementHtml('option');
-                options_quantity.value = quantity_select;
-                options_quantity.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity);
+                const options_quantity_1 = createElementHtml('option');
+                options_quantity_1.value = quantity_select;
+                options_quantity_1.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_1);
             }
 
         }else  if (get_variant_selected === '7g') {
@@ -758,10 +758,10 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
 
             for (let quantity_select = 1; quantity_select <= option_7.quantity; quantity_select++) {
                 console.log(quantity_select);
-                const options_quantity = createElementHtml('option');
-                options_quantity.value = quantity_select;
-                options_quantity.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity);
+                const options_quantity_7 = createElementHtml('option');
+                options_quantity_7.value = quantity_select;
+                options_quantity_7.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_7);
             }
 
         }else if (get_variant_selected === '14g') {
@@ -770,10 +770,10 @@ const renderQuantity = (variants, id_select_quantity, id_select_weight) => {
 
             for (let quantity_select = 1; quantity_select <= option_14.quantity; quantity_select++) {
                 console.log(quantity_select);
-                const options_quantity = createElementHtml('option');
-                options_quantity.value = quantity_select;
-                options_quantity.text = quantity_select;
-                appendElementHtml(container_select_quantity, options_quantity);
+                const options_quantity_14 = createElementHtml('option');
+                options_quantity_14.value = quantity_select;
+                options_quantity_14.text = quantity_select;
+                appendElementHtml(container_select_quantity, options_quantity_14);
             }
         }
 
