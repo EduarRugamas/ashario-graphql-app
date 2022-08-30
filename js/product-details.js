@@ -442,6 +442,13 @@ product.then( (item) => {
     renderQuantity(item.variants, 'quantity', 'select-weight');
     //
 
+    // valores de change en variantes de weigths y quantity
+    let container_select_weight = document.querySelector('#select-weight');
+    container_select_weight.addEventListener('change', () => {
+        renderQuantity(item.variants, 'quantity', 'select-weight');
+    });
+    //fin de chabge en variantes de weights and quantity
+
 
 
 
