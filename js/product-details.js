@@ -864,7 +864,6 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
 
     //value change weights
     container_select_weight.addEventListener('change', () => {
-        let old_select_quantity = document.getElementById(`${id_select_quantity}`);
         let get_change_weight = document.getElementById(`${id_select_weight}`).value;
         console.log('El valor cambio a ',get_change_weight);
 
@@ -876,7 +875,7 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
                 const options_quantity_35 = createElementHtml('option');
                 options_quantity_35.value = quantity_select;
                 options_quantity_35.text = quantity_select;
-                container_select_quantity.replaceChild(options_quantity_35, old_select_quantity);
+                appendElementHtml(container_select_quantity, options_quantity_35);
             }
             container_select_quantity.selectedIndex = 0;
         }else if (get_change_weight === '28g') {
@@ -887,7 +886,7 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
                 const options_quantity_28 = createElementHtml('option');
                 options_quantity_28.value = quantity_select;
                 options_quantity_28.text = quantity_select;
-                container_select_quantity.replaceChild(options_quantity_28, old_select_quantity);
+                appendElementHtml(container_select_quantity, options_quantity_28);
             }
         }
 
