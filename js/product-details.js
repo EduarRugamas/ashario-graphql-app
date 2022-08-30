@@ -568,6 +568,12 @@ const renderProduct = (container, informatio_product) => {
     let dd_content_id = createElementHtml('dd');
     dd_content_id.className='col-sm-9';
     dd_content_id.textContent=`# ${informatio_product.id}`;
+    let dt_content_straint = createElementHtml('dt');
+    dt_content_straint.className='col-sm-3';
+    dt_content_straint.textContent='Strain';
+    let dd_content_straint = createElementHtml('dd');
+    dd_content_straint.className='col-sm-9';
+    dd_content_straint.textContent=`${informatio_product.strainType}`;
     let h6_description = createElementHtml('h6');
     h6_description.textContent='Description:';
     let p_content_description = createElementHtml('p');
@@ -643,6 +649,8 @@ const renderProduct = (container, informatio_product) => {
     appendElementHtml(div_container_details, dl_content);
     appendElementHtml(dl_content, dt_content_product_id);
     appendElementHtml(dl_content, dd_content_id);
+    appendElementHtml(dl_content, dt_content_straint);
+    appendElementHtml(dl_content, dd_content_straint);
     appendElementHtml(div_container_details, h6_description);
     appendElementHtml(div_container_details, p_content_description);
 
