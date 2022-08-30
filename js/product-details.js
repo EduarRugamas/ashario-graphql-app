@@ -4,6 +4,7 @@ import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
 const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
+const id_store_cart_centre_point_mall = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
 const title_product = document.getElementById('title_name_product_details');
@@ -424,9 +425,10 @@ const product = getProduct(id_store_centre_point_mall.id, id_product);
 
 product.then( (item) => {
 
-    const id_store_centre_point_mall = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
+    btn_cart_link.setAttribute('href', id_store_cart_centre_point_mall.redirectUrl);
 
-    console.log(id_store_centre_point_mall);
+
+    console.log(id_store_cart_centre_point_mall);
 
 
     console.log(item);
