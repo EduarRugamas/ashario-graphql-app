@@ -866,20 +866,23 @@ const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id
             const id_product = product_id;
             const quantity = parseInt(document.getElementById(`${id_select_quantity}`).value);
             const option = document.getElementById(`${id_select_weight}`).value;
+            console.log('quantity:'+ ' ' + quantity + 'weight: '+ ' ' + option + 'productid:'+ ' ' + product_id)
+            addItemCart(id_store, id_cart, id_product, quantity, option).then( result => {
 
-           addItemCart(id_store, id_cart, id_product, quantity, option).then( result => {
-               const results = result.data.addItem.items;
+                console.log(result);
 
-               let card_view_product = results.find(item => item.productId === product_id);
-
-               Swal.fire({
-                   title: 'Added to cart!',
-                   text: `${card_view_product.product.name}`,
-                   imageUrl: `${card_view_product.product.image}`,
-                   imageWidth: 250,
-                   imageHeight: 300,
-                   imageAlt: `${card_view_product.product.name}`,
-               });
+               // const results = result.data.addItem.items;
+               //
+               // let card_view_product = results.find(item => item.productId === product_id);
+               //
+               // Swal.fire({
+               //     title: 'Added to cart!',
+               //     text: `${card_view_product.product.name}`,
+               //     imageUrl: `${card_view_product.product.image}`,
+               //     imageWidth: 250,
+               //     imageHeight: 300,
+               //     imageAlt: `${card_view_product.product.name}`,
+               // });
            }).catch(error => {
                 console.log('Error al agregar al carrito --> ', error.message);
            });
