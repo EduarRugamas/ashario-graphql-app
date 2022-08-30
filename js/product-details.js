@@ -1,3 +1,4 @@
+'use strict';
 import {getProduct} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
