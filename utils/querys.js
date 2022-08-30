@@ -164,7 +164,7 @@ const getProduct = async (retailerID, id_product) => {
         }
     `;
 
-    const response = fetch(`${url_base}`, {
+    const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({query: query_product})
