@@ -150,6 +150,7 @@ const getProduct = async (retailerID, id_product) => {
             },
             strainType,
             category,
+            effects,
             brand {
               name,
               id
