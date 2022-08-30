@@ -810,5 +810,14 @@ function renderQuantityWeight (variants, id_select_quantity, id_select_weight) {
     let get_seleted_value_weight = document.getElementById(`${id_select_weight}`).value;
     console.log(get_seleted_value_weight);
 
+    if (get_seleted_value_weight === '3.5g') {
+        const get_variant_35 = variants.find(item => item.option === get_seleted_value_weight);
+        console.log('encontro la variante 3.5g', get_variant_35);
+    }
+
+
+
+
+
 }
 
