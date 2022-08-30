@@ -421,7 +421,7 @@ const btn_cart_link = document.querySelector('#btn_cart');
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
 
-product.then( ({item}) => {
+product.then( (item) => {
     console.log(item);
 
     renderProduct(container_product_details, item);
@@ -435,7 +435,6 @@ product.then( ({item}) => {
 
 const renderProduct = (container, informatio_product) => {
     container.innerHTML=`
-       ${`
        <!--start product detail-->
        <section class="py-4">
             <div class="container">
@@ -505,7 +504,7 @@ const renderProduct = (container, informatio_product) => {
                     </div>
                 </div>
             </div>
-       </section>`}
+       </section>
     `;
 }
 
