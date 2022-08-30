@@ -439,85 +439,13 @@ product.then( (item) => {
     //fin de area de quantity and weight
 
     // area de quantity y weight
-    renderQuantity(item.variants, 'quantity', 'select-weight');
+
     //
 
     // valores de change en variantes de weigths y quantity
     let container_select_weight = document.querySelector('#select-weight');
     container_select_weight.addEventListener('change', () => {
-
-        const container_select_quantity = document.querySelector('#quantity');
-        const get_variant_selected = document.getElementById('select-weight').value;
-
-        if (item.variants.length === undefined) {
-            console.log('no hay variantes para este producto');
-            container_select_quantity.style='display: none;';
-        }else {
-            console.log('variante ?', get_variant_selected);
-            if (get_variant_selected === '3.5g') {
-                const option_3_5 = item.variants.find(item => item.option === get_variant_selected);
-                console.log('encontre la variante', option_3_5);
-
-                for (let quantity_select = 1; quantity_select <= option_3_5.quantity; quantity_select++) {
-                    console.log(quantity_select);
-                    const options_quantity_35 = createElementHtml('option');
-                    options_quantity_35.value = quantity_select;
-                    options_quantity_35.text = quantity_select;
-                    appendElementHtml(container_select_quantity, options_quantity_35);
-                }
-
-
-            }else if (get_variant_selected === '28g') {
-                const option_28 = item.variants.find(item => item.option === get_variant_selected);
-                console.log('encontre la variante', option_28);
-
-                for (let quantity_select = 1; quantity_select <= option_28.quantity; quantity_select++) {
-                    console.log(quantity_select);
-                    const options_quantity_28 = createElementHtml('option');
-                    options_quantity_28.value = quantity_select;
-                    options_quantity_28.text = quantity_select;
-                    appendElementHtml(container_select_quantity, options_quantity_28);
-                }
-
-
-            }else if (get_variant_selected === '1g') {
-                const option_1 = item.variants.find(item => item.option === get_variant_selected);
-                console.log('encontre la variante', option_1);
-
-                for (let quantity_select = 1; quantity_select <= option_1.quantity; quantity_select++) {
-                    console.log(quantity_select);
-                    const options_quantity_1 = createElementHtml('option');
-                    options_quantity_1.value = quantity_select;
-                    options_quantity_1.text = quantity_select;
-                    appendElementHtml(container_select_quantity, options_quantity_1);
-                }
-
-            }else  if (get_variant_selected === '7g') {
-                const option_7 = item.variants.find(item => item.option === get_variant_selected);
-                console.log('encontre la variante', option_7);
-
-                for (let quantity_select = 1; quantity_select <= option_7.quantity; quantity_select++) {
-                    console.log(quantity_select);
-                    const options_quantity_7 = createElementHtml('option');
-                    options_quantity_7.value = quantity_select;
-                    options_quantity_7.text = quantity_select;
-                    appendElementHtml(container_select_quantity, options_quantity_7);
-                }
-
-            }else if (get_variant_selected === '14g') {
-                const option_14 = item.variants.find(item => item.option === get_variant_selected);
-                console.log('encontre la variante', option_14);
-
-                for (let quantity_select = 1; quantity_select <= option_14.quantity; quantity_select++) {
-                    console.log(quantity_select);
-                    const options_quantity_14 = createElementHtml('option');
-                    options_quantity_14.value = quantity_select;
-                    options_quantity_14.text = quantity_select;
-                    appendElementHtml(container_select_quantity, options_quantity_14);
-                }
-            }
-
-        }
+        renderQuantity(item.variants, 'quantity', 'select-weight');
     });
     //fin de chabge en variantes de weights and quantity
 
