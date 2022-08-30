@@ -750,7 +750,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const container_select_weights = document.querySelectorAll('#select-weight');
 
-
         container_select_weights.forEach(items => {
             const get_id_product_weights = items.getAttribute('product_id');
             console.log('llego aqui', get_id_product_weights);

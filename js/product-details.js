@@ -1,5 +1,5 @@
 'use strict';
-import {getProduct} from '../utils/querys.js';
+import {getProduct, addItemCart} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
@@ -435,6 +435,7 @@ product.then( (item) => {
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
     renderQuantityWeight(item.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
+    renderaddItemCart(id_store_cart_centre_point_mall, id_store_cart_centre_point_mall.id, id_product, 'quantity', 'select-weight');
 
 
 }).catch(error => {
@@ -838,7 +839,7 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight, co
             console.log('encontro la variante 14g', get_variant_14);
 
             h4_price_string.textContent=`$${get_variant_14.priceRec}`;
-            text_weight_format.textContent='/14G';
+            text_weight_format.textContent='/G';
 
             if (container_select_quantity.length) {
                 for (let i = container_select_quantity.length; i >= 0; i--) {
@@ -857,5 +858,32 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight, co
 
 
 
-}
+};
+const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id_select_weight) => {
+
+            const id_cart = cart_id.id;
+            const id_store = store_id.id;
+            const id_product = product_id;
+            const quantity = parseInt(document.getElementById(`${id_select_quantity}`).value);
+            const option = document.getElementById(`${id_select_weight}`).value;
+
+           addItemCart(id_store, id_cart, id_product, quantity, option).then( result => {
+               const results = result.data.addItem.items;
+
+               let card_view_product = results.find(item => item.productId === product_id);
+
+               Swal.fire({
+                   title: 'Added to cart!',
+                   text: `${card_view_product.product.name}`,
+                   imageUrl: `${card_view_product.product.image}`,
+                   imageWidth: 250,
+                   imageHeight: 300,
+                   imageAlt: `${card_view_product.product.name}`,
+               });
+           }).catch(error => {
+                console.log('Error al agregar al carrito --> ', error.message);
+           });
+
+
+};
 
