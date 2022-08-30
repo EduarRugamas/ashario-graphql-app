@@ -758,42 +758,42 @@ window.addEventListener('DOMContentLoaded', async () => {
             let get_variant = weights_product.variants.find(option => option.option === variant)
             console.log(get_variant);
             //
-            // if (get_variant.option === '3.5g') {
-            //
-            //     const option_weigths = createElementHtml('option');
-            //     option_weigths.value = get_variant.option;
-            //     option_weigths.text = get_variant.option;
-            //     appendElementHtml(items, option_weigths);
-            //
-            // }else if (get_variant.option === '28g') {
-            //
-            //     const option_weigths = createElementHtml('option');
-            //     option_weigths.value = get_variant.option;
-            //     option_weigths.text = get_variant.option;
-            //     appendElementHtml(items, option_weigths);
-            //
-            // }else if (get_variant.option === '1g') {
-            //
-            //     const option_weigths = createElementHtml('option');
-            //     option_weigths.value = get_variant.option;
-            //     option_weigths.text = get_variant.option;
-            //     appendElementHtml(items, option_weigths);
-            //
-            // }else if (get_variant.option === '7g') {
-            //
-            //     const option_weigths = createElementHtml('option');
-            //     option_weigths.value = get_variant.option;
-            //     option_weigths.text = get_variant.option;
-            //     appendElementHtml(items, option_weigths);
-            //
-            // }else if (get_variant.option === '14g') {
-            //
-            //     const option_weigths = createElementHtml('option');
-            //     option_weigths.value = get_variant.option;
-            //     option_weigths.text = get_variant.option;
-            //     appendElementHtml(items, option_weigths);
-            //
-            // }
+            if (get_variant.option === "3.5g") {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === "28g") {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === "1g") {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === "7g") {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }else if (get_variant.option === "14g") {
+
+                const option_weigths = createElementHtml('option');
+                option_weigths.value = get_variant.option;
+                option_weigths.text = get_variant.option;
+                appendElementHtml(items, option_weigths);
+
+            }
 
 
         });
