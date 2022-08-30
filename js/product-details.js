@@ -435,7 +435,8 @@ product.then( item => {
 
 const renderProduct = (container, informatio_product) => {
     container.innerHTML=`
-            <!--start product detail-->
+       ${`
+       <!--start product detail-->
        <section class="py-4">
             <div class="container">
                 <div class="product-detail-card">
@@ -504,7 +505,7 @@ const renderProduct = (container, informatio_product) => {
                     </div>
                 </div>
             </div>
-       </section>
+       </section>`}
     `;
 }
 
