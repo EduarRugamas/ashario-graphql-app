@@ -326,25 +326,26 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 // search filter
-                const filter_search = document.getElementById('searchBox');
-                const div_container_search = createElementHtml('div');
-                div_container_search.className='input-group mb-3';
-                const input_type_text_search = createElementHtml('input');
-                input_type_text_search.type='text';
-                input_type_text_search.className='form-control';
-                input_type_text_search.placeholder='Search for products';
-                input_type_text_search.id='search_product';
-                const button_search = createElementHtml('button');
-                button_search.type='button';
-                button_search.className='btn btn-outline-dark';
-                button_search.id='btn_search_product';
-                const icon_search = createElementHtml('i');
-                icon_search.className='bx bx-search-alt-2 bx-rotate-90';
-
-                appendElementHtml(div_container_search, input_type_text_search);
-                appendElementHtml(div_container_search, button_search);
-                appendElementHtml(button_search, icon_search);
-                appendElementHtml(filter_search, div_container_search);
+                render_search_products('searchBox');
+                // const filter_search = document.getElementById('searchBox');
+                // const div_container_search = createElementHtml('div');
+                // div_container_search.className='input-group mb-3';
+                // const input_type_text_search = createElementHtml('input');
+                // input_type_text_search.type='text';
+                // input_type_text_search.className='form-control';
+                // input_type_text_search.placeholder='Search for products';
+                // input_type_text_search.id='search_product';
+                // const button_search = createElementHtml('button');
+                // button_search.type='button';
+                // button_search.className='btn btn-outline-dark';
+                // button_search.id='btn_search_product';
+                // const icon_search = createElementHtml('i');
+                // icon_search.className='bx bx-search-alt-2 bx-rotate-90';
+                //
+                // appendElementHtml(div_container_search, input_type_text_search);
+                // appendElementHtml(div_container_search, button_search);
+                // appendElementHtml(button_search, icon_search);
+                // appendElementHtml(filter_search, div_container_search);
 
                 //<i class='bx bx-search-alt-2 bx-rotate-90' ></i>
 
@@ -741,6 +742,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             }
         });
+    }
+
+    const render_search_products = (id_container_search) => {
+        let search = '';
+        const filter_search = document.getElementById(`${id_container_search}`);
+
+        search += `
+           <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search for products">
+              <button class="btn btn-outline-dark" type="button" id="button_search_products"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
+           </div>
+        `;
+
+        filter_search.innerHTML= search;
+
     }
 
 
