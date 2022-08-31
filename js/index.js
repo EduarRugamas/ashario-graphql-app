@@ -323,8 +323,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 btn_add_cart_grid.forEach( btn => {
                     btn.addEventListener('click', () => {
+
+
                         let product_id = btn.getAttribute('id_product');
-                        let quantity = 1;
+                        let quantity = parseInt(document.getElementById('quantity').value);
                         let option = btn.getAttribute('option_product');
                         addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, quantity, option).then( result => {
                             console.log(result);
