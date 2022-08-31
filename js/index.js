@@ -771,15 +771,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             result.then( response => {
                 console.log(response);
-
-                if (response.products === 0 ){
-                    console.log('sin resultados')
-                    ViewEmpty(container_products);
-                }
-
                 cartProduct(container_products, response.products);
                 ViewQuantity();
                 ViewWeigths(response);
+
+                if (response.products === 0 ){
+                    console.log('sin resultados');
+                    ViewEmpty(container_products);
+                }
 
             }).catch(error => {
                 console.log('error en el search', error.message);
