@@ -669,11 +669,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                         </a>
                     <div class="card-body">
                         <div class="product-info">
-                            <a href="product-details.html?id=${product.id}">
+                            <a href="/views/product-details.html?id=${product.id}">
                                 <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
                                 <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                             </a>
-                            <a href="product-details.html?objectID=${product.id}">
+                            <a href="/views/product-details.html?id=${product.id}">
                                 <h6 class="product-name mb-2 itemname">${product.name}</h6>
                             </a>
                             <div class="d-flex align-items-center">
