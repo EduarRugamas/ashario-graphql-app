@@ -764,13 +764,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             if (get_text_input_search === "") {
                 console.log('El input esta vacio');
-                ViewEmpty(container_products);
             }
 
             const result = filter_search_product(retailerId, get_text_input_search.toString(), 0, 50);
 
             result.then( response => {
                 console.log(response);
+
+                if (response.products === undefined || 0 ){
+                    ViewEmpty(container_products);
+                }
 
                 cartProduct(container_products, response.products);
                 ViewQuantity();
