@@ -770,7 +770,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const result = filter_search_product(retailerId, get_text_input_search.toString(), 0, 50);
 
             result.then( response => {
-                if (response.products === 0 ){
+                if (response.products.length === 0 ){
                     console.log('sin resultados');
                     ViewEmpty(container_products);
                 }else {
