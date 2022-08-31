@@ -57,7 +57,7 @@ let page_next = 20;
 window.addEventListener('DOMContentLoaded', async () => {
 
     let observador = new IntersectionObserver((entradas, observador)=> {
-
+            console.log(entradas);
     }, {
         rootMargin: '0px 0px 0px 0px',
         threshold: 1.0
@@ -162,7 +162,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let ultimo_producto = productViews[productViews.length - 1];
                 console.log(ultimo_producto);
 
-
+                observador.observe(ultimo_producto);
 
             }
 
