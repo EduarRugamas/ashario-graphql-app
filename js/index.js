@@ -48,6 +48,11 @@ let btn_cbd = document.querySelector('#btn-filter-cbd');
 let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 // fin declaraciones de filtros range thc and cbd
 
+//variables de paginacion
+let page_previous = 0;
+let page_next = 0;
+//fin de variables
+
 
 window.addEventListener('DOMContentLoaded', async () => {
 

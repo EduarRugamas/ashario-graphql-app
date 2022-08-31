@@ -317,6 +317,44 @@ const filter_cbd = async (retailerID, min, max) => {
     return data.data.menu;
 };
 //fin de fetch de filter
+//filter search product
+const filter_search_product = async (retailerId, search, page_previous, page_next) => {
+    const query_filter_search = `
+        query MenuSearch($retailerId: ID="${retailerId}") {
+          menu( retailerId: $retailerId filter: { category: FLOWER, search: "${search}" },  pagination: { offset: ${page_previous}, limit: ${page_next} } ) {
+            products {
+                id,
+                name,
+                brand{
+                name
+                },
+                image,
+                category,
+                subcategory,
+                strainType,
+                effects
+                variants {
+                    option,
+                    priceRec,
+                    quantity,
+                    id
+                }
+            }
+          }
+        }
+    `;
+
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({query: query_filter_search})
+    });
+
+    const data = await response.json();
+    return data;
+}
+//fin of filter search product
+
 
 const getAllProducts = async (retailerID, page_previous, page_next) => {
     const query_get_all_products = `
@@ -456,6 +494,7 @@ export {
     filter_weights,
     filter_thc,
     filter_cbd,
+    filter_search_product,
     createCheckout,
     addItemCart
 }
