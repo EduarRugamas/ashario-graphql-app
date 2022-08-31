@@ -763,7 +763,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             let get_text_input_search = document.getElementById('input_search_text').value;
 
             if (get_text_input_search === "") {
-                console.log('El input esta vacio')
+                console.log('El input esta vacio');
+                ViewEmpty(container_products);
             }
 
             const result = filter_search_product(retailerId, get_text_input_search.toString(), 0, 50);
@@ -777,7 +778,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             }).catch(error => {
                 console.log('error en el search', error.message);
-                ViewEmpty(container_products);
             });
 
         });
