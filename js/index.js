@@ -327,7 +327,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 // search filter
-                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox');
+                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data);
                 // const filter_search = document.getElementById('searchBox');
                 // const div_container_search = createElementHtml('div');
                 // div_container_search.className='input-group mb-3';
@@ -745,7 +745,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    const render_search_products = (container_products, retailerId, id_container_search) => {
+    const render_search_products = (container_products, retailerId, id_container_search, array_all_products) => {
         let search = '';
         const filter_search = document.getElementById(`${id_container_search}`);
 
@@ -753,6 +753,7 @@ window.addEventListener('DOMContentLoaded', async () => {
            <div class="input-group mb-3 ms-1 me-1">
               <input type="text" class="form-control" placeholder="Search for products" id="input_search_text">
               <button class="btn btn-outline-dark" type="button" id="button_search_products"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
+              <button class="btn btn-outline-secondary" type="button" id="clear_filter_search"><i class='bx bx-x'></i></button>
            </div>
         `;
 
@@ -783,6 +784,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log('error en el search', error.message);
                 ViewEmpty(container_products);
             });
+
+        });
+        const btn_clear_search = document.getElementById('clear_filter_search');
+        btn_clear_search.addEventListener('click', () => {
+            document.getElementById('input_search_text').value="";
+            cartProduct(container_products, array_all_products.products);
 
         });
 
