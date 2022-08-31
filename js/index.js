@@ -751,7 +751,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         search += `
            <div class="input-group mb-3 ms-1 me-1">
-              <input type="text" class="form-control shadow-none" style="outline: none;" placeholder="Search for products" id="input_search_text">
+              <input type="text" class="form-control shadow-none" style="outline: none; border-color: #000000;" placeholder="Search for products" id="input_search_text">
               <button class="btn btn-outline-dark shadow-none" style="outline: none;" type="button" id="clear_filter_search"><i class='bx bx-x'></i></button>
               <button class="btn btn-outline-dark shadow-none" style="outline: none;" type="button" id="button_search_products"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
            </div>
