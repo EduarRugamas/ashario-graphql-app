@@ -790,11 +790,12 @@ window.addEventListener('DOMContentLoaded', async () => {
         btn_clear_search.addEventListener('click', () => {
             document.getElementById('input_search_text').value="";
             cartProduct(container_products, array_all_products.products);
-
+            ViewQuantity();
+            ViewWeigths(array_all_products.products);
         });
 
 
-    }
+    };
 
 
 
