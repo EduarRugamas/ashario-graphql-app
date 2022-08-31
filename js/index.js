@@ -6,7 +6,8 @@ import {
     filter_thc,
     filter_weights,
     getAllProducts,
-    getRetailersIds
+    getRetailersIds,
+    get_count_product
 } from '../utils/querys.js';
 import {FadeOut} from '../utils/utils.js'
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
@@ -114,6 +115,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log('error query', error.message);
             });
 
+
+            let countProducts = get_count_product(store_centre_point_mall.id);
+            console.log(countProducts);
             let data = await getAllProducts(store_centre_point_mall.id);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
@@ -712,7 +716,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     function ViewQuantity () {
         const container_select_quantitys = document.querySelectorAll('#quantity');
-
 
         container_select_quantitys.forEach(items => {
             const get_quantity = items.getAttribute('count_quantity');

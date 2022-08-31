@@ -108,22 +108,17 @@ const getRetailersIds = async () => {
     });
 }
 
-const GetCountproduct = (retailerID) => {
+const get_count_product = async (retailerID) => {
     const query_count_products = `query GetCountProducts($retailerId: ID="${retailerID}" ) { menu(retailerId: $retailerId) {productsCount}}`;
 
-    fetch(`${url_base}`, {
+    const response = await fetch(`${url_base}`, {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": "Bearer " + public_key,
-        },
-        body: JSON.stringify({
-            query: query_count_products
-        })
-    }).then(response => response.json()).then(data => {
-        console.log(data);
-    })
+        headers: headers,
+        body: JSON.stringify({query: query_count_products})
+    });
+
+    const data = await response.json();
+    return data;
 }
 
 const getProduct = async (retailerID, id_product) => {
@@ -454,6 +449,7 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
 
 export {
     getRetailersIds,
+    get_count_product,
     getAllProducts,
     getProduct,
     filter_strain_type_lineage,
