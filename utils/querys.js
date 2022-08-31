@@ -351,7 +351,7 @@ const filter_search_product = async (retailerId, search, page_previous, page_nex
     });
 
     const data = await response.json();
-    return data;
+    return data.data.menu;
 }
 //fin of filter search product
 
