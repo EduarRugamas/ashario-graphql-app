@@ -327,7 +327,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 // search filter
-                render_search_products(store_centre_point_mall.id, 'searchBox');
+                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox');
                 // const filter_search = document.getElementById('searchBox');
                 // const div_container_search = createElementHtml('div');
                 // div_container_search.className='input-group mb-3';
@@ -745,7 +745,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    const render_search_products = (retailerId, id_container_search) => {
+    const render_search_products = (container_products, retailerId, id_container_search) => {
         let search = '';
         const filter_search = document.getElementById(`${id_container_search}`);
 
@@ -770,7 +770,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             result.then( response => {
                 console.log(response);
-            }).catch(error => console.log('error en el search', error.message));
+
+                cartProduct(container_products, response.products)
+
+            }).catch(error => {
+                console.log('error en el search', error.message);
+                ViewEmpty(container_products);
+            });
 
         });
 
