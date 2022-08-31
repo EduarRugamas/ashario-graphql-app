@@ -749,7 +749,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const filter_search = document.getElementById(`${id_container_search}`);
 
         search += `
-           <div class="input-group mb-3">
+           <div class="input-group mb-3 ms-1 me-1">
               <input type="text" class="form-control" placeholder="Search for products">
               <button class="btn btn-outline-dark" type="button" id="button_search_products"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
            </div>
