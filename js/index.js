@@ -771,7 +771,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             result.then( response => {
                 console.log(response);
 
-                if (response.products.length === 0 ){
+                if (response.products === 0 ){
                     ViewEmpty(container_products);
                 }
 
