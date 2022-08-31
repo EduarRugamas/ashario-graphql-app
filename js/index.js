@@ -159,6 +159,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 const productViews = document.querySelectorAll('.col .card');
                 console.log(productViews);
+                let ultimo_producto = productViews[productViews.length - 1];
+                console.log(ultimo_producto);
 
 
 
