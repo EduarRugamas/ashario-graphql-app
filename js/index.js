@@ -791,7 +791,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('input_search_text').value="";
             cartProduct(container_products, array_all_products.products);
             ViewQuantity();
-            ViewWeigths(array_all_products.products);
+            ViewWeigths(array_all_products);
         });
 
 
