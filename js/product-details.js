@@ -901,7 +901,10 @@ const renderBadgeEffects = (id_content_effects, effets) => {
     const div_content_effects = document.getElementById(`${id_content_effects}`);
 
     effets.forEach( item => {
-        console.log(item);
+        const badge = createElementHtml('span');
+        badge.className='badge rounded-pill bg-primary';
+        badge.textContent=`${item}`;
+        appendElementHtml(div_content_effects, badge);
     });
 
 
