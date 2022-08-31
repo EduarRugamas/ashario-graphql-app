@@ -50,11 +50,21 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 // fin declaraciones de filtros range thc and cbd
 //variables de paginacion
 let page_previous = 0;
-let page_next = 0;
+let page_next = 20;
 //fin de variables
 
 
 window.addEventListener('DOMContentLoaded', async () => {
+
+    let observador = new IntersectionObserver((entradas, observador)=> {
+
+    }, {
+        rootMargin: '0px 0px 0px 0px',
+        threshold: 1.0
+    });
+
+
+
 
         await getRetailersIds().then( async result => {
 
@@ -123,7 +133,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             let countProducts = get_count_product(store_centre_point_mall.id);
             countProducts.then(response => {console.log(response);} ).catch(error => console.log('Error en el count ', error.message));
-            let data = await getAllProducts(store_centre_point_mall.id, 0, 50);
+            let data = await getAllProducts(store_centre_point_mall.id, 0, 20);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
             let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
@@ -146,6 +156,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 cartProduct(container_products, data.products);
                 ViewQuantity();
                 ViewWeigths(data);
+
+                const productViews = document.querySelectorAll('.col .card');
+                console.log(productViews);
+
+
+
             }
 
             if (radio_indica.checked && radio_indica.value === 'indica') {
