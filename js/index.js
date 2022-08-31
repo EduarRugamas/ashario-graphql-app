@@ -771,7 +771,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             result.then( response => {
                 console.log(response);
 
-                cartProduct(container_products, response.products)
+                cartProduct(container_products, response.products);
+                ViewQuantity();
+                ViewWeigths(response);
 
             }).catch(error => {
                 console.log('error en el search', error.message);
