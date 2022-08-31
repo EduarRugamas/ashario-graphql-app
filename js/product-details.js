@@ -434,6 +434,7 @@ product.then( (item) => {
     renderProduct(container_product_details, item);
     renderSelectedImages(item.images);
     renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
+    renderBadgeEffects('content_effects', item.effects);
     renderQuantityWeight(item.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
 
     const btn_add_cart = document.getElementById('add-to-cart');
@@ -896,4 +897,13 @@ const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id
 
 
 };
+const renderBadgeEffects = (id_content_effects, effets) => {
+    const div_content_effects = document.getElementById(`${id_content_effects}`);
+
+    effets.forEach( item => {
+        console.log(item);
+    });
+
+
+}
 
