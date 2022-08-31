@@ -338,12 +338,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                 button_search.type='button';
                 button_search.className='btn btn-outline-secondary';
                 button_search.id='btn_search_product';
+                const icon_search = createElementHtml('i');
+                icon_search.className='bx bx-search-alt-2 bx-rotate-90';
 
                 appendElementHtml(div_container_search, input_type_text_search);
                 appendElementHtml(div_container_search, button_search);
+                appendElementHtml(button_search, icon_search);
                 appendElementHtml(filter_search, div_container_search);
 
-
+                //<i class='bx bx-search-alt-2 bx-rotate-90' ></i>
 
 
 
@@ -558,110 +561,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         // }, 400);
 
 });
-
-
-    // const renderProductAll = (container_products, array_products) => {
-    //     container_products.innerHTML = `
-    //
-    //         ${ array_products.map( product =>  `
-    //
-    //          <div class="col">
-    //             <div class="card rounded-0 product-card">
-    //                     <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
-    //                         <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
-    //                     </a>
-    //                 <div class="card-body">
-    //                     <div class="product-info">
-    //                         <a href="product-details.html?id=${product.id}">
-    //                             <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
-    //                             <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
-    //                         </a>
-    //                         <a href="product-details.html?objectID=${product.id}">
-    //                             <h6 class="product-name mb-2 itemname">${product.name}</h6>
-    //                         </a>
-    //                         <div class="d-flex align-items-center">
-    //                             <div class="mb-1 product-price itemprice jcitemprice">
-    //                                 <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-    //                                 <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
-    //                                 <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
-    //                             </div>
-    //                         </div>
-    //                         <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
-    //                             <div class="me-4" id="container_quantity">
-    //                                 <label class="form-label">Quantity</label>
-    //                                 <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
-    //                             </div>
-    //                             <div class="" id="container_weight">
-    //                                 <label class="form-label">weight</label>
-    //                                 <select class="form-select form-select-sm" id="select-weight" id_product="${product.id}"></select>
-    //                             </div>
-    //                         </div>
-    //                         <div class="product-action mt-2" id="content">
-    //                            <div class="d-grid gap-2">
-    //                                 <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
-    //                                 <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
-    //                            </div>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //          </div>
-    //
-    //         `).join('')}
-    //
-    //     `;
-    // };
-
-    // const createProductFilter = (container_products, array_products) => {
-    //     container_products.innerHTML = `
-    //         ${array_products.map( product =>  `
-    //
-    //          <div class="col">
-    //             <div class="card rounded-0 product-card">
-    //                     <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
-    //                         <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
-    //                     </a>
-    //                 <div class="card-body">
-    //                     <div class="product-info">
-    //                         <a href="product-details.html?id=${product.id}">
-    //                             <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
-    //                             <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
-    //                         </a>
-    //                         <a href="product-details.html?objectID=${product.id}">
-    //                             <h6 class="product-name mb-2 itemname">${product.name}</h6>
-    //                         </a>
-    //                         <div class="d-flex align-items-center">
-    //                             <div class="mb-1 product-price itemprice jcitemprice">
-    //                                 <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-    //                                 <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
-    //                                 <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
-    //                             </div>
-    //                         </div>
-    //                         <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
-    //                             <div class="me-4" id="container_quantity">
-    //                                 <label class="form-label">Quantity</label>
-    //                                 <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
-    //                             </div>
-    //                             <div class="" id="container_weight">
-    //                                 <label class="form-label">weight</label>
-    //                                 <select class="form-select form-select-sm" id="select-weight" id_product="${product.id}"></select>
-    //                             </div>
-    //                         </div>
-    //                         <div class="product-action mb-3" id="content">
-    //                            <div class="d-grid gap-2">
-    //                                 <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" ><i class="bx bxs-cart-add"></i>add to cart</a>
-    //                                 <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
-    //                            </div>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //          </div>
-    //
-    //         `).join('')}
-    //
-    //     `;
-    // };
 
     const ViewEmpty = (container_products) => {
         container_products.innerHTML= `
