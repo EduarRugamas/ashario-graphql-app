@@ -47,7 +47,6 @@ let cbd = document.querySelector('#title_slider_cbd');
 let btn_cbd = document.querySelector('#btn-filter-cbd');
 let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 // fin declaraciones de filtros range thc and cbd
-
 //variables de paginacion
 let page_previous = 0;
 let page_next = 0;
@@ -326,6 +325,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                     ViewWeigths(data);
                 });
 
+                // search filter
+                const filter_search = document.getElementById('searchBox');
+                const input_search = createElementHtml('input');
+                input_search.type='search';
+                appendElementHtml(filter_search, input_search);
+
+
 
                 const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
                 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
@@ -355,23 +361,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                         });
                     });
                 });
-
-                // const container_select_quantitys = document.querySelectorAll('#quantity');
-                //
-                // container_select_quantitys.forEach(items => {
-                //     const get_quantity = items.getAttribute('count_quantity');
-                //
-                //     for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
-                //         const options_quantity_select = createElementHtml('option');
-                //         options_quantity_select.value = quantity_select;
-                //         options_quantity_select.text = quantity_select;
-                //         items.appendChild(options_quantity_select);
-                //         appendElementHtml(items, options_quantity_select)
-                //     }
-                //
-                // });
-                // ViewQuantity();
-                // ViewWeigths(data);
 
 
         }).catch(error => {
