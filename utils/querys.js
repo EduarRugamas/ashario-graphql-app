@@ -118,7 +118,7 @@ const get_count_product = async (retailerID) => {
     });
 
     const data = await response.json();
-    return data;
+    return data.data.menu;
 }
 
 const getProduct = async (retailerID, id_product) => {
