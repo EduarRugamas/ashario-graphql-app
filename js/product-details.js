@@ -541,7 +541,7 @@ const renderProduct = (container, informatio_product) => {
     dd_content_straint.textContent=`${informatio_product.strainType}`;
     let div_content_effects = createElementHtml('div');
     div_content_effects.className='d-flex';
-    div_content_effects.style='margin-top: -10px; margin-bottom: 15px;'
+    div_content_effects.style='margin-top: -10px; margin-bottom: 20px;'
     div_content_effects.id='content_effects';
     let h6_description = createElementHtml('h6');
     h6_description.textContent='Description:';
