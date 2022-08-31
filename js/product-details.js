@@ -903,7 +903,7 @@ const renderBadgeEffects = (id_content_effects, effets) => {
     effets.forEach( item => {
         const badge = createElementHtml('span');
         badge.className='badge rounded-pill bg-primary';
-        badge.style='margin: 7px;'
+        badge.style='margin: 6px;'
         badge.textContent=`${item}`;
         appendElementHtml(div_content_effects, badge);
     });
