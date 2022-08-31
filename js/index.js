@@ -5,6 +5,7 @@ import {
     filter_strain_type_lineage,
     filter_thc,
     filter_weights,
+    filter_search_product,
     getAllProducts,
     getRetailersIds,
     get_count_product
@@ -326,7 +327,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 // search filter
-                render_search_products('searchBox');
+                render_search_products(store_centre_point_mall.id, 'searchBox');
                 // const filter_search = document.getElementById('searchBox');
                 // const div_container_search = createElementHtml('div');
                 // div_container_search.className='input-group mb-3';
@@ -744,18 +745,35 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    const render_search_products = (id_container_search) => {
+    const render_search_products = (retailerId, id_container_search) => {
         let search = '';
         const filter_search = document.getElementById(`${id_container_search}`);
 
         search += `
            <div class="input-group mb-3 ms-1 me-1">
-              <input type="text" class="form-control" placeholder="Search for products">
+              <input type="text" class="form-control" placeholder="Search for products" id="input_search_text">
               <button class="btn btn-outline-dark" type="button" id="button_search_products"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
            </div>
         `;
 
         filter_search.innerHTML= search;
+
+        const btn_search = document.getElementById('button_search_products');
+        btn_search.addEventListener('click', () => {
+            let get_text_input_search = document.getElementById('input_search_text').value;
+
+            if (get_text_input_search === "") {
+                console.log('El input esta vacio')
+            }
+
+            const result = filter_search_product(retailerId, get_text_input_search.toString(), 0, 50);
+
+            result.then( response => {
+                console.log(response);
+            }).catch(error => console.log('error en el search', error.message));
+
+        });
+
 
     }
 
