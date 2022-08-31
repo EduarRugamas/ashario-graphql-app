@@ -318,10 +318,10 @@ const filter_cbd = async (retailerID, min, max) => {
 };
 //fin de fetch de filter
 
-const getAllProducts = async (retailerID) => {
+const getAllProducts = async (retailerID, page_previous, page_next) => {
     const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
-            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: 0, limit: 20 }) {
+            menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: ${page_previous}, limit: ${page_next} }) {
                 products {
                     id,
                     name,
@@ -351,7 +351,7 @@ const getAllProducts = async (retailerID) => {
     });
     const data = await response.json();
     return data.data.menu;
-}
+};
 
 const createCheckout = async (retailerId, orderType, pricingType) => {
     const query_create_checkout = `
@@ -388,7 +388,7 @@ const createCheckout = async (retailerId, orderType, pricingType) => {
 
     const result = await response.json();
     return result.data.createCheckout;
-}
+};
 
 async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, option) {
     const query_add_item_cart = `
