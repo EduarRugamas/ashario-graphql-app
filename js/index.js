@@ -773,6 +773,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log(response);
 
                 if (response.products === 0 ){
+                    console.log('sin resultados')
                     ViewEmpty(container_products);
                 }
 
