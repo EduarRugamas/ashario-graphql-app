@@ -327,9 +327,23 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 // search filter
                 const filter_search = document.getElementById('searchBox');
-                const input_search = createElementHtml('input');
-                input_search.type='search';
-                appendElementHtml(filter_search, input_search);
+                const div_container_search = createElementHtml('div');
+                div_container_search.className='input-group mb-3';
+                const input_type_text_search = createElementHtml('input');
+                input_type_text_search.type='text';
+                input_type_text_search.className='form-control';
+                input_type_text_search.placeholder='Search for products';
+                input_type_text_search.id='search_product';
+                const button_search = createElementHtml('button');
+                button_search.type='button';
+                button_search.className='btn btn-outline-secondary';
+                button_search.id='btn_search_product';
+
+                appendElementHtml(div_container_search, input_type_text_search);
+                appendElementHtml(div_container_search, button_search);
+                appendElementHtml(filter_search, div_container_search);
+
+
 
 
 
