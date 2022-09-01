@@ -766,8 +766,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                     console.log(response.products);
                     cartProduct(container_products, response.products);
-                    ViewQuantity();
-                    ViewWeigths(response);
 
 
             }).catch(error => {
