@@ -810,7 +810,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
-
+                const text_price_35 = document.querySelector('.jcpricingnw');
+                text_price_35.textContent=`$${weight_product_variant_35.priceRec}`
 
 
             }else if (get_value_weights === '28g') {
@@ -829,14 +830,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 let weight_product_variant_7 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 7g', weight_product_variant_7);
-                text_price_product.forEach(price_text => {
-                    price_text.textContent=`$${weight_product_variant_7.priceRec}`;
-                });
 
             }else if (get_value_weights === '14g') {
                 let weight_product_variant_14 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 14g', weight_product_variant_14);
-                
+
             }
 
 
