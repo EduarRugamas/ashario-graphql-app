@@ -793,15 +793,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         container_select_weights.forEach( item => {
             const get_product_weight = item.getAttribute('product_id');
             let weight_product_filter = array_products.products.find(item => item.id === get_product_weight);
-            weight_product_filter.variants.forEach( variante => {
-                for (let i of variante.option){
-                    console.log(i);
-                    const option_weigths = createElementHtml('option');
-                    option_weigths.value = i.option;
-                    option_weigths.text = i.option;
-                    appendElementHtml(variante, option_weigths);
-                }
-            });
+            for (let i of weight_product_filter.variants){
+                console.log(i);
+                const option_weights = createElementHtml('option');
+                option_weights.value = i.option;
+                option_weights.text = i.option;
+                appendElementHtml(item, option_weights);
+            }
 
         });
 
