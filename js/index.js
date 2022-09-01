@@ -800,8 +800,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 option_weights.text = i.option;
                 appendElementHtml(item, option_weights);
             }
-
         });
+
+        let get_value_weights = container_select_weights.value;
+        console.log(get_value_weights);
+
+
 
 
 
