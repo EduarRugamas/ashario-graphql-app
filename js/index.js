@@ -574,8 +574,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-items-center">
                                 <div class="mb-1 product-price itemprice jcitemprice">
                                     <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-                                    <span class="fs-5 jcpricingnw">$ ${product.variants[0].priceRec}</span>
-                                    <span class="er-each jceachformat" style="align-items: flex-end;">/${product.variants[0].option}</span>
+                                    <span class="fs-5 jcpricingnw"></span>
+                                    <span class="er-each jceachformat" style="align-items: flex-end;"></span>
                                 </div>
                             </div>
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
@@ -812,21 +812,21 @@ window.addEventListener('DOMContentLoaded', async () => {
             }else if (get_value_weights === '28g') {
 
                 let weight_product_variant_28 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 3.5g', weight_product_variant_28);
+                console.log('encontre variante 28g', weight_product_variant_28);
 
             }else if (get_value_weights === '1g') {
 
                 let weight_product_variant_1 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 3.5g', weight_product_variant_1);
+                console.log('encontre variante 1g', weight_product_variant_1);
 
             }else if (get_value_weights === '7g') {
 
                 let weight_product_variant_7 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 3.5g', weight_product_variant_7);
+                console.log('encontre variante 7g', weight_product_variant_7);
 
             }else if (get_value_weights === '14g') {
                 let weight_product_variant_14 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 3.5g', weight_product_variant_14);
+                console.log('encontre variante 14g', weight_product_variant_14);
             }
 
 
