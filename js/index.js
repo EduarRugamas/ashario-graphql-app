@@ -810,17 +810,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
-                const text_price_35 = document.querySelectorAll('.jcpricingnw');
-                text_price_35.forEach(item => {
-                    item.textContent=`$${weight_product_variant_35.priceRec}`
-                })
-
 
             }else if (get_value_weights === '28g') {
 
                 let weight_product_variant_28 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 28g', weight_product_variant_28);
-
 
             }else if (get_value_weights === '1g') {
 
@@ -838,7 +832,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log('encontre variante 14g', weight_product_variant_14);
 
             }
-
+            text_price_product.forEach(item => {
+                if (get_value_weights === '3.5g') {
+                    let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
+                    console.log('encontre variante 3.5g', weight_product_variant_35);
+                    item.textContent=`$${weight_product_variant_35.priceRec}`;
+                }
+            });
 
 
         });
