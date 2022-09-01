@@ -783,25 +783,25 @@ window.addEventListener('DOMContentLoaded', async () => {
             ViewWeigths(array_all_products);
         });
         const input_search = document.getElementById('input_search_text');
-        input_search.addEventListener('keyup', (event) => {
-            console.log(input_search.value);
-            const result = filter_search_product(retailerId, input_search.value.toString(), 0, 50);
-            result.then( response => {
-                if (response.products.length === 0 ){
-                    console.log('sin resultados');
-                    ViewEmpty(container_products);
-                }else {
-                    console.log(response);
-                    cartProduct(container_products, response.products);
-                    ViewQuantity();
-                    ViewWeigths(response);
-                }
-
-            }).catch(error => {
-                console.log('error en el search', error.message);
-                ViewEmpty(container_products);
-            });
-        });
+        // input_search.addEventListener('keyup', (event) => {
+        //     console.log(input_search.value);
+        //     const result = filter_search_product(retailerId, input_search.value.toString(), 0, 50);
+        //     result.then( response => {
+        //         if (response.products.length === 0 ){
+        //             console.log('sin resultados');
+        //             ViewEmpty(container_products);
+        //         }else {
+        //             console.log(response);
+        //             cartProduct(container_products, response.products);
+        //             ViewQuantity();
+        //             ViewWeigths(response);
+        //         }
+        //
+        //     }).catch(error => {
+        //         console.log('error en el search', error.message);
+        //         ViewEmpty(container_products);
+        //     });
+        // });
 
 
 
