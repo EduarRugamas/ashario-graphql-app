@@ -771,7 +771,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
             }).catch(error => {
-                console.log('error en el search', error.message);
+                console.log('error en el search', error);
                 ViewEmpty(container_products);
             });
 
