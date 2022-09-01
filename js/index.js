@@ -805,7 +805,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(get_value_weights);
 
             if (get_value_weights === '3.5g') {
-                let weight_product_variant_35 = array_products.products.find(item => item.variants.option === get_value_weights);
+                let weight_product_variant_35 = array_products.products.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
             }
 
