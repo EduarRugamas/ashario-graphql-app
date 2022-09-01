@@ -811,7 +811,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
                 text_price_product.forEach(price_text => {
-                    price_text.textContent=`${weight_product_variant_35.priceRec}`;
+                    price_text.textContent=`$${weight_product_variant_35.priceRec}`;
                 });
 
 
@@ -820,7 +820,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let weight_product_variant_28 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 28g', weight_product_variant_28);
                 text_price_product.forEach(price_text => {
-                    price_text.textContent=`${weight_product_variant_28.priceRec}`;
+                    price_text.textContent=`$${weight_product_variant_28.priceRec}`;
                 });
 
             }else if (get_value_weights === '1g') {
@@ -828,7 +828,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let weight_product_variant_1 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 1g', weight_product_variant_1);
                 text_price_product.forEach(price_text => {
-                    price_text.textContent=`${weight_product_variant_1.priceRec}`;
+                    price_text.textContent=`$${weight_product_variant_1.priceRec}`;
                 });
 
             }else if (get_value_weights === '7g') {
@@ -836,14 +836,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let weight_product_variant_7 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 7g', weight_product_variant_7);
                 text_price_product.forEach(price_text => {
-                    price_text.textContent=`${weight_product_variant_7.priceRec}`;
+                    price_text.textContent=`$${weight_product_variant_7.priceRec}`;
                 });
 
             }else if (get_value_weights === '14g') {
                 let weight_product_variant_14 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 14g', weight_product_variant_14);
                 text_price_product.forEach(price_text => {
-                    price_text.textContent=`${weight_product_variant_14.priceRec}`;
+                    price_text.textContent=`$${weight_product_variant_14.priceRec}`;
                 });
             }
 
