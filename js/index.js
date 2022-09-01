@@ -789,6 +789,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     const render_quantity_weights = (array_products) => {
         const container_select_quantitys = document.querySelectorAll('#quantity');
         const container_select_weights = document.querySelectorAll('#select-weight');
+        const text_price_product = document.querySelectorAll('.jcpricingnw');
+        const text_format_weight = document.querySelectorAll('.jceachformat');
 
         container_select_weights.forEach( item => {
             const get_product_weight = item.getAttribute('product_id');
@@ -808,25 +810,41 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
+                text_price_product.forEach(price_text => {
+                    price_text.textContent=`${weight_product_variant_35.priceRec}`;
+                });
+
 
             }else if (get_value_weights === '28g') {
 
                 let weight_product_variant_28 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 28g', weight_product_variant_28);
+                text_price_product.forEach(price_text => {
+                    price_text.textContent=`${weight_product_variant_28.priceRec}`;
+                });
 
             }else if (get_value_weights === '1g') {
 
                 let weight_product_variant_1 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 1g', weight_product_variant_1);
+                text_price_product.forEach(price_text => {
+                    price_text.textContent=`${weight_product_variant_1.priceRec}`;
+                });
 
             }else if (get_value_weights === '7g') {
 
                 let weight_product_variant_7 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 7g', weight_product_variant_7);
+                text_price_product.forEach(price_text => {
+                    price_text.textContent=`${weight_product_variant_7.priceRec}`;
+                });
 
             }else if (get_value_weights === '14g') {
                 let weight_product_variant_14 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 14g', weight_product_variant_14);
+                text_price_product.forEach(price_text => {
+                    price_text.textContent=`${weight_product_variant_14.priceRec}`;
+                });
             }
 
 
