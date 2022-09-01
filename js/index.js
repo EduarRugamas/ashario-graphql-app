@@ -805,8 +805,28 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(get_value_weights);
 
             if (get_value_weights === '3.5g') {
+
                 let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
+
+            }else if (get_value_weights === '28g') {
+
+                let weight_product_variant_28 = weight_product_filter.variants.find(item => item.option === get_value_weights);
+                console.log('encontre variante 3.5g', weight_product_variant_28);
+
+            }else if (get_value_weights === '1g') {
+
+                let weight_product_variant_1 = weight_product_filter.variants.find(item => item.option === get_value_weights);
+                console.log('encontre variante 3.5g', weight_product_variant_1);
+
+            }else if (get_value_weights === '7g') {
+
+                let weight_product_variant_7 = weight_product_filter.variants.find(item => item.option === get_value_weights);
+                console.log('encontre variante 3.5g', weight_product_variant_7);
+
+            }else if (get_value_weights === '14g') {
+                let weight_product_variant_14 = weight_product_filter.variants.find(item => item.option === get_value_weights);
+                console.log('encontre variante 3.5g', weight_product_variant_14);
             }
 
 
