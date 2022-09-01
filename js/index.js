@@ -609,7 +609,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const get_product_id = items.getAttribute('product_id');
 
             let quantity_product = array_products.products.find(item => item.id === get_product_id);
-            console.log('encontre el product',quantity_product)
+            console.log('encontre el product', quantity_product.variants.quantity)
 
 
             for (let quantity_select = 1; quantity_select <= quantity_product.variants.quantity; quantity_select++) {
