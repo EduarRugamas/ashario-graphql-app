@@ -10,7 +10,7 @@ import {
     getRetailersIds,
     get_count_product
 } from '../utils/querys.js';
-import {FadeOut} from '../utils/utils.js'
+import {FadeOut, FadeIn} from '../utils/utils.js'
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 
 // contenedor principal de productos
@@ -791,7 +791,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                     ViewEmpty(container_products);
                 }else {
                     console.log(response);
+                    FadeIn(div_loader);
                     cartProduct(container_products, response.products);
+                    FadeOut(div_loader);
                 }
 
             }).catch(error => {
