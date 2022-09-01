@@ -56,16 +56,6 @@ let page_next = 20;
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-    let observador = new IntersectionObserver((entradas, observador)=> {
-            console.log(entradas);
-    }, {
-        rootMargin: '0px 0px 0px 0px',
-        threshold: 1.0
-    });
-
-
-
-
         await getRetailersIds().then( async result => {
 
             result.find(item => {
@@ -133,7 +123,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             let countProducts = get_count_product(store_centre_point_mall.id);
             countProducts.then(response => {console.log(response);} ).catch(error => console.log('Error en el count ', error.message));
-            let data = await getAllProducts(store_centre_point_mall.id, 0, 20);
+            let data = await getAllProducts(store_centre_point_mall.id, page_previous, page_next);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
             let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
@@ -154,15 +144,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
-                ViewQuantity();
                 ViewWeigths(data);
+                ViewQuantity(data);
 
-                const productViews = document.querySelectorAll('.col .card');
-                console.log(productViews);
-                let ultimo_producto = productViews[productViews.length - 1];
-                console.log(ultimo_producto);
-
-                observador.observe(ultimo_producto);
 
             }
 
@@ -346,29 +330,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 // search filter
                 render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data);
-                // const filter_search = document.getElementById('searchBox');
-                // const div_container_search = createElementHtml('div');
-                // div_container_search.className='input-group mb-3';
-                // const input_type_text_search = createElementHtml('input');
-                // input_type_text_search.type='text';
-                // input_type_text_search.className='form-control';
-                // input_type_text_search.placeholder='Search for products';
-                // input_type_text_search.id='search_product';
-                // const button_search = createElementHtml('button');
-                // button_search.type='button';
-                // button_search.className='btn btn-outline-dark';
-                // button_search.id='btn_search_product';
-                // const icon_search = createElementHtml('i');
-                // icon_search.className='bx bx-search-alt-2 bx-rotate-90';
-                //
-                // appendElementHtml(div_container_search, input_type_text_search);
-                // appendElementHtml(div_container_search, button_search);
-                // appendElementHtml(button_search, icon_search);
-                // appendElementHtml(filter_search, div_container_search);
-
-                //<i class='bx bx-search-alt-2 bx-rotate-90' ></i>
-
-
 
                 const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
                 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
@@ -619,7 +580,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" count_quantity="${product.variants[0].quantity}"></select>
+                                    <select class="form-select form-select-sm" id="quantity" product_id="${product.id}"></select>
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
@@ -641,18 +602,26 @@ window.addEventListener('DOMContentLoaded', async () => {
         ).join('')}`;
     };
 
-    function ViewQuantity () {
+    function ViewQuantity (array_products) {
         const container_select_quantitys = document.querySelectorAll('#quantity');
 
         container_select_quantitys.forEach(items => {
-            const get_quantity = items.getAttribute('count_quantity');
+            const get_product_id = items.getAttribute('product_id');
 
-            for (let quantity_select = 1; quantity_select <= get_quantity; quantity_select++) {
+            let quantity_product = array_products.products.find(item => item.id === get_product_id);
+            console.log(quantity_product)
+
+
+            for (let quantity_select = 1; quantity_select <= quantity_product.variants.quantity; quantity_select++) {
                 const options_quantity_select = createElementHtml('option');
                 options_quantity_select.value = quantity_select;
                 options_quantity_select.text = quantity_select;
-                appendElementHtml(items, options_quantity_select)
+                appendElementHtml(items, options_quantity_select);
             }
+
+            items.addEventListener('change', () => {
+
+            });
 
         });
 
