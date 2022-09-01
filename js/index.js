@@ -144,8 +144,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
-                ViewWeigths(data);
-                ViewQuantity(data);
+                // ViewWeigths(data);
+                // ViewQuantity(data);
+                render_quantity_weights(data);
 
 
             }
@@ -609,8 +610,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             const get_product_id = items.getAttribute('product_id');
 
             let quantity_product = array_products.products.find(item => item.id === get_product_id);
-            console.log('encontre el product', quantity_product.variants.quantity)
-
             quantity_product.variants.forEach( item => {
                 console.log(item);
             })
@@ -783,6 +782,38 @@ window.addEventListener('DOMContentLoaded', async () => {
             ViewQuantity();
             ViewWeigths(array_all_products);
         });
+
+
+    };
+
+    const render_quantity_weights = (array_products) => {
+        const container_select_quantitys = document.querySelectorAll('#quantity');
+        const container_select_weights = document.querySelectorAll('#select-weight');
+
+        container_select_weights.forEach( item => {
+            const get_product_weight = item.getAttribute('product_id');
+            let weight_product_filter = array_products.products.find(item => item.id === get_product_weight);
+            weight_product_filter.variants.forEach( variante => {
+                for (let i of variante.option){
+                    console.log(i);
+                    const option_weigths = createElementHtml('option');
+                    option_weigths.value = i.option;
+                    option_weigths.text = i.option;
+                    appendElementHtml(variante, option_weigths);
+                }
+            });
+
+        });
+
+
+
+
+        // container_select_quantitys.forEach(item => {
+        //     const get_product_quantity = item.getAttribute('product_id');
+        //     let quantity_product = array_products.products.find(item => item.id === get_product_quantity);
+        //     console.log(quantity_product);
+        // });
+
 
 
     };
