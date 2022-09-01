@@ -764,7 +764,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     ViewEmpty(container_products);
                 }
 
-                    console.log(response);
+                    console.log(response.products);
                     cartProduct(container_products, response.products);
                     ViewQuantity();
                     ViewWeigths(response);
