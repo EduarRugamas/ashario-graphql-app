@@ -783,8 +783,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             ViewWeigths(array_all_products);
         });
         const input_search = document.getElementById('input_search_text');
-        input_search.addEventListener('keyup', (event) => {
-            console.log(event.value);
+        input_search.addEventListener('keyup', event => {
+            console.log(input_search.value);
         });
 
 
