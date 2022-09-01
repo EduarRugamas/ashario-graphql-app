@@ -762,12 +762,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 if (response.products.length === 0 ){
                     console.log('sin resultados');
                     ViewEmpty(container_products);
-                }else {
+                }
+
                     console.log(response);
                     cartProduct(container_products, response.products);
                     ViewQuantity();
                     ViewWeigths(response);
-                }
+
 
             }).catch(error => {
                 console.log('error en el search', error.message);
