@@ -572,7 +572,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                                 <h6 class="product-name mb-2 itemname">${product.name}</h6>
                             </a>
                             <div class="d-flex align-items-center content_item_price">
-                                
+                                <div class="mb-1 product-price itemprice jcitemprice">
+                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+                                    <span class="fs-5 jcpricingnw"></span>
+                                    <span class="er-each jceachformat" style="align-items: flex-end;"></span>
+                                </div>
                             </div>
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
@@ -742,7 +746,7 @@ window.addEventListener('DOMContentLoaded', async () => {
            </div>
         `;
 
-        filter_search.innerHTML= search;
+        filter_search.innerHTML = search;
 
         const btn_search = document.getElementById('button_search_products');
         btn_search.addEventListener('click', () => {
@@ -778,6 +782,12 @@ window.addEventListener('DOMContentLoaded', async () => {
             ViewQuantity();
             ViewWeigths(array_all_products);
         });
+        const input_search = document.getElementById('input_search_text');
+        input_search.addEventListener('keyup', (event) => {
+            console.log(event.value);
+        });
+
+
 
 
     };
@@ -785,7 +795,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const render_quantity_weights = (array_products) => {
         const container_select_quantitys = document.querySelectorAll('#quantity');
         const container_select_weights = document.querySelectorAll('#select-weight');
-        const container_div_item_price = document.querySelectorAll('.content_item_price');
+
 
         container_select_weights.forEach( item => {
             const get_product_weight = item.getAttribute('product_id');
@@ -800,7 +810,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             const get_value_weights = item.value;
             console.log(get_value_weights);
-            
+
             // <span className="fs-5 jcpricingnw"></span>
             // <span className="er-each jceachformat" style="align-items: flex-end;"></span>
 
@@ -808,11 +818,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
-                view_item_price(container_div_item_price);
-                const text_price = document.getElementsByClassName('jcpricingnw');
-                text_price.textContent='hola';
-
-
 
             }else if (get_value_weights === '28g') {
 
