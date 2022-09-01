@@ -802,7 +802,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        let get_value_weights = container_select_weights.value;
+        const get_value_weights = document.querySelectorAll('#select-weight').value;
         console.log(get_value_weights);
 
 
