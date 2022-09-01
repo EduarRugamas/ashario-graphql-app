@@ -611,6 +611,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             let quantity_product = array_products.products.find(item => item.id === get_product_id);
             console.log('encontre el product', quantity_product.variants.quantity)
 
+            quantity_product.variants.forEach( item => {
+                console.log(item);
+            })
 
             for (let quantity_select = 1; quantity_select <= quantity_product.variants.quantity; quantity_select++) {
                 const options_quantity_select = createElementHtml('option');
