@@ -282,3 +282,6 @@ background-color: #FFF !important;
     overflow: hidden;
 }
 
+#container_carrousel_imgs{
+    min-height:300px
+}
