@@ -7,7 +7,7 @@ const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Cen
 const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
-const container_products_carrousel = document.querySelector('.carousel__lista');
+const container_products_carrousel = document.querySelector('.product-card');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
 
@@ -442,16 +442,50 @@ get_carrousel.then( response => {
 
 
     render_carousel(container_products_carrousel, response.products);
-    new Glider(container_products_carrousel, {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        draggable: true,
-        arrows: {
-            prev: '.carousel__anterior',
-            next: '.carousel__siguiente'
-        }
-    })
+    if ($('.similar-products').length) {
+        let viewedSlider = $('.similar-products');
 
+        viewedSlider.owlCarousel(
+            {
+                loop: true,
+                margin: 30,
+                autoplay: true,
+                autoplayTimeout: 6000,
+                nav: false,
+                dots: false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    576:{
+                        items:2
+                    },
+                    768:{
+                        items:3
+                    },
+                    1366:{
+                        items:4
+                    },
+                    1400:{
+                        items:5
+                    }
+                },
+            });
+
+        if ($('.owl_prev_item').length) {
+            let prev = $('.owl_prev_item');
+            prev.on('click', function () {
+                viewedSlider.trigger('prev.owl.carousel');
+            });
+        }
+
+        if ($('.owl_next_item').length) {
+            let next = $('.owl_next_item');
+            next.on('click', function () {
+                viewedSlider.trigger('next.owl.carousel');
+            });
+        }
+    }
 
 }).catch(error => console.log(error));
 
@@ -828,21 +862,36 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+= `
-            
-        <div class="card">
-            <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}"
-             class="card-img-top" alt="${item.name}" id="img_carousel">
-            <div class="card-body">
-                <h5 class="card-title">${item.name}</h5>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Product details</small>
-            </div>
-        </div>
+           
+            <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
+                <div class="card-body">
+                    <div class="product-info">
+                        <a href="/views/product-details.html?id=${product.id}">
+                            <p class="product-catergory font-13 mb-1">${item.brand.name}</p>
+                        </a>
+                        <a href="/views/product-details.html?id=${product.id}">
+                            <h6 class="product-name mb-2">${item.name}</h6>
+                        </a>
+                        <div class="product-action mt-2">
+                            <div class="d-grid gap-2">
+                                <a  class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> 
+                                <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm text-uppercase">Product details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         `;
     });
 
+    // justo debajo de item.name etiqueta <a></a>
+    // <div className="d-flex align-items-center">
+    //     <div className="mb-1 product-price"><span className="me-1 text-decoration-line-through">$99.00</span>
+    //         <span className="fs-5">$49.00</span>
+    //     </div>
+    //     <div className="cursor-pointer ms-auto"><span>5.0</span> <i className="bx bxs-star text-white"></i>
+    //     </div>
+    // </div>
     // <div className="card">
     //     <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}"
     //          className="card-img-top" alt="${item.name}" id="img_carousel">
@@ -858,3 +907,36 @@ const render_carousel = (container, array_products) => {
 
 }
 
+<div className="card-header bg-transparent border-bottom-0">
+    <div className="d-flex align-items-center justify-content-end">
+        <a href="javascript:;">
+            <div className="product-wishlist"><i className='bx bx-heart'></i>
+            </div>
+        </a>
+    </div>
+</div>
+<img src="assets/images/similar-products/01.png" className="card-img-top" alt="...">
+    <div className="card-body">
+        <div className="product-info">
+            <a href="javascript:;">
+                <p className="product-catergory font-13 mb-1">Catergory Name</p>
+            </a>
+            <a href="javascript:;">
+                <h6 className="product-name mb-2">Product Short Name</h6>
+            </a>
+            <div className="d-flex align-items-center">
+                <div className="mb-1 product-price"><span className="me-1 text-decoration-line-through">$99.00</span>
+                    <span className="fs-5">$49.00</span>
+                </div>
+                <div className="cursor-pointer ms-auto"><span>5.0</span> <i className="bx bxs-star text-white"></i>
+                </div>
+            </div>
+            <div className="product-action mt-2">
+                <div className="d-grid gap-2">
+                    <a href="javascript:;" className="btn btn-dark btn-ecomm"> <i className='bx bxs-cart-add'></i>Add to
+                        Cart</a> <a href="javascript:;" className="btn btn-light btn-ecomm"><i
+                    className='bx bx-zoom-in'></i>Quick View</a>
+                </div>
+            </div>
+        </div>
+    </div>
