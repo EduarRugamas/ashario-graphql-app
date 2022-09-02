@@ -21,7 +21,7 @@
     <link href="../assets/css/icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/card-views.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.css">
 
 
     <title>ASHARIO</title>
@@ -64,11 +64,9 @@
             </section>
             <!-- end breadcrumb -->
             <div id="product-details"></div>
-            <div class="container-swiper">
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-container">
-                    <div class="switcher-wrapper"></div>
+            <div class="carousel_custom">
+                <div class="carousel__contenedor">
+                    <button aria-label="Anterior" class="carousel__anterior"><i class="fa-solid fa-chevron-left"></i></button>
                 </div>
             </div>
         </div>
@@ -81,6 +79,8 @@
     <!--End Back To Top Button-->
 </div>
 <!--end wrapper-->
+
+<script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
 
 <!-- Bootstrap JS -->
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
@@ -100,9 +100,6 @@
 <!--app JS-->
 <script src="../assets/js/app.js"></script>
 <script src="../js/product-details.js" type="module"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </body>
 
