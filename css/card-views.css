@@ -235,6 +235,12 @@ background-color: #FFF !important;
     opacity: 1 !important;
 }
 
+.content-ca {
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
 .carousel__contenedor {
     position: relative;
 }
@@ -254,6 +260,10 @@ background-color: #FFF !important;
     opacity: 20%;
 }
 
+.carousel__anterior:hover, .carousel__siguiente:hover {
+    opacity: 100%;
+}
+
 .carousel__anterior {
     left: -30px;
 }
@@ -261,3 +271,8 @@ background-color: #FFF !important;
 .carousel__siguiente {
     right: -30px;
 }
+
+.carousel__lista {
+    overflow: hidden;
+}
+
