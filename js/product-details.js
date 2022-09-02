@@ -472,10 +472,11 @@ get_carrousel.then( response => {
                 },
             });
 
+        const nav_carousel = document.getElementsByClassName('owl-nav');
+        nav_carousel.style='display: none;'
     }
 
-    const nav_carousel = document.getElementsByClassName('owl-nav');
-    nav_carousel.style='display: none;'
+
 
 }).catch(error => console.log(error));
 
