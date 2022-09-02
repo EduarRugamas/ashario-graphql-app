@@ -435,6 +435,7 @@ product.then( (item) => {
 
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
+    render_carousel(container_products_carrousel, get_carrousel);
 
 }).catch(error => {
     console.log('Error en product details --> ', error.message)
