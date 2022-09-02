@@ -488,7 +488,7 @@ const renderProduct = (container, informatio_product) => {
                                                 <dt class="col-sm-3">Product id</dt>
                                                 <dd class="col-sm-9"># ${informatio_product.id}</dd>
                                                 <dt class="col-sm-3">Stant</dt>
-                                                <dd class="col-sm-9">${informatio_product.strainType}</dd>
+                                                <dd class="col-sm-9 bg-badge-strant">${informatio_product.strainType}</dd>
                                             </dl>
                                             <div class="d-flex" id="content_effects" style="margin-top: -10px; margin-bottom: 20px;"></div>
                                             <h6>Description:</h6>
@@ -762,7 +762,7 @@ const renderBadgeEffects = (id_content_effects, effets) => {
 
     effets.forEach( item => {
         const badge = createElementHtml('span');
-        badge.className='badge rounded-pill bg-primary';
+        badge.className='badge rounded-pill bg-badge-effects';
         badge.style='padding: 10px; margin-right: 5px;';
         badge.textContent=`${item}`;
         appendElementHtml(div_content_effects, badge);

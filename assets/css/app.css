@@ -965,6 +965,14 @@ ul.categories-list li {
 	background: #852778;
 }
 
+.bg-badge-strant {
+	background: #004AAD;
+}
+.bg-badge-effects {
+	background: #808080;
+}
+/*color effects #808080*/
+
 .bg-color-brand-subtype {
 	background: rgb(255 255 255 / 55%)!important;
 }
