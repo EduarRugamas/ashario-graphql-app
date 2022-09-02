@@ -297,3 +297,20 @@ background-color: #FFF !important;
 /*    font-weight: 900;*/
 /*    content: "\f336";*/
 /*}*/
+
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#jcaccord-filters input[type=radio] + label {
+    color: #ccc !important;
+    font-style: italic !important;
+}
+
+#jcaccord-filters input[type=radio]:checked + label {
+    color: #f00 !important;
+    font-style: normal;
+}
