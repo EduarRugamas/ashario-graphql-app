@@ -443,16 +443,19 @@ get_carrousel.then( response => {
 
     response.products.forEach( item => {
         items_carousel+= `
+            <div class="swiper-slide">
                 <div class="card">
                     <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}" id="img_carousel">
                     <div class="card-body">
-                      <h5 class="card-title">${item.name}</h5>
-                      <p class="card-text">${item.description}</p>
+                        <h5 class="card-title">${item.name}</h5>
+                        <p class="card-text">${item.description}</p>
                     </div>
                     <div class="card-footer">
-                      <small class="text-muted">Product details</small>
+                        <small class="text-muted">Product details</small>
                     </div>
                 </div>
+            </div>
+                
         `;
     });
 
