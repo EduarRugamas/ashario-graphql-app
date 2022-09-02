@@ -761,12 +761,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             result.then( response => {
                 if (response.products.length === 0 ){
                     console.log('sin resultados');
-                    FadeIn(div_loader);
-
+                    ViewEmpty(container_products);
                 }
                 console.log(response.products);
                 cartProduct(container_products, response.products);
-                FadeOut(div_loader);
+
 
 
             }).catch(error => {
@@ -789,13 +788,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             result.then( response => {
                 if (response.products.length === 0 ){
                     console.log('sin resultados');
-                    FadeIn(div_loader);
                     ViewEmpty(container_products);
                 }
-                    console.log(response);
-                    FadeIn(div_loader);
-                    cartProduct(container_products, response.products);
-                    FadeOut(div_loader);
+                console.log(response);
+                cartProduct(container_products, response.products);
+
 
 
             }).catch(error => {
