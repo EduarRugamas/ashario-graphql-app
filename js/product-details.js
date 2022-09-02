@@ -861,8 +861,7 @@ const render_carousel = (container, array_products) => {
     let items_carousel = '';
 
     array_products.forEach( item => {
-        items_carousel+= `
-           
+        items_carousel+=`
             <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
                 <div class="card-body">
                     <div class="product-info">
@@ -907,36 +906,36 @@ const render_carousel = (container, array_products) => {
 
 }
 
-<div className="card-header bg-transparent border-bottom-0">
-    <div className="d-flex align-items-center justify-content-end">
-        <a href="javascript:;">
-            <div className="product-wishlist"><i className='bx bx-heart'></i>
-            </div>
-        </a>
-    </div>
-</div>
-<img src="assets/images/similar-products/01.png" className="card-img-top" alt="...">
-    <div className="card-body">
-        <div className="product-info">
-            <a href="javascript:;">
-                <p className="product-catergory font-13 mb-1">Catergory Name</p>
-            </a>
-            <a href="javascript:;">
-                <h6 className="product-name mb-2">Product Short Name</h6>
-            </a>
-            <div className="d-flex align-items-center">
-                <div className="mb-1 product-price"><span className="me-1 text-decoration-line-through">$99.00</span>
-                    <span className="fs-5">$49.00</span>
-                </div>
-                <div className="cursor-pointer ms-auto"><span>5.0</span> <i className="bx bxs-star text-white"></i>
-                </div>
-            </div>
-            <div className="product-action mt-2">
-                <div className="d-grid gap-2">
-                    <a href="javascript:;" className="btn btn-dark btn-ecomm"> <i className='bx bxs-cart-add'></i>Add to
-                        Cart</a> <a href="javascript:;" className="btn btn-light btn-ecomm"><i
-                    className='bx bx-zoom-in'></i>Quick View</a>
-                </div>
-            </div>
-        </div>
-    </div>
+// <div className="card-header bg-transparent border-bottom-0">
+//     <div className="d-flex align-items-center justify-content-end">
+//         <a href="javascript:;">
+//             <div className="product-wishlist"><i className='bx bx-heart'></i>
+//             </div>
+//         </a>
+//     </div>
+// </div>
+// <img src="assets/images/similar-products/01.png" className="card-img-top" alt="...">
+//     <div className="card-body">
+//         <div className="product-info">
+//             <a href="javascript:;">
+//                 <p className="product-catergory font-13 mb-1">Catergory Name</p>
+//             </a>
+//             <a href="javascript:;">
+//                 <h6 className="product-name mb-2">Product Short Name</h6>
+//             </a>
+//             <div className="d-flex align-items-center">
+//                 <div className="mb-1 product-price"><span className="me-1 text-decoration-line-through">$99.00</span>
+//                     <span className="fs-5">$49.00</span>
+//                 </div>
+//                 <div className="cursor-pointer ms-auto"><span>5.0</span> <i className="bx bxs-star text-white"></i>
+//                 </div>
+//             </div>
+//             <div className="product-action mt-2">
+//                 <div className="d-grid gap-2">
+//                     <a href="javascript:;" className="btn btn-dark btn-ecomm"> <i className='bx bxs-cart-add'></i>Add to
+//                         Cart</a> <a href="javascript:;" className="btn btn-light btn-ecomm"><i
+//                     className='bx bx-zoom-in'></i>Quick View</a>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
