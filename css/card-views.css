@@ -235,46 +235,29 @@ background-color: #FFF !important;
     opacity: 1 !important;
 }
 
-.container-swiper {
-    width: 90%;
-    padding: 10px 40px;
+.carousel__contenedor {
+    position: relative;
 }
 
-.container-swiper .swiper-container {
-    width: 100%;
-    height: 100%;
-}
-
-.container-swiper .swiper-slide {
-    text-align: start;
-    font-size: 14px;
-    background: #FFFFFF;
-    border-radius: 15px;
-
-    /*display: -webkit-box;*/
-    /*display: -ms-flexbox;*/
-    /*display: -webkit-flex;*/
-    /*display: flex;*/
-    /*-webkit-box-pack: center;*/
-    /*-ms-flex-pack: center;*/
-    /*-webkit-justify-content: center;*/
-    /*justify-content: center;*/
-    /*-webkit-box-align: center;*/
-    /*-ms-flex-align: center;*/
-    /*-webkit-align-items: center;*/
-    /*align-items: center;*/
-}
-
-.swiper-slide #img_carousel {
+.carousel__anterior, .carousel__siguiente {
+    position: absolute;
     display: block;
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    border: none;
+    top: calc(50% - 35%);
+    cursor: pointer;
+    line-height: 30px;
+    text-align: center;
+    background: none;
+    color: #FFFFFF;
+    opacity: 20%;
 }
 
-.swiper-button-next {
-    right: 26px !important;
+.carousel__anterior {
+    left: -30px;
 }
-.swiper-button-prev {
-    left: 26px !important;
+
+.carousel__siguiente {
+    right: -30px;
 }
