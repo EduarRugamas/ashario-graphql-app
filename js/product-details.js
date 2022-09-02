@@ -442,6 +442,14 @@ get_carrousel.then( response => {
 
 
     render_carousel(container_products_carrousel, response.products);
+    new Glider(container_products_carrousel, {
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows: {
+            prev: '.carousel__anterior',
+            next: '.carousel__siguiente'
+        }
+    })
 
 
 }).catch(error => console.log(error));
