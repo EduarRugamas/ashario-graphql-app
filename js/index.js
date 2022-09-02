@@ -884,7 +884,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         </div>
             
         `
-    }
+    };
 
 
 
