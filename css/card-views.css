@@ -289,7 +289,7 @@ background-color: #FFF !important;
 }
 
 .sweetAlertbtn {
-    width: 85px;
+    width: 85px !important;
 }
 
 /*.bg-badge-effects::before {*/
