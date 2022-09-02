@@ -888,9 +888,15 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                    imageHeight: 300,
                    imageAlt: `${card_view_product.product.name}`,
                });
+
+               if (result.data.addItem === null ) {
+                   const error = result.errors;
+                   console.log(error);
+               }
+
+
            }).catch(error => {
-                console.log(error);
-                console.log('Error al agregar al carrito --> ', error);
+                console.log('Error al agregar al carrito --> ', error.message);
                 // Swal.fire({
                 //     icon: 'error',
                 //     text: `${results.message}`,
