@@ -50,10 +50,10 @@
     padding-top: 5px;
 }
 
-.product-grid .card img{
-height: 250px;
-object-fit: cover;
-max-width: 80%;
+.product-grid .card img {
+    /*height: 250px;*/
+    object-fit: cover;
+    max-width: 80%;
 }
 .product-grid .card #container_carrousel_imgs{
 text-align: center;
