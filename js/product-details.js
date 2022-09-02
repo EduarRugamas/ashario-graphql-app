@@ -487,8 +487,10 @@ const renderProduct = (container, informatio_product) => {
                                             <dl class="row mt-3" id="container-details-dl">
                                                 <dt class="col-sm-3">Product id</dt>
                                                 <dd class="col-sm-9"># ${informatio_product.id}</dd>
+                                                <dt class="col-sm-3">Stant</dt>
+                                                <dd class="col-sm-9">${informatio_product.strainType}</dd>
                                             </dl>
-                                            <div class="d-flex" id="content_efects"></div>
+                                            <div class="d-flex" id="content_effects" style="margin-top: -10px; margin-bottom: 20px;"></div>
                                             <h6>Description:</h6>
                                              <p class="mb-0">${informatio_product.description}</p>
                                         </div>
