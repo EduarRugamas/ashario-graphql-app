@@ -789,10 +789,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             result.then( response => {
                 if (response.products.length === 0 ){
                     console.log('sin resultados');
+                    FadeIn(div_loader);
                     ViewEmpty(container_products);
                 }
                     console.log(response);
-                    div_loader.style='display: block;';
                     FadeIn(div_loader);
                     cartProduct(container_products, response.products);
                     FadeOut(div_loader);
