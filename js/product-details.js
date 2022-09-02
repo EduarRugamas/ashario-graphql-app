@@ -576,8 +576,6 @@ const renderProduct = (container, informatio_product) => {
             count = parseInt(storage_local.getItem('count'));
         }
         render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
-        count++;
-        update_icon_cart('icon_cart_count');
     });
 };
 const renderSelectedImages = (array_images) => {
@@ -879,6 +877,9 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
 
                let card_view_product = results.find(item => item.productId === id_product);
 
+                count++;
+                update_icon_cart(icon_cart_count);
+
                Swal.fire({
                    title: 'Added to cart!',
                    text: `${card_view_product.product.name}`,
@@ -944,8 +945,7 @@ const render_carousel = (container, array_products) => {
 
 };
 const update_icon_cart = (id_cart_icon) => {
-    const count_icon_cart = document.getElementById(`${id_cart_icon}`);
-    count_icon_cart.textContent = count;
+    document.getElementById(`${id_cart_icon}`).textContent= count;
     storage_local.setItem('count', count);
 };
 
