@@ -293,3 +293,20 @@ background-color: #FFF !important;
 /*    font-weight: 900;*/
 /*    content: "\f336";*/
 /*}*/
+
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#jcaccord-filters input[type=checkbox] + label {
+    color: #ccc;
+    font-style: italic;
+}
+
+#jcaccord-filters input[type=checkbox]:checked + label {
+    color: #f00;
+    font-style: normal;
+}
