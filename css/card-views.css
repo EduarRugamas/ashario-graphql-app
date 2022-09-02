@@ -248,8 +248,8 @@ background-color: #FFF !important;
 .carousel__anterior, .carousel__siguiente {
     position: absolute;
     display: block;
-    width: 30px;
-    height: 30px;
+    width: 80px;
+    height: 80px;
     border: none;
     top: calc(50% - 35%);
     cursor: pointer;
