@@ -945,7 +945,7 @@ const render_carousel = (container, array_products) => {
 
 };
 const update_icon_cart = (id_cart_icon) => {
-    document.getElementById(`${id_cart_icon}`).textContent= count;
+    id_cart_icon.textContent = count;
     storage_local.setItem('count', count);
 };
 
