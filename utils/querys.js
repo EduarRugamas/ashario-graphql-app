@@ -352,8 +352,45 @@ const filter_search_product = async (retailerId, search, page_previous, page_nex
 
     const data = await response.json();
     return data.data.menu;
-}
+};
 //fin of filter search product
+
+const get_products_carrousel = async (retailerID, category, page_previous, page_next) => {
+    const query_get_products_carrousel = `
+        query GetAllProducts($retailerId: ID="${retailerID}" ) {
+            menu(retailerId: $retailerId, filter: { category: ${category}, pagination: { offset: ${page_previous}, limit: ${page_next} }, sort: {direction: DESC, key: NAME} ) {
+                products {
+                    id,
+                    name,
+                    brand{
+                      name
+                    },
+                    image,
+                    category,
+                    subcategory,
+                    strainType,
+                    variants {
+                      option,
+                      priceRec,
+                      quantity,
+                      id
+                    }
+                },
+                productsCount
+            }
+        }
+    `;
+
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify( { query: query_get_products_carrousel } )
+    });
+    const data = await response.json();
+    return data;
+
+
+}
 
 
 const getAllProducts = async (retailerID, page_previous, page_next) => {
@@ -483,7 +520,7 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
             resolve(result)
         }).catch(error => reject(error.message))
     });
-}
+};
 
 export {
     getRetailersIds,

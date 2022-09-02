@@ -7,6 +7,7 @@ const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Cen
 const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
+const container_products_carrousel = document.getElementById('content_carrousel_products');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
 
@@ -422,6 +423,7 @@ const btn_cart_link = document.querySelector('#btn_cart');
 
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
+const
 
 product.then( (item) => {
 
@@ -528,10 +530,10 @@ const renderProduct = (container, informatio_product) => {
     renderBadgeEffects('content_effects', informatio_product.effects);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
 
-    // const btn_add_cart = document.getElementById('add-to-cart');
-    // btn_add_cart.addEventListener('click', () => {
-    //     renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
-    // });
+    const btn_add_cart = document.getElementById('add-to-cart');
+    btn_add_cart.addEventListener('click', () => {
+        render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
+    });
 };
 const renderSelectedImages = (array_images) => {
     const images = array_images;
@@ -774,7 +776,7 @@ const renderBadgeEffects = (id_content_effects, effets) => {
 
 
 };
-const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id_select_weight) => {
+const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity, id_select_weight) => {
 
             const id_cart = cart_id.id;
             const id_store = store_id.id;
@@ -798,6 +800,7 @@ const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id
                    imageHeight: 300,
                    imageAlt: `${card_view_product.product.name}`,
                });
+
            }).catch(error => {
                 console.log('Error al agregar al carrito --> ', error.message);
            });
