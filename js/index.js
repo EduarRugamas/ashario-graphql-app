@@ -832,7 +832,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
                 console.log('encontre variante 3.5g', weight_product_variant_35);
                 text_price_all_products.forEach(item => {
-                    item.textContent = `$${weight_product_variant_35.priceRec}`;
+                    if (get_value_weights === '3.5g') {
+                         item.textContent = `$${weight_product_variant_35.priceRec}`;
+                    }
+
                 })
 
             }else if (get_value_weights === '28g') {
