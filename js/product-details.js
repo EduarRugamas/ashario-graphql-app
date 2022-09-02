@@ -843,18 +843,9 @@ const renderBadgeEffects = (id_content_effects, effets) => {
     const div_content_effects = document.getElementById(`${id_content_effects}`);
     let html_badge = '';
     effets.forEach( item => {
-        // const badge = createElementHtml('span');
-        // badge.className='badge rounded-pill bg-badge-effects';
-        // badge.style='padding: 10px; margin-right: 5px;';
-        // badge.textContent=`${item}`;
-        // const icon = createElementHtml('i');
-        // icon.className='fa-solid fa-badge-check';
-        // appendElementHtml(badge, icon);
-        // appendElementHtml(div_content_effects, badge);
-
         html_badge+= `
             <span class="badge rounded-pill bg-badge-effects" style="padding: 10px; margin-right: 5px;">
-            <i class="fa-solid fa-badge-check"></i>
+            <i class='bx bxs-badge-check' style="color:#ffffff;"></i>
             ${item}
             </span>
         `;
