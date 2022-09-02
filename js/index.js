@@ -762,6 +762,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 if (response.products.length === 0 ){
                     console.log('sin resultados');
                     ViewEmpty(container_products);
+                    FadeOut(div_loader);
                 }
 
                     console.log(response.products);
@@ -788,7 +789,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             result.then( response => {
                 if (response.products.length === 0 ){
                     console.log('sin resultados');
-                    FadeIn(div_loader);
                     ViewEmpty(container_products);
                 }else {
                     console.log(response);
