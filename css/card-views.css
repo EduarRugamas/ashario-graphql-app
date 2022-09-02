@@ -301,12 +301,12 @@ background-color: #FFF !important;
     opacity: 0;
 }
 
-#jcaccord-filters input[type=checkbox] + label {
+input[type=checkbox] + label {
     color: #ccc !important;
     font-style: italic !important;
 }
 
-#jcaccord-filters input[type=checkbox]:checked + label {
+input[type=checkbox]:checked + label {
     color: #f00 !important;
     font-style: normal !important;
 }
