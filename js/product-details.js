@@ -424,7 +424,6 @@ const btn_cart_link = document.querySelector('#btn_cart');
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
 const get_carrousel = get_products_carrousel(id_store_centre_point_mall.id, 'FLOWER', 0, 10);
-console.log(get_carrousel);
 
 product.then( (item) => {
 
@@ -435,7 +434,10 @@ product.then( (item) => {
 
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
-    render_carousel(container_products_carrousel, get_carrousel.products);
+    get_carrousel.then( response => {
+        console.log(response);
+        render_carousel(container_products_carrousel, response.products);
+    });
 
 }).catch(error => {
     console.log('Error en product details --> ', error.message)
