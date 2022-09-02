@@ -792,7 +792,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     ViewEmpty(container_products);
                 }else {
                     console.log(response);
-                    FadeIn(div_loader);
+                    div_loader.style='display: block;';
                     cartProduct(container_products, response.products);
                     FadeOut(div_loader);
                 }
