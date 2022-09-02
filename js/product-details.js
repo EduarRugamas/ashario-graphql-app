@@ -805,31 +805,31 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight, co
             let price_3_5_int = get_price_35.priceRec;
             console.log(price_3_5_int);
             let price_35_string = (price_3_5_int * get_change_quantity).toFixed(2);
-            h4_price_replace.textContent=`${price_35_string}`;
+            h4_price_replace.textContent=`$${price_35_string}`;
         }else if (get_value_weight === '28g') {
             const get_price_28 = variants.find(item => item.option === get_value_weight);
             let price_28_int = get_price_28.priceRec;
             console.log(price_28_int);
             let price_28_string = (price_28_int * get_change_quantity).toFixed(2);
-            h4_price_replace.textContent=`${price_28_string}`;
+            h4_price_replace.textContent=`$${price_28_string}`;
         }else if (get_value_weight === '1g') {
             const get_price_1 = variants.find(item => item.option === get_value_weight);
             let price_1_int = get_price_1.priceRec;
             console.log(price_1_int);
             let price_1_string = (price_1_int * get_change_quantity).toFixed(2);
-            h4_price_replace.textContent=`${price_1_string}`;
+            h4_price_replace.textContent=`$${price_1_string}`;
         }else if (get_value_weight === '7g') {
             const get_price_7 = variants.find(item => item.option === get_value_weight);
             let price_7_int = get_price_7.priceRec;
             console.log(get_price_7);
             let price_7_string = (price_7_int * get_change_quantity).toFixed(2);
-            h4_price_replace.textContent=`${price_7_string}`;
+            h4_price_replace.textContent=`$${price_7_string}`;
         }else if (get_value_weight === '14g') {
             const get_price_14 = variants.find(item => item.option === get_value_weight);
             let price_14_int = get_price_14.priceRec;
             console.log(price_14_int);
             let price_14_string = (price_14_int * get_change_quantity).toFixed(2);
-            h4_price_replace.textContent=`${price_14_string}`;
+            h4_price_replace.textContent=`$${price_14_string}`;
 
         }
 
@@ -841,16 +841,24 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight, co
 };
 const renderBadgeEffects = (id_content_effects, effets) => {
     const div_content_effects = document.getElementById(`${id_content_effects}`);
-
+    let html_badge = '';
     effets.forEach( item => {
-        const badge = createElementHtml('span');
-        badge.className='badge rounded-pill bg-badge-effects';
-        badge.style='padding: 10px; margin-right: 5px;';
-        badge.textContent=`${item}`;
-        const icon = createElementHtml('i');
-        icon.className='fa-solid fa-badge-check';
-        appendElementHtml(badge, icon);
-        appendElementHtml(div_content_effects, badge);
+        // const badge = createElementHtml('span');
+        // badge.className='badge rounded-pill bg-badge-effects';
+        // badge.style='padding: 10px; margin-right: 5px;';
+        // badge.textContent=`${item}`;
+        // const icon = createElementHtml('i');
+        // icon.className='fa-solid fa-badge-check';
+        // appendElementHtml(badge, icon);
+        // appendElementHtml(div_content_effects, badge);
+
+        html_badge+= `
+            <span class="badge rounded-pill bg-badge-effects" style="padding: 10px; margin-right: 5px;">
+            <i class="fa-solid fa-badge-check"></i>
+            ${item}
+            </span>
+        `;
+        div_content_effects.innerHTML = html_badge;
     });
 
 
