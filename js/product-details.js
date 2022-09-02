@@ -489,7 +489,7 @@ const renderProduct = (container, informatio_product) => {
                                                 <dd class="col-sm-9"># ${informatio_product.id}</dd>
                                                 <dt class="col-sm-3">Stant</dt>
                                                 <dd class="col-sm-9">
-                                                    <div class="badge bg-badge-strant">
+                                                    <div class="badge bg-badge-strant font-13">
                                                         ${informatio_product.strainType}
                                                     </div>
                                                 </dd>
