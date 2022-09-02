@@ -434,14 +434,14 @@ product.then( (item) => {
 
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
-    get_carrousel.then( response => {
-        console.log(response);
-        render_carousel(container_products_carrousel, response.products);
-    });
-
 }).catch(error => {
     console.log('Error en product details --> ', error.message)
 });
+
+get_carrousel.then( response => {
+    console.log(response);
+    render_carousel(container_products_carrousel, response.products);
+}).catch(error => console.log(error));
 
 
 
@@ -818,8 +818,8 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+= `
-           <main class="container_carousel">
-            <article class="carousel_card">
+           <main class="container_carousel" style="display: flex; width: 350px; scroll-snap-type: x mandatory; scroll-padding: 25px; column-gap: 20px;">
+            <article class="carousel_card" style="flex: 0 0 100%; padding: 30px; scroll-snap-align: start; border-radius: 30px;">
                 <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?id=${item.id}" id="container_carrousel_imgs">
                             <img src="${item.image !== null ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
