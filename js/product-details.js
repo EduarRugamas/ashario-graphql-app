@@ -878,7 +878,7 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                let card_view_product = results.find(item => item.productId === id_product);
 
                 count++;
-                update_icon_cart(icon_cart_count);
+                update_icon_cart();
 
                Swal.fire({
                    title: 'Added to cart!',
@@ -944,8 +944,8 @@ const render_carousel = (container, array_products) => {
     container.innerHTML = items_carousel;
 
 };
-const update_icon_cart = (id_cart_icon) => {
-    id_cart_icon.textContent = count;
+const update_icon_cart = () => {
+    icon_cart_count.textContent = count;
     storage_local.setItem('count', count);
 };
 
