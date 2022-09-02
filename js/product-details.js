@@ -493,8 +493,6 @@ const renderProduct = (container, informatio_product) => {
                                         <div class="mt-3">
                                             <h6>Details:</h6>
                                             <dl class="row mt-3" id="container-details-dl">
-                                                <dt class="col-sm-3">Product id</dt>
-                                                <dd class="col-sm-9"># ${informatio_product.id}</dd>
                                                 <dt class="col-sm-3">Stant</dt>
                                                 <dd class="col-sm-9">
                                                     <div class="badge bg-badge-strant font-13">
@@ -818,43 +816,13 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+= `
-            <article class="carousel_card" style="flex: 0 0 100%; padding: 30px; scroll-snap-align: start; border-radius: 30px;">
-                <div class="card rounded-0 product-card">
-                        <a href="/views/product-details.html?id=${item.id}" id="container_carrousel_imgs">
-                            <img src="${item.image !== null ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
-                        </a>
-                    <div class="card-body">
-                        <div class="product-info">
-                            <a href="/views/product-details.html?id=${item.id}">
-                                <p class="product-catergory font-13 mb-1 itembrand">${item.brand.name}</p>
-                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
-                            </a>
-                            <a href="/views/product-details.html?id=${item.id}">
-                                <h6 class="product-name mb-2 itemname">${item.name}</h6>
-                            </a>
-                            <div class="d-flex align-items-center content_item_price">
-                                <div class="mb-1 product-price itemprice jcitemprice">
-                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-                                    <span class="fs-5 jcpricingnw"></span>
-                                    <span class="er-each jceachformat" style="align-items: flex-end;"></span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
-                                <div class="me-4" id="container_quantity">
-                                    <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" product_id="${item.id}"></select>
-                                </div>
-                                <div class="" id="container_weight">
-                                    <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight" product_id="${item.id}"></select>
-                                </div>
-                            </div>
-                            <div class="product-action mt-2" id="content">
-                               <div class="d-grid gap-2">
-                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${item.id}"><i class="bx bxs-cart-add"></i>add to cart</a>
-                                    <a href="/views/product-details.html?id=${item.id}" class="btn btn-light btn-ecomm">Product Details</a>
-                               </div> 
-                            </div> 
+            <article style="flex: 0 0 100%; padding: 30px; scroll-snap-align: start; border-radius: 30px;">
+                <div class="card-deck">
+                    <div class="card">
+                        <img src="${item.image !== null ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
+                        <div class="card-body">
+                          <h5 class="card-title">${item.name}</h5>
+                          <p class="card-text">${item.description}</p>
                         </div>
                     </div>
                 </div>
