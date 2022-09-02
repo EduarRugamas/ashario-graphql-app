@@ -245,7 +245,8 @@ background-color: #FFF !important;
     position: relative;
 }
 
-.carousel__anterior, .carousel__siguiente {
+.carousel__anterior,
+.carousel__siguiente {
     position: absolute;
     display: block;
     width: 80px;
@@ -260,7 +261,8 @@ background-color: #FFF !important;
     opacity: 20%;
 }
 
-.carousel__anterior:hover, .carousel__siguiente:hover {
+.carousel__anterior:hover,
+.carousel__siguiente:hover {
     opacity: 100%;
 }
 
