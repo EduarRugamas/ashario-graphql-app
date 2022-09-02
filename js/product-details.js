@@ -450,7 +450,7 @@ get_carrousel.then( response => {
                 loop: true,
                 margin: 30,
                 autoplay: true,
-                autoplayTimeout: 6000,
+                autoplayTimeout: 4000,
                 nav: false,
                 dots: false,
                 responsive:{
