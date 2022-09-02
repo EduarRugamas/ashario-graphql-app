@@ -435,7 +435,7 @@ product.then( (item) => {
 
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
-    render_carousel(container_products_carrousel, get_carrousel);
+    render_carousel(container_products_carrousel, get_carrousel.products);
 
 }).catch(error => {
     console.log('Error en product details --> ', error.message)
@@ -814,7 +814,7 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
 const render_carousel = (container, array_products) => {
     let items_carousel = '';
 
-    array_products.products.forEach( item => {
+    array_products.forEach( item => {
         items_carousel+= `
            <main class="container_carousel">
             <article class="carousel_card">
