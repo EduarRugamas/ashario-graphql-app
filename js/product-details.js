@@ -441,7 +441,7 @@ product.then( (item) => {
 get_carrousel.then( response => {
 
 
-
+    render_carousel(container_products_carrousel, response.products);
 
 
 }).catch(error => console.log(error));
