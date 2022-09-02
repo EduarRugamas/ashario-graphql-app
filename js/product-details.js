@@ -889,7 +889,12 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                    imageAlt: `${card_view_product.product.name}`,
                });
            }).catch(error => {
-                console.log('Error al agregar al carrito --> ', error.message);
+                const results = result.data.errors;
+                console.log('Error al agregar al carrito --> ', error);
+                Swal.fire({
+                    icon: 'error',
+                    text: `${results.message}`,
+                });
            });
 
 
