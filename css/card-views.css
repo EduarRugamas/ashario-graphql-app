@@ -288,15 +288,21 @@ background-color: #FFF !important;
     min-height:300px
 }
 
-.sweetAlertbtn {
-    width: 85px;
-}
-
 /*.bg-badge-effects::before {*/
 /*    font-family: "Font Awesome 5 Free";*/
 /*    font-weight: 900;*/
 /*    content: "\f336";*/
 /*}*/
+
+.swal2-confirm {
+    background: #3e3e3e !important;
+    width: 150px !important;
+}
+
+.swal2-confirm:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
 
 
 .hidden {
