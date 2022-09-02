@@ -238,7 +238,6 @@ background-color: #FFF !important;
 .container-swiper {
     width: 90%;
     padding: 10px 40px;
-    margin-top: 200px;
 }
 
 .container-swiper .swiper-container {
@@ -247,23 +246,24 @@ background-color: #FFF !important;
 }
 
 .container-swiper .swiper-slide {
+    position: relative;
     text-align: start;
     font-size: 14px;
     background: #FFFFFF;
     border-radius: 15px;
 
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+    /*display: -webkit-box;*/
+    /*display: -ms-flexbox;*/
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+    /*-webkit-box-pack: center;*/
+    /*-ms-flex-pack: center;*/
+    /*-webkit-justify-content: center;*/
+    /*justify-content: center;*/
+    /*-webkit-box-align: center;*/
+    /*-ms-flex-align: center;*/
+    /*-webkit-align-items: center;*/
+    /*align-items: center;*/
 }
 
 .swiper-slide #img_carousel {
