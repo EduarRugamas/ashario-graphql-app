@@ -890,8 +890,12 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                });
 
                if (result.data.addItem === null ) {
-                   const error = result.errors;
+                   const error = result.errors[0];
                    console.log(error);
+                   Swal.fire({
+                       icon: 'error',
+                       text: `${error.message}`,
+                   });
                }
 
 
