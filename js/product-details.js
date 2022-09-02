@@ -488,7 +488,7 @@ const renderProduct = (container, informatio_product) => {
                                                 <dt class="col-sm-3">Product id</dt>
                                                 <dd class="col-sm-9"># ${informatio_product.id}</dd>
                                                 <dt class="col-sm-3">Stant</dt>
-                                                <dd class="col-sm-9 bg-badge-strant">${informatio_product.strainType}</dd>
+                                                <dd class="col-sm-9 badge bg-badge-strant">${informatio_product.strainType}</dd>
                                             </dl>
                                             <div class="d-flex" id="content_effects" style="margin-top: -10px; margin-bottom: 20px;"></div>
                                             <h6>Description:</h6>
