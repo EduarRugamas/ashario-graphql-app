@@ -7,7 +7,7 @@ const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Cen
 const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
-const container_products_carrousel = document.querySelector('.product-card');
+const container_products_carrousel = document.querySelector('.owl-carousel');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
 
