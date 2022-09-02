@@ -451,8 +451,8 @@ get_carrousel.then( response => {
                 margin: 30,
                 autoplay: true,
                 autoplayTimeout: 4000,
-                nav: true,
-                dots: false,
+                nav: false,
+                dots: true,
                 responsive:{
                     0:{
                         items:1
@@ -472,8 +472,6 @@ get_carrousel.then( response => {
                 },
             });
 
-        const nav_carousel = document.getElementsByClassName('owl-nav');
-        nav_carousel.style='display: none;'
     }
 
 
