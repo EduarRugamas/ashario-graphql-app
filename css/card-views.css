@@ -288,8 +288,8 @@ background-color: #FFF !important;
     min-height:300px
 }
 
-.sweetAlertbtn {
-    width: 85px !important;
+.swal2-confirm {
+    background: #3aa9a9 !important;
 }
 
 /*.bg-badge-effects::before {*/

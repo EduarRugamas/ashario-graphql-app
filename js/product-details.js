@@ -880,7 +880,6 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                         icon: 'error',
                         text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
                         confirmButtonColor: '#3e3e3e',
-                        customClass: 'sweetAlertbtn'
                     });
                 }
 
