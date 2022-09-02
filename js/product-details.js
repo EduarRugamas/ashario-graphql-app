@@ -490,9 +490,6 @@ get_carrousel.then( response => {
 }).catch(error => console.log(error));
 
 
-
-
-
 const renderProduct = (container, informatio_product) => {
 
     let item_product = '';
@@ -875,7 +872,6 @@ const render_carousel = (container, array_products) => {
                             </a>
                             <div class="product-action mt-2">
                                 <div class="d-grid gap-2">
-                                    <a  class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> 
                                     <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm text-uppercase">Product details</a>
                                 </div>
                             </div>
