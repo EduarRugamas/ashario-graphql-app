@@ -7,7 +7,7 @@ const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Cen
 const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
-const container_products_carrousel = document.getElementById('content_carrousel_products');
+const container_products_carrousel = document.querySelector('.container_carousel');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
 
@@ -818,7 +818,6 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+= `
-           <main class="container_carousel" style="display: flex; width: 350px; scroll-snap-type: x mandatory; scroll-padding: 25px; column-gap: 20px;">
             <article class="carousel_card" style="flex: 0 0 100%; padding: 30px; scroll-snap-align: start; border-radius: 30px;">
                 <div class="card rounded-0 product-card">
                         <a href="/views/product-details.html?id=${item.id}" id="container_carrousel_imgs">
@@ -860,7 +859,6 @@ const render_carousel = (container, array_products) => {
                     </div>
                 </div>
             </article>
-           </main> 
         `;
     });
 
