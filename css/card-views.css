@@ -101,6 +101,7 @@ text-align: center;
 }
 .javiergridrow .itemname{
     text-align: center;
+    min-height:55px
 
 }
 .jcitemprice .jcpriceformat{
