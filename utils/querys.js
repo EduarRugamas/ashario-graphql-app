@@ -357,8 +357,8 @@ const filter_search_product = async (retailerId, search, page_previous, page_nex
 
 const get_products_carrousel = async (retailerID, category, page_previous, page_next) => {
     const query_get_products_carrousel = `
-        query GetAllProducts($retailerId: ID="${retailerID}" ) {
-            menu(retailerId: $retailerId, filter: { category: ${category}, pagination: { offset: ${page_previous}, limit: ${page_next} }, sort: {direction: DESC, key: NAME} ) {
+        query GetProductsCarousel($retailerId: ID="${retailerID}" ) {
+            menu(retailerId: $retailerId, filter: { category: ${category} }, pagination: { offset: ${page_previous}, limit: ${page_next} }, sort: { direction: DESC, key: NAME } ) {
                 products {
                     id,
                     name,
