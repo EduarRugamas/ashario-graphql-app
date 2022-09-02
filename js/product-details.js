@@ -862,24 +862,27 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+=`
-            <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
-                <div class="card-body">
-                    <div class="product-info">
-                        <a href="/views/product-details.html?id=${product.id}">
-                            <p class="product-catergory font-13 mb-1">${item.brand.name}</p>
-                        </a>
-                        <a href="/views/product-details.html?id=${product.id}">
-                            <h6 class="product-name mb-2">${item.name}</h6>
-                        </a>
-                        <div class="product-action mt-2">
-                            <div class="d-grid gap-2">
-                                <a  class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> 
-                                <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm text-uppercase">Product details</a>
+            <div class="item">
+                <div class="card rounded-0 product-card">
+                    <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
+                    <div class="card-body">
+                        <div class="product-info">
+                            <a href="/views/product-details.html?id=${product.id}">
+                                <p class="product-catergory font-13 mb-1">${item.brand.name}</p>
+                            </a>
+                            <a href="/views/product-details.html?id=${product.id}">
+                                <h6 class="product-name mb-2">${item.name}</h6>
+                            </a>
+                            <div class="product-action mt-2">
+                                <div class="d-grid gap-2">
+                                    <a  class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> 
+                                    <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm text-uppercase">Product details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
         `;
     });
 
