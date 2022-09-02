@@ -293,6 +293,7 @@ background-color: #FFF !important;
     width: 150px;
     box-shadow: none;
     border: none;
+    text-decoration: none;
 }
 
 /*.bg-badge-effects::before {*/
