@@ -56,6 +56,8 @@
     width: auto;
     max-width: 300px;
     max-height: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .product-grid .card #container_carrousel_imgs{
 text-align: center;
