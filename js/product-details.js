@@ -816,9 +816,8 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+= `
-            <div class="swiper-slide"> 
                 <div class="card">
-                    <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
+                    <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}" id="img_carousel">
                     <div class="card-body">
                       <h5 class="card-title">${item.name}</h5>
                       <p class="card-text">${item.description}</p>
@@ -827,7 +826,6 @@ const render_carousel = (container, array_products) => {
                       <small class="text-muted">Product details</small>
                     </div>
                 </div>
-            </div>
         `;
     });
 
