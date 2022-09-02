@@ -472,20 +472,10 @@ get_carrousel.then( response => {
                 },
             });
 
-        if ($('.owl_prev_item').length) {
-            let prev = $('.owl_prev_item');
-            prev.on('click', function () {
-                viewedSlider.trigger('prev.owl.carousel');
-            });
-        }
-
-        if ($('.owl_next_item').length) {
-            let next = $('.owl_next_item');
-            next.on('click', function () {
-                viewedSlider.trigger('next.owl.carousel');
-            });
-        }
     }
+
+    const nav_carousel = document.getElementsByClassName('owl-nav');
+    nav_carousel.style='display: none;'
 
 }).catch(error => console.log(error));
 
