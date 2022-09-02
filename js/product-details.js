@@ -798,7 +798,7 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight, co
     container_select_quantity.addEventListener('change', () => {
         let get_change_quantity = parseInt(document.getElementById(`${id_select_quantity}`).value);
         let get_value_weight = document.getElementById(`${id_select_weight}`).value;
-        let h4_price_replace = document.getElementById('text_price');
+        let h4_price_replace = document.getElementById(`${content_id_text_price}`);
 
         if (get_value_weight === '3.5g') {
             const get_price_35 = variants.find(item => item.option === get_value_weight);
