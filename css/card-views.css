@@ -291,6 +291,9 @@ background-color: #FFF !important;
 .swal2-confirm {
     background: #3e3e3e !important;
     width: 150px;
+}
+
+.swal2-confirm:focus {
     box-shadow: none;
     outline: none;
 }
