@@ -576,6 +576,8 @@ const renderProduct = (container, informatio_product) => {
             count = parseInt(storage_local.getItem('count'));
         }
         render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
+        count++;
+        update_icon_cart('icon_cart_count');
     });
 };
 const renderSelectedImages = (array_images) => {
@@ -885,10 +887,6 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                    imageHeight: 300,
                    imageAlt: `${card_view_product.product.name}`,
                });
-
-               count++;
-                update_icon_cart('icon_cart_count');
-
            }).catch(error => {
                 console.log('Error al agregar al carrito --> ', error.message);
            });
