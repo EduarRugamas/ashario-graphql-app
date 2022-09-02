@@ -439,54 +439,7 @@ product.then( (item) => {
 });
 
 get_carrousel.then( response => {
-    let items_carousel = '';
 
-    response.products.forEach( item => {
-        items_carousel+= `
-            <div class="swiper-slide">
-                <div class="card">
-                    <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}" id="img_carousel">
-                    <div class="card-body">
-                        <h5 class="card-title">${item.name}</h5>
-                        <p class="card-text">${item.description}</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Product details</small>
-                    </div>
-                </div>
-            </div>
-                
-        `;
-    });
-
-    container_products_carrousel.innerHTML = items_carousel;
-
-    let swiper = new Swiper('.swiper-container', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        slidesPerView: 1,
-        spaceBetween: 10,
-        breakpoint: {
-            620: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-            },
-            680: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-            },
-            920: {
-                slidesPerView: 3,
-                spaceBetween: 40,
-            },
-            1240: {
-                slidesPerView: 4,
-                spaceBetween: 50,
-            }
-        }
-    });
 }).catch(error => console.log(error));
 
 
@@ -876,33 +829,6 @@ const render_carousel = (container, array_products) => {
     });
 
     container.innerHTML = items_carousel;
-
-    var swiper = new Swiper('.swiper-container', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        slidesPerView: 1,
-        spaceBetween: 10,
-        breakpoint: {
-            620: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-            },
-            680: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-            },
-            920: {
-                slidesPerView: 3,
-                spaceBetween: 40,
-            },
-            1240: {
-                slidesPerView: 4,
-                spaceBetween: 50,
-            }
-        }
-    });
 
 }
 
