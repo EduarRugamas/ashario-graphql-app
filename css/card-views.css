@@ -52,8 +52,10 @@
 
 .product-grid .card img {
     /*height: 250px;*/
-    object-fit: cover;
-    max-width: 80%;
+    height: auto;
+    width: auto;
+    max-width: 300px;
+    max-height: 300px;
 }
 .product-grid .card #container_carrousel_imgs{
 text-align: center;
