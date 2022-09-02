@@ -387,7 +387,7 @@ const get_products_carrousel = async (retailerID, category, page_previous, page_
         body: JSON.stringify( { query: query_get_products_carrousel } )
     });
     const data = await response.json();
-    return data;
+    return data.data.menu;
 
 
 }
