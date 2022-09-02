@@ -287,3 +287,11 @@ background-color: #FFF !important;
 #container_carrousel_imgs{
     min-height:300px
 }
+.bg-badge-effects{
+
+}
+bg-badge-effects::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f336";
+}
