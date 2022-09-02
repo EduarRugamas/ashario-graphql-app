@@ -526,6 +526,7 @@ export {
     getRetailersIds,
     get_count_product,
     getAllProducts,
+    get_products_carrousel,
     getProduct,
     filter_strain_type_lineage,
     filter_weights,

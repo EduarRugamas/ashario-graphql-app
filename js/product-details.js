@@ -1,5 +1,5 @@
 'use strict';
-import {getProduct, addItemCart} from '../utils/querys.js';
+import {getProduct, addItemCart, get_products_carrousel} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
@@ -423,7 +423,8 @@ const btn_cart_link = document.querySelector('#btn_cart');
 
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
-const
+const get_carrousel = get_products_carrousel(id_store_centre_point_mall.id, 'FLOWER', 0, 10);
+console.log(get_carrousel);
 
 product.then( (item) => {
 
@@ -438,6 +439,8 @@ product.then( (item) => {
 }).catch(error => {
     console.log('Error en product details --> ', error.message)
 });
+
+
 
 
 
@@ -807,4 +810,58 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
 
 
 };
+const render_carousel = (container, array_products) => {
+    let items_carousel = '';
+
+    array_products.products.forEach( item => {
+        items_carousel+= `
+           <main class="container_carousel">
+            <article class="carousel_card">
+                <div class="card rounded-0 product-card">
+                        <a href="/views/product-details.html?id=${item.id}" id="container_carrousel_imgs">
+                            <img src="${item.image !== null ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
+                        </a>
+                    <div class="card-body">
+                        <div class="product-info">
+                            <a href="/views/product-details.html?id=${item.id}">
+                                <p class="product-catergory font-13 mb-1 itembrand">${item.brand.name}</p>
+                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+                            </a>
+                            <a href="/views/product-details.html?id=${item.id}">
+                                <h6 class="product-name mb-2 itemname">${item.name}</h6>
+                            </a>
+                            <div class="d-flex align-items-center content_item_price">
+                                <div class="mb-1 product-price itemprice jcitemprice">
+                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+                                    <span class="fs-5 jcpricingnw"></span>
+                                    <span class="er-each jceachformat" style="align-items: flex-end;"></span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
+                                <div class="me-4" id="container_quantity">
+                                    <label class="form-label">Quantity</label>
+                                    <select class="form-select form-select-sm" id="quantity" product_id="${item.id}"></select>
+                                </div>
+                                <div class="" id="container_weight">
+                                    <label class="form-label">weight</label>
+                                    <select class="form-select form-select-sm" id="select-weight" product_id="${item.id}"></select>
+                                </div>
+                            </div>
+                            <div class="product-action mt-2" id="content">
+                               <div class="d-grid gap-2">
+                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${item.id}"><i class="bx bxs-cart-add"></i>add to cart</a>
+                                    <a href="/views/product-details.html?id=${item.id}" class="btn btn-light btn-ecomm">Product Details</a>
+                               </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </article>
+           </main> 
+        `;
+    });
+
+    container.innerHTML = items_carousel;
+
+}
 
