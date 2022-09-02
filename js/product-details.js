@@ -873,6 +873,15 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
 
                 console.log(result);
 
+                if (result.data.addItem === null ) {
+                    const error = result.errors[0];
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        text: `${error.message}`,
+                    });
+                }
+
                const results = result.data.addItem.items;
 
                let card_view_product = results.find(item => item.productId === id_product);
@@ -889,14 +898,7 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                    imageAlt: `${card_view_product.product.name}`,
                });
 
-               if (result.data.addItem === null ) {
-                   const error = result.errors[0];
-                   console.log(error);
-                   Swal.fire({
-                       icon: 'error',
-                       text: `${error.message}`,
-                   });
-               }
+
 
 
            }).catch(error => {
