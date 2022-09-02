@@ -443,8 +443,9 @@ get_carrousel.then( response => {
 
     render_carousel(container_products_carrousel, response.products);
     new Glider(container_products_carrousel, {
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        draggable: true
         arrows: {
             prev: '.carousel__anterior',
             next: '.carousel__siguiente'
@@ -827,18 +828,36 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+= `
-                <div class="card">
-                    <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}" id="img_carousel">
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img" alt="${item.name}">
+                </div>
+                <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">${item.name}</h5>
-                      <p class="card-text">${item.description}</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Product details</small>
+                        <h5 class="card-title font-12">${item.name}</h5>
+                        <p class="card-text font-10">${item.description}</p>
+                        <p class="card-text">
+                            <small class="text-muted">Product details</small>
+                        </p>
                     </div>
                 </div>
+            </div>
+        </div>
         `;
     });
+
+    // <div className="card">
+    //     <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}"
+    //          className="card-img-top" alt="${item.name}" id="img_carousel">
+    //         <div className="card-body">
+    //             <h5 className="card-title">${item.name}</h5>
+    //         </div>
+    //         <div className="card-footer">
+    //             <small className="text-muted">Product details</small>
+    //         </div>
+    // </div>
 
     container.innerHTML = items_carousel;
 
