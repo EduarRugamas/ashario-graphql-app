@@ -445,7 +445,7 @@ get_carrousel.then( response => {
     new Glider(container_products_carrousel, {
         slidesToShow: 3,
         slidesToScroll: 3,
-        draggable: true
+        draggable: true,
         arrows: {
             prev: '.carousel__anterior',
             next: '.carousel__siguiente'
