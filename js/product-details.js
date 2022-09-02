@@ -432,15 +432,6 @@ product.then( (item) => {
 
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
-    renderSelectedImages(item.images);
-    renderPotency_CBD_THC('container-details-dl', item.potencyThc, item.potencyCbd);
-    renderBadgeEffects('content_effects', item.effects);
-    renderQuantityWeight(item.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
-
-    const btn_add_cart = document.getElementById('add-to-cart');
-    btn_add_cart.addEventListener('click', () => {
-        renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
-    });
 
 }).catch(error => {
     console.log('Error en product details --> ', error.message)
@@ -526,8 +517,15 @@ const renderProduct = (container, informatio_product) => {
     `;
     container.innerHTML = item_product;
 
+    renderSelectedImages(informatio_product.images);
+    renderPotency_CBD_THC('container-details-dl', informatio_product.potencyThc, informatio_product.potencyCbd);
+    renderBadgeEffects('content_effects', informatio_product.effects);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
 
+    // const btn_add_cart = document.getElementById('add-to-cart');
+    // btn_add_cart.addEventListener('click', () => {
+    //     renderaddItemCart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
+    // });
 };
 const renderSelectedImages = (array_images) => {
     const images = array_images;
@@ -757,6 +755,19 @@ const renderQuantityWeight = (variants, id_select_quantity, id_select_weight, co
 
 
 };
+const renderBadgeEffects = (id_content_effects, effets) => {
+    const div_content_effects = document.getElementById(`${id_content_effects}`);
+
+    effets.forEach( item => {
+        const badge = createElementHtml('span');
+        badge.className='badge rounded-pill bg-primary';
+        badge.style='padding: 10px; margin-right: 5px;';
+        badge.textContent=`${item}`;
+        appendElementHtml(div_content_effects, badge);
+    });
+
+
+};
 const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id_select_weight) => {
 
             const id_cart = cart_id.id;
@@ -787,17 +798,4 @@ const renderaddItemCart = (store_id, cart_id, product_id, id_select_quantity, id
 
 
 };
-const renderBadgeEffects = (id_content_effects, effets) => {
-    const div_content_effects = document.getElementById(`${id_content_effects}`);
-
-    effets.forEach( item => {
-        const badge = createElementHtml('span');
-        badge.className='badge rounded-pill bg-primary';
-        badge.style='padding: 10px; margin-right: 5px;';
-        badge.textContent=`${item}`;
-        appendElementHtml(div_content_effects, badge);
-    });
-
-
-}
 
