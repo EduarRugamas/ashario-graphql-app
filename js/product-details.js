@@ -10,6 +10,8 @@ const container_product_details = document.getElementById('product-details');
 const container_products_carrousel = document.querySelector('.owl-carousel');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
+const icon_cart_count = document.getElementById('count_quantity_cart');
+let count = 0;
 
 // GetProduct(id_store_centre_point_mall.id, id_product).then( item => {
 //
@@ -565,9 +567,14 @@ const renderProduct = (container, informatio_product) => {
     renderPotency_CBD_THC('container-details-dl', informatio_product.potencyThc, informatio_product.potencyCbd);
     renderBadgeEffects('content_effects', informatio_product.effects);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
+    update_icon_cart('icon_cart_count');
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
+
+        if (storage_local.getItem('count')) {
+            count = parseInt(storage_local.getItem('count'));
+        }
         render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
     });
 };
@@ -879,6 +886,9 @@ const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity,
                    imageAlt: `${card_view_product.product.name}`,
                });
 
+               count++;
+                update_icon_cart('icon_cart_count');
+
            }).catch(error => {
                 console.log('Error al agregar al carrito --> ', error.message);
            });
@@ -935,7 +945,9 @@ const render_carousel = (container, array_products) => {
     container.innerHTML = items_carousel;
 
 };
-const update_icon_cart = () => {
-
-}
+const update_icon_cart = (id_cart_icon) => {
+    const count_icon_cart = document.getElementById(`${id_cart_icon}`);
+    count_icon_cart.textContent = count;
+    storage_local.setItem('count', count);
+};
 
