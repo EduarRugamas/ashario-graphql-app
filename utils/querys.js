@@ -369,6 +369,7 @@ const get_products_carrousel = async (retailerID, category, page_previous, page_
                     category,
                     subcategory,
                     strainType,
+                    description,
                     variants {
                       option,
                       priceRec,
