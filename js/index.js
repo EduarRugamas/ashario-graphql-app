@@ -790,12 +790,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 if (response.products.length === 0 ){
                     console.log('sin resultados');
                     ViewEmpty(container_products);
-                }else {
+                }
                     console.log(response);
+
                     div_loader.style='display: block;';
                     cartProduct(container_products, response.products);
                     FadeOut(div_loader);
-                }
+
 
             }).catch(error => {
                 console.log('error en el search', error.message);
