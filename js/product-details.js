@@ -7,7 +7,7 @@ const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Cen
 const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 const id_product = urlParams.get('id');
 const container_product_details = document.getElementById('product-details');
-const container_products_carrousel = document.querySelector('.container_carousel');
+const container_products_carrousel = document.querySelector('.switcher-wrapper');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
 
@@ -816,17 +816,18 @@ const render_carousel = (container, array_products) => {
 
     array_products.forEach( item => {
         items_carousel+= `
-            <article style="flex: 0 0 100%; padding: 30px; scroll-snap-align: start; border-radius: 30px;">
-                <div class="card-deck">
-                    <div class="card">
-                        <img src="${item.image !== null ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
-                        <div class="card-body">
-                          <h5 class="card-title">${item.name}</h5>
-                          <p class="card-text">${item.description}</p>
-                        </div>
+            <div class="swiper-slide"> 
+                <div class="card">
+                    <img src="${item.image !== undefined || 0 ? item.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${item.name}">
+                    <div class="card-body">
+                      <h5 class="card-title">${item.name}</h5>
+                      <p class="card-text">${item.description}</p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">Product details</small>
                     </div>
                 </div>
-            </article>
+            </div>
         `;
     });
 
