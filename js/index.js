@@ -33,6 +33,8 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 
 // fin declaracion de botones o contenedores no principales
 const btn_shop_cart_link = document.querySelector('.cart-link');
+const icon_cart_count = document.querySelector('#count_quantity_cart');
+let count = 0;
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -110,7 +112,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
             response.then( result => {
                 console.log(result);
-                btn_shop_cart_link.setAttribute('href', result.redirectUrl);
+                const url_retorno = result.redirectUrl + '?r=https://ashario.com/thank-you';
+                btn_shop_cart_link.setAttribute('href', url_retorno);
                 let cart_centre_point_mall = {
                     id: result.id,
                     items: result.items,
@@ -409,6 +412,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                     let card_view_product = results.find(item => item.productId === product_id);
 
+                    count++;
+                    update_icon_cart();
+
                     Swal.fire({
                         title: 'Added to cart!',
                         text: `${card_view_product.product.name}`,
@@ -542,6 +548,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             </div>
             `;
 };
+    const update_icon_cart = () => {
+        icon_cart_count.textContent = count;
+        storage_local.setItem('count', count);
+    };
 
     function ViewWeigthsSpecial(array_products, variant) {
 
