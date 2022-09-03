@@ -196,19 +196,24 @@ window.addEventListener('DOMContentLoaded', async () => {
                     }
                     if (weights.value === '3.5G' && weights.checked) {
                         cartProduct(container_products, filter_35G.products);
+                        ViewWeigthsSpecial(filter_35G.products, '3.5g');
                     }
                     if (weights.value === '28G' && weights.checked) {
                         cartProduct(container_products, filter_28G.products);
+                        ViewWeigthsSpecial(filter_28G.products, '28g');
                     }
 
                     if (weights.value === '1G' && weights.checked) {
                         cartProduct(container_products, filter_1G.products);
+                        ViewWeigthsSpecial(filter_1G.products, '1g');
                     }
                     if (weights.value === '7G' && weights.checked) {
                         cartProduct(container_products, filter_7G.products);
+                        ViewWeigthsSpecial(filter_7G.products, '7g');
                     }
                     if (weights.value === '14G' && weights.checked) {
                         cartProduct(container_products, filter_14G.products);
+                        ViewWeigthsSpecial(filter_14G.products, '14g');
                     }
 
                 });
@@ -507,6 +512,90 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
     };
+    function ViewWeigthsSpecial(array_products, variant) {
+
+    const container_select_weights = document.querySelectorAll('#select-weight');
+
+    container_select_weights.forEach(items => {
+        const get_id_product_weights = items.getAttribute('product_id');
+        console.log('llego aqui', get_id_product_weights);
+        let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
+        console.log(weights_product);
+        let get_variant = weights_product.variants.find(option => option.option === variant)
+        console.log(get_variant);
+
+        if (get_variant.option === "3.5g") {
+
+            const option_weigths = createElementHtml('option');
+            option_weigths.value = get_variant.option;
+            option_weigths.text = get_variant.option;
+            appendElementHtml(items, option_weigths);
+            FormatWeigths("3.5g");
+
+
+        } else if (get_variant.option === "28g") {
+
+            const option_weigths = createElementHtml('option');
+            option_weigths.value = get_variant.option;
+            option_weigths.text = get_variant.option;
+            appendElementHtml(items, option_weigths);
+            FormatWeigths("28g");
+
+        } else if (get_variant.option === "1g") {
+
+            const option_weigths = createElementHtml('option');
+            option_weigths.value = get_variant.option;
+            option_weigths.text = get_variant.option;
+            appendElementHtml(items, option_weigths);
+            FormatWeigths("1g");
+
+        } else if (get_variant.option === "7g") {
+
+            const option_weigths = createElementHtml('option');
+            option_weigths.value = get_variant.option;
+            option_weigths.text = get_variant.option;
+            appendElementHtml(items, option_weigths);
+            FormatWeigths("7g");
+
+        } else if (get_variant.option === "14g") {
+
+            const option_weigths = createElementHtml('option');
+            option_weigths.value = get_variant.option;
+            option_weigths.text = get_variant.option;
+            appendElementHtml(items, option_weigths);
+            FormatWeigths("14g");
+
+        }
+
+
+    });
+}
+
+    function FormatWeigths(variant) {
+    const format_weights = document.querySelectorAll('.jceachformat');
+    format_weights.forEach(items => {
+
+        if (variant === "3.5g") {
+            items.textContent = '/3.5g'
+
+        } else if (variant === "28g") {
+            items.textContent = '/28g'
+
+        } else if (variant === "1g") {
+
+            items.textContent = '/1g'
+
+        } else if (variant === "7g") {
+
+            items.textContent = '/7g'
+
+        } else if (variant === "14g") {
+
+            items.textContent = '/14g'
+
+        }
+    });
+}
 
 
   // <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">${(item.brand_subtype) === null || undefined ? '' : item.brand_subtype}</p>
