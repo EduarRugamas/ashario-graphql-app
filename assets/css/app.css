@@ -969,8 +969,25 @@ ul.categories-list li {
 	background: #004AAD;
 }
 .bg-badge-effects {
-	background: #3e3e3e;
+	background: #000000;
 }
+
+.bg-badge-strainType-sativa {
+	background: #E41717;
+}
+
+.bg-badge-strainType-indica {
+	background: #0B4FC6;
+}
+.bg-badge-strainType-hybrid {
+	background: #700977;
+}
+.bg-badge-strainType-high-cbd {
+	 background: #4DA810;
+ }
+
+
+
 /*color effects #808080*/
 
 .bg-color-brand-subtype {

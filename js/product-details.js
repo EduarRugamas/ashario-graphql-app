@@ -527,12 +527,8 @@ const renderProduct = (container, informatio_product) => {
                                         <div class="mt-3">
                                             <h6>Details:</h6>
                                             <dl class="row mt-3" id="container-details-dl">
-                                                <dt class="col-sm-3">Stant</dt>
-                                                <dd class="col-sm-9">
-                                                    <div class="badge bg-badge-strant font-13">
-                                                        ${informatio_product.strainType}
-                                                    </div>
-                                                </dd>
+                                                <dt class="col-sm-3">Strain</dt>
+                                                <dd class="col-sm-9 badge_strain"></dd>
                                             </dl>
                                             <div class="d-flex" id="content_effects" style="margin-top: -10px; margin-bottom: 20px;"></div>
                                             <h6>Description:</h6>
@@ -566,6 +562,7 @@ const renderProduct = (container, informatio_product) => {
     renderSelectedImages(informatio_product.images);
     renderPotency_CBD_THC('container-details-dl', informatio_product.potencyThc, informatio_product.potencyCbd);
     renderBadgeEffects('content_effects', informatio_product.effects);
+    renderBadgeStant('badge_strain', informatio_product.strainType);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
     update_icon_cart('icon_cart_count');
 
@@ -859,6 +856,45 @@ const renderBadgeEffects = (id_content_effects, effets) => {
         div_content_effects.innerHTML = html_badge;
     });
 
+
+};
+const renderBadgeStant = (id_content_strainType, strantType) => {
+        const div_content_strainType = document.getElementById(`${id_content_strainType}`);
+        let badge_strainType = '';
+
+        if (strantType === 'SATIVA') {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-sativa font-13">
+                    Uplif (SATIVA)
+                </div>
+            `;
+            div_content_strainType.innerHTML = badge_strainType;
+        }else if (strantType === 'INDICA') {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-indica font-13">
+                    Unwind (INDICA)
+                </div>
+            `;
+            div_content_strainType.innerHTML = badge_strainType;
+        }else if (strantType === 'HYBRID') {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-hybrid font-13">
+                    Connect (HYBRID/BLEND)
+                </div>
+            `;
+            div_content_strainType.innerHTML = badge_strainType;
+        }else if (strantType === 'HIGH_CBD') {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-high-cbd font-13">
+                    Renew (HIGH CBD)
+                </div>
+            `;
+            div_content_strainType.innerHTML = badge_strainType;
+        }
+
+    // <div className="badge bg-badge-strant font-13 badge_strant">
+    //     ${informatio_product.strainType}
+    // </div>
 
 };
 const render_add_item_cart = (store_id, cart_id, product_id, id_select_quantity, id_select_weight) => {
