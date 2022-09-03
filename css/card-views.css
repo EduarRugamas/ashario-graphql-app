@@ -336,3 +336,6 @@ background-color: #FFF !important;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.badge{
+    border-radius:0px !important
+}
