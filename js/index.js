@@ -574,7 +574,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                             </a>
                             <div class="d-flex align-items-center content_item_price">
                                 <div class="mb-1 product-price itemprice jcitemprice">
-                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
+                                    <span class="fs-5 currencyformat jcpriceformat">CAD 
+                                        <span id="cad-${product.id}" style="font-weight: 700; color: #000; font-size: 1.25rem!important;"></span> / <span id="current-weight-${product.id}"></span></span>
+                                    </span>
                                     <span class="fs-5 jcpricingnw"></span>
                                     <span class="er-each jceachformat" style="align-items: flex-end;"></span>
                                 </div>
