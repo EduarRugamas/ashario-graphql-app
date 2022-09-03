@@ -288,7 +288,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                         const product_id = btn.getAttribute('id_product');
                         const get_select_quantity = document.getElementById('quantity-' + product_id);
-                        const get_select_weight = document.querySelector('select-weight-' + product_id);
+                        const get_select_weight = document.getElementById('select-weight-' + product_id);
 
                         console.log(`${store_centre_point_mall.id}, ${checkout_id.id}, ${product_id}, quantity:${get_select_quantity.value}, option: ${get_select_weight.value}`);
 
