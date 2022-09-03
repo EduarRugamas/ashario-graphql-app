@@ -51,6 +51,7 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 //variables de paginacion
 let page_previous = 0;
 let page_next = 20;
+let all_produts;
 //fin de variables
 
 
@@ -122,8 +123,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
             let countProducts = get_count_product(store_centre_point_mall.id);
-            countProducts.then(response => {console.log(response);} ).catch(error => console.log('Error en el count ', error.message));
-            let data = await getAllProducts(store_centre_point_mall.id, page_previous, parseInt(countProducts.productsCount));
+            countProducts.then(response => {
+                all_produts = response.productsCount;
+                console.log(response);
+            }).catch(error => console.log('Error en el count ', error.message));
+            let data = await getAllProducts(store_centre_point_mall.id, page_previous, all_produts);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
             let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
