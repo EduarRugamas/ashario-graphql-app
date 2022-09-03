@@ -509,8 +509,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         content_strain_badge.forEach( p => {
             const id_product = p.getAttribute('badge_id');
+            console.log(id_product);
             const get_element_strain = document.getElementById('badge-straint-' + id_product);
-            console.log(get_element_strain);
+            console.log('elements',get_element_strain);
 
             const get_information_strainType = array_products.find(item => item.productId === id_product);
             console.log(get_information_strainType);
