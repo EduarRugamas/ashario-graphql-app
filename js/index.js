@@ -139,8 +139,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             console.log(count_json);
 
-            let count_Products = get_count_product(store_centre_point_mall.id);
-            console.log(count_Products)
+            const count_prdts = count_json.data.menu.productsCount;
+
+            console.log(count_prdts);
+
             let data = await getAllProducts(store_centre_point_mall.id, page_previous, 440);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
