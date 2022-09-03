@@ -1007,6 +1007,12 @@ ul.categories-list li {
 	outline: none !important;
 }
 
+
+.content-badge-strain {
+	justify-items: center !important;
+	align-items: center !important;
+}
+
 /*color effects #808080*/
 
 .bg-color-brand-subtype {
