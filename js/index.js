@@ -582,11 +582,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" product_id="${product.id}"></select>
+                                    <select class="form-select form-select-sm" id="quantity-${product.id}" product_id="${product.id}">
+                                        ${numberToArray(parseInt(product.variants[0].quantity) + 1).map(q => `<option>${q}</option>`)}
+                                    </select>
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight" product_id="${product.id}"></select>
+                                    <select class="form-select form-select-sm" id="select-weight-${product.id}" product_id="${product.id}">
+                                        ${product.variants.map(variant => `<option>${variant.option}</option>`)}
+                                    </select>
                                 </div>
                             </div>
                             <div class="product-action mt-2" id="content">
@@ -602,7 +606,46 @@ window.addEventListener('DOMContentLoaded', async () => {
             
             `
         ).join('')}`;
+
+        array_products.forEach( item => {
+            const tmpSelectQuantity = document.getElementById("quantity-" + item.id);
+            const tmpSelectWeight = document.getElementById("select-weight-" + item.id);
+            const tmpLabelCAD = document.getElementById("cad-" + item.id);
+            const tmpLabelCurrentWeight = document.getElementById("current-weight-" + item.id);
+
+            const UpdateCad = () => {
+                const priceInstance = item.variants.filter(variant => variant.option.toLowerCase() === tmpSelectWeight.value.toLowerCase());
+
+                let price;
+                if (priceInstance != null) {
+                    price = parseFloat(priceInstance[0].priceRec);
+                }
+
+                const total = price * parseInt(tmpSelectQuantity.value);
+
+                tmpLabelCAD.innerHTML = '$' + (Math.round(total * 100) / 100).toFixed(2);
+                tmpLabelCurrentWeight.innerHTML = (tmpSelectWeight.value).toUpperCase();
+            };
+
+            tmpSelectQuantity.addEventListener("change", UpdateCad);
+            tmpSelectWeight.addEventListener("change", UpdateCad);
+
+            UpdateCad();
+        });
+
+
+
     };
+
+const numberToArray = (number) => {
+    const tmp = [];
+
+    for (let i = 1; i <= number; i++) {
+        tmp.push(i);
+    }
+
+    return tmp;
+};
 
     function ViewQuantity (array_products) {
         const container_select_quantitys = document.querySelectorAll('#quantity');
