@@ -508,13 +508,13 @@ const renderProduct = (container, informatio_product) => {
                             </div>
                             <div class="col-12 col-lg-7">
                                 <div class="product-info-section p-3">
-                                        <div class="badge bg-badge-category mb-2">
+                                        <div class="badge bg-badge-black mb-2">
                                             <p style="text-transform: uppercase;" class="m-1 align-content-center font-14">${informatio_product.category}</p>
                                         </div>
                                         <h3 class="mt-4 mt-lg-0 mb-0">${informatio_product.name}</h3>
                                         <div class="d-inline-block mt-2" >
-                                            <p class="badge bg-success font-13 ">${informatio_product.brand.name}</p>
-                                            <p class="badge bg-success font-13" id="item_sub_type"></p> 
+                                            <p class="badge bg-badge-black font-13 ">${informatio_product.brand.name}</p>
+                                            <p class="badge bg-badge-black font-13" id="item_sub_type"></p> 
                                         </div>
                                         
                                         <div class="d-flex align-items-center">

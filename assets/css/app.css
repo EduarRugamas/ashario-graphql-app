@@ -972,6 +972,10 @@ ul.categories-list li {
 	background: #000000;
 }
 
+.bg-badge-black {
+	background: #000000;
+}
+
 .bg-badge-strainType-sativa {
 	background: #E41717;
 }
