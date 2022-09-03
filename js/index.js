@@ -516,6 +516,21 @@ window.addEventListener('DOMContentLoaded', async () => {
             p.setAttribute('strainType', get_information_strainType.strainType);
             console.log('elements', get_element_strain);
 
+            const get_strainType = p.getAttribute('strainType');
+
+            if (get_strainType === 'SATIVA') {
+                p.className = 'badge bg-badge-strainType-sativa font-13';
+                p.textContent = 'Uplift (SATIVA)';
+            }else if (get_strainType === 'INDICA') {
+                p.className = 'badge bg-badge-strainType-indica font-13';
+                p.textContent = 'Unwind (INDICA)';
+            }else if (get_strainType === 'HYBRID') {
+                p.className = 'badge bg-badge-strainType-hybrid font-13';
+                p.textContent = 'Connect (HYBRID/BLEND)';
+            }else if (get_strainType === 'HIGH_CBD'){
+                p.className = 'badge bg-badge-strainType-high-cbd font-13';
+                p.textContent = 'Renew (HIGH CBD)';
+            }
 
 
 
