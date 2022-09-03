@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
-                renderBadgeStant(data.products.strainType)
+                renderBadgeStant(data.products)
                 // ViewWeigths(data);
                 // ViewQuantity(data);
                 render_quantity_weights(data);
