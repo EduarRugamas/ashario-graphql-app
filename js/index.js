@@ -304,7 +304,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     <div class="card-body">
                         <div class="product-info">
                             <a href="/views/product-details.html?id=${product.id}" id="content_text_brand">
-                                <p class="product-catergory font-13 mb-1 content-badge-strain align-items-center align-content-center" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
+                                <p class="product-catergory font-13 mb-1 content-badge-strain  align-content-center" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
                                 <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p>
                                 <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                             </a>
@@ -519,16 +519,16 @@ window.addEventListener('DOMContentLoaded', async () => {
             const get_strainType = p.getAttribute('strainType');
 
             if (get_strainType === 'SATIVA') {
-                p.className = 'badge bg-badge-strainType-sativa font-13';
+                p.className = 'badge bg-badge-strainType-sativa font-13 align-items-center';
                 p.textContent = 'Uplift (SATIVA)';
             }else if (get_strainType === 'INDICA') {
-                p.className = 'badge bg-badge-strainType-indica font-13';
+                p.className = 'badge bg-badge-strainType-indica font-13 align-items-center';
                 p.textContent = 'Unwind (INDICA)';
             }else if (get_strainType === 'HYBRID') {
-                p.className = 'badge bg-badge-strainType-hybrid font-13';
+                p.className = 'badge bg-badge-strainType-hybrid font-13 align-items-center';
                 p.textContent = 'Connect (HYBRID/BLEND)';
             }else if (get_strainType === 'HIGH_CBD'){
-                p.className = 'badge bg-badge-strainType-high-cbd font-13';
+                p.className = 'badge bg-badge-strainType-high-cbd font-13 align-items-center;
                 p.textContent = 'Renew (HIGH CBD)';
             }
 
