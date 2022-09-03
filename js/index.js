@@ -515,19 +515,19 @@ window.addEventListener('DOMContentLoaded', async () => {
             const get_strainType = p.getAttribute('strainType');
 
             if (get_strainType === 'SATIVA') {
-                p.className = 'badge bg-badge-strainType-sativa font-13';
+                p.className = 'badge bg-badge-strainType-sativa font-13 text-center';
                 p.style='text-align: center !important;';
                 p.textContent = 'Uplift (SATIVA)';
             }else if (get_strainType === 'INDICA') {
-                p.className = 'badge bg-badge-strainType-indica font-13';
+                p.className = 'badge bg-badge-strainType-indica font-13 text-center';
                 p.style='text-align: center !important;';
                 p.textContent = 'Unwind (INDICA)';
             }else if (get_strainType === 'HYBRID') {
-                p.className = 'badge bg-badge-strainType-hybrid font-13';
+                p.className = 'badge bg-badge-strainType-hybrid font-13 text-center';
                 p.style='text-align: center !important;';
                 p.textContent = 'Connect (HYBRID/BLEND)';
             }else if (get_strainType === 'HIGH_CBD'){
-                p.className = 'badge bg-badge-strainType-high-cbd font-13';
+                p.className = 'badge bg-badge-strainType-high-cbd font-13 text-center';
                 p.style='text-align: center !important;';
                 p.textContent = 'Renew (HIGH CBD)';
             }
