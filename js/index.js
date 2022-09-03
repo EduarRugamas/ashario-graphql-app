@@ -508,7 +508,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         const content_strain_badge = document.querySelectorAll('.content-badge-strain');
 
         content_strain_badge.forEach( p => {
-            console.log(p)
+            const id_product = p.getAttribute('badge_id');
+            const get_element_strain = document.getElementById('badge-straint-' + id_product);
+            console.log(get_element_strain);
         });
     }
 
