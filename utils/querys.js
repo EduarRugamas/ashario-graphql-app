@@ -188,6 +188,7 @@ const filter_strain_type_lineage = async (retailerID, strain_type) => {
                     image,
                     category,
                     subcategory,
+                    strainType,
                     variants {
                       option,
                       priceRec,
@@ -223,6 +224,7 @@ const filter_weights = async (retailerID, weigths) => {
                     image,
                     category,
                     subcategory,
+                    strainType,
                     variants {
                       option,
                       priceRec,
@@ -261,6 +263,7 @@ const filter_thc = async (retailerID, min, max) => {
                     image,
                     category,
                     subcategory,
+                    strainType,
                     variants {
                       option,
                       priceRec,
@@ -295,6 +298,7 @@ const filter_cbd = async (retailerID, min, max) => {
                     image,
                     category,
                     subcategory,
+                    strainType,
                     variants {
                       option,
                       priceRec,
