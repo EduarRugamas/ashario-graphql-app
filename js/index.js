@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             console.log(count_json);
 
-            const count_prdts = count_json.data.menu.productsCount;
+            const count_prdts = count_json.data;
 
             console.log(count_prdts);
 
