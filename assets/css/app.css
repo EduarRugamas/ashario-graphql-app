@@ -1009,7 +1009,7 @@ ul.categories-list li {
 
 
 .content-badge-strain {
-	display: flex;
+	display: flex !important;
 	text-align: center !important;
 }
 
