@@ -859,7 +859,7 @@ const renderBadgeEffects = (id_content_effects, effets) => {
 
 };
 const renderBadgeStant = (id_content_strainType, strantType) => {
-        const div_content_strainType = document.getElementById(`${id_content_strainType}`);
+        const div_content_strainType = document.getElementsByClassName(`${id_content_strainType}`);
         let badge_strainType = '';
 
         if (strantType === 'SATIVA') {
