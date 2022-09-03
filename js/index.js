@@ -122,8 +122,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
 
 
-            let countProducts = get_count_product(store_centre_point_mall.id);
-            console.log(countProducts)
+            let count_Products = get_count_product(store_centre_point_mall.id);
+            console.log(count_Products.countProducts)
             let data = await getAllProducts(store_centre_point_mall.id, page_previous, 440);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
