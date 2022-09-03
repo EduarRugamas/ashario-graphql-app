@@ -9,7 +9,7 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="7">
+          <list size="8">
             <item index="0" class="java.lang.String" itemvalue="filter_lineage" />
             <item index="1" class="java.lang.String" itemvalue="checked" />
             <item index="2" class="java.lang.String" itemvalue="id_product" />
@@ -17,6 +17,7 @@
             <item index="4" class="java.lang.String" itemvalue="count_quantity" />
             <item index="5" class="java.lang.String" itemvalue="product_variants" />
             <item index="6" class="java.lang.String" itemvalue="product_id" />
+            <item index="7" class="java.lang.String" itemvalue="badge_id" />
           </list>
         </value>
       </option>
