@@ -865,7 +865,7 @@ const renderBadgeStant = (strantType) => {
         if (strantType === "SATIVA") {
             badge_strainType+= `
                 <div class="badge bg-badge-strainType-sativa font-13">
-                    Uplif (SATIVA)
+                    Uplift (SATIVA)
                 </div>
             `;
             div_content_strainType.innerHTML = badge_strainType;

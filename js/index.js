@@ -144,6 +144,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
+                renderBadgeStant(data.products.strainType)
                 // ViewWeigths(data);
                 // ViewQuantity(data);
                 render_quantity_weights(data);
@@ -565,6 +566,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     <div class="card-body">
                         <div class="product-info">
                             <a href="/views/product-details.html?id=${product.id}">
+                                <p class="product-catergory font-13 mb-1" id="badge-straint"></p>
                                 <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
                                 <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                             </a>
@@ -892,6 +894,53 @@ window.addEventListener('DOMContentLoaded', async () => {
             
         `
     };
+    const renderBadgeStant = (strantType) => {
+
+    const div_content_strainType = document.querySelectorAll('#badge-straint');
+
+    div_content_strainType.forEach(item => {
+        let badge_strainType = '';
+        if (strantType === "SATIVA") {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-sativa font-13">
+                    Uplift (SATIVA)
+                </div>
+            `;
+            item.innerHTML = badge_strainType;
+        }else if (strantType === "INDICA") {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-indica font-13">
+                    Unwind (INDICA)
+                </div>
+            `;
+            item.innerHTML = badge_strainType;
+        }else if (strantType === "HYBRID") {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-hybrid font-13">
+                    Connect (HYBRID/BLEND)
+                </div>
+            `;
+            item.innerHTML = badge_strainType;
+        }else if (strantType === "HIGH_CBD") {
+            badge_strainType+= `
+                <div class="badge bg-badge-strainType-high-cbd font-13">
+                    Renew (HIGH CBD)
+                </div>
+            `;
+            item.innerHTML = badge_strainType;
+        }
+    })
+
+
+
+
+
+
+    // <div className="badge bg-badge-strant font-13 badge_strant">
+    //     ${informatio_product.strainType}
+    // </div>
+
+};
 
 
 
