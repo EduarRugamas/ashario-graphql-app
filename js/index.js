@@ -514,7 +514,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     };
     function ViewWeigthsSpecial(array_products, variant) {
 
-    const container_select_weights = document.querySelectorAll('#select-weight');
+    const container_select_weights = document.querySelectorAll('.select-weight');
 
     container_select_weights.forEach(items => {
         const get_id_product_weights = items.getAttribute('product_id');
@@ -530,7 +530,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             option_weigths.value = get_variant.option;
             option_weigths.text = get_variant.option;
             appendElementHtml(items, option_weigths);
-            FormatWeigths("3.5g");
+            // FormatWeigths("3.5g");
 
 
         } else if (get_variant.option === "28g") {
@@ -539,7 +539,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             option_weigths.value = get_variant.option;
             option_weigths.text = get_variant.option;
             appendElementHtml(items, option_weigths);
-            FormatWeigths("28g");
+            // FormatWeigths("28g");
 
         } else if (get_variant.option === "1g") {
 
@@ -547,7 +547,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             option_weigths.value = get_variant.option;
             option_weigths.text = get_variant.option;
             appendElementHtml(items, option_weigths);
-            FormatWeigths("1g");
+            // FormatWeigths("1g");
 
         } else if (get_variant.option === "7g") {
 
@@ -555,7 +555,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             option_weigths.value = get_variant.option;
             option_weigths.text = get_variant.option;
             appendElementHtml(items, option_weigths);
-            FormatWeigths("7g");
+            // FormatWeigths("7g");
 
         } else if (get_variant.option === "14g") {
 
@@ -563,7 +563,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             option_weigths.value = get_variant.option;
             option_weigths.text = get_variant.option;
             appendElementHtml(items, option_weigths);
-            FormatWeigths("14g");
+            // FormatWeigths("14g");
 
         }
 
@@ -572,7 +572,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 }
 
     function FormatWeigths(variant) {
-    const format_weights = document.querySelectorAll('.jceachformat');
+    const format_weights = document.getElementById('.jceachformat');
     format_weights.forEach(items => {
 
         if (variant === "3.5g") {
