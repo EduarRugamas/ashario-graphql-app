@@ -304,7 +304,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     <div class="card-body">
                         <div class="product-info">
                             <a href="/views/product-details.html?id=${product.id}" id="content_text_brand">
-                                <p class="product-catergory font-13 mb-1 content-badge-strain " badge_id="${product.id}" id="badge-straint-${product.id}"></p>
+                                <p class="product-catergory font-13 mb-1 content-badge-strain justify-content-center align-content-center align-items-center" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
                                 <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p>
                                 <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                             </a>
@@ -509,26 +509,22 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         content_strain_badge.forEach( p => {
             const id_product = p.getAttribute('badge_id');
-            console.log(id_product);
             const get_element_strain = document.getElementById('badge-straint-' + id_product);
             const get_information_strainType = array_products.find(item => item.id === id_product);
-            console.log(get_information_strainType);
             p.setAttribute('strainType', get_information_strainType.strainType);
-            console.log('elements', get_element_strain);
-
             const get_strainType = p.getAttribute('strainType');
 
             if (get_strainType === 'SATIVA') {
-                p.className = 'badge bg-badge-strainType-sativa font-13 text-center';
+                p.className = 'badge bg-badge-strainType-sativa font-13';
                 p.textContent = 'Uplift (SATIVA)';
             }else if (get_strainType === 'INDICA') {
-                p.className = 'badge bg-badge-strainType-indica font-13 text-center';
+                p.className = 'badge bg-badge-strainType-indica font-13';
                 p.textContent = 'Unwind (INDICA)';
             }else if (get_strainType === 'HYBRID') {
-                p.className = 'badge bg-badge-strainType-hybrid font-13 text-center';
+                p.className = 'badge bg-badge-strainType-hybrid font-13';
                 p.textContent = 'Connect (HYBRID/BLEND)';
             }else if (get_strainType === 'HIGH_CBD'){
-                p.className = 'badge bg-badge-strainType-high-cbd font-13 text-center';
+                p.className = 'badge bg-badge-strainType-high-cbd font-13';
                 p.textContent = 'Renew (HIGH CBD)';
             }
 
