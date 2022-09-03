@@ -894,42 +894,47 @@ window.addEventListener('DOMContentLoaded', async () => {
             
         `
     };
-    const renderBadgeStant = (strantType) => {
-
+    const renderBadgeStant = (array_products) => {
     const div_content_strainType = document.querySelectorAll('#badge-straint');
 
-    div_content_strainType.forEach(item => {
-        let badge_strainType = '';
-        if (strantType === "SATIVA") {
-            badge_strainType+= `
-                <div class="badge bg-badge-strainType-sativa font-13">
-                    Uplift (SATIVA)
-                </div>
-            `;
-            item.innerHTML = badge_strainType;
-        }else if (strantType === "INDICA") {
-            badge_strainType+= `
-                <div class="badge bg-badge-strainType-indica font-13">
-                    Unwind (INDICA)
-                </div>
-            `;
-            item.innerHTML = badge_strainType;
-        }else if (strantType === "HYBRID") {
-            badge_strainType+= `
-                <div class="badge bg-badge-strainType-hybrid font-13">
-                    Connect (HYBRID/BLEND)
-                </div>
-            `;
-            item.innerHTML = badge_strainType;
-        }else if (strantType === "HIGH_CBD") {
-            badge_strainType+= `
-                <div class="badge bg-badge-strainType-high-cbd font-13">
-                    Renew (HIGH CBD)
-                </div>
-            `;
-            item.innerHTML = badge_strainType;
-        }
+    array_products.forEach(item => {
+        console.log(item);
     })
+
+
+
+    // div_content_strainType.forEach(item => {
+    //     let badge_strainType = '';
+    //     if (strantType === "SATIVA") {
+    //         badge_strainType+= `
+    //             <div class="badge bg-badge-strainType-sativa font-13">
+    //                 Uplift (SATIVA)
+    //             </div>
+    //         `;
+    //         item.innerHTML = badge_strainType;
+    //     }else if (strantType === "INDICA") {
+    //         badge_strainType+= `
+    //             <div class="badge bg-badge-strainType-indica font-13">
+    //                 Unwind (INDICA)
+    //             </div>
+    //         `;
+    //         item.innerHTML = badge_strainType;
+    //     }else if (strantType === "HYBRID") {
+    //         badge_strainType+= `
+    //             <div class="badge bg-badge-strainType-hybrid font-13">
+    //                 Connect (HYBRID/BLEND)
+    //             </div>
+    //         `;
+    //         item.innerHTML = badge_strainType;
+    //     }else if (strantType === "HIGH_CBD") {
+    //         badge_strainType+= `
+    //             <div class="badge bg-badge-strainType-high-cbd font-13">
+    //                 Renew (HIGH CBD)
+    //             </div>
+    //         `;
+    //         item.innerHTML = badge_strainType;
+    //     }
+    // })
 
 
 
