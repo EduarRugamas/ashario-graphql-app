@@ -123,26 +123,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log('error query', error.message);
             });
 
-            const query_count_products = `query GetCountProducts($retailerId: ID="${store_centre_point_mall.id}" ) { menu(retailerId: $retailerId) {productsCount}}`;
-
-            const count_products = await fetch(`${url_base}`, {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "Authorization": "Bearer " + secret_key,
-                },
-                body: JSON.stringify({query: query_count_products})
-            });
-
-            const count_json = count_products.json();
-
-            console.log(count_json);
-
-            const count_prdts = count_json.data;
-
-            console.log(count_prdts);
-
+            let count_Products = get_count_product(store_centre_point_mall.id);
+            console.log(count_Products.productsCount)
             let data = await getAllProducts(store_centre_point_mall.id, page_previous, 440);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
