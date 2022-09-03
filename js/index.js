@@ -144,37 +144,23 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
-                // ViewWeigths(data);
-                // ViewQuantity(data);
-                render_quantity_weights(data);
-
 
             }
 
             if (radio_indica.checked && radio_indica.value === 'indica') {
                 cartProduct(container_products, filter_indica.products);
-                ViewQuantity();
-                ViewWeigths(filter_indica);
             }
             if (radio_sativa.checked && radio_sativa.value === 'sativa') {
                 cartProduct(container_products, filter_sativa.products);
-                ViewQuantity();
-                ViewWeigths(filter_sativa);
             }
             if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
                 cartProduct(container_products, filter_hybrid.products);
-                ViewQuantity();
-                ViewWeigths(filter_hybrid.products);
             }
             if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
                 cartProduct(container_products, filter_high_cbd.products);
-                ViewQuantity();
-                ViewWeigths(filter_high_cbd);
             }
             if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
                 cartProduct(container_products, filter_not_applicable.products);
-                ViewQuantity();
-                ViewWeigths(filter_not_applicable);
             }
 
 
@@ -182,35 +168,23 @@ window.addEventListener('DOMContentLoaded', async () => {
                 radio.addEventListener('change', () => {
                     if (radio.checked  && radio.value === 'all') {
                         cartProduct(container_products, data.products);
-                        ViewQuantity();
-                        ViewWeigths(data);
                     }
                     if (radio.value === 'indica' && radio.checked) {
                         cartProduct(container_products, filter_indica.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_indica);
                     }
                     if (radio.value === 'sativa' && radio.checked){
                         cartProduct(container_products, filter_sativa.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_sativa);
                     }
                     if (radio.value === 'hybrid' && radio.checked) {
                         cartProduct(container_products, filter_hybrid.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_hybrid);
                     }
                     if (radio.value === 'high_cbd' && radio.checked) {
                         console.log('entro a high_cbd');
                         cartProduct(container_products, filter_high_cbd.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_high_cbd);
                     }
                     if (radio.value === 'not_applicable' && radio.checked) {
                         console.log('entro a not applicable');
                         cartProduct(container_products, filter_not_applicable.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_not_applicable);
                     }
                 })
             });
@@ -219,39 +193,22 @@ window.addEventListener('DOMContentLoaded', async () => {
                 weights.addEventListener('change', () => {
                     if (weights.checked  && weights.value === 'all') {
                         cartProduct(container_products, data.products);
-                        ViewQuantity();
-                        ViewWeigths(data);
                     }
                     if (weights.value === '3.5G' && weights.checked) {
                         cartProduct(container_products, filter_35G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_35G);
-                        ViewWeigthsSpecial(filter_35G, "3.5g");
                     }
                     if (weights.value === '28G' && weights.checked) {
                         cartProduct(container_products, filter_28G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_28G);
-                        ViewWeigthsSpecial(filter_28G, "28g");
                     }
 
                     if (weights.value === '1G' && weights.checked) {
                         cartProduct(container_products, filter_1G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_1G);
-                        ViewWeigthsSpecial(filter_1G, "1g");
                     }
                     if (weights.value === '7G' && weights.checked) {
                         cartProduct(container_products, filter_7G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_7G);
-                        ViewWeigthsSpecial(filter_7G, "7g");
                     }
                     if (weights.value === '14G' && weights.checked) {
                         cartProduct(container_products, filter_14G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_14G);
-                        ViewWeigthsSpecial(filter_14G, "14g");
                     }
 
                 });
@@ -299,34 +256,25 @@ window.addEventListener('DOMContentLoaded', async () => {
                     let data_thc = slider_thc.noUiSlider.get();
 
                     const filt_thc = await filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
-
                     cartProduct(container_products, filt_thc.products);
-                    ViewQuantity();
-                    ViewWeigths(filt_thc);
                 });
 
                 btn_cbd.addEventListener('click', async () => {
                     let data_cbd = slider_cbd.noUiSlider.get();
 
                     const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_cbd[0], data_cbd[1]);
-
                     cartProduct(container_products, filt_cbd.products);
-                    ViewQuantity();
-                    ViewWeigths(filt_cbd);
+
                 });
 
                 btn_reset_thc.addEventListener('click', () => {
                     slider_thc.noUiSlider.reset();
                     cartProduct(container_products, data.products);
-                    ViewQuantity();
-                    ViewWeigths(data);
                 });
 
                 btn_reset_cbd.addEventListener('click', () => {
                     slider_cbd.noUiSlider.reset();
                     cartProduct(container_products, data.products);
-                    ViewQuantity();
-                    ViewWeigths(data);
                 });
 
                 // search filter
@@ -639,7 +587,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     };
 
-const numberToArray = (number) => {
+    const numberToArray = (number) => {
     const tmp = [];
 
     for (let i = 1; i <= number; i++) {
@@ -648,137 +596,6 @@ const numberToArray = (number) => {
 
     return tmp;
 };
-
-    function ViewQuantity (array_products) {
-        const container_select_quantitys = document.querySelectorAll('#quantity');
-
-        container_select_quantitys.forEach(items => {
-            const get_product_id = items.getAttribute('product_id');
-
-            let quantity_product = array_products.products.find(item => item.id === get_product_id);
-            quantity_product.variants.forEach( item => {
-                console.log(item);
-            })
-
-            for (let quantity_select = 1; quantity_select <= quantity_product.variants.quantity; quantity_select++) {
-                const options_quantity_select = createElementHtml('option');
-                options_quantity_select.value = quantity_select;
-                options_quantity_select.text = quantity_select;
-                appendElementHtml(items, options_quantity_select);
-            }
-
-            items.addEventListener('change', () => {
-
-            });
-
-        });
-
-
-    }
-
-    function ViewWeigths (array_products) {
-        const container_select_weights = document.querySelectorAll('#select-weight');
-
-        container_select_weights.forEach(items => {
-            const get_id_product_weights = items.getAttribute('product_id');
-            console.log(get_id_product_weights);
-
-            let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
-            console.log(weights_product);
-            for (let i of weights_product.variants){
-                console.log(i);
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = i.option;
-                option_weigths.text = i.option;
-                appendElementHtml(items, option_weigths);
-            }
-        });
-    }
-
-    function ViewWeigthsSpecial (array_products, variant) {
-
-        const container_select_weights = document.querySelectorAll('#select-weight');
-
-        container_select_weights.forEach(items => {
-            const get_id_product_weights = items.getAttribute('product_id');
-            console.log('llego aqui', get_id_product_weights);
-            let weights_product = array_products.products.find(item => item.id === get_id_product_weights);
-            console.log(weights_product);
-            let get_variant = weights_product.variants.find(option => option.option === variant)
-            console.log(get_variant);
-
-            if (get_variant.option === "3.5g") {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-                FormatWeigths("3.5g");
-
-
-            }else if (get_variant.option === "28g") {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-                FormatWeigths("28g");
-
-            }else if (get_variant.option === "1g") {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-                FormatWeigths("1g");
-
-            }else if (get_variant.option === "7g") {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-                FormatWeigths("7g");
-
-            }else if (get_variant.option === "14g") {
-
-                const option_weigths = createElementHtml('option');
-                option_weigths.value = get_variant.option;
-                option_weigths.text = get_variant.option;
-                appendElementHtml(items, option_weigths);
-                FormatWeigths("14g");
-
-            }
-
-
-        });
-    }
-
-    function FormatWeigths (variant) {
-        const format_weights = document.querySelectorAll('.jceachformat');
-        format_weights.forEach(items => {
-
-            if (variant === "3.5g") {
-                items.textContent='/3.5g'
-
-            }else if (variant === "28g") {
-                items.textContent='/28g'
-
-            }else if (variant === "1g") {
-
-                items.textContent='/1g'
-
-            }else if (variant === "7g") {
-
-                items.textContent='/7g'
-
-            }else if (variant === "14g") {
-
-                items.textContent='/14g'
-
-            }
-        });
-    }
 
     const render_search_products = (container_products, retailerId, id_container_search, array_all_products) => {
         let search = '';
@@ -849,167 +666,6 @@ const numberToArray = (number) => {
 
 
     };
-
-    const render_quantity_weights = (array_products) => {
-        const container_select_quantitys = document.querySelectorAll('#quantity');
-        const container_select_weights = document.querySelectorAll('#select-weight');
-        const text_price_all_products = document.querySelectorAll('.jcpricingnw');
-
-
-        container_select_weights.forEach( item => {
-            const get_product_weight = item.getAttribute('product_id');
-            let weight_product_filter = array_products.products.find(item => item.id === get_product_weight);
-            for (let i of weight_product_filter.variants){
-                console.log(i);
-                const option_weights = createElementHtml('option');
-                option_weights.value = i.option;
-                option_weights.text = i.option;
-                appendElementHtml(item, option_weights);
-            }
-
-            const get_value_weights = item.value;
-            console.log(get_value_weights);
-
-            // <span className="fs-5 jcpricingnw"></span>
-            // <span className="er-each jceachformat" style="align-items: flex-end;"></span>
-
-            if (get_value_weights === '3.5g') {
-
-                let weight_product_variant_35 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 3.5g', weight_product_variant_35);
-                text_price_all_products.forEach(item => {
-                    if (get_value_weights === '3.5g') {
-                         item.textContent = `$${weight_product_variant_35.priceRec}`;
-                    }
-
-                })
-
-            }else if (get_value_weights === '28g') {
-
-                let weight_product_variant_28 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 28g', weight_product_variant_28);
-
-            }else if (get_value_weights === '1g') {
-
-                let weight_product_variant_1 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 1g', weight_product_variant_1);
-
-
-            }else if (get_value_weights === '7g') {
-
-                let weight_product_variant_7 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 7g', weight_product_variant_7);
-
-            }else if (get_value_weights === '14g') {
-                let weight_product_variant_14 = weight_product_filter.variants.find(item => item.option === get_value_weights);
-                console.log('encontre variante 14g', weight_product_variant_14);
-
-            }
-
-
-
-        });
-
-
-
-
-
-
-
-
-        // container_select_quantitys.forEach(item => {
-        //     const get_product_quantity = item.getAttribute('product_id');
-        //     let quantity_product = array_products.products.find(item => item.id === get_product_quantity);
-        //     console.log(quantity_product);
-        // });
-
-
-
-    };
-
-    const view_item_price = (container) => {
-        container.innerHTML=`
-        
-        <div class="mb-1 product-price itemprice jcitemprice">
-            <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-            <span class="fs-5 jcpricingnw"></span>
-            <span class="er-each jceachformat" style="align-items: flex-end;"></span>
-        </div>
-            
-        `
-    };
-    const renderBadgeStant = (array_products) => {
-    const div_content = document.querySelectorAll('#content_text_brand');
-
-        div_content.forEach(content => {
-
-            console.log(content);
-
-        let badge_strainType = '';
-
-            array_products.forEach(item => {
-
-                console.log(item);
-
-                if (item.strantType === "SATIVA") {
-                    const etiqueta_p = createElementHtml('p');
-                    etiqueta_p.className='badge bg-badge-strainType-sativa font-13';
-                    etiqueta_p.textContent=`${item.strantType}`
-                    appendElementHtml(content, etiqueta_p);
-                }else if (item.strantType === "INDICA") {
-                    badge_strainType+= `
-                        <div class="badge bg-badge-strainType-indica font-13">
-                            Unwind (INDICA)
-                        </div>
-                    `;
-                    content.innerHTML = badge_strainType;
-                }
-            })
-
-
-
-        // if (strantType === "SATIVA") {
-        //     badge_strainType+= `
-        //         <div class="badge bg-badge-strainType-sativa font-13">
-        //             Uplift (SATIVA)
-        //         </div>
-        //     `;
-        //     item.innerHTML = badge_strainType;
-        // }else if (strantType === "INDICA") {
-        //     badge_strainType+= `
-        //         <div class="badge bg-badge-strainType-indica font-13">
-        //             Unwind (INDICA)
-        //         </div>
-        //     `;
-        //     item.innerHTML = badge_strainType;
-        // }else if (strantType === "HYBRID") {
-        //     badge_strainType+= `
-        //         <div class="badge bg-badge-strainType-hybrid font-13">
-        //             Connect (HYBRID/BLEND)
-        //         </div>
-        //     `;
-        //     item.innerHTML = badge_strainType;
-        // }else if (strantType === "HIGH_CBD") {
-        //     badge_strainType+= `
-        //         <div class="badge bg-badge-strainType-high-cbd font-13">
-        //             Renew (HIGH CBD)
-        //         </div>
-        //     `;
-        //     item.innerHTML = badge_strainType;
-        // }
-    })
-
-
-
-
-
-
-    // <div className="badge bg-badge-strant font-13 badge_strant">
-    //     ${informatio_product.strainType}
-    // </div>
-
-};
-
 
 
   // <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">${(item.brand_subtype) === null || undefined ? '' : item.brand_subtype}</p>
