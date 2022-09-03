@@ -512,7 +512,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const get_element_strain = document.getElementById('badge-straint-' + id_product);
             console.log(get_element_strain);
 
-            const get_information_strainType = array_products.products.find(item => item.productId === id_product);
+            const get_information_strainType = array_products.find(item => item.productId === id_product);
             console.log(get_information_strainType);
         });
     }
