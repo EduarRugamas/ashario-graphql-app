@@ -898,6 +898,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     const div_content = document.querySelectorAll('#content_text_brand');
 
         div_content.forEach(content => {
+
+            console.log(content);
+
         let badge_strainType = '';
 
             array_products.forEach(item => {
