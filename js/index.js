@@ -904,13 +904,14 @@ window.addEventListener('DOMContentLoaded', async () => {
         let badge_strainType = '';
 
             array_products.forEach(item => {
+
+                console.log(item);
+
                 if (item.strantType === "SATIVA") {
-                    badge_strainType+= `
-                        <p class="badge bg-badge-strainType-sativa font-13">
-                            Uplift (SATIVA)
-                        </p>
-                    `;
-                    content.innerHTML = badge_strainType;
+                    const etiqueta_p = createElementHtml('p');
+                    etiqueta_p.className='badge bg-badge-strainType-sativa font-13';
+                    etiqueta_p.textContent=`${item.strantType}`
+                    appendElementHtml(content, etiqueta_p);
                 }else if (item.strantType === "INDICA") {
                     badge_strainType+= `
                         <div class="badge bg-badge-strainType-indica font-13">
