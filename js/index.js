@@ -528,7 +528,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 p.className = 'badge bg-badge-strainType-hybrid font-13 align-items-center';
                 p.textContent = 'Connect (HYBRID/BLEND)';
             }else if (get_strainType === 'HIGH_CBD'){
-                p.className = 'badge bg-badge-strainType-high-cbd font-13 align-items-center;
+                p.className = 'badge bg-badge-strainType-high-cbd font-13 align-items-center';
                 p.textContent = 'Renew (HIGH CBD)';
             }
 
