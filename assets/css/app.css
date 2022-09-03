@@ -979,16 +979,20 @@ ul.categories-list li {
 
 .bg-badge-strainType-sativa {
 	background: #E41717;
+	border-radius: 0 !important;
 }
 
 .bg-badge-strainType-indica {
 	background: #0B4FC6;
+	border-radius: 0 !important;
 }
 .bg-badge-strainType-hybrid {
 	background: #700977;
+	border-radius: 0 !important;
 }
 .bg-badge-strainType-high-cbd {
 	 background: #4DA810;
+	border-radius: 0 !important;
  }
 
 
