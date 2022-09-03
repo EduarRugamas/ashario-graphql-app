@@ -420,7 +420,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             });
         });
-        badge_strainType();
+        badge_strainType(array_products);
 
 
     };
@@ -504,13 +504,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
     };
-    const badge_strainType = () => {
+    const badge_strainType = (array_products) => {
         const content_strain_badge = document.querySelectorAll('.content-badge-strain');
 
         content_strain_badge.forEach( p => {
             const id_product = p.getAttribute('badge_id');
             const get_element_strain = document.getElementById('badge-straint-' + id_product);
             console.log(get_element_strain);
+
+            const get_information_strainType = array_products.products.find(item => item.productId === id_product);
+            console.log(get_information_strainType);
         });
     }
 
