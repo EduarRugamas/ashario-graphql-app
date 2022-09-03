@@ -562,7 +562,7 @@ const renderProduct = (container, informatio_product) => {
     renderSelectedImages(informatio_product.images);
     renderPotency_CBD_THC('container-details-dl', informatio_product.potencyThc, informatio_product.potencyCbd);
     renderBadgeEffects('content_effects', informatio_product.effects);
-    renderBadgeStant('badge_strain', informatio_product.strainType);
+    renderBadgeStant(informatio_product.strainType);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
     update_icon_cart('icon_cart_count');
 
@@ -858,32 +858,32 @@ const renderBadgeEffects = (id_content_effects, effets) => {
 
 
 };
-const renderBadgeStant = (id_content_strainType, strantType) => {
-        const div_content_strainType = document.getElementsByClassName(`${id_content_strainType}`);
+const renderBadgeStant = (strantType) => {
+        const div_content_strainType = document.querySelector('.badge_strain');
         let badge_strainType = '';
 
-        if (strantType === 'SATIVA') {
+        if (strantType === "SATIVA") {
             badge_strainType+= `
                 <div class="badge bg-badge-strainType-sativa font-13">
                     Uplif (SATIVA)
                 </div>
             `;
             div_content_strainType.innerHTML = badge_strainType;
-        }else if (strantType === 'INDICA') {
+        }else if (strantType === "INDICA") {
             badge_strainType+= `
                 <div class="badge bg-badge-strainType-indica font-13">
                     Unwind (INDICA)
                 </div>
             `;
             div_content_strainType.innerHTML = badge_strainType;
-        }else if (strantType === 'HYBRID') {
+        }else if (strantType === "HYBRID") {
             badge_strainType+= `
                 <div class="badge bg-badge-strainType-hybrid font-13">
                     Connect (HYBRID/BLEND)
                 </div>
             `;
             div_content_strainType.innerHTML = badge_strainType;
-        }else if (strantType === 'HIGH_CBD') {
+        }else if (strantType === "HIGH_CBD") {
             badge_strainType+= `
                 <div class="badge bg-badge-strainType-high-cbd font-13">
                     Renew (HIGH CBD)
