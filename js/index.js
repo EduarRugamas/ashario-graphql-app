@@ -289,23 +289,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                         let product_id = btn.getAttribute('id_product');
                         let quantity = parseInt(document.getElementById('quantity').value);
-                        let option = btn.getAttribute('option_product');
-                        addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, quantity, option).then( result => {
-                            console.log(result);
+                        let option = document.getElementsByClassName('select-weight').value;
 
-                            const results = result.data.addItem.items;
-
-                            let card_view_product = results.find(item => item.productId === product_id);
-
-                            Swal.fire({
-                            title: 'Added to cart!',
-                            text: `${card_view_product.product.name}`,
-                            imageUrl: `${card_view_product.product.image}`,
-                            imageWidth: 250,
-                            imageHeight: 300,
-                            imageAlt: `${card_view_product.product.name}`,
-                            });
-                        });
                     });
                 });
 
@@ -523,7 +508,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-items-center content_item_price">
                                 <div class="mb-1 product-price itemprice jcitemprice">
                                     <span class="fs-5 currencyformat jcpriceformat">CAD 
-                                        <span id="cad-${product.id}" style="font-weight: 700; color: #000; font-size: 1.25rem!important;"></span> / <span id="current-weight-${product.id}"></span></span>
+                                        <span id="cad-${product.id}" style="font-weight: 700; color: #000; font-size: 1.25rem!important;"></span>
+                                         / 
+                                         <span id="current-weight-${product.id}"></span></span>
                                     </span>
                                     <span class="fs-5 jcpricingnw"></span>
                                     <span class="er-each jceachformat" style="align-items: flex-end;"></span>
@@ -532,20 +519,20 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                 <div class="me-4" id="container_quantity">
                                     <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity-${product.id}" product_id="${product.id}">
+                                    <select class="form-select form-select-sm select-quantity" id="quantity-${product.id}" product_id="${product.id}">
                                         ${numberToArray(parseInt(product.variants[0].quantity) + 1).map(q => `<option>${q}</option>`)}
                                     </select>
                                 </div>
                                 <div class="" id="container_weight">
                                     <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight-${product.id}" product_id="${product.id}">
+                                    <select class="form-select form-select-sm select-weight" id="select-weight-${product.id}" product_id="${product.id}">
                                         ${product.variants.map(variant => `<option>${variant.option}</option>`)}
                                     </select>
                                 </div>
                             </div>
                             <div class="product-action mt-2" id="content">
                                <div class="d-grid gap-2">
-                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
+                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}"><i class="bx bxs-cart-add"></i>add to cart</a>
                                     <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
                                </div> 
                             </div> 
@@ -581,6 +568,51 @@ window.addEventListener('DOMContentLoaded', async () => {
             tmpSelectWeight.addEventListener("change", UpdateCad);
 
             UpdateCad();
+
+            const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
+            const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
+
+            btn_add_cart_grid.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
+                    let product_id = btn.getAttribute('id_product');
+                    const option_quantity = tmpSelectQuantity.value;
+                    const option_weight = tmpSelectWeight.value;
+
+                    console.log(`${store_centre_point_mall.id}, ${checkout_id.id}, ${product_id}, quantity:${option_quantity}, option: ${option_weight}`);
+
+                    
+                    // addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, quantity, option).then( result => {
+                    //     console.log(result);
+                    //     if (result.data.addItem === null ) {
+                    //         const error = result.errors[0];
+                    //         console.log(error);
+                    //         Swal.fire({
+                    //             icon: 'error',
+                    //             text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+                    //             confirmButtonColor: '#3e3e3e',
+                    //         });
+                    //     }
+                    //
+                    //     const results = result.data.addItem.items;
+                    //
+                    //     let card_view_product = results.find(item => item.productId === product_id);
+                    //
+                    //     Swal.fire({
+                    //         title: 'Added to cart!',
+                    //         text: `${card_view_product.product.name}`,
+                    //         imageUrl: `${card_view_product.product.image}`,
+                    //         imageWidth: 250,
+                    //         imageHeight: 300,
+                    //         imageAlt: `${card_view_product.product.name}`,
+                    //     });
+                    // });
+
+
+                });
+            });
+
+
         });
 
 
