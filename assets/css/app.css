@@ -1191,8 +1191,8 @@ ul.categories-list li {
 	border-radius: 50%;
 	font-size: 13px;
 	font-weight: 400;
-	color: #ffffff;
-	background: #282424;
+	color: #000000 !important;
+	background: #FFFFFF !important;
 }
 .dropdown-large {
 	position: relative
