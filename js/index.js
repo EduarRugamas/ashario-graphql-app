@@ -33,7 +33,7 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 
 // fin declaracion de botones o contenedores no principales
 const btn_shop_cart_link = document.querySelector('.cart-link');
-const icon_cart_count = document.querySelector('#count_quantity_cart');
+const icon_cart_count = document.querySelector('.alert-count');
 let count = 0;
 // declaracion de variable local storage
 const storage_local = window.localStorage;
