@@ -112,7 +112,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
             response.then( result => {
                 console.log(result);
-                const url_retorno = result.redirectUrl + '?r=https://ashario.com/thank-you';
+                const url_retorno = result.redirectUrl;
                 btn_shop_cart_link.setAttribute('href', url_retorno);
                 let cart_centre_point_mall = {
                     id: result.id,
@@ -395,6 +395,20 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const get_select_weight = document.getElementById('select-weight-' + product_id);
 
                 console.log(`${store_centre_point_mall.id}, ${checkout_id.id}, ${product_id}, quantity:${get_select_quantity.value}, option: ${get_select_weight.value}`);
+                const id_store = store_centre_point_mall.id;
+                const checkout_id_store = checkout_id.id;
+                const value_quantity = get_select_quantity.value;
+                const value_weight = get_select_weight.value
+                let json_add_cart = {
+                    id_store,
+                    checkout_id_store,
+                    product_id,
+                    value_quantity,
+                    value_weight
+                }
+
+                console.log(json_add_cart);
+
 
                 addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, get_select_quantity.value, get_select_weight.value).then( result => {
                     console.log(result);
@@ -637,6 +651,26 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
     });
 }
+
+
+
+
+//  item de mini cart
+// <a className="dropdown-item" href="javascript:;">
+//     <div className="d-flex align-items-center">
+//         <div className="flex-grow-1">
+//             <h6 className="cart-product-title"></h6>
+//             <p className="cart-product-price"></p>
+//         </div>
+//         <div className="position-relative">
+//             <div className="cart-product-cancel position-absolute"><i className='bx bx-x'></i>
+//             </div>
+//             <div className="cart-product">
+//                 <img src="" className="" alt="product image">
+//             </div>
+//         </div>
+//     </div>
+// </a>
 
 
   // <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">${(item.brand_subtype) === null || undefined ? '' : item.brand_subtype}</p>
