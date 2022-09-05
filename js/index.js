@@ -630,19 +630,24 @@ window.addEventListener('DOMContentLoaded', async () => {
         storage_local.setItem('count', count);
     };
     const mini_cart_render = (array_products) => {
-
+        let get_items_mini_cart = {};
         let template_item_mini_cart = '';
 
+        if (storage_local.getItem('cart')) {
+            get_items_mini_cart = JSON.parse(storage_local.getItem('cart'));
+        }
+
+        console.log(get_items_mini_cart);
 
         if (storage_local.getItem('count')) {
             count = parseInt(storage_local.getItem('count'));
         }
 
-        for (let product in items_products_storage_local) {
+        for (let product in cart) {
 
             console.log(product);
 
-            let information_product = array_products.find(item => item.id === items_products_storage_local[product].product_id);
+            let information_product = array_products.find(item => item.id === cart[product].product_id);
             console.log(information_product);
 
             template_item_mini_cart += `
