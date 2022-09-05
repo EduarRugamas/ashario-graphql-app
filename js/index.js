@@ -497,7 +497,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
         });
         badge_strainType(array_products);
-
+        update_icon_cart()
 
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
@@ -633,6 +633,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(items_products_storage_local);
         }
 
+        if (storage_local.getItem('count')) {
+            count = parseInt(storage_local.getItem('count'));
+        }
+
         for (let product in items_products_storage_local) {
 
             console.log(product);
@@ -645,7 +649,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">${information_product.variants[0].priceRec}</p>
+                        <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
                     </div>
                     <div class="position-relative">
                         <div class="cart-product-cancel position-absolute">
@@ -659,12 +663,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             </a>
             `;
 
-            console.log(template_item_mini_cart);
-
             mini_cart_items.innerHTML = template_item_mini_cart;
         }
 
-        console.log('longitud',items_products_storage_local.length);
+        view_items_mini_cart.textContent= `${count} ITEMS`;
 
     };
 
