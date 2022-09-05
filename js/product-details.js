@@ -18,7 +18,6 @@ const get_carrousel = get_products_carrousel(id_store_centre_point_mall.id, 'FLO
 
 product.then( (item) => {
     const url_retorno = checkoutId.redirectUrl + '?r=https://ashario.com/thank-you';
-    btn_cart_link.setAttribute('href', url_retorno);
 
     console.log(checkoutId);
     console.log(item);
