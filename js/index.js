@@ -489,7 +489,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
         });
         badge_strainType(array_products);
-        mini_cart_render();
+        mini_cart_render(array_products);
 
 
     };
@@ -613,10 +613,42 @@ window.addEventListener('DOMContentLoaded', async () => {
         icon_cart_count.textContent = count;
         storage_local.setItem('count', count);
     };
-    const mini_cart_render = () => {
-        const get_items_products_storage = storage_local.getItem('cart');
-        console.log(JSON.parse(get_items_products_storage));
-    }
+    const mini_cart_render = (array_products) => {
+        let items_products_storage_local = {};
+        let template_item_mini_cart = '';
+
+        if (storage_local.getItem('cart')) {
+            items_products_storage_local = JSON.parse(storage_local.getItem('cart'));
+            console.log(JSON.parse(items_products_storage_local));
+        }
+
+        for (let product in items_products_storage_local) {
+
+            let information_product = array_products.find(item => item.id === product.product_id);
+            console.log(information_product);
+
+
+            // template_item_mini_cart += `
+            // <a class="dropdown-item" href="javascript:;">
+            //     <div class="d-flex align-items-center">
+            //         <div class="flex-grow-1">
+            //             <h6 class="cart-product-title"></h6>
+            //             <p class="cart-product-price"></p>
+            //         </div>
+            //         <div class="position-relative">
+            //             <div class="cart-product-cancel position-absolute">
+            //                 <i class='bx bx-x'></i>
+            //             </div>
+            //             <div class="cart-product">
+            //                 <img src="" class="" alt="product image">
+            //             </div>
+            //         </div>
+            //     </div>
+            // </a>
+            // `;
+        }
+
+    };
 
     function ViewWeigthsSpecial(array_products, variant) {
 
