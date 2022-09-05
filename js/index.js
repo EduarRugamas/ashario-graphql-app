@@ -386,7 +386,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
         const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-        let cart = [];
+        let cart = {};
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
