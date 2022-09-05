@@ -34,7 +34,8 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 // fin declaracion de botones o contenedores no principales
 const btn_shop_cart_link = document.querySelector('.cart-link');
 const icon_cart_count = document.querySelector('.alert-count');
-const mini_cart_items = document.getElementById('items_in_mini_cart');
+const mini_cart_items = document.getElementById('content_items_list_mini_cart');
+const view_items_mini_cart = document.getElementById('items_in_mini_cart');
 let count = 0;
 
 // declaracion de variable local storage
@@ -628,25 +629,26 @@ window.addEventListener('DOMContentLoaded', async () => {
             let information_product = array_products.find(item => item.id === items_products_storage_local[product].product_id);
             console.log(information_product);
 
+            template_item_mini_cart += `
+            <a class="dropdown-item" href="javascript:;">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h6 class="cart-product-title">${information_product.name}</h6>
+                        <p class="cart-product-price">${information_product.variants[0].priceRec}</p>
+                    </div>
+                    <div class="position-relative">
+                        <div class="cart-product-cancel position-absolute">
+                            <i class='bx bx-x'></i>
+                        </div>
+                        <div class="cart-product">
+                            <img src="${information_product.image}" class="" alt="product image">
+                        </div>
+                    </div>
+                </div>
+            </a>
+            `;
 
-            // template_item_mini_cart += `
-            // <a class="dropdown-item" href="javascript:;">
-            //     <div class="d-flex align-items-center">
-            //         <div class="flex-grow-1">
-            //             <h6 class="cart-product-title"></h6>
-            //             <p class="cart-product-price"></p>
-            //         </div>
-            //         <div class="position-relative">
-            //             <div class="cart-product-cancel position-absolute">
-            //                 <i class='bx bx-x'></i>
-            //             </div>
-            //             <div class="cart-product">
-            //                 <img src="" class="" alt="product image">
-            //             </div>
-            //         </div>
-            //     </div>
-            // </a>
-            // `;
+            mini_cart_items.innerHTML = template_item_mini_cart;
         }
 
     };
