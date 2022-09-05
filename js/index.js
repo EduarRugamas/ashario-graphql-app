@@ -36,7 +36,7 @@ const btn_shop_cart_link = document.querySelector('.cart-link');
 const icon_cart_count = document.querySelector('.alert-count');
 const mini_cart_items = document.getElementById('items_in_mini_cart');
 let count = 0;
-let cart = {};
+
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -393,6 +393,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
+                let cart = {};
 
                 const product_id = btn.getAttribute('id_product');
                 const get_select_quantity = document.getElementById('quantity-' + product_id);
@@ -413,7 +414,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     storage_local.setItem('cart', JSON.stringify(cart));
                     let card_view_product = array_products.find(item => item.id === product_id);
                     Swal.fire({
-                        title: 'Update product !',
+                        title: 'Update product!',
                         text: `${card_view_product.name}`,
                         imageUrl: `${card_view_product.image}`,
                         imageWidth: 250,
@@ -619,7 +620,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         if (storage_local.getItem('cart')) {
             items_products_storage_local = JSON.parse(storage_local.getItem('cart'));
-            console.log(JSON.parse(items_products_storage_local));
+            console.log(items_products_storage_local);
         }
 
         for (let product in items_products_storage_local) {
