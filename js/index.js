@@ -36,12 +36,13 @@ const btn_shop_cart_link = document.querySelector('#btn_mini_cart_actionn');
 const icon_cart_count = document.querySelector('.alert-count');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_items_mini_cart = document.getElementById('items_in_mini_cart');
-let count = 0;
-let cart = {};
-let items_products_storage_local = {};
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
+
+let count = 0;
+let cart = {};
+let items_products_storage_local = {};
 
 // declaraciones de filtros range thc and cbd
 let slider_thc = document.querySelector('#slider_thc');
@@ -630,47 +631,43 @@ window.addEventListener('DOMContentLoaded', async () => {
         storage_local.setItem('count', count);
     };
     const mini_cart_render = (array_products) => {
-        let get_items_mini_cart = {};
         let template_item_mini_cart = '';
 
-        if (storage_local.getItem('cart')) {
-            get_items_mini_cart = JSON.parse(storage_local.getItem('cart'));
-        }
-
-        console.log(get_items_mini_cart);
 
         if (storage_local.getItem('count')) {
             count = parseInt(storage_local.getItem('count'));
         }
 
-        for (let product in cart) {
+        console.log(items_products_storage_local);
 
-            console.log(product);
-
-            let information_product = array_products.find(item => item.id === cart[product].product_id);
-            console.log(information_product);
-
-            template_item_mini_cart += `
-            <a class="dropdown-item" href="javascript:;">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
-                    </div>
-                    <div class="position-relative">
-                        <div class="cart-product-cancel position-absolute">
-                            <i class='bx bx-x'></i>
-                        </div>
-                        <div class="cart-product">
-                            <img src="${information_product.image}" class="" alt="product image">
-                        </div>
-                    </div>
-                </div>
-            </a>
-            `;
-
-            mini_cart_items.innerHTML = template_item_mini_cart;
-        }
+        // for (let product in cart) {
+        //
+        //     console.log(product);
+        //
+        //     let information_product = array_products.find(item => item.id === cart[product].product_id);
+        //     console.log(information_product);
+        //
+        //     template_item_mini_cart += `
+        //     <a class="dropdown-item" href="javascript:;">
+        //         <div class="d-flex align-items-center">
+        //             <div class="flex-grow-1">
+        //                 <h6 class="cart-product-title">${information_product.name}</h6>
+        //                 <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
+        //             </div>
+        //             <div class="position-relative">
+        //                 <div class="cart-product-cancel position-absolute">
+        //                     <i class='bx bx-x'></i>
+        //                 </div>
+        //                 <div class="cart-product">
+        //                     <img src="${information_product.image}" class="" alt="product image">
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </a>
+        //     `;
+        //
+        //     mini_cart_items.innerHTML = template_item_mini_cart;
+        // }
 
         view_items_mini_cart.textContent= `${count} ITEMS`;
 
