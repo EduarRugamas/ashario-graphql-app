@@ -34,7 +34,9 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 // fin declaracion de botones o contenedores no principales
 const btn_shop_cart_link = document.querySelector('.cart-link');
 const icon_cart_count = document.querySelector('.alert-count');
+const mini_cart_items = document.getElementById('items_in_mini_cart');
 let count = 0;
+let cart = {};
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -54,6 +56,7 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 let page_previous = 0;
 let page_next = 20;
 let all_produts;
+
 import { url_base, secret_key} from '../config/config.js';
 
 //fin de variables
@@ -386,7 +389,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
         const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-        let cart = {};
+
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
@@ -406,7 +409,17 @@ window.addEventListener('DOMContentLoaded', async () => {
                 if (product_id in cart) {
 
                     cart[product_id].value_quantity = value_quantity;
+                    cart[product_id].value_weight = value_weight;
                     storage_local.setItem('cart', JSON.stringify(cart));
+                    let card_view_product = array_products.find(item => item.id === product_id);
+                    Swal.fire({
+                        title: 'Update product !',
+                        text: `${card_view_product.name}`,
+                        imageUrl: `${card_view_product.image}`,
+                        imageWidth: 250,
+                        imageHeight: 300,
+                        imageAlt: `${card_view_product.name}`,
+                    });
 
                 }else {
                     let add_item_cart = {
@@ -476,6 +489,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
         });
         badge_strainType(array_products);
+        mini_cart_render();
 
 
     };
@@ -599,6 +613,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         icon_cart_count.textContent = count;
         storage_local.setItem('count', count);
     };
+    const mini_cart_render = () => {
+        const get_items_products_storage = storage_local.getItem('cart');
+        console.log(JSON.parse(get_items_products_storage));
+    }
 
     function ViewWeigthsSpecial(array_products, variant) {
 
