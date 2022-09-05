@@ -427,14 +427,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                         let card_view_product = array_products.find(item => item.id === product_id);
                         console.log(card_view_product);
-                        // Swal.fire({
-                        //     title: 'Added to cart!',
-                        //     text: `${card_view_product.product.name}`,
-                        //     imageUrl: `${card_view_product.product.image}`,
-                        //     imageWidth: 250,
-                        //     imageHeight: 300,
-                        //     imageAlt: `${card_view_product.product.name}`,
-                        // });
+                        Swal.fire({
+                            title: 'Added to cart!',
+                            text: `${card_view_product.name}`,
+                            imageUrl: `${card_view_product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.name}`,
+                        });
 
                 }
 
