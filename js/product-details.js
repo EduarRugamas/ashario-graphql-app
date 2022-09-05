@@ -10,7 +10,7 @@ const container_product_details = document.getElementById('product-details');
 const container_products_carrousel = document.querySelector('.owl-carousel');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
-const icon_cart_count = document.getElementById('count_quantity_cart');
+const icon_cart_count = document.querySelector('.alert-count');
 
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_items_mini_cart = document.getElementById('items_in_mini_cart');
@@ -37,6 +37,7 @@ product.then( (item) => {
 
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
+    update_icon_cart();
 }).catch(error => {
     console.log('Error en product details --> ', error);
 });
@@ -170,7 +171,7 @@ const renderProduct = (container, informatio_product) => {
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
-        
+
         // render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
     });
 };
