@@ -501,7 +501,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
         badge_strainType(array_products);
         update_icon_cart()
-
+        mini_cart_render(array_products);
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         })
@@ -636,36 +636,36 @@ window.addEventListener('DOMContentLoaded', async () => {
             count = parseInt(storage_local.getItem('count'));
         }
 
-        console.log(items_products_storage_local);
+        console.log(cart);
 
-        // for (let product in cart) {
-        //
-        //     console.log(product);
-        //
-        //     let information_product = array_products.find(item => item.id === cart[product].product_id);
-        //     console.log(information_product);
-        //
-        //     template_item_mini_cart += `
-        //     <a class="dropdown-item" href="javascript:;">
-        //         <div class="d-flex align-items-center">
-        //             <div class="flex-grow-1">
-        //                 <h6 class="cart-product-title">${information_product.name}</h6>
-        //                 <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
-        //             </div>
-        //             <div class="position-relative">
-        //                 <div class="cart-product-cancel position-absolute">
-        //                     <i class='bx bx-x'></i>
-        //                 </div>
-        //                 <div class="cart-product">
-        //                     <img src="${information_product.image}" class="" alt="product image">
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </a>
-        //     `;
-        //
-        //     mini_cart_items.innerHTML = template_item_mini_cart;
-        // }
+        for (let product in cart) {
+
+            console.log(product);
+
+            let information_product = array_products.find(item => item.id === cart[product].product_id);
+            console.log(information_product);
+
+            template_item_mini_cart += `
+            <a class="dropdown-item" href="javascript:;">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h6 class="cart-product-title">${information_product.name}</h6>
+                        <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
+                    </div>
+                    <div class="position-relative">
+                        <div class="cart-product-cancel position-absolute">
+                            <i class='bx bx-x'></i>
+                        </div>
+                        <div class="cart-product">
+                            <img src="${information_product.image}" class="" alt="product image">
+                        </div>
+                    </div>
+                </div>
+            </a>
+            `;
+
+            mini_cart_items.innerHTML = template_item_mini_cart;
+        }
 
         view_items_mini_cart.textContent= `${count} ITEMS`;
 
