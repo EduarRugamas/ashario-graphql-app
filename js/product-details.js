@@ -167,7 +167,7 @@ const renderProduct = (container, informatio_product) => {
     renderBadgeStant(informatio_product.strainType);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
     update_icon_cart();
-    mini_cart_render()
+    mini_cart_render(informatio_product)
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
