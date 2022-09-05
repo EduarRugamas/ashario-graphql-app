@@ -11,16 +11,29 @@ const container_products_carrousel = document.querySelector('.owl-carousel');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
 const icon_cart_count = document.getElementById('count_quantity_cart');
+
+const mini_cart_items = document.getElementById('content_items_list_mini_cart');
+const view_items_mini_cart = document.getElementById('items_in_mini_cart');
 let count = 0;
+let cart = {};
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
 const get_carrousel = get_products_carrousel(id_store_centre_point_mall.id, 'FLOWER', 0, 10);
 
 product.then( (item) => {
-    const url_retorno = checkoutId.redirectUrl + '?r=https://ashario.com/thank-you';
+    const url_retorno = checkoutId.redirectUrl;
 
     console.log(checkoutId);
     console.log(item);
+
+    if (storage_local.getItem('count')){
+        count = parseInt( storage_local.getItem('count') );
+    }
+
+    if (storage_local.getItem('cart')) {
+        cart = JSON.parse(storage_local.getItem('cart'));
+    }
+
 
     title_product.textContent=`${item.name}`;
     renderProduct(container_product_details, item);
@@ -152,15 +165,13 @@ const renderProduct = (container, informatio_product) => {
     renderBadgeEffects('content_effects', informatio_product.effects);
     renderBadgeStant(informatio_product.strainType);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
-    update_icon_cart('icon_cart_count');
+    update_icon_cart();
+    mini_cart_render()
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
-
-        if (storage_local.getItem('count')) {
-            count = parseInt(storage_local.getItem('count'));
-        }
-        render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
+        
+        // render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
     });
 };
 const renderSelectedImages = (array_images) => {
@@ -589,5 +600,69 @@ const render_carousel = (container, array_products) => {
 const update_icon_cart = () => {
     icon_cart_count.textContent = count;
     storage_local.setItem('count', count);
+};
+const mini_cart_render = (information_product) => {
+    let template_item_mini_cart = '';
+
+    if (storage_local.getItem('count')) {
+        count = parseInt(storage_local.getItem('count'));
+    }
+
+    console.log(cart);
+
+    for (let product in cart) {
+
+        console.log(product);
+
+        // let information_product = array_products.find(item => item.id === cart[product].product_id);
+        // console.log(information_product);
+
+        template_item_mini_cart += `
+            <a class="dropdown-item" href="javascript:;">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h6 class="cart-product-title">${information_product.name}</h6>
+                        <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
+                    </div>
+                    <div class="position-relative">
+                        <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
+                            <i class='bx bx-x'></i>
+                        </div>
+                        <div class="cart-product">
+                            <img src="${information_product.image}" class="" alt="product image">
+                        </div>
+                    </div>
+                </div>
+            </a>
+            `;
+
+        mini_cart_items.innerHTML = template_item_mini_cart;
+    }
+
+    view_items_mini_cart.textContent= `${count} ITEMS`;
+
+    const btn_remove_product_item = document.querySelectorAll('#btn_remove_item');
+
+    btn_remove_product_item.forEach(btn_remove => {
+        btn_remove.addEventListener('click', () => {
+            let product_id_remove = btn_remove.getAttribute('product_id');
+            console.log(product_id_remove);
+
+            delete cart[product_id_remove];
+            storage_local.setItem('cart', JSON.stringify(cart));
+            count--;
+            update_icon_cart();
+
+        });
+    });
+
+    // btn_remove_product_item.addEventListener('click', () => {
+    //    const product_id_remove =  btn_remove_product_item.getAttribute('product_id');
+    //    console.log(product_id_remove);
+    // });
+
+
+
+
 };
 
