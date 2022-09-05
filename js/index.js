@@ -625,7 +625,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         for (let product in items_products_storage_local) {
 
-            let information_product = array_products.find(item => item.id === items_products_storage_local[product]);
+            let information_product = array_products.find(item => item.id === items_products_storage_local[product].product_id);
             console.log(information_product);
 
 
