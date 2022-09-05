@@ -68,6 +68,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         await getRetailersIds().then( async result => {
 
+            if (storage_local.getItem('count')){
+                count = parseInt( storage_local.getItem('count') );
+            }
+
             result.find(item => {
                 if (item.name === 'Ashario - Centrepoint Mall') {
                     let store_centre_point_mall = {
@@ -659,6 +663,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             mini_cart_items.innerHTML = template_item_mini_cart;
         }
+
+        console.log('longitud',items_products_storage_local.length);
 
     };
 
