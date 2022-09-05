@@ -525,7 +525,7 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
             resolve(result)
         }).catch(error => reject(error.message))
     });
-};
+}
 
 export {
     getRetailersIds,
