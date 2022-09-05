@@ -648,6 +648,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             </a>
             `;
 
+            console.log(template_item_mini_cart);
+
             mini_cart_items.innerHTML = template_item_mini_cart;
         }
 
