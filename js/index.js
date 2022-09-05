@@ -405,7 +405,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 if (product_id in cart) {
 
-                    cart[product_id].value_quantity = value_quantity.value;
+                    cart[product_id].value_quantity = value_quantity;
                     storage_local.setItem('cart', JSON.stringify(cart));
 
                 }else {
