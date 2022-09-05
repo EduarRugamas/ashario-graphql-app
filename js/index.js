@@ -32,7 +32,7 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 //declaracion de botones o contenedores no principales
 
 // fin declaracion de botones o contenedores no principales
-const btn_shop_cart_link = document.querySelector('.cart-link');
+const btn_shop_cart_link = document.querySelector('#btn_mini_cart_actionn');
 const icon_cart_count = document.querySelector('.alert-count');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_items_mini_cart = document.getElementById('items_in_mini_cart');
@@ -116,8 +116,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
             response.then( result => {
                 console.log(result);
-                const url_retorno = result.redirectUrl;
-                btn_shop_cart_link.setAttribute('href', url_retorno);
+                // const url_retorno = result.redirectUrl;
+                // btn_shop_cart_link.setAttribute('href', url_retorno);
                 let cart_centre_point_mall = {
                     id: result.id,
                     items: result.items,
@@ -491,7 +491,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
         });
         badge_strainType(array_products);
-        mini_cart_render(array_products);
+
+
+        btn_shop_cart_link.addEventListener('click', () => {
+            mini_cart_render(array_products);
+        })
 
 
     };
@@ -625,6 +629,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
 
         for (let product in items_products_storage_local) {
+
+            console.log(product);
 
             let information_product = array_products.find(item => item.id === items_products_storage_local[product].product_id);
             console.log(information_product);
