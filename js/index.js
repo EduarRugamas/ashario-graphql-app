@@ -386,7 +386,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
         const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-        let cart = {};
+        let cart = [];
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
@@ -421,18 +421,19 @@ window.addEventListener('DOMContentLoaded', async () => {
                     cart[product_id] = add_item_cart;
                     count ++;
                     storage_local.setItem('cart', JSON.stringify(cart));
-                    console.log(`Se guardo en el local_storage key --> ${cart[product_id]}`);
+                    console.log(`Se guardo en el local_storage key --> ${JSON.parse(cart[product_id])}`);
                     update_icon_cart();
 
                         let card_view_product = array_products.find(item => item.id === product_id);
-                        Swal.fire({
-                            title: 'Added to cart!',
-                            text: `${card_view_product.product.name}`,
-                            imageUrl: `${card_view_product.product.image}`,
-                            imageWidth: 250,
-                            imageHeight: 300,
-                            imageAlt: `${card_view_product.product.name}`,
-                        });
+                        console.log(card_view_product);
+                        // Swal.fire({
+                        //     title: 'Added to cart!',
+                        //     text: `${card_view_product.product.name}`,
+                        //     imageUrl: `${card_view_product.product.image}`,
+                        //     imageWidth: 250,
+                        //     imageHeight: 300,
+                        //     imageAlt: `${card_view_product.product.name}`,
+                        // });
 
                 }
 
