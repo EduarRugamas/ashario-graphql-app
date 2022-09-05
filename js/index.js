@@ -675,6 +675,12 @@ window.addEventListener('DOMContentLoaded', async () => {
             btn_remove.addEventListener('click', () => {
                 let product_id_remove = btn_remove.getAttribute('product_id');
                 console.log(product_id_remove);
+
+                delete cart[product_id_remove];
+                storage_local.setItem('cart', JSON.stringify(cart));
+                count--;
+                update_icon_cart();
+
             });
         });
 
