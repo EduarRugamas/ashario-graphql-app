@@ -38,6 +38,7 @@ const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_items_mini_cart = document.getElementById('items_in_mini_cart');
 let count = 0;
 let cart = {};
+let items_products_storage_local = {};
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -621,7 +622,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         storage_local.setItem('count', count);
     };
     const mini_cart_render = (array_products) => {
-        let items_products_storage_local = {};
         let template_item_mini_cart = '';
 
         if (storage_local.getItem('cart')) {
