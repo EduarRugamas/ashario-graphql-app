@@ -37,7 +37,7 @@ const icon_cart_count = document.querySelector('.alert-count');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_items_mini_cart = document.getElementById('items_in_mini_cart');
 let count = 0;
-
+let cart = {};
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -394,7 +394,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
-                let cart = {};
+
 
                 const product_id = btn.getAttribute('id_product');
                 const get_select_quantity = document.getElementById('quantity-' + product_id);
@@ -424,32 +424,33 @@ window.addEventListener('DOMContentLoaded', async () => {
                     });
 
                 }else {
-                    let add_item_cart = {
+                    let data_product = {
                         id_store,
                         checkout_id_store,
                         product_id,
                         value_quantity,
                         value_weight
                     };
-                    console.log('Objeto json a enviar a mini cart', add_item_cart);
+                    console.log('Objeto json a enviar a mini cart', data_product);
 
                     // cart[product_id].push(add_item_cart);
-                    cart[product_id] = add_item_cart;
+                    cart[product_id] = data_product;
                     count ++;
                     storage_local.setItem('cart', JSON.stringify(cart));
                     console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
                     update_icon_cart();
 
-                        let card_view_product = array_products.find(item => item.id === product_id);
-                        console.log(card_view_product);
-                        Swal.fire({
-                            title: 'Added to cart!',
-                            text: `${card_view_product.name}`,
-                            imageUrl: `${card_view_product.image}`,
-                            imageWidth: 250,
-                            imageHeight: 300,
-                            imageAlt: `${card_view_product.name}`,
-                        });
+                    let card_view_product = array_products.find(item => item.id === product_id);
+                    console.log(card_view_product);
+
+                    Swal.fire({
+                         title: 'Added to cart!',
+                         text: `${card_view_product.name}`,
+                         imageUrl: `${card_view_product.image}`,
+                         imageWidth: 250,
+                         imageHeight: 300,
+                         imageAlt: `${card_view_product.name}`,
+                    });
 
                 }
 
