@@ -669,11 +669,19 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         view_items_mini_cart.textContent= `${count} ITEMS`;
 
-        const btn_remove_product_item = document.getElementById('btn_remove_item');
-        btn_remove_product_item.addEventListener('click', () => {
-           const product_id_remove =  btn_remove_product_item.getAttribute('product_id');
-           console.log(product_id_remove);
+        const btn_remove_product_item = document.querySelectorAll('#btn_remove_item');
+
+        btn_remove_product_item.forEach(btn_remove => {
+            btn_remove.addEventListener('click', () => {
+                let product_id_remove = btn_remove.getAttribute('product_id');
+                console.log(product_id_remove);
+            });
         });
+
+        // btn_remove_product_item.addEventListener('click', () => {
+        //    const product_id_remove =  btn_remove_product_item.getAttribute('product_id');
+        //    console.log(product_id_remove);
+        // });
 
 
 
