@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
 
             if (storage_local.getItem('cart')) {
-                items_products_storage_local = JSON.parse(storage_local.getItem('cart'));
+                cart = JSON.parse(storage_local.getItem('cart'));
             }
 
             result.find(item => {
@@ -404,8 +404,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
-
-
                 const product_id = btn.getAttribute('id_product');
                 const get_select_quantity = document.getElementById('quantity-' + product_id);
                 const get_select_weight = document.getElementById('select-weight-' + product_id);
