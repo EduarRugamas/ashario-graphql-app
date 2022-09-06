@@ -753,7 +753,6 @@ const mini_cart_render = (array_products) => {
     view_items_mini_cart.textContent= `${count} ITEMS`;
 
     const btn_remove_product_item = document.querySelectorAll('#btn_remove_item');
-
     btn_remove_product_item.forEach(btn_remove => {
         btn_remove.addEventListener('click', () => {
             let product_id_remove = btn_remove.getAttribute('product_id');
@@ -780,6 +779,21 @@ const mini_cart_render = (array_products) => {
 
         });
     });
+
+    if (Object.entries(cart).length === 0) {
+        console.log('el mini cart esta vacio');
+        template_empty_mini_cart+= `
+        <div class="dropdown-item">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                </div>
+            </div>
+        </div>
+                    `;
+        mini_cart_items.innerHTML = template_empty_mini_cart;
+        document.getElementById('btn_checkout_mini_cart').disabled = true;
+    }
 
 
 
