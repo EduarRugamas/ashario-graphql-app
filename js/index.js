@@ -687,7 +687,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
+                        <p class="cart-product-price">${cart[product].cart[item].value_quantity} X $${information_product.variants[0].priceRec}</p>
                     </div>
                     <div class="position-relative">
                         <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
