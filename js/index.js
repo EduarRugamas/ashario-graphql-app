@@ -763,7 +763,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     mini_cart_items.innerHTML = template_empty_mini_cart;
                     document.getElementById('btn_checkout_mini_cart').disabled = true;
                 }
-
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
             });
         });
 
