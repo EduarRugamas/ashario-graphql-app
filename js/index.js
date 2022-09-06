@@ -676,19 +676,19 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
         });
 
-        if (storage_local.getItem('cart').length === 0 ) {
-            console.log('el mini cart esta vacio');
-            let template_empty_mini_cart = '';
-
-            template_empty_mini_cart+= `
-            
-                <div>
-                    <p>You don't have products in your cart.</p>
-                </div> 
-            
-            `;
-            view_items_mini_cart.innerHTML = template_empty_mini_cart;
-        }
+        // if (storage_local.getItem('cart').length === 0 ) {
+        //     console.log('el mini cart esta vacio');
+        //     let template_empty_mini_cart = '';
+        //
+        //     template_empty_mini_cart+= `
+        //
+        //         <div>
+        //             <p>You don't have products in your cart.</p>
+        //         </div>
+        //
+        //     `;
+        //     view_items_mini_cart.innerHTML = template_empty_mini_cart;
+        // }
 
     };
 
