@@ -321,7 +321,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         array_products.forEach ( product => {
-            template_grid_products+= `
+            template_grid_products+=`
                 
                 <div class="col">
                 <div class="card rounded-0 product-card">
@@ -373,7 +373,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
              </div>
-            
             `;
         });
 
@@ -537,10 +536,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         });
-
-        // if (Object.entries(cart).length !== 0) {
-        //     document.getElementById('btn_checkout_mini_cart').disabled = false;
-        // }
 
         btn_checkout_mini_cart.addEventListener('click', () => {
 
@@ -771,7 +766,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             </div>
             `;
             mini_cart_items.innerHTML = template_empty_mini_cart;
-            document.getElementById('btn_checkout_mini_cart').disabled = true;
+            //document.getElementById('btn_checkout_mini_cart').disabled = true;
         }
 
     };
