@@ -690,7 +690,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             </div>
 
             `;
-            view_items_mini_cart.innerHTML = template_empty_mini_cart;
+            mini_cart_items.innerHTML = template_empty_mini_cart;
         }
 
     };
