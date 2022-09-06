@@ -622,30 +622,30 @@ const mini_cart_render = () => {
         // que se esta en la pagina de product details.
 
         const all_products = getAllProducts(id_store_centre_point_mall.id);
-        console.log(all_products)
+        console.log(all_products.products)
 
         // let information_product = array_products.find(item => item.id === cart[product].product_id);
 
-        template_item_mini_cart += `
-            <a class="dropdown-item" href="javascript:;">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
-                    </div>
-                    <div class="position-relative">
-                        <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
-                            <i class='bx bx-x'></i>
-                        </div>
-                        <div class="cart-product">
-                            <img src="${information_product.image}" class="" alt="product image">
-                        </div>
-                    </div>
-                </div>
-            </a>
-            `;
-
-        mini_cart_items.innerHTML = template_item_mini_cart;
+        // template_item_mini_cart += `
+        //     <a class="dropdown-item" href="javascript:;">
+        //         <div class="d-flex align-items-center">
+        //             <div class="flex-grow-1">
+        //                 <h6 class="cart-product-title">${information_product.name}</h6>
+        //                 <p class="cart-product-price">$${information_product.variants[0].priceRec}</p>
+        //             </div>
+        //             <div class="position-relative">
+        //                 <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
+        //                     <i class='bx bx-x'></i>
+        //                 </div>
+        //                 <div class="cart-product">
+        //                     <img src="${information_product.image}" class="" alt="product image">
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </a>
+        //     `;
+        //
+        // mini_cart_items.innerHTML = template_item_mini_cart;
     }
 
     view_items_mini_cart.textContent= `${count} ITEMS`;
