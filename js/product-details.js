@@ -611,7 +611,7 @@ const mini_cart_render = () => {
     console.log(cart);
 
     const all_products = getAllProducts(id_store_centre_point_mall.id, 0, 489);
-    console.log(all_products)
+    console.log(all_products.products)
 
     for (let product in cart) {
 
