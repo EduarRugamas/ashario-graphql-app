@@ -531,8 +531,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
         });
         badge_strainType(array_products);
-        update_icon_cart()
-        mini_cart_render(array_products);
+        update_icon_cart();
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         });
@@ -766,7 +765,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             </div>
             `;
             mini_cart_items.innerHTML = template_empty_mini_cart;
-            //document.getElementById('btn_checkout_mini_cart').disabled = true;
+            document.getElementById('btn_checkout_mini_cart').disabled = true;
         }
 
     };
