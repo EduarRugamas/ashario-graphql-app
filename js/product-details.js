@@ -686,7 +686,7 @@ const mini_cart_render = (array_products) => {
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">${cart[product].value_quantity} X ${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
+                        <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
                     </div>
                     <div class="position-relative">
                         <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
@@ -736,14 +736,6 @@ const mini_cart_render = (array_products) => {
 
         mini_cart_items.innerHTML = template_empty_mini_cart;
     }
-
-    // btn_remove_product_item.addEventListener('click', () => {
-    //    const product_id_remove =  btn_remove_product_item.getAttribute('product_id');
-    //    console.log(product_id_remove);
-    // });
-
-
-
 
 };
 
