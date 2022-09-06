@@ -10,8 +10,8 @@ const container_product_details = document.getElementById('product-details');
 const container_products_carrousel = document.querySelector('.owl-carousel');
 const title_product = document.getElementById('title_name_product_details');
 const btn_cart_link = document.querySelector('#btn_cart');
-
-
+const btn_checkout_mini_cart = document.getElementById('btn_checkout_mini_cart');
+//
 const icon_cart_count = document.querySelector('.alert-count');
 const btn_shop_cart_link = document.querySelector('#btn_mini_cart_action');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
@@ -236,6 +236,53 @@ const renderProduct = (container, informatio_product, array_products_all) => {
     btn_shop_cart_link.addEventListener('click', () => {
         mini_cart_render(array_products_all);
     });
+
+    btn_checkout_mini_cart.addEventListener('click', () => {
+
+        for (let item in cart) {
+            console.log(item);
+
+            addItemCart(id_store_centre_point_mall.id, checkoutId.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( result => {
+                console.log(result);
+                if (result.data.addItem === null ) {
+                    const error = result.errors[0];
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+                        confirmButtonColor: '#3e3e3e',
+                    });
+                }
+
+
+                window.location.href = `${checkoutId.redirectUrl}`;
+
+                // const results = result.data.addItem.items;
+                //
+                // let card_view_product = results.find(item => item.productId === product_id);
+                //
+                // count++;
+                // update_icon_cart();
+                //
+                // Swal.fire({
+                //     title: 'Added to cart!',
+                //     text: `${card_view_product.product.name}`,
+                //     imageUrl: `${card_view_product.product.image}`,
+                //     imageWidth: 250,
+                //     imageHeight: 300,
+                //     imageAlt: `${card_view_product.product.name}`,
+                // });
+            });
+
+        }
+
+
+
+
+    });
+
+
+
 };
 const renderSelectedImages = (array_images) => {
     const images = array_images;
