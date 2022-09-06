@@ -610,6 +610,9 @@ const mini_cart_render = () => {
 
     console.log(cart);
 
+    const all_products = getAllProducts(id_store_centre_point_mall.id, 0, 489);
+    console.log(all_products)
+
     for (let product in cart) {
 
         console.log(product);
@@ -620,9 +623,6 @@ const mini_cart_render = () => {
         //revisar la busqueda de los productos imprime los que hay en el local storage pero hay que hacer
         // la busqueda de cada id de el producto manualmennte ya que solo se recive la informacion de uno unicamente del
         // que se esta en la pagina de product details.
-
-        const all_products = getAllProducts(id_store_centre_point_mall.id);
-        console.log(all_products.products)
 
         // let information_product = array_products.find(item => item.id === cart[product].product_id);
 
