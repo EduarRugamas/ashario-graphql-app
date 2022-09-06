@@ -700,6 +700,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 </div>
             </div>
             `;
+
+            mini_cart_items.innerHTML = template_item_mini_cart;
+
             const text_cart_product_price = document.querySelectorAll('.cart-product-price');
             text_cart_product_price.forEach(text => {
                 let value_quantity = parseInt(cart[product].value_quantity);
@@ -708,8 +711,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 let valor = (value_quantity * value_price).toFixed(2);
                 text.textContent=`${value_quantity} X $${valor}`;
             });
-
-            mini_cart_items.innerHTML = template_item_mini_cart;
         }
 
         view_items_mini_cart.textContent= `${count} ITEMS`;
