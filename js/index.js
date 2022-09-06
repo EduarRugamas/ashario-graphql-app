@@ -764,7 +764,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     document.getElementById('btn_checkout_mini_cart').disabled = true;
                 }
 
-                document.getElementById('btn_checkout_mini_cart').disabled = true;
             });
         });
 
