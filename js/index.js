@@ -701,6 +701,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     };
     const mini_cart_render = (array_products) => {
         let template_item_mini_cart = '';
+        let template_empty_mini_cart = '';
         console.log(cart);
 
         for (let product in cart) {
@@ -753,7 +754,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         if (Object.entries(cart).length === 0) {
             console.log('el mini cart esta vacio');
-            let template_empty_mini_cart = '';
 
             template_empty_mini_cart+= `
                <div class="dropdown-item">
