@@ -174,6 +174,7 @@ const renderProduct = (container, informatio_product, array_products_all) => {
     renderBadgeStant(informatio_product.strainType);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
     update_icon_cart();
+    mini_cart_render(array_products_all);
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
@@ -713,8 +714,6 @@ const update_icon_cart = () => {
 };
 const mini_cart_render = (array_products) => {
     let template_item_mini_cart = '';
-    let template_empty_mini_cart = '';
-
     console.log(cart);
     console.log(array_products);
 
@@ -755,6 +754,7 @@ const mini_cart_render = (array_products) => {
     const btn_remove_product_item = document.querySelectorAll('#btn_remove_item');
     btn_remove_product_item.forEach(btn_remove => {
         btn_remove.addEventListener('click', () => {
+            let template_empty_mini_cart = '';
             let product_id_remove = btn_remove.getAttribute('product_id');
             console.log(product_id_remove);
             delete cart[product_id_remove];
@@ -781,6 +781,7 @@ const mini_cart_render = (array_products) => {
     });
 
     if (Object.entries(cart).length === 0) {
+        let template_empty_mini_cart = '';
         console.log('el mini cart esta vacio');
         template_empty_mini_cart+= `
         <div class="dropdown-item">
