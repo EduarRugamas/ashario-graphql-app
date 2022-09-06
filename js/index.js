@@ -631,11 +631,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     const mini_cart_render = (array_products) => {
         let template_item_mini_cart = '';
 
-
-        if (storage_local.getItem('count')) {
-            count = parseInt(storage_local.getItem('count'));
-        }
-
         console.log(cart);
 
         for (let product in cart) {
@@ -683,15 +678,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             });
         });
-
-        // btn_remove_product_item.addEventListener('click', () => {
-        //    const product_id_remove =  btn_remove_product_item.getAttribute('product_id');
-        //    console.log(product_id_remove);
-        // });
-
-
-
-
     };
 
     function ViewWeigthsSpecial(array_products, variant) {

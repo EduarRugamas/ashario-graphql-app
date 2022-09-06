@@ -618,6 +618,10 @@ const mini_cart_render = (information_product) => {
         // let information_product = array_products.find(item => item.id === cart[product].product_id);
         // console.log(information_product);
 
+        //revisar la busqueda de los productos imprime los que hay en el local storage pero hay que hacer
+        // la busqueda de cada id de el producto manualmennte ya que solo se recive la informacion de uno unicamente del
+        // que se esta en la pagina de product details
+
         template_item_mini_cart += `
             <a class="dropdown-item" href="javascript:;">
                 <div class="d-flex align-items-center">
