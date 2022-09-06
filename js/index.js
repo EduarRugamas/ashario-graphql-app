@@ -506,10 +506,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             mini_cart_render(array_products);
         });
 
-        if (Object.entries(cart).length === 0) {
-            console.log('el mini cart esta vacio');
-            document.getElementById('btn_checkout_mini_cart').disabled = true;
-        }else {
+        if (!Object.entries(cart).length === 0) {
             document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
 
