@@ -67,15 +67,6 @@ let template_grid_products = '';
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-
-        let observador = new IntersectionObserver((entradas, obserador) => {
-            console.log(entradas);
-        }, {
-            rootMargin: '0px 0px 0px 0px',
-            threshold: 1.0
-        })
-
-
         if (storage_local.getItem('cart')) {
             cart = JSON.parse(storage_local.getItem('cart'));
         }
@@ -148,6 +139,14 @@ window.addEventListener('DOMContentLoaded', async () => {
             }).catch(error => {
                 console.log('error query', error.message);
             });
+
+            let observador = new IntersectionObserver((entradas, obserador) => {
+                console.log(entradas);
+            }, {
+                rootMargin: '0px 0px 0px 0px',
+                threshold: 1.0
+            });
+
 
             let count_Products = get_count_product(store_centre_point_mall.id);
             console.log(count_Products)
