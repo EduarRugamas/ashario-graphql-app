@@ -547,8 +547,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         });
 
-
-
     };
 
     const numberToArray = (number) => {
@@ -702,14 +700,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             `;
 
             mini_cart_items.innerHTML = template_item_mini_cart;
-            // const text_cart_product_price = document.querySelectorAll('.cart-product-price');
-            // text_cart_product_price.forEach(text => {
-            //     let value_quantity = parseInt(cart[product].value_quantity);
-            //     let value_price = information_product.variants[0].priceRec;
-            //
-            //     let valor = (value_quantity * value_price).toFixed(2);
-            //     text.textContent=`${value_quantity} X $${valor}`;
-            // });
         }
 
         view_items_mini_cart.textContent= `${count} ITEMS`;

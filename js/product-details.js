@@ -30,12 +30,12 @@ product.then( async (item) => {
     console.log(checkoutId);
     console.log(item);
 
-    if (storage_local.getItem('count')){
-        count = parseInt( storage_local.getItem('count') );
-    }
-
     if (storage_local.getItem('cart')) {
         cart = JSON.parse(storage_local.getItem('cart'));
+    }
+
+    if (storage_local.getItem('count')){
+        count = parseInt( storage_local.getItem('count') );
     }
 
     title_product.textContent=`${item.name}`;
@@ -177,6 +177,60 @@ const renderProduct = (container, informatio_product, array_products_all) => {
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
         // render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
+        const id_store = id_store_centre_point_mall.id;
+        const product_id = informatio_product.id;
+        const id_checkout_store = checkoutId.id;
+        const get_select_quantity = parseInt(document.getElementById('quantity').value);
+        const get_select_weight = document.getElementById('select-weight').value;
+
+        if (product_id in cart) {
+
+            cart[product_id].value_quantity = get_select_quantity;
+            cart[product_id].value_weight = get_select_weight;
+            storage_local.setItem('cart', JSON.stringify(cart));
+            // let card_view_product = array_products.find(item => item.id === product_id);
+            Swal.fire({
+                title: 'Update product!',
+                text: `${informatio_product.name}`,
+                imageUrl: `${informatio_product.image}`,
+                imageWidth: 250,
+                imageHeight: 300,
+                imageAlt: `${informatio_product.name}`,
+            });
+
+        }else {
+            let data_product = {
+                id_store,
+                id_checkout_store,
+                product_id,
+                get_select_quantity,
+                get_select_weight
+            };
+            console.log('Objeto json a enviar a mini cart', data_product);
+
+            // cart[product_id].push(add_item_cart);
+            cart[product_id] = data_product;
+            count ++;
+            storage_local.setItem('cart', JSON.stringify(cart));
+            console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
+            update_icon_cart();
+
+            // let card_view_product = array_products.find(item => item.id === product_id);
+            // console.log(card_view_product);
+
+            Swal.fire({
+                title: 'Added to cart!',
+                text: `${informatio_product.name}`,
+                imageUrl: `${informatio_product.image}`,
+                imageWidth: 250,
+                imageHeight: 300,
+                imageAlt: `${informatio_product.name}`,
+            });
+
+        }
+
+
+
     });
 
     btn_shop_cart_link.addEventListener('click', () => {
@@ -632,7 +686,7 @@ const mini_cart_render = (array_products) => {
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">${cart[product].value_quantity} X $${information_product.variants[0].priceRec}</p>
+                        <p class="cart-product-price">${cart[product].value_quantity} X ${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
                     </div>
                     <div class="position-relative">
                         <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
