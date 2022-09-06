@@ -527,6 +527,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                         });
                     }
 
+
+                    window.location.href = `${checkout_id.redirectUrl}`;
+
                     // const results = result.data.addItem.items;
                     //
                     // let card_view_product = results.find(item => item.productId === product_id);
@@ -543,8 +546,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                     //     imageAlt: `${card_view_product.product.name}`,
                     // });
                 });
-                
+
             }
+
 
         });
 
