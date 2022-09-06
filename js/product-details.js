@@ -624,7 +624,8 @@ const mini_cart_render = async () => {
         // la busqueda de cada id de el producto manualmennte ya que solo se recive la informacion de uno unicamente del
         // que se esta en la pagina de product details.
 
-        // let information_product = array_products.find(item => item.id === cart[product].product_id);
+        let information_product = data.products.find(item => item.id === cart[product].product_id);
+        console.log(information_product);
 
         // template_item_mini_cart += `
         //     <a class="dropdown-item" href="javascript:;">
