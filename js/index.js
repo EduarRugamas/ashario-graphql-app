@@ -509,6 +509,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         if (Object.entries(cart).length === 0) {
             console.log('el mini cart esta vacio');
             document.getElementById('btn_checkout_mini_cart').disabled = true;
+        }else {
+            document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
 
         btn_checkout_mini_cart.addEventListener('click', () => {
