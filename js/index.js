@@ -737,6 +737,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             `;
 
             mini_cart_items.innerHTML = template_item_mini_cart;
+
+            document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
 
         view_items_mini_cart.textContent= `${count} ITEMS`;
