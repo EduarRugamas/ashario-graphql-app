@@ -22,8 +22,10 @@ let cart = {};
 const product = getProduct(id_store_centre_point_mall.id, id_product);
 const get_carrousel = get_products_carrousel(id_store_centre_point_mall.id, 'FLOWER', 0, 20);
 
-product.then( (item) => {
+product.then( async (item) => {
     const url_retorno = checkoutId.redirectUrl;
+
+    let data = await getAllProducts(id_store_centre_point_mall.id, 0, 200);
 
     console.log(checkoutId);
     console.log(item);
@@ -36,10 +38,11 @@ product.then( (item) => {
         cart = JSON.parse(storage_local.getItem('cart'));
     }
 
-
     title_product.textContent=`${item.name}`;
-    renderProduct(container_product_details, item);
+    renderProduct(container_product_details, item, data.products);
     update_icon_cart();
+
+
 }).catch(error => {
     console.log('Error en product details --> ', error);
 });
@@ -85,7 +88,7 @@ get_carrousel.then( response => {
 }).catch(error => console.log(error));
 
 
-const renderProduct = (container, informatio_product) => {
+const renderProduct = (container, informatio_product, array_products_all) => {
 
     let item_product = '';
 
@@ -169,7 +172,7 @@ const renderProduct = (container, informatio_product) => {
     renderBadgeStant(informatio_product.strainType);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
     update_icon_cart();
-    mini_cart_render();
+    mini_cart_render(array_products_all);
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
@@ -177,7 +180,7 @@ const renderProduct = (container, informatio_product) => {
     });
 
     btn_shop_cart_link.addEventListener('click', () => {
-        mini_cart_render();
+        mini_cart_render(array_products_all);
     });
 };
 const renderSelectedImages = (array_images) => {
@@ -607,7 +610,7 @@ const update_icon_cart = () => {
     icon_cart_count.textContent = count;
     storage_local.setItem('count', count);
 };
-const mini_cart_render = () => {
+const mini_cart_render = (array_products) => {
     let template_item_mini_cart = '';
 
     if (storage_local.getItem('count')) {
@@ -615,15 +618,13 @@ const mini_cart_render = () => {
     }
 
     console.log(cart);
-
-        let data = getAllProducts(id_store_centre_point_mall.id, 0, 100);
-        console.log(data)
+    console.log(array_products);
 
     for (let product in cart) {
 
         console.log(product);
 
-        let information_product = data.products.find(item => item.id === cart[product].product_id);
+        let information_product = array_products.find(item => item.id === cart[product].product_id);
         console.log(information_product);
 
         template_item_mini_cart += `
