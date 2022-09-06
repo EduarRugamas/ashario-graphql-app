@@ -748,25 +748,27 @@ window.addEventListener('DOMContentLoaded', async () => {
                 storage_local.setItem('cart', JSON.stringify(cart));
                 count--;
                 update_icon_cart();
+
+                if (Object.entries(cart).length === 0) {
+                    console.log('el mini cart esta vacio');
+                    template_empty_mini_cart+= `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    mini_cart_items.innerHTML = template_empty_mini_cart;
+                    document.getElementById('btn_checkout_mini_cart').disabled = true;
+                }
+
                 document.getElementById('btn_checkout_mini_cart').disabled = true;
             });
         });
 
-        if (Object.entries(cart).length === 0) {
-            console.log('el mini cart esta vacio');
 
-            template_empty_mini_cart+= `
-               <div class="dropdown-item">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <h6 class="cart-product-title">You don't have products in your cart.</h6>
-                    </div>
-                </div>
-            </div>
-            `;
-            mini_cart_items.innerHTML = template_empty_mini_cart;
-            document.getElementById('btn_checkout_mini_cart').disabled = true;
-        }
 
     };
 
