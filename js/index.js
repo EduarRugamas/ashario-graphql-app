@@ -32,7 +32,7 @@ let radio_not_applicable = document.querySelector('#filter_not_applicable');
 //declaracion de botones o contenedores no principales
 
 // fin declaracion de botones o contenedores no principales
-const btn_shop_cart_link = document.querySelector('#btn_mini_cart_actionn');
+const btn_shop_cart_link = document.querySelector('#btn_mini_cart_action');
 const icon_cart_count = document.querySelector('.alert-count');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_items_mini_cart = document.getElementById('items_in_mini_cart');
