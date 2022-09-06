@@ -303,7 +303,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data);
 
         }).catch(error => {
-            console.log('Error query', error.message);
+            console.log('Error query', error);
             ViewEmpty(container_products);
         })
 
