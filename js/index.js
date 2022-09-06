@@ -36,6 +36,7 @@ const btn_shop_cart_link = document.querySelector('#btn_mini_cart_actionn');
 const icon_cart_count = document.querySelector('.alert-count');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_items_mini_cart = document.getElementById('items_in_mini_cart');
+const btn_checkout_mini_cart = document.getElementById('btn_checkout_mini_cart');
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -504,6 +505,16 @@ window.addEventListener('DOMContentLoaded', async () => {
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         });
+        btn_checkout_mini_cart.addEventListener('click', () => {
+            if (Object.entries(cart).length === 0) {
+                console.log('el mini cart esta vacio');
+                btn_checkout_mini_cart.className='disabled';
+            }
+
+
+            
+        });
+
 
 
     };
@@ -688,7 +699,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
             </div>
-
             `;
             mini_cart_items.innerHTML = template_empty_mini_cart;
         }
