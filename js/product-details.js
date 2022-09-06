@@ -167,7 +167,7 @@ const renderProduct = (container, informatio_product, array_products_all) => {
     
     `;
     container.innerHTML = item_product;
-
+    storage_local.setItem('cart', JSON.stringify(cart));
     renderSelectedImages(informatio_product.images);
     renderPotency_CBD_THC('container-details-dl', informatio_product.potencyThc, informatio_product.potencyCbd);
     renderBadgeEffects('content_effects', informatio_product.effects);
