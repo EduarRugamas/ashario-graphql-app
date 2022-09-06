@@ -59,23 +59,22 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 let page_previous = 0;
 let page_next = 20;
 let all_produts;
-
-import { url_base, secret_key} from '../config/config.js';
+let template_item_mini_cart = '';
 
 //fin de variables
 
 
 window.addEventListener('DOMContentLoaded', async () => {
 
+        if (storage_local.getItem('count')){
+            count = parseInt( storage_local.getItem('count') );
+        }
+
+        if (storage_local.getItem('cart')) {
+            cart = JSON.parse(storage_local.getItem('cart'));
+        }
+
         await getRetailersIds().then( async result => {
-
-            if (storage_local.getItem('count')){
-                count = parseInt( storage_local.getItem('count') );
-            }
-
-            if (storage_local.getItem('cart')) {
-                cart = JSON.parse(storage_local.getItem('cart'));
-            }
 
             result.find(item => {
                 if (item.name === 'Ashario - Centrepoint Mall') {
@@ -629,7 +628,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         storage_local.setItem('count', count);
     };
     const mini_cart_render = (array_products) => {
-        let template_item_mini_cart = '';
 
         console.log(cart);
 
@@ -670,7 +668,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             btn_remove.addEventListener('click', () => {
                 let product_id_remove = btn_remove.getAttribute('product_id');
                 console.log(product_id_remove);
-
                 delete cart[product_id_remove];
                 storage_local.setItem('cart', JSON.stringify(cart));
                 count--;
@@ -678,6 +675,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             });
         });
+
+        if (storage_local.getItem('cart').length === 0 ) {
+            console.log('el mini cart esta vacio');
+            let template_empty_mini_cart = '';
+
+            template_empty_mini_cart+= `
+            
+                <div>
+                    <p>You don't have products in your cart.</p>
+                </div> 
+            
+            `;
+            view_items_mini_cart.innerHTML = template_empty_mini_cart;
+        }
+
     };
 
     function ViewWeigthsSpecial(array_products, variant) {
