@@ -505,14 +505,17 @@ window.addEventListener('DOMContentLoaded', async () => {
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         });
+
+        if (Object.entries(cart).length === 0) {
+            console.log('el mini cart esta vacio');
+            btn_checkout_mini_cart.className='disabled';
+        }
+
         btn_checkout_mini_cart.addEventListener('click', () => {
-            if (Object.entries(cart).length === 0) {
-                console.log('el mini cart esta vacio');
-                btn_checkout_mini_cart.className='disabled';
-            }
 
 
-            
+
+
         });
 
 
