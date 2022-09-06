@@ -601,7 +601,7 @@ const update_icon_cart = () => {
     icon_cart_count.textContent = count;
     storage_local.setItem('count', count);
 };
-const mini_cart_render = () => {
+const mini_cart_render = async () => {
     let template_item_mini_cart = '';
 
     if (storage_local.getItem('count')) {
@@ -610,8 +610,8 @@ const mini_cart_render = () => {
 
     console.log(cart);
 
-    const all_products = getAllProducts(id_store_centre_point_mall.id, 0, 489);
-    console.log(all_products.products)
+        let data = await getAllProducts(id_store_centre_point_mall.id, 0, 100);
+        console.log(data)
 
     for (let product in cart) {
 
