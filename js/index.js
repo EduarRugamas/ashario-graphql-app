@@ -66,12 +66,12 @@ let template_item_mini_cart = '';
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-        if (storage_local.getItem('count')){
-            count = parseInt( storage_local.getItem('count') );
-        }
-
         if (storage_local.getItem('cart')) {
             cart = JSON.parse(storage_local.getItem('cart'));
+        }
+
+        if (storage_local.getItem('count')){
+            count = parseInt( storage_local.getItem('count') );
         }
 
         await getRetailersIds().then( async result => {
@@ -399,7 +399,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
         const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-
+        storage_local.setItem('cart', JSON.stringify(cart));
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
@@ -503,7 +503,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         mini_cart_render(array_products);
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
-        })
+        });
 
 
     };
