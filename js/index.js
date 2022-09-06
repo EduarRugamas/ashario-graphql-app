@@ -676,16 +676,15 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
         });
 
-        if (storage_local.getItem('cart').length === 0 ) {
+        if (Object.entries(cart).length === 0) {
             console.log('el mini cart esta vacio');
             let template_empty_mini_cart = '';
 
             template_empty_mini_cart+= `
-
                <div class="dropdown-item">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <h6 class="cart-product-title">${information_product.name}</h6>
+                        <h6 class="cart-product-title">You don't have products in your cart.</h6>
                     </div>
                 </div>
             </div>
