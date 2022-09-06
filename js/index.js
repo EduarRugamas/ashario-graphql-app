@@ -174,7 +174,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                 cartProduct(container_products, data.products);
 
                 const productosEnPantalla = document.querySelectorAll('.product-card');
-                console.log(productosEnPantalla);
+                let ultimoProducto = productosEnPantalla[productosEnPantalla.length - 1];
+                console.log(ultimoProducto);
 
             }
 
