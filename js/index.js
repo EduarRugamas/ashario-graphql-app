@@ -68,7 +68,9 @@ let template_grid_products = '';
 window.addEventListener('DOMContentLoaded', async () => {
 
 
-        let observer = new IntersectionObserver(() => {}, {
+        let observer = new IntersectionObserver((entradas, obserador) => {
+            console.log(entradas);
+        }, {
             rootMargin: '0px 0px 0px 0px',
             threshold: 1.0
         })
@@ -170,6 +172,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
+
+                const productosEnPantalla = document.querySelectorAll('.product-card');
+                console.log(productosEnPantalla);
 
             }
 
@@ -324,54 +329,54 @@ window.addEventListener('DOMContentLoaded', async () => {
             template_grid_products+=`
                 
                 <div class="col">
-                <div class="card rounded-0 product-card">
-                        <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
-                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
-                        </a>
-                    <div class="card-body">
-                        <div class="product-info">
-                            <a href="/views/product-details.html?id=${product.id}" id="content_text_brand">
-                                <p class="product-catergory font-13 mb-1 content-badge-strain" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
-                                <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p>
-                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+                    <div class="card rounded-0 product-card">
+                            <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
+                                <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
                             </a>
-                            <a href="/views/product-details.html?id=${product.id}">
-                                <h6 class="product-name mb-2 itemname">${product.name}</h6>
-                            </a>
-                            <div class="d-flex align-items-center content_item_price">
-                                <div class="mb-1 product-price itemprice jcitemprice">
-                                    <span class="fs-5 currencyformat jcpriceformat">CAD 
-                                        <span id="cad-${product.id}" style="font-weight: 700; color: #000; font-size: 1.25rem!important;"></span>
-                                         / 
-                                         <span id="current-weight-${product.id}"></span></span>
-                                    </span>
-                                    <span class="fs-5 jcpricingnw"></span>
-                                    <span class="er-each jceachformat" style="align-items: flex-end;"></span>
+                        <div class="card-body">
+                            <div class="product-info">
+                                <a href="/views/product-details.html?id=${product.id}" id="content_text_brand">
+                                    <p class="product-catergory font-13 mb-1 content-badge-strain" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
+                                    <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p>
+                                    <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+                                </a>
+                                <a href="/views/product-details.html?id=${product.id}">
+                                    <h6 class="product-name mb-2 itemname">${product.name}</h6>
+                                </a>
+                                <div class="d-flex align-items-center content_item_price">
+                                    <div class="mb-1 product-price itemprice jcitemprice">
+                                        <span class="fs-5 currencyformat jcpriceformat">CAD 
+                                            <span id="cad-${product.id}" style="font-weight: 700; color: #000; font-size: 1.25rem!important;"></span>
+                                             / 
+                                             <span id="current-weight-${product.id}"></span></span>
+                                        </span>
+                                        <span class="fs-5 jcpricingnw"></span>
+                                        <span class="er-each jceachformat" style="align-items: flex-end;"></span>
+                                    </div>
                                 </div>
+                                <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
+                                    <div class="me-4" id="container_quantity">
+                                        <label class="form-label">Quantity</label>
+                                        <select class="form-select form-select-sm select-quantity" id="quantity-${product.id}" product_id="${product.id}">
+                                            ${numberToArray(parseInt(product.variants[0].quantity) + 1).map(q => `<option>${q}</option>`)}
+                                        </select>
+                                    </div>
+                                    <div class="" id="container_weight">
+                                        <label class="form-label">weight</label>
+                                        <select class="form-select form-select-sm select-weight" id="select-weight-${product.id}" product_id="${product.id}">
+                                            ${product.variants.map(variant => `<option>${variant.option}</option>`)}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="product-action mt-2" id="content">
+                                   <div class="d-grid gap-2">
+                                        <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}"><i class="bx bxs-cart-add"></i>add to cart</a>
+                                        <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
+                                   </div> 
+                                </div> 
                             </div>
-                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
-                                <div class="me-4" id="container_quantity">
-                                    <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm select-quantity" id="quantity-${product.id}" product_id="${product.id}">
-                                        ${numberToArray(parseInt(product.variants[0].quantity) + 1).map(q => `<option>${q}</option>`)}
-                                    </select>
-                                </div>
-                                <div class="" id="container_weight">
-                                    <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm select-weight" id="select-weight-${product.id}" product_id="${product.id}">
-                                        ${product.variants.map(variant => `<option>${variant.option}</option>`)}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="product-action mt-2" id="content">
-                               <div class="d-grid gap-2">
-                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}"><i class="bx bxs-cart-add"></i>add to cart</a>
-                                    <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
-                               </div> 
-                            </div> 
                         </div>
                     </div>
-                </div>
              </div>
             `;
         });
