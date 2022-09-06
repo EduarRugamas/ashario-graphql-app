@@ -753,7 +753,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 storage_local.setItem('cart', JSON.stringify(cart));
                 count--;
                 update_icon_cart();
-
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
             });
         });
 
