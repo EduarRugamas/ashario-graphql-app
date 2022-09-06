@@ -628,7 +628,7 @@ const mini_cart_render = (array_products) => {
         console.log(information_product);
 
         template_item_mini_cart += `
-            <a class="dropdown-item" href="javascript:;">
+            <div class="dropdown-item">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h6 class="cart-product-title">${information_product.name}</h6>
@@ -643,7 +643,7 @@ const mini_cart_render = (array_products) => {
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
             `;
 
         mini_cart_items.innerHTML = template_item_mini_cart;
