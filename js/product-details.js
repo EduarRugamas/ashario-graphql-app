@@ -1,5 +1,5 @@
 'use strict';
-import {getProduct, addItemCart, get_products_carrousel} from '../utils/querys.js';
+import {getProduct, addItemCart, get_products_carrousel, getAllProducts} from '../utils/querys.js';
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
 const urlParams = new URLSearchParams(window.location.search);
 const storage_local = window.localStorage;
@@ -18,7 +18,7 @@ let count = 0;
 let cart = {};
 
 const product = getProduct(id_store_centre_point_mall.id, id_product);
-const get_carrousel = get_products_carrousel(id_store_centre_point_mall.id, 'FLOWER', 0, 10);
+const get_carrousel = get_products_carrousel(id_store_centre_point_mall.id, 'FLOWER', 0, 20);
 
 product.then( (item) => {
     const url_retorno = checkoutId.redirectUrl;
@@ -171,7 +171,6 @@ const renderProduct = (container, informatio_product) => {
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
-
         // render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
     });
 };
@@ -602,7 +601,7 @@ const update_icon_cart = () => {
     icon_cart_count.textContent = count;
     storage_local.setItem('count', count);
 };
-const mini_cart_render = (information_product) => {
+const mini_cart_render = () => {
     let template_item_mini_cart = '';
 
     if (storage_local.getItem('count')) {
@@ -620,7 +619,12 @@ const mini_cart_render = (information_product) => {
 
         //revisar la busqueda de los productos imprime los que hay en el local storage pero hay que hacer
         // la busqueda de cada id de el producto manualmennte ya que solo se recive la informacion de uno unicamente del
-        // que se esta en la pagina de product details
+        // que se esta en la pagina de product details.
+
+        const all_products = getAllProducts(id_store_centre_point_mall.id);
+        console.log(all_products)
+
+        // let information_product = array_products.find(item => item.id === cart[product].product_id);
 
         template_item_mini_cart += `
             <a class="dropdown-item" href="javascript:;">
