@@ -68,7 +68,7 @@ let template_grid_products = '';
 window.addEventListener('DOMContentLoaded', async () => {
 
 
-        let observer = new IntersectionObserver((entradas, obserador) => {
+        let observador = new IntersectionObserver((entradas, obserador) => {
             console.log(entradas);
         }, {
             rootMargin: '0px 0px 0px 0px',
@@ -176,6 +176,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const productosEnPantalla = document.querySelectorAll('.product-card');
                 let ultimoProducto = productosEnPantalla[productosEnPantalla.length - 1];
                 console.log(ultimoProducto);
+                observador.observe(ultimoProducto);
 
             }
 
