@@ -179,9 +179,9 @@ const renderProduct = (container, informatio_product, array_products_all) => {
         // render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
         const id_store = id_store_centre_point_mall.id;
         const product_id = informatio_product.id;
-        const id_checkout_store = checkoutId.id;
-        const get_select_quantity = parseInt(document.getElementById('quantity').value);
-        const get_select_weight = document.getElementById('select-weight').value;
+        const checkout_id_store = checkoutId.id;
+        const value_quantity = parseInt(document.getElementById('quantity').value);
+        const value_weight = document.getElementById('select-weight').value;
 
         if (product_id in cart) {
 
@@ -201,10 +201,10 @@ const renderProduct = (container, informatio_product, array_products_all) => {
         }else {
             let data_product = {
                 id_store,
-                id_checkout_store,
+                checkout_id_store,
                 product_id,
-                get_select_quantity,
-                get_select_weight
+                value_quantity,
+                value_weight
             };
             console.log('Objeto json a enviar a mini cart', data_product);
 
