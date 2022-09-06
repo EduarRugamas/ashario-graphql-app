@@ -687,7 +687,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price"></p>
+                        <p class="cart-product-price">${cart[product].value_quantity} X ${(cart[product].value_quantity * information_product.variants[0].priceRec)}</p>
                     </div>
                     <div class="position-relative">
                         <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
@@ -702,15 +702,14 @@ window.addEventListener('DOMContentLoaded', async () => {
             `;
 
             mini_cart_items.innerHTML = template_item_mini_cart;
-
-            const text_cart_product_price = document.querySelectorAll('.cart-product-price');
-            text_cart_product_price.forEach(text => {
-                let value_quantity = parseInt(cart[product].value_quantity);
-                let value_price = information_product.variants[0].priceRec;
-
-                let valor = (value_quantity * value_price).toFixed(2);
-                text.textContent=`${value_quantity} X $${valor}`;
-            });
+            // const text_cart_product_price = document.querySelectorAll('.cart-product-price');
+            // text_cart_product_price.forEach(text => {
+            //     let value_quantity = parseInt(cart[product].value_quantity);
+            //     let value_price = information_product.variants[0].priceRec;
+            //
+            //     let valor = (value_quantity * value_price).toFixed(2);
+            //     text.textContent=`${value_quantity} X $${valor}`;
+            // });
         }
 
         view_items_mini_cart.textContent= `${count} ITEMS`;
