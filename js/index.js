@@ -60,7 +60,7 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 let page_previous = 0;
 let page_next = 20;
 let all_produts;
-let template_item_mini_cart = '';
+
 
 //fin de variables
 
@@ -462,11 +462,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 }
 
-
-
-
-
-
                 // addItemCart(store_centre_point_mall.id, checkout_id.id, product_id, get_select_quantity.value, get_select_weight.value).then( result => {
                 //     console.log(result);
                 //     if (result.data.addItem === null ) {
@@ -676,12 +671,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         storage_local.setItem('count', count);
     };
     const mini_cart_render = (array_products) => {
-
+        let template_item_mini_cart = '';
         console.log(cart);
 
         for (let product in cart) {
 
             console.log(product);
+            console.log(cart);
 
             let information_product = array_products.find(item => item.id === cart[product].product_id);
             console.log(information_product);
