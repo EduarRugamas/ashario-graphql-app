@@ -146,7 +146,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log(c);
                 // limit = c;
 
-                let data = await getAllProducts(store_centre_point_mall.id, page_previous, page_next);
+                let data = await getAllProducts(store_centre_point_mall.id, start, 100);
                 let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
                 let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
                 let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
