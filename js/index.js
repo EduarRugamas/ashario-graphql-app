@@ -59,7 +59,6 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 //variables de paginacion
 let page_previous = 0;
 let page_next = 20;
-let all_produts;
 let template_grid_products = '';
 
 //fin de variables
@@ -67,14 +66,26 @@ let template_grid_products = '';
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-        let observador = new IntersectionObserver((entradas, obserador) => {
+        let observador =  new IntersectionObserver( (entradas, obserador) => {
             console.log(entradas);
+            entradas.forEach( async (entrada) => {
+                if (entrada.isIntersecting) {
+                    const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
+
+                    page_previous += 20;
+                    page_next += 20;
+                    let data = await getAllProducts(store_centre_point_mall.id, page_previous, page_next);
+                    cartProduct(container_products, data.products);
+                }
+            });
+
+
         }, {
-            rootMargin: '0px 0px 0px 0px',
+            rootMargin: '0px 0px 200px 0px',
             threshold: 1.0
         });
 
-        
+
         if (storage_local.getItem('cart')) {
             cart = JSON.parse(storage_local.getItem('cart'));
         }
