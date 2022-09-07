@@ -147,7 +147,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 window.addEventListener('scroll', async () => {
                     if (window.scrollY === document.documentElement.scrollHeight - window.innerHeight) {
-                        start += limit;
+                        start += 20;
                         limit += 20;
                         console.log(start, limit);
                         let data = await getAllProducts(store_centre_point_mall.id, start, limit);
