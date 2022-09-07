@@ -597,7 +597,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         });
-        mini_cart_render(array_products);
         btn_checkout_mini_cart.addEventListener('click', () => {
 
             for (let item in cart) {
@@ -762,6 +761,37 @@ window.addEventListener('DOMContentLoaded', async () => {
         storage_local.setItem('count', count);
     };
     const mini_cart_render = (array_products) => {
+
+        update_mini_cart(array_products);
+        view_items_mini_cart.textContent= `${count} ITEMS`;
+
+        const btn_remove_product_item = document.querySelectorAll('#btn_remove_item');
+
+        btn_remove_product_item.forEach(btn_remove => {
+            btn_remove.addEventListener('click', () => {
+                delete_item_mini_cart(btn_remove, array_products);
+            });
+        });
+
+        if (Object.entries(cart).length === 0) {
+            let template_empty_mini_cart = '';
+            console.log('el mini cart esta vacio');
+            template_empty_mini_cart+= `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+            mini_cart_items.innerHTML = template_empty_mini_cart;
+            document.getElementById('btn_checkout_mini_cart').disabled = true;
+        }
+
+    };
+
+    const update_mini_cart = (arreglo_productos) => {
         let template_item_mini_cart = '';
 
         console.log(cart);
@@ -771,7 +801,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(product);
             console.log(cart);
 
-            let information_product = array_products.find(item => item.id === cart[product].product_id);
+            let information_product = arreglo_productos.find(item => item.id === cart[product].product_id);
             console.log(information_product);
 
             template_item_mini_cart += `
@@ -797,39 +827,17 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
-
-        view_items_mini_cart.textContent= `${count} ITEMS`;
-
-        const btn_remove_product_item = document.querySelectorAll('#btn_remove_item');
-
-        btn_remove_product_item.forEach(btn_remove => {
-            btn_remove.addEventListener('click', () => {
-                let template_empty_mini_cart = '';
-                let product_id_remove = btn_remove.getAttribute('product_id');
-                console.log(product_id_remove);
-                delete cart[product_id_remove];
-                storage_local.setItem('cart', JSON.stringify(cart));
-                count--;
-                update_icon_cart();
-                if (Object.entries(cart).length === 0) {
-                    console.log('el mini cart esta vacio');
-                    template_empty_mini_cart+= `
-                    <div class="dropdown-item">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
-                            </div>
-                        </div>
-                    </div>
-                    `;
-                    mini_cart_items.innerHTML = template_empty_mini_cart;
-                    document.getElementById('btn_checkout_mini_cart').disabled = true;
-                }
-            });
-        });
-
+    };
+    const delete_item_mini_cart = (btn_remove, arreglo_products) => {
+        let template_empty_mini_cart = '';
+        let product_id_remove = btn_remove.getAttribute('product_id');
+        console.log(product_id_remove);
+        delete cart[product_id_remove];
+        storage_local.setItem('cart', JSON.stringify(cart));
+        count--;
+        update_icon_cart();
+        update_mini_cart(arreglo_products);
         if (Object.entries(cart).length === 0) {
-            let template_empty_mini_cart = '';
             console.log('el mini cart esta vacio');
             template_empty_mini_cart+= `
                     <div class="dropdown-item">
@@ -843,8 +851,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             mini_cart_items.innerHTML = template_empty_mini_cart;
             document.getElementById('btn_checkout_mini_cart').disabled = true;
         }
-
-    };
+    }
 
     function ViewWeigthsSpecial(array_products, variant) {
 
