@@ -145,17 +145,17 @@ window.addEventListener('DOMContentLoaded', async () => {
             count_Products.then( async (c) => {
                 console.log(c);
 
-                window.addEventListener('scroll', async () => {
-                    if (window.scrollY === document.documentElement.scrollHeight - window.innerHeight) {
-                        start += 20;
-                        limit += 20;
-                        console.log(start, limit);
-                        let data = await getAllProducts(store_centre_point_mall.id, start, limit);
-                        cartProduct(container_products, data.products);
-                    }
-                });
+                // window.addEventListener('scroll', async () => {
+                //     if (window.scrollY === document.documentElement.scrollHeight - window.innerHeight) {
+                //         start += 20;
+                //         limit += 20;
+                //         console.log(start, limit);
+                //         let data = await getAllProducts(store_centre_point_mall.id, start, limit);
+                //         cartProduct(container_products, data.products);
+                //     }
+                // });
 
-                let data = await getAllProducts(store_centre_point_mall.id, start, limit);
+                let data = await getAllProducts(store_centre_point_mall.id, start, c);
                 let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
                 let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
                 let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
@@ -500,18 +500,33 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 if (product_id in cart) {
 
-                    cart[product_id].value_quantity = value_quantity;
-                    cart[product_id].value_weight = value_weight;
-                    storage_local.setItem('cart', JSON.stringify(cart));
-                    let card_view_product = array_products.find(item => item.id === product_id);
-                    Swal.fire({
-                        title: 'Update product!',
-                        text: `${card_view_product.name}`,
-                        imageUrl: `${card_view_product.image}`,
-                        imageWidth: 250,
-                        imageHeight: 300,
-                        imageAlt: `${card_view_product.name}`,
-                    });
+                        if (value_quantity !== cart[product_id].value_quantity ) {
+                            cart[product_id].value_quantity = value_quantity;
+                            cart[product_id].value_weight = value_weight;
+                            storage_local.setItem('cart', JSON.stringify(cart));
+                            let card_view_product = array_products.find(item => item.id === product_id);
+                            Swal.fire({
+                                title: 'Update product!',
+                                text: `${card_view_product.name}`,
+                                imageUrl: `${card_view_product.image}`,
+                                imageWidth: 250,
+                                imageHeight: 300,
+                                imageAlt: `${card_view_product.name}`,
+                            });
+                        }else if (cart[product_id].value_quantity === value_quantity ) {
+                            cart[product_id].value_quantity++;
+                            cart[product_id].value_weight = value_weight;
+                            storage_local.setItem('cart', JSON.stringify(cart));
+                            let card_view_product = array_products.find(item => item.id === product_id);
+                            Swal.fire({
+                                title: 'Update product!',
+                                text: `${card_view_product.name}`,
+                                imageUrl: `${card_view_product.image}`,
+                                imageWidth: 250,
+                                imageHeight: 300,
+                                imageAlt: `${card_view_product.name}`,
+                            });
+                        }
 
                 }else {
                     let data_product = {
