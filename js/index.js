@@ -500,17 +500,36 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 if (product_id in cart) {
 
-                    cart[product_id].value_quantity++;
-                    storage_local.setItem('cart', JSON.stringify(cart));
-                    let card_view_product = array_products.find(item => item.id === product_id);
-                    Swal.fire({
-                        title: 'Update product!',
-                        text: `${card_view_product.name}`,
-                        imageUrl: `${card_view_product.image}`,
-                        imageWidth: 250,
-                        imageHeight: 300,
-                        imageAlt: `${card_view_product.name}`,
-                    });
+
+                    if (value_quantity === 1 ) {
+                        cart[product_id].value_quantity++;
+                        cart[product_id].value_weight = value_weight;
+                        storage_local.setItem('cart', JSON.stringify(cart));
+                        let card_view_product = array_products.find(item => item.id === product_id);
+                        Swal.fire({
+                            title: 'Update product!',
+                            text: `${card_view_product.name}`,
+                            imageUrl: `${card_view_product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.name}`,
+                        });
+                    }else {
+                        cart[product_id].value_quantity = value_quantity;
+                        cart[product_id].value_weight = value_weight;
+                        storage_local.setItem('cart', JSON.stringify(cart));
+                        let card_view_product = array_products.find(item => item.id === product_id);
+                        Swal.fire({
+                            title: 'Update product!',
+                            text: `${card_view_product.name}`,
+                            imageUrl: `${card_view_product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.name}`,
+                        });
+                    }
+
+
 
                         // if (value_quantity !== cart[product_id].value_quantity ) {
                         //     cart[product_id].value_quantity = value_quantity;
@@ -744,7 +763,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     };
     const mini_cart_render = (array_products) => {
         let template_item_mini_cart = '';
-        let template_empty_mini_cart = '';
+
         console.log(cart);
 
         for (let product in cart) {
@@ -785,6 +804,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         btn_remove_product_item.forEach(btn_remove => {
             btn_remove.addEventListener('click', () => {
+                let template_empty_mini_cart = '';
                 let product_id_remove = btn_remove.getAttribute('product_id');
                 console.log(product_id_remove);
                 delete cart[product_id_remove];
@@ -810,6 +830,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
 
         if (Object.entries(cart).length === 0) {
+            let template_empty_mini_cart = '';
             console.log('el mini cart esta vacio');
             template_empty_mini_cart+= `
                     <div class="dropdown-item">
