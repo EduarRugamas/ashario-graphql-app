@@ -58,7 +58,7 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 // fin declaraciones de filtros range thc and cbd
 //variables de paginacion
 let start = 0;
-let limit = 0;
+let limit = 20;
 let end_items = false;
 let template_grid_products = '';
 
@@ -144,9 +144,18 @@ window.addEventListener('DOMContentLoaded', async () => {
             let count_Products = get_count_product(store_centre_point_mall.id);
             count_Products.then( async (c) => {
                 console.log(c);
-                // limit = c;
 
-                let data = await getAllProducts(store_centre_point_mall.id, start, 100);
+                window.addEventListener('scroll', async () => {
+                    if (window.scrollY === document.documentElement.scrollHeight - window.innerHeight) {
+                        start += limit;
+                        limit += 20;
+                        console.log(start, limit);
+                        let data = await getAllProducts(store_centre_point_mall.id, start, limit);
+                        cartProduct(container_products, data.products);
+                    }
+                });
+
+                let data = await getAllProducts(store_centre_point_mall.id, start, limit);
                 let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
                 let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
                 let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
@@ -322,12 +331,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         })
 
 });
-
-window.addEventListener('scroll', () => {
-    console.log('haciendo scroll');
-});
-
-
 
     const cartProduct = (container_products, array_products) => {
 
