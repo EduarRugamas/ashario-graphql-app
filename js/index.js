@@ -500,33 +500,45 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 if (product_id in cart) {
 
-                        if (value_quantity !== cart[product_id].value_quantity ) {
-                            cart[product_id].value_quantity = value_quantity;
-                            cart[product_id].value_weight = value_weight;
-                            storage_local.setItem('cart', JSON.stringify(cart));
-                            let card_view_product = array_products.find(item => item.id === product_id);
-                            Swal.fire({
-                                title: 'Update product!',
-                                text: `${card_view_product.name}`,
-                                imageUrl: `${card_view_product.image}`,
-                                imageWidth: 250,
-                                imageHeight: 300,
-                                imageAlt: `${card_view_product.name}`,
-                            });
-                        }else if (cart[product_id].value_quantity === value_quantity ) {
-                            cart[product_id].value_quantity++;
-                            cart[product_id].value_weight = value_weight;
-                            storage_local.setItem('cart', JSON.stringify(cart));
-                            let card_view_product = array_products.find(item => item.id === product_id);
-                            Swal.fire({
-                                title: 'Update product!',
-                                text: `${card_view_product.name}`,
-                                imageUrl: `${card_view_product.image}`,
-                                imageWidth: 250,
-                                imageHeight: 300,
-                                imageAlt: `${card_view_product.name}`,
-                            });
-                        }
+                    cart[product_id].value_quantity++;
+                    storage_local.setItem('cart', JSON.stringify(cart));
+                    let card_view_product = array_products.find(item => item.id === product_id);
+                    Swal.fire({
+                        title: 'Update product!',
+                        text: `${card_view_product.name}`,
+                        imageUrl: `${card_view_product.image}`,
+                        imageWidth: 250,
+                        imageHeight: 300,
+                        imageAlt: `${card_view_product.name}`,
+                    });
+
+                        // if (value_quantity !== cart[product_id].value_quantity ) {
+                        //     cart[product_id].value_quantity = value_quantity;
+                        //     cart[product_id].value_weight = value_weight;
+                        //     storage_local.setItem('cart', JSON.stringify(cart));
+                        //     let card_view_product = array_products.find(item => item.id === product_id);
+                        //     Swal.fire({
+                        //         title: 'Update product!',
+                        //         text: `${card_view_product.name}`,
+                        //         imageUrl: `${card_view_product.image}`,
+                        //         imageWidth: 250,
+                        //         imageHeight: 300,
+                        //         imageAlt: `${card_view_product.name}`,
+                        //     });
+                        // }else if (cart[product_id].value_quantity === value_quantity ) {
+                        //     cart[product_id].value_quantity++;
+                        //     cart[product_id].value_weight = value_weight;
+                        //     storage_local.setItem('cart', JSON.stringify(cart));
+                        //     let card_view_product = array_products.find(item => item.id === product_id);
+                        //     Swal.fire({
+                        //         title: 'Update product!',
+                        //         text: `${card_view_product.name}`,
+                        //         imageUrl: `${card_view_product.image}`,
+                        //         imageWidth: 250,
+                        //         imageHeight: 300,
+                        //         imageAlt: `${card_view_product.name}`,
+                        //     });
+                        // }
 
                 }else {
                     let data_product = {
