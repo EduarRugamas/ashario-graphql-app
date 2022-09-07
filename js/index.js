@@ -594,9 +594,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         badge_strainType(array_products);
         update_icon_cart();
         mini_cart_render(array_products);
-        btn_shop_cart_link.addEventListener('click', () => {
-            mini_cart_render(array_products);
-        });
+        // btn_shop_cart_link.addEventListener('click', () => {
+        //     mini_cart_render(array_products);
+        // });
         btn_checkout_mini_cart.addEventListener('click', () => {
 
             for (let item in cart) {
@@ -769,7 +769,28 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         btn_remove_product_item.forEach(btn_remove => {
             btn_remove.addEventListener('click', () => {
-                delete_item_mini_cart(btn_remove, array_products);
+                let template_empty_mini_cart = '';
+                let product_id_remove = btn_remove.getAttribute('product_id');
+                console.log(product_id_remove);
+                delete cart[product_id_remove];
+                storage_local.setItem('cart', JSON.stringify(cart));
+                count--;
+                update_icon_cart();
+                update_mini_cart(array_products);
+                if (Object.entries(cart).length === 0) {
+                    console.log('el mini cart esta vacio');
+                    template_empty_mini_cart+= `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    mini_cart_items.innerHTML = template_empty_mini_cart;
+                    document.getElementById('btn_checkout_mini_cart').disabled = true;
+                }
             });
         });
 
