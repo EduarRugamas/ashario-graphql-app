@@ -812,6 +812,38 @@ window.addEventListener('DOMContentLoaded', async () => {
                 count--;
                 update_icon_cart();
 
+                for (let product in cart) {
+
+                    console.log(product);
+                    console.log(cart);
+
+                    let information_product = array_products.find(item => item.id === cart[product].product_id);
+                    console.log(information_product);
+
+                    template_item_mini_cart += `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">${information_product.name}</h6>
+                                <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
+                            </div>
+                            <div class="position-relative">
+                                <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
+                                    <i class='bx bx-x'></i>
+                                </div>
+                                <div class="cart-product">
+                                    <img src="${information_product.image}" class="" alt="product image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+
+                    mini_cart_items.innerHTML = template_item_mini_cart;
+
+                    document.getElementById('btn_checkout_mini_cart').disabled = false;
+                }
+
                 if (Object.entries(cart).length === 0) {
                     console.log('el mini cart esta vacio');
                     template_empty_mini_cart+= `
