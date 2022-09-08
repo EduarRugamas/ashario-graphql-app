@@ -157,7 +157,7 @@ const remove_item_mini_cart = (id_btn_remove, array_productos) => {
             count--;
             update_icon_cart();
             mini_cart_render(array_productos);
-
+            render_products_cart(contenedor_products, array_productos);
             if (Object.entries(cart).length === 0) {
                 console.log('el mini cart esta vacio');
                 template_empty_mini_cart+= `
