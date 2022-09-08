@@ -60,7 +60,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('btn_checkout_mini_cart').disabled = false;
             }
         });
-
+        btn_clear_cart.addEventListener('click', () => {
+            console.log('click clear btn');
+            storage_local.removeItem('cart');
+            storage_local.removeItem('count');
+            render_products_cart(contenedor_products, data.products);
+            mini_cart_render(data.products);
+        });
 
 });
 
