@@ -174,11 +174,10 @@ const renderProduct = (container, informatio_product, array_products_all) => {
     renderBadgeStant(informatio_product.strainType);
     renderQuantityWeight(informatio_product.variants, 'quantity', 'select-weight', 'text_price', 'text_weights_format');
     update_icon_cart();
-    mini_cart_render(array_products_all);
+
 
     const btn_add_cart = document.getElementById('add-to-cart');
     btn_add_cart.addEventListener('click', () => {
-        // render_add_item_cart(id_store_centre_point_mall, checkoutId, id_product, 'quantity', 'select-weight');
         const id_store = id_store_centre_point_mall.id;
         const product_id = informatio_product.id;
         const checkout_id_store = checkoutId.id;
@@ -187,18 +186,43 @@ const renderProduct = (container, informatio_product, array_products_all) => {
 
         if (product_id in cart) {
 
-            cart[product_id].value_quantity = value_quantity;
-            cart[product_id].value_weight = value_weight;
-            storage_local.setItem('cart', JSON.stringify(cart));
-            // let card_view_product = array_products.find(item => item.id === product_id);
-            Swal.fire({
-                title: 'Update product!',
-                text: `${informatio_product.name}`,
-                imageUrl: `${informatio_product.image}`,
-                imageWidth: 250,
-                imageHeight: 300,
-                imageAlt: `${informatio_product.name}`,
-            });
+            // cart[product_id].value_quantity = value_quantity;
+            // cart[product_id].value_weight = value_weight;
+            // storage_local.setItem('cart', JSON.stringify(cart));
+            // // let card_view_product = array_products.find(item => item.id === product_id);
+            // Swal.fire({
+            //     title: 'Update product!',
+            //     text: `${informatio_product.name}`,
+            //     imageUrl: `${informatio_product.image}`,
+            //     imageWidth: 250,
+            //     imageHeight: 300,
+            //     imageAlt: `${informatio_product.name}`,
+            // });
+            if (value_quantity === 1) {
+                cart[product_id].value_quantity++;
+                cart[product_id].value_weight = value_weight;
+                storage_local.setItem('cart', JSON.stringify(cart));
+                Swal.fire({
+                    title: 'Update product!',
+                    text: `${informatio_product.name}`,
+                    imageUrl: `${informatio_product.image}`,
+                    imageWidth: 250,
+                    imageHeight: 300,
+                    imageAlt: `${informatio_product.name}`,
+                });
+            }else {
+                cart[product_id].value_quantity = value_quantity;
+                cart[product_id].value_weight = value_weight;
+                storage_local.setItem('cart', JSON.stringify(cart));
+                Swal.fire({
+                    title: 'Update product!',
+                    text: `${informatio_product.name}`,
+                    imageUrl: `${informatio_product.image}`,
+                    imageWidth: 250,
+                    imageHeight: 300,
+                    imageAlt: `${informatio_product.name}`,
+                });
+            }
 
         }else {
             let data_product = {
@@ -236,7 +260,23 @@ const renderProduct = (container, informatio_product, array_products_all) => {
     });
 
     btn_shop_cart_link.addEventListener('click', () => {
-        mini_cart_render(array_products_all);
+        if (Object.entries(cart).length === 0) {
+            let template_empty_mini_cart = '';
+            console.log('el mini cart esta vacio');
+            template_empty_mini_cart += `
+                <div class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                        </div>
+                    </div>
+                </div>`;
+            mini_cart_items.innerHTML = template_empty_mini_cart;
+            document.getElementById('btn_checkout_mini_cart').disabled = true;
+        }else {
+            mini_cart_render(array_products_all);
+            document.getElementById('btn_checkout_mini_cart').disabled = false;
+        }
     });
 
     btn_checkout_mini_cart.addEventListener('click', () => {
@@ -712,18 +752,11 @@ const update_icon_cart = () => {
     icon_cart_count.textContent = count;
     storage_local.setItem('count', count);
 };
-const mini_cart_render = (array_products) => {
+
+const mini_cart_render = (array_productos) => {
     let template_item_mini_cart = '';
-    console.log(cart);
-    console.log(array_products);
-
     for (let product in cart) {
-
-        console.log(product);
-
-        let information_product = array_products.find(item => item.id === cart[product].product_id);
-        console.log(information_product);
-
+        let information_product = array_productos.find(item => item.id === cart[product].product_id);
         template_item_mini_cart += `
             <div class="dropdown-item">
                 <div class="d-flex align-items-center">
@@ -732,35 +765,36 @@ const mini_cart_render = (array_products) => {
                         <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
                     </div>
                     <div class="position-relative">
-                        <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
+                        <a class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn-remove-item">
                             <i class='bx bx-x'></i>
-                        </div>
+                        </a>
                         <div class="cart-product">
                             <img src="${information_product.image}" class="" alt="product image">
                         </div>
                     </div>
                 </div>
-            </div>
-            `;
-
+            </div>`;
         mini_cart_items.innerHTML = template_item_mini_cart;
-        document.getElementById('btn_checkout_mini_cart').disabled = false;
-
     }
-
-
     view_items_mini_cart.textContent= `${count} ITEMS`;
+    remove_item_mini_cart('btn-remove-item', array_productos);
 
-    const btn_remove_product_item = document.querySelectorAll('#btn_remove_item');
-    btn_remove_product_item.forEach(btn_remove => {
-        btn_remove.addEventListener('click', () => {
+};
+
+const remove_item_mini_cart = (id_btn_remove, array_productos) => {
+    const button_remove_mini_cart = document.querySelectorAll(`#${id_btn_remove}`);
+    button_remove_mini_cart.forEach( btn => {
+
+        const get_product_id_remove = btn.getAttribute('product_id');
+        btn.addEventListener('click', () => {
+            console.log('product a elimminar', get_product_id_remove);
             let template_empty_mini_cart = '';
-            let product_id_remove = btn_remove.getAttribute('product_id');
-            console.log(product_id_remove);
-            delete cart[product_id_remove];
+            delete cart[get_product_id_remove];
             storage_local.setItem('cart', JSON.stringify(cart));
             count--;
             update_icon_cart();
+            mini_cart_render(array_productos);
+
             if (Object.entries(cart).length === 0) {
                 console.log('el mini cart esta vacio');
                 template_empty_mini_cart+= `
@@ -778,24 +812,6 @@ const mini_cart_render = (array_products) => {
 
         });
     });
-
-    if (Object.entries(cart).length === 0) {
-        let template_empty_mini_cart = '';
-        console.log('el mini cart esta vacio');
-        template_empty_mini_cart+= `
-        <div class="dropdown-item">
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                    <h6 class="cart-product-title">You don't have products in your cart.</h6>
-                </div>
-            </div>
-        </div>
-                    `;
-        mini_cart_items.innerHTML = template_empty_mini_cart;
-        document.getElementById('btn_checkout_mini_cart').disabled = true;
-    }
-
-
-
 };
+
 

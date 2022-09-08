@@ -471,52 +471,45 @@ const cartProduct = (container_products, array_products) => {
             console.log(`${store_centre_point_mall.id}, ${checkout_id.id}, ${product_id}, quantity:${get_select_quantity.value}, option: ${get_select_weight.value}`);
             const id_store = store_centre_point_mall.id;
             const checkout_id_store = checkout_id.id;
-            const value_quantity = get_select_quantity.value;
+            const value_quantity = parseInt(get_select_quantity.value);
             const value_weight = get_select_weight.value;
 
             if (product_id in cart) {
-                cart[product_id].value_quantity = value_quantity;
-                cart[product_id].value_weight = value_weight;
-                storage_local.setItem('cart', JSON.stringify(cart));
-                let card_view_product = array_products.find(item => item.id === product_id);
-                Swal.fire({
-                    title: 'Update product!',
-                    text: `${card_view_product.name}`,
-                    imageUrl: `${card_view_product.image}`,
-                    imageWidth: 250,
-                    imageHeight: 300,
-                    imageAlt: `${card_view_product.name}`,
-                });
-                // if (value_quantity !== cart[product_id].value_quantity ) {
-                //     cart[product_id].value_quantity = value_quantity;
-                //     cart[product_id].value_weight = value_weight;
-                //     storage_local.setItem('cart', JSON.stringify(cart));
-                //     let card_view_product = array_products.find(item => item.id === product_id);
-                //     Swal.fire({
-                //         title: 'Update product!',
-                //         text: `${card_view_product.name}`,
-                //         imageUrl: `${card_view_product.image}`,
-                //         imageWidth: 250,
-                //         imageHeight: 300,
-                //         imageAlt: `${card_view_product.name}`,
-                //     });
-                // }else if (cart[product_id].value_quantity === value_quantity ) {
-                //     cart[product_id].value_quantity++;
-                //     cart[product_id].value_weight = value_weight;
-                //     storage_local.setItem('cart', JSON.stringify(cart));
-                //     let card_view_product = array_products.find(item => item.id === product_id);
-                //     Swal.fire({
-                //         title: 'Update product!',
-                //         text: `${card_view_product.name}`,
-                //         imageUrl: `${card_view_product.image}`,
-                //         imageWidth: 250,
-                //         imageHeight: 300,
-                //         imageAlt: `${card_view_product.name}`,
-                //     });
-                // }
+
+                if (cart[product_id].value_quantity === 1) {
+                        cart[product_id].value_quantity++;
+                        cart[product_id].value_weight = value_weight;
+                        storage_local.setItem('cart', JSON.stringify(cart));
+                        let card_view_product = array_products.find(item => item.id === product_id);
+                        Swal.fire({
+                            title: 'Update product!',
+                            text: `${card_view_product.name}`,
+                            imageUrl: `${card_view_product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.name}`,
+                        });
+                }else {
+                        cart[product_id].value_quantity = value_quantity;
+                        cart[product_id].value_weight = value_weight;
+                        storage_local.setItem('cart', JSON.stringify(cart));
+                        let card_view_product = array_products.find(item => item.id === product_id);
+                        Swal.fire({
+                            title: 'Update product!',
+                            text: `${card_view_product.name}`,
+                            imageUrl: `${card_view_product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.name}`,
+                        });
+                }
             } else {
                 let data_product = {
-                    id_store, checkout_id_store, product_id, value_quantity, value_weight
+                    id_store,
+                    checkout_id_store,
+                    product_id,
+                    value_quantity,
+                    value_weight
                 };
                 console.log('Objeto json a enviar a mini cart', data_product);
                 cart[product_id] = data_product;
@@ -534,7 +527,6 @@ const cartProduct = (container_products, array_products) => {
                     imageHeight: 300,
                     imageAlt: `${card_view_product.name}`,
                 });
-
             }
         });
     });
@@ -558,49 +550,11 @@ const cartProduct = (container_products, array_products) => {
             mini_cart_render(array_products);
             document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
-
-        //update_mini_cart(array_products);
-        // let template_item_mini_cart = '';
-        //     for (let product in cart) {
-        //
-        //         console.log(product);
-        //         console.log(cart);
-        //
-        //         let information_product = array_products.find(item => item.id === cart[product].product_id);
-        //         console.log(information_product);
-        //
-        //         template_item_mini_cart += `
-        //         <div class="dropdown-item">
-        //             <div class="d-flex align-items-center">
-        //                 <div class="flex-grow-1">
-        //                     <h6 class="cart-product-title">${information_product.name}</h6>
-        //                     <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
-        //                 </div>
-        //                 <div class="position-relative">
-        //                     <a class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
-        //                         <i class='bx bx-x'></i>
-        //                     </a>
-        //                     <div class="cart-product">
-        //                         <img src="${information_product.image}" class="" alt="product image">
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //         `;
-        //
-        //         mini_cart_items.innerHTML = template_item_mini_cart;
-        //
-        //         document.getElementById('btn_checkout_mini_cart').disabled = false;
-        //     }
-        //
-        //     view_items_mini_cart.textContent= `${count} ITEMS`;
-
     });
     btn_checkout_mini_cart.addEventListener('click', () => {
 
         for (let item in cart) {
             console.log(item);
-
             addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
                 console.log(result);
                 if (result.data.addItem === null) {
@@ -788,10 +742,8 @@ const remove_item_mini_cart = (id_btn_remove, array_productos) => {
     button_remove_mini_cart.forEach( btn => {
 
         const get_product_id_remove = btn.getAttribute('product_id');
-
-        console.log('product a elimminar', get_product_id_remove);
-
         btn.addEventListener('click', () => {
+            console.log('product a elimminar', get_product_id_remove);
             let template_empty_mini_cart = '';
             delete cart[get_product_id_remove];
             storage_local.setItem('cart', JSON.stringify(cart));
