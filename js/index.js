@@ -780,9 +780,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                         <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
                     </div>
                     <div class="position-relative">
-                        <div class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
+                        <button class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
                             <i class='bx bx-x'></i>
-                        </div>
+                        </button>
                         <div class="cart-product">
                             <img src="${information_product.image}" class="" alt="product image">
                         </div>
