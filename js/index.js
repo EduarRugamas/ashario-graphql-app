@@ -766,7 +766,7 @@ const mini_cart_render = (array_productos) => {
                         <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
                     </div>
                     <div class="position-relative">
-                        <a class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
+                        <a class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn-remove-item">
                             <i class='bx bx-x'></i>
                         </a>
                         <div class="cart-product">
@@ -778,6 +778,43 @@ const mini_cart_render = (array_productos) => {
         mini_cart_items.innerHTML = template_item_mini_cart;
     }
     view_items_mini_cart.textContent= `${count} ITEMS`;
+    remove_item_mini_cart('btn-remove-item', array_productos);
+
+};
+
+const remove_item_mini_cart = (id_btn_remove, array_productos) => {
+    const button_remove_mini_cart = document.querySelectorAll(`#${id_btn_remove}`);
+    button_remove_mini_cart.forEach( btn => {
+
+        const get_product_id_remove = btn.getAttribute('product_id');
+
+        console.log('product a elimminar', get_product_id_remove);
+
+        btn.addEventListener('click', () => {
+            let template_empty_mini_cart = '';
+            delete cart[get_product_id_remove];
+            storage_local.setItem('cart', JSON.stringify(cart));
+            count--;
+            update_icon_cart();
+            mini_cart_render(array_productos);
+
+            if (Object.entries(cart).length === 0) {
+                console.log('el mini cart esta vacio');
+                template_empty_mini_cart+= `
+                <div class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                        </div>
+                    </div>
+                </div>
+            `;
+                mini_cart_items.innerHTML = template_empty_mini_cart;
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
+            }
+
+        });
+    });
 };
 
 function ViewWeigthsSpecial(array_products, variant) {
