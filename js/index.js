@@ -476,7 +476,7 @@ const cartProduct = (container_products, array_products) => {
 
             if (product_id in cart) {
 
-                if (cart[product_id].value_quantity === 1) {
+                if (value_quantity === cart[product_id].value_quantity) {
                         cart[product_id].value_quantity++;
                         cart[product_id].value_weight = value_weight;
                         storage_local.setItem('cart', JSON.stringify(cart));
