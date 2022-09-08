@@ -58,9 +58,11 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
         btn_clear_cart.addEventListener('click', () => {
             console.log('click clear btn');
-            storage_local.clear();
+            storage_local.removeItem('cart');
+            storage_local.removeItem('count');
             render_products_cart(contenedor_products, data.products);
             mini_cart_render(data.products);
+            update_icon_cart();
         });
 
 });
