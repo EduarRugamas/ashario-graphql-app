@@ -643,7 +643,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         storage_local.setItem('cart', JSON.stringify(cart));
                         count--;
                         update_icon_cart();
-                        update_mini_cart(array_products);
+                        // update_mini_cart(array_products);
                         if (Object.entries(cart).length === 0) {
                             console.log('el mini cart esta vacio');
                             template_empty_mini_cart+= `
