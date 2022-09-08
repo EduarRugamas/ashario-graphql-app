@@ -761,7 +761,6 @@ const mini_cart_render = (array_products) => {
             storage_local.setItem('cart', JSON.stringify(cart));
             count--;
             update_icon_cart();
-            update_mini_cart(array_products);
             if (Object.entries(cart).length === 0) {
                 console.log('el mini cart esta vacio');
                 template_empty_mini_cart+= `
@@ -798,42 +797,5 @@ const mini_cart_render = (array_products) => {
 
 
 
-};
-const update_mini_cart = (arreglo_productos) => {
-    let template_item_mini_cart = '';
-
-    console.log(cart);
-
-    for (let product in cart) {
-
-        console.log(product);
-        console.log(cart);
-
-        let information_product = arreglo_productos.find(item => item.id === cart[product].product_id);
-        console.log(information_product);
-
-        template_item_mini_cart += `
-            <div class="dropdown-item">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
-                    </div>
-                    <div class="position-relative">
-                        <div class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item">
-                            <i class='bx bx-x'></i>
-                        </div>
-                        <div class="cart-product">
-                            <img src="${information_product.image}" class="" alt="product image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-
-        mini_cart_items.innerHTML = template_item_mini_cart;
-
-        document.getElementById('btn_checkout_mini_cart').disabled = false;
-    }
 };
 
