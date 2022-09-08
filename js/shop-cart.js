@@ -1,4 +1,5 @@
 import {getAllProducts, get_count_product} from '../utils/querys.js';
+import {FadeOut} from "../utils/utils.js";
 const storage_local = window.localStorage;
 let count = 0;
 let cart = {};
@@ -36,6 +37,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.log(cart);
         console.log(quantity_product);
         render_products_cart(contenedor_products, data.products);
+        FadeOut(div_loader);
         update_icon_cart();
         btn_action_dropdown_mini_cart.addEventListener('click', () => {
             if (Object.entries(cart).length === 0) {
