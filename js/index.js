@@ -500,99 +500,95 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const value_quantity = get_select_quantity.value;
                 const value_weight = get_select_weight.value;
 
-                AddCartItem(id_store, checkout_id_store, value_quantity, value_weight, array_products);
+                if (product_id in cart) {
+                    if (value_quantity === 1 ) {
+                        cart[product_id].value_quantity++;
+                        cart[product_id].value_weight = value_weight;
+                        storage_local.setItem('cart', JSON.stringify(cart));
+                        let card_view_product = array_products.find(item => item.id === product_id);
+                        Swal.fire({
+                            title: 'Update product!',
+                            text: `${card_view_product.name}`,
+                            imageUrl: `${card_view_product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.name}`,
+                        });
+                    }else {
+                        cart[product_id].value_quantity = value_quantity;
+                        cart[product_id].value_weight = value_weight;
+                        storage_local.setItem('cart', JSON.stringify(cart));
+                        let card_view_product = array_products.find(item => item.id === product_id);
+                        Swal.fire({
+                            title: 'Update product!',
+                            text: `${card_view_product.name}`,
+                            imageUrl: `${card_view_product.image}`,
+                            imageWidth: 250,
+                            imageHeight: 300,
+                            imageAlt: `${card_view_product.name}`,
+                        });
+                    }
 
-                // if (product_id in cart) {
-                //
-                //
-                //     if (value_quantity === 1 ) {
-                //         cart[product_id].value_quantity++;
-                //         cart[product_id].value_weight = value_weight;
-                //         storage_local.setItem('cart', JSON.stringify(cart));
-                //         let card_view_product = array_products.find(item => item.id === product_id);
-                //         Swal.fire({
-                //             title: 'Update product!',
-                //             text: `${card_view_product.name}`,
-                //             imageUrl: `${card_view_product.image}`,
-                //             imageWidth: 250,
-                //             imageHeight: 300,
-                //             imageAlt: `${card_view_product.name}`,
-                //         });
-                //     }else {
-                //         cart[product_id].value_quantity = value_quantity;
-                //         cart[product_id].value_weight = value_weight;
-                //         storage_local.setItem('cart', JSON.stringify(cart));
-                //         let card_view_product = array_products.find(item => item.id === product_id);
-                //         Swal.fire({
-                //             title: 'Update product!',
-                //             text: `${card_view_product.name}`,
-                //             imageUrl: `${card_view_product.image}`,
-                //             imageWidth: 250,
-                //             imageHeight: 300,
-                //             imageAlt: `${card_view_product.name}`,
-                //         });
-                //     }
-                //
-                //
-                //
-                //         // if (value_quantity !== cart[product_id].value_quantity ) {
-                //         //     cart[product_id].value_quantity = value_quantity;
-                //         //     cart[product_id].value_weight = value_weight;
-                //         //     storage_local.setItem('cart', JSON.stringify(cart));
-                //         //     let card_view_product = array_products.find(item => item.id === product_id);
-                //         //     Swal.fire({
-                //         //         title: 'Update product!',
-                //         //         text: `${card_view_product.name}`,
-                //         //         imageUrl: `${card_view_product.image}`,
-                //         //         imageWidth: 250,
-                //         //         imageHeight: 300,
-                //         //         imageAlt: `${card_view_product.name}`,
-                //         //     });
-                //         // }else if (cart[product_id].value_quantity === value_quantity ) {
-                //         //     cart[product_id].value_quantity++;
-                //         //     cart[product_id].value_weight = value_weight;
-                //         //     storage_local.setItem('cart', JSON.stringify(cart));
-                //         //     let card_view_product = array_products.find(item => item.id === product_id);
-                //         //     Swal.fire({
-                //         //         title: 'Update product!',
-                //         //         text: `${card_view_product.name}`,
-                //         //         imageUrl: `${card_view_product.image}`,
-                //         //         imageWidth: 250,
-                //         //         imageHeight: 300,
-                //         //         imageAlt: `${card_view_product.name}`,
-                //         //     });
-                //         // }
-                //
-                // }else {
-                //     let data_product = {
-                //         id_store,
-                //         checkout_id_store,
-                //         product_id,
-                //         value_quantity,
-                //         value_weight
-                //     };
-                //     console.log('Objeto json a enviar a mini cart', data_product);
-                //
-                //     // cart[product_id].push(add_item_cart);
-                //     cart[product_id] = data_product;
-                //     count ++;
-                //     storage_local.setItem('cart', JSON.stringify(cart));
-                //     console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
-                //     update_icon_cart();
-                //
-                //     let card_view_product = array_products.find(item => item.id === product_id);
-                //     console.log(card_view_product);
-                //
-                //     Swal.fire({
-                //          title: 'Added to cart!',
-                //          text: `${card_view_product.name}`,
-                //          imageUrl: `${card_view_product.image}`,
-                //          imageWidth: 250,
-                //          imageHeight: 300,
-                //          imageAlt: `${card_view_product.name}`,
-                //     });
-                //
-                // }
+
+
+                        // if (value_quantity !== cart[product_id].value_quantity ) {
+                        //     cart[product_id].value_quantity = value_quantity;
+                        //     cart[product_id].value_weight = value_weight;
+                        //     storage_local.setItem('cart', JSON.stringify(cart));
+                        //     let card_view_product = array_products.find(item => item.id === product_id);
+                        //     Swal.fire({
+                        //         title: 'Update product!',
+                        //         text: `${card_view_product.name}`,
+                        //         imageUrl: `${card_view_product.image}`,
+                        //         imageWidth: 250,
+                        //         imageHeight: 300,
+                        //         imageAlt: `${card_view_product.name}`,
+                        //     });
+                        // }else if (cart[product_id].value_quantity === value_quantity ) {
+                        //     cart[product_id].value_quantity++;
+                        //     cart[product_id].value_weight = value_weight;
+                        //     storage_local.setItem('cart', JSON.stringify(cart));
+                        //     let card_view_product = array_products.find(item => item.id === product_id);
+                        //     Swal.fire({
+                        //         title: 'Update product!',
+                        //         text: `${card_view_product.name}`,
+                        //         imageUrl: `${card_view_product.image}`,
+                        //         imageWidth: 250,
+                        //         imageHeight: 300,
+                        //         imageAlt: `${card_view_product.name}`,
+                        //     });
+                        // }
+
+                }else {
+                    let data_product = {
+                        id_store,
+                        checkout_id_store,
+                        product_id,
+                        value_quantity,
+                        value_weight
+                    };
+                    console.log('Objeto json a enviar a mini cart', data_product);
+
+                    // cart[product_id].push(add_item_cart);
+                    cart[product_id] = data_product;
+                    count ++;
+                    storage_local.setItem('cart', JSON.stringify(cart));
+                    console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
+                    update_icon_cart();
+
+                    let card_view_product = array_products.find(item => item.id === product_id);
+                    console.log(card_view_product);
+
+                    Swal.fire({
+                         title: 'Added to cart!',
+                         text: `${card_view_product.name}`,
+                         imageUrl: `${card_view_product.image}`,
+                         imageWidth: 250,
+                         imageHeight: 300,
+                         imageAlt: `${card_view_product.name}`,
+                    });
+
+                }
             });
         });
         badge_strainType(array_products);
