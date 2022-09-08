@@ -5,6 +5,7 @@ let cart = {};
 
 
 const btn_action_dropdown_mini_cart = document.getElementById('btn_mini_cart_action');
+const mini_cart_items = document.getElementById('content_items_list_mini_cart');
 const view_text_count_items_mini_cart = document.getElementById('items_in_mini_cart');
 const btn_checkout_mini_cart = document.getElementById('btn_checkout_mini_cart');
 const btn_clear_cart = document.getElementById('clear_cart');
@@ -38,6 +39,26 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.log(cart);
         console.log(quantity_product);
         render_products_cart(contenedor_products, data.products);
+        btn_action_dropdown_mini_cart.addEventListener('click', () => {
+            if (Object.entries(cart).length === 0) {
+                let template_empty_mini_cart = '';
+                console.log('el mini cart esta vacio');
+                template_empty_mini_cart += `
+                            <div class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                                    </div>
+                                </div>
+                            </div>`;
+                mini_cart_items.innerHTML = template_empty_mini_cart;
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
+            } else {
+                mini_cart_render(data.products);
+                document.getElementById('btn_checkout_mini_cart').disabled = false;
+            }
+        });
+
 
 });
 
@@ -91,9 +112,86 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     }
 
 
-}
+};
 
+const mini_cart_render = (array_productos) => {
+    let template_item_mini_cart = '';
+    for (let product in cart) {
+        let information_product = array_productos.find(item => item.id === cart[product].product_id);
+        template_item_mini_cart += `
+            <div class="dropdown-item">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h6 class="cart-product-title">${information_product.name}</h6>
+                        <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
+                    </div>
+                    <div class="position-relative">
+                        <a class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn-remove-item">
+                            <i class='bx bx-x'></i>
+                        </a>
+                        <div class="cart-product">
+                            <img src="${information_product.image}" class="" alt="product image">
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        mini_cart_items.innerHTML = template_item_mini_cart;
+    }
+    view_text_count_items_mini_cart.textContent= `${count} ITEMS`;
+    remove_item_mini_cart('btn-remove-item', array_productos);
 
+};
+
+const remove_item_mini_cart = (id_btn_remove, array_productos) => {
+    const button_remove_mini_cart = document.querySelectorAll(`#${id_btn_remove}`);
+    button_remove_mini_cart.forEach( btn => {
+
+        const get_product_id_remove = btn.getAttribute('product_id');
+        btn.addEventListener('click', () => {
+            console.log('product a elimminar', get_product_id_remove);
+            let template_empty_mini_cart = '';
+            delete cart[get_product_id_remove];
+            storage_local.setItem('cart', JSON.stringify(cart));
+            count--;
+            update_icon_cart();
+            mini_cart_render(array_productos);
+
+            if (Object.entries(cart).length === 0) {
+                console.log('el mini cart esta vacio');
+                template_empty_mini_cart+= `
+                <div class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                        </div>
+                    </div>
+                </div>
+            `;
+                mini_cart_items.innerHTML = template_empty_mini_cart;
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
+            }
+
+        });
+    });
+};
+
+// if (Object.entries(cart).length === 0) {
+//     let template_empty_mini_cart = '';
+//     console.log('el mini cart esta vacio');
+//     template_empty_mini_cart += `
+//                 <div class="dropdown-item">
+//                     <div class="d-flex align-items-center">
+//                         <div class="flex-grow-1">
+//                             <h6 class="cart-product-title">You don't have products in your cart.</h6>
+//                         </div>
+//                     </div>
+//                 </div>`;
+//     mini_cart_items.innerHTML = template_empty_mini_cart;
+//     document.getElementById('btn_checkout_mini_cart').disabled = true;
+// } else {
+//     mini_cart_render(array_products);
+//     document.getElementById('btn_checkout_mini_cart').disabled = false;
+// }
 
 
 
