@@ -556,6 +556,7 @@ const cartProduct = (container_products, array_products) => {
             document.getElementById('btn_checkout_mini_cart').disabled = true;
         } else {
             mini_cart_render(array_products);
+            document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
 
         //update_mini_cart(array_products);
