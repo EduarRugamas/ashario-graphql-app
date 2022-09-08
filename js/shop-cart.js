@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         console.log(cart);
         console.log(quantity_product);
-
+        storage_local.getItem('cart', cart);
         if (data !== undefined && data.length !== 0) {
             div_loader.style = 'display: none;'
         }
