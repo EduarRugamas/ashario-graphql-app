@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>`;
             contenedor_products.innerHTML = template_empty_mini_cart;
-            document.getElementById('btn-checkout-cart').disabled = false;
+            document.getElementById('btn-checkout-cart').disabled = true;
         } else {
             render_products_cart(contenedor_products, data.products);
             update_icon_cart();
@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 mini_cart_render(data.products);
                 update_icon_cart();
             });
-            document.getElementById('btn_checkout_mini_cart').disabled = false;
+            document.getElementById('btn-checkout-cart').disabled = false;
         }
 
 
