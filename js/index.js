@@ -996,128 +996,35 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         view_items_mini_cart.textContent= `${count} ITEMS`;
 
-            // const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
-            // btn_remove_product_item.forEach(btn_remove => {
-            //      console.log('')
-            // btn_remove.addEventListener('click', () => {
-            //     let template_empty_mini_cart = '';
-            //     let product_id_remove = btn_remove.getAttribute('product_id');
-            //     console.log(product_id_remove);
-            //     delete cart[product_id_remove];
-            //     storage_local.setItem('cart', JSON.stringify(cart));
-            //     count--;
-            //     update_icon_cart();
-            //     update_mini_cart(arreglo_productos);
-            //     if (Object.entries(cart).length === 0) {
-            //         console.log('el mini cart esta vacio');
-            //         template_empty_mini_cart+= `
-            //         <div class="dropdown-item">
-            //             <div class="d-flex align-items-center">
-            //                 <div class="flex-grow-1">
-            //                     <h6 class="cart-product-title">You don't have products in your cart.</h6>
-            //                 </div>
-            //             </div>
-            //         </div>
-            //         `;
-            //         mini_cart_items.innerHTML = template_empty_mini_cart;
-            //         document.getElementById('btn_checkout_mini_cart').disabled = true;
-            //     }
-            // });
-            // });
-    };
-
-    const AddCartItem = (id_store, checkout_id_store, product_id, value_quantity, value_weight, array_products) => {
-
-        if (product_id in cart) {
-            if (value_quantity === 1 ) {
-                cart[product_id].value_quantity++;
-                cart[product_id].value_weight = value_weight;
+            const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
+            btn_remove_product_item.forEach(btn_remove => {
+                 console.log('')
+            btn_remove.addEventListener('click', () => {
+                let template_empty_mini_cart = '';
+                let product_id_remove = btn_remove.getAttribute('product_id');
+                console.log(product_id_remove);
+                delete cart[product_id_remove];
                 storage_local.setItem('cart', JSON.stringify(cart));
-                let card_view_product = array_products.find(item => item.id === product_id);
-                Swal.fire({
-                    title: 'Update product!',
-                    text: `${card_view_product.name}`,
-                    imageUrl: `${card_view_product.image}`,
-                    imageWidth: 250,
-                    imageHeight: 300,
-                    imageAlt: `${card_view_product.name}`,
-                });
-            }else {
-                cart[product_id].value_quantity = value_quantity;
-                cart[product_id].value_weight = value_weight;
-                storage_local.setItem('cart', JSON.stringify(cart));
-                let card_view_product = array_products.find(item => item.id === product_id);
-                Swal.fire({
-                    title: 'Update product!',
-                    text: `${card_view_product.name}`,
-                    imageUrl: `${card_view_product.image}`,
-                    imageWidth: 250,
-                    imageHeight: 300,
-                    imageAlt: `${card_view_product.name}`,
-                });
-            }
-
-
-
-            // if (value_quantity !== cart[product_id].value_quantity ) {
-            //     cart[product_id].value_quantity = value_quantity;
-            //     cart[product_id].value_weight = value_weight;
-            //     storage_local.setItem('cart', JSON.stringify(cart));
-            //     let card_view_product = array_products.find(item => item.id === product_id);
-            //     Swal.fire({
-            //         title: 'Update product!',
-            //         text: `${card_view_product.name}`,
-            //         imageUrl: `${card_view_product.image}`,
-            //         imageWidth: 250,
-            //         imageHeight: 300,
-            //         imageAlt: `${card_view_product.name}`,
-            //     });
-            // }else if (cart[product_id].value_quantity === value_quantity ) {
-            //     cart[product_id].value_quantity++;
-            //     cart[product_id].value_weight = value_weight;
-            //     storage_local.setItem('cart', JSON.stringify(cart));
-            //     let card_view_product = array_products.find(item => item.id === product_id);
-            //     Swal.fire({
-            //         title: 'Update product!',
-            //         text: `${card_view_product.name}`,
-            //         imageUrl: `${card_view_product.image}`,
-            //         imageWidth: 250,
-            //         imageHeight: 300,
-            //         imageAlt: `${card_view_product.name}`,
-            //     });
-            // }
-
-        }else {
-            let data_product = {
-                id_store,
-                checkout_id_store,
-                product_id,
-                value_quantity,
-                value_weight
-            };
-            console.log('Objeto json a enviar a mini cart', data_product);
-
-            // cart[product_id].push(add_item_cart);
-            cart[product_id] = data_product;
-            count ++;
-            storage_local.setItem('cart', JSON.stringify(cart));
-            console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
-            update_icon_cart();
-
-            let card_view_product = array_products.find(item => item.id === product_id);
-            console.log(card_view_product);
-
-            Swal.fire({
-                title: 'Added to cart!',
-                text: `${card_view_product.name}`,
-                imageUrl: `${card_view_product.image}`,
-                imageWidth: 250,
-                imageHeight: 300,
-                imageAlt: `${card_view_product.name}`,
+                count--;
+                update_icon_cart();
+                update_mini_cart(arreglo_productos);
+                if (Object.entries(cart).length === 0) {
+                    console.log('el mini cart esta vacio');
+                    template_empty_mini_cart+= `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    mini_cart_items.innerHTML = template_empty_mini_cart;
+                    document.getElementById('btn_checkout_mini_cart').disabled = true;
+                }
             });
-
-        }
-    }
+            });
+    };
 
 
     function ViewWeigthsSpecial(array_products, variant) {
