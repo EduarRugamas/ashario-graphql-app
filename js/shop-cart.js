@@ -16,6 +16,7 @@ const view_subtotal_pay_products = document.getElementById('total_pay_products')
 const view_total_pay_products = document.getElementById('total_price_pay');
 const btn_checkout_cart = document.getElementById('btn-checkout-cart');
 const contenedor_products = document.getElementById('contenedor_products_cart');
+const div_loader = document.querySelector('.content-loader');
 
 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
@@ -37,7 +38,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.log(cart);
         console.log(quantity_product);
         render_products_cart(contenedor_products, data.products);
-        FadeOut(div_loader);
+        if (contenedor_products !== "") {
+            FadeOut(div_loader);
+        }
+
         update_icon_cart();
         btn_action_dropdown_mini_cart.addEventListener('click', () => {
             if (Object.entries(cart).length === 0) {
