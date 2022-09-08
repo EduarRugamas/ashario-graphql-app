@@ -198,7 +198,7 @@ const renderProduct = (container, informatio_product, array_products_all) => {
             //     imageHeight: 300,
             //     imageAlt: `${informatio_product.name}`,
             // });
-            if (value_quantity === 1) {
+            if (value_quantity === cart[product_id].value_quantity) {
                 cart[product_id].value_quantity++;
                 cart[product_id].value_weight = value_weight;
                 storage_local.setItem('cart', JSON.stringify(cart));
