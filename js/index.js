@@ -800,6 +800,11 @@ window.addEventListener('DOMContentLoaded', async () => {
         let btn_remove_item_mini_cart = document.querySelectorAll('#btn-remove-item');
         btn_remove_item_mini_cart.forEach( btn_remove => {
             console.log(btn_remove);
+            btn_remove.addEventListener('click', () => {
+                let get_product_id = btn_remove.getAttribute('product_id');
+                console.log(get_product_id);
+
+            });
         });
 
         // const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
