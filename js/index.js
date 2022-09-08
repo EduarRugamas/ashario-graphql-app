@@ -70,10 +70,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         if (storage_local.getItem('cart')) {
             cart = JSON.parse(storage_local.getItem('cart'));
+        }else {
+            storage_local.setItem('cart', JSON.stringify(cart));
         }
 
         if (storage_local.getItem('count')){
             count = parseInt( storage_local.getItem('count') );
+        }else {
+            storage_local.setItem('count', count);
         }
 
         await getRetailersIds().then( async result => {
@@ -482,7 +486,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
         const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
         const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-        storage_local.setItem('cart', JSON.stringify(cart));
+        // storage_local.setItem('cart', JSON.stringify(cart));
 
         btn_add_cart_grid.forEach( btn => {
             btn.addEventListener('click', () => {
@@ -496,104 +500,172 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const value_quantity = get_select_quantity.value;
                 const value_weight = get_select_weight.value;
 
-                if (product_id in cart) {
+                AddCartItem(id_store, checkout_id_store, value_quantity, value_weight, );
 
-
-                    if (value_quantity === 1 ) {
-                        cart[product_id].value_quantity++;
-                        cart[product_id].value_weight = value_weight;
-                        storage_local.setItem('cart', JSON.stringify(cart));
-                        let card_view_product = array_products.find(item => item.id === product_id);
-                        Swal.fire({
-                            title: 'Update product!',
-                            text: `${card_view_product.name}`,
-                            imageUrl: `${card_view_product.image}`,
-                            imageWidth: 250,
-                            imageHeight: 300,
-                            imageAlt: `${card_view_product.name}`,
-                        });
-                    }else {
-                        cart[product_id].value_quantity = value_quantity;
-                        cart[product_id].value_weight = value_weight;
-                        storage_local.setItem('cart', JSON.stringify(cart));
-                        let card_view_product = array_products.find(item => item.id === product_id);
-                        Swal.fire({
-                            title: 'Update product!',
-                            text: `${card_view_product.name}`,
-                            imageUrl: `${card_view_product.image}`,
-                            imageWidth: 250,
-                            imageHeight: 300,
-                            imageAlt: `${card_view_product.name}`,
-                        });
-                    }
-
-
-
-                        // if (value_quantity !== cart[product_id].value_quantity ) {
-                        //     cart[product_id].value_quantity = value_quantity;
-                        //     cart[product_id].value_weight = value_weight;
-                        //     storage_local.setItem('cart', JSON.stringify(cart));
-                        //     let card_view_product = array_products.find(item => item.id === product_id);
-                        //     Swal.fire({
-                        //         title: 'Update product!',
-                        //         text: `${card_view_product.name}`,
-                        //         imageUrl: `${card_view_product.image}`,
-                        //         imageWidth: 250,
-                        //         imageHeight: 300,
-                        //         imageAlt: `${card_view_product.name}`,
-                        //     });
-                        // }else if (cart[product_id].value_quantity === value_quantity ) {
-                        //     cart[product_id].value_quantity++;
-                        //     cart[product_id].value_weight = value_weight;
-                        //     storage_local.setItem('cart', JSON.stringify(cart));
-                        //     let card_view_product = array_products.find(item => item.id === product_id);
-                        //     Swal.fire({
-                        //         title: 'Update product!',
-                        //         text: `${card_view_product.name}`,
-                        //         imageUrl: `${card_view_product.image}`,
-                        //         imageWidth: 250,
-                        //         imageHeight: 300,
-                        //         imageAlt: `${card_view_product.name}`,
-                        //     });
-                        // }
-
-                }else {
-                    let data_product = {
-                        id_store,
-                        checkout_id_store,
-                        product_id,
-                        value_quantity,
-                        value_weight
-                    };
-                    console.log('Objeto json a enviar a mini cart', data_product);
-
-                    // cart[product_id].push(add_item_cart);
-                    cart[product_id] = data_product;
-                    count ++;
-                    storage_local.setItem('cart', JSON.stringify(cart));
-                    console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
-                    update_icon_cart();
-
-                    let card_view_product = array_products.find(item => item.id === product_id);
-                    console.log(card_view_product);
-
-                    Swal.fire({
-                         title: 'Added to cart!',
-                         text: `${card_view_product.name}`,
-                         imageUrl: `${card_view_product.image}`,
-                         imageWidth: 250,
-                         imageHeight: 300,
-                         imageAlt: `${card_view_product.name}`,
-                    });
-
-                }
+                // if (product_id in cart) {
+                //
+                //
+                //     if (value_quantity === 1 ) {
+                //         cart[product_id].value_quantity++;
+                //         cart[product_id].value_weight = value_weight;
+                //         storage_local.setItem('cart', JSON.stringify(cart));
+                //         let card_view_product = array_products.find(item => item.id === product_id);
+                //         Swal.fire({
+                //             title: 'Update product!',
+                //             text: `${card_view_product.name}`,
+                //             imageUrl: `${card_view_product.image}`,
+                //             imageWidth: 250,
+                //             imageHeight: 300,
+                //             imageAlt: `${card_view_product.name}`,
+                //         });
+                //     }else {
+                //         cart[product_id].value_quantity = value_quantity;
+                //         cart[product_id].value_weight = value_weight;
+                //         storage_local.setItem('cart', JSON.stringify(cart));
+                //         let card_view_product = array_products.find(item => item.id === product_id);
+                //         Swal.fire({
+                //             title: 'Update product!',
+                //             text: `${card_view_product.name}`,
+                //             imageUrl: `${card_view_product.image}`,
+                //             imageWidth: 250,
+                //             imageHeight: 300,
+                //             imageAlt: `${card_view_product.name}`,
+                //         });
+                //     }
+                //
+                //
+                //
+                //         // if (value_quantity !== cart[product_id].value_quantity ) {
+                //         //     cart[product_id].value_quantity = value_quantity;
+                //         //     cart[product_id].value_weight = value_weight;
+                //         //     storage_local.setItem('cart', JSON.stringify(cart));
+                //         //     let card_view_product = array_products.find(item => item.id === product_id);
+                //         //     Swal.fire({
+                //         //         title: 'Update product!',
+                //         //         text: `${card_view_product.name}`,
+                //         //         imageUrl: `${card_view_product.image}`,
+                //         //         imageWidth: 250,
+                //         //         imageHeight: 300,
+                //         //         imageAlt: `${card_view_product.name}`,
+                //         //     });
+                //         // }else if (cart[product_id].value_quantity === value_quantity ) {
+                //         //     cart[product_id].value_quantity++;
+                //         //     cart[product_id].value_weight = value_weight;
+                //         //     storage_local.setItem('cart', JSON.stringify(cart));
+                //         //     let card_view_product = array_products.find(item => item.id === product_id);
+                //         //     Swal.fire({
+                //         //         title: 'Update product!',
+                //         //         text: `${card_view_product.name}`,
+                //         //         imageUrl: `${card_view_product.image}`,
+                //         //         imageWidth: 250,
+                //         //         imageHeight: 300,
+                //         //         imageAlt: `${card_view_product.name}`,
+                //         //     });
+                //         // }
+                //
+                // }else {
+                //     let data_product = {
+                //         id_store,
+                //         checkout_id_store,
+                //         product_id,
+                //         value_quantity,
+                //         value_weight
+                //     };
+                //     console.log('Objeto json a enviar a mini cart', data_product);
+                //
+                //     // cart[product_id].push(add_item_cart);
+                //     cart[product_id] = data_product;
+                //     count ++;
+                //     storage_local.setItem('cart', JSON.stringify(cart));
+                //     console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
+                //     update_icon_cart();
+                //
+                //     let card_view_product = array_products.find(item => item.id === product_id);
+                //     console.log(card_view_product);
+                //
+                //     Swal.fire({
+                //          title: 'Added to cart!',
+                //          text: `${card_view_product.name}`,
+                //          imageUrl: `${card_view_product.image}`,
+                //          imageWidth: 250,
+                //          imageHeight: 300,
+                //          imageAlt: `${card_view_product.name}`,
+                //     });
+                //
+                // }
             });
         });
         badge_strainType(array_products);
         update_icon_cart();
         //mini_cart_render(array_products);
         btn_shop_cart_link.addEventListener('click', () => {
-            mini_cart_render(array_products);
+            let template_item_mini_cart = '';
+                for (let product in cart) {
+
+                    console.log(product);
+                    console.log(cart);
+
+                    let information_product = array_products.find(item => item.id === cart[product].product_id);
+                    console.log(information_product);
+
+                    template_item_mini_cart += `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">${information_product.name}</h6>
+                                <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
+                            </div>
+                            <div class="position-relative">
+                                <button class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
+                                    <i class='bx bx-x'></i>
+                                </button>
+                                <div class="cart-product">
+                                    <img src="${information_product.image}" class="" alt="product image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+
+                    mini_cart_items.innerHTML = template_item_mini_cart;
+
+                    document.getElementById('btn_checkout_mini_cart').disabled = false;
+                }
+
+                view_items_mini_cart.textContent= `${count} ITEMS`;
+
+            //     let btn_remove_item_mini_cart = document.querySelectorAll('#btn-remove-item');
+            //     btn_remove_item_mini_cart.forEach( btn_remove => {
+            //         console.log(btn_remove);
+            //         btn_remove.addEventListener('click', () => {
+            //             let get_product_id = btn_remove.getAttribute('product_id');
+            //             console.log(get_product_id);
+            //             let template_empty_mini_cart = '';
+            //             //let product_id_remove = btn_remove.getAttribute('product_id');
+            //             //console.log(get_product_id);
+            //             delete cart[get_product_id];
+            //             storage_local.setItem('cart', JSON.stringify(cart));
+            //             count--;
+            //             update_icon_cart();
+            //             //update_mini_cart(array_products);
+            //             if (Object.entries(cart).length === 0) {
+            //                 console.log('el mini cart esta vacio');
+            //                 template_empty_mini_cart+= `
+            //                      <div class="dropdown-item">
+            //                          <div class="d-flex align-items-center">
+            //                              <div class="flex-grow-1">
+            //                                 <h6 class="cart-product-title">You don't have products in your cart.</h6>
+            //                              </div>
+            //                          </div>
+            //                      </div>
+            //                      `;
+            //                 mini_cart_items.innerHTML = template_empty_mini_cart;
+            //                 document.getElementById('btn_checkout_mini_cart').disabled = true;
+            //             }
+            //         });
+            //     });
+
+
         });
         btn_checkout_mini_cart.addEventListener('click', () => {
 
@@ -758,121 +830,121 @@ window.addEventListener('DOMContentLoaded', async () => {
         icon_cart_count.textContent = count;
         storage_local.setItem('count', count);
     };
-    const mini_cart_render = (array_products) => {
-
-        let template_item_mini_cart = '';
-
-        console.log(cart);
-
-        for (let product in cart) {
-
-            console.log(product);
-            console.log(cart);
-
-            let information_product = array_products.find(item => item.id === cart[product].product_id);
-            console.log(information_product);
-
-            template_item_mini_cart += `
-            <div class="dropdown-item">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <h6 class="cart-product-title">${information_product.name}</h6>
-                        <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
-                    </div>
-                    <div class="position-relative">
-                        <button class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
-                            <i class='bx bx-x'></i>
-                        </button>
-                        <div class="cart-product">
-                            <img src="${information_product.image}" class="" alt="product image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-
-            mini_cart_items.innerHTML = template_item_mini_cart;
-
-            document.getElementById('btn_checkout_mini_cart').disabled = false;
-        }
-        view_items_mini_cart.textContent= `${count} ITEMS`;
-
-        let btn_remove_item_mini_cart = document.querySelectorAll('#btn-remove-item');
-        btn_remove_item_mini_cart.forEach( btn_remove => {
-            console.log(btn_remove);
-            btn_remove.addEventListener('click', () => {
-                let get_product_id = btn_remove.getAttribute('product_id');
-                console.log(get_product_id);
-                let template_empty_mini_cart = '';
-                //let product_id_remove = btn_remove.getAttribute('product_id');
-                //console.log(get_product_id);
-                delete cart[get_product_id];
-                storage_local.setItem('cart', JSON.stringify(cart));
-                count--;
-                update_icon_cart();
-                //update_mini_cart(array_products);
-                if (Object.entries(cart).length === 0) {
-                    console.log('el mini cart esta vacio');
-                    template_empty_mini_cart+= `
-                         <div class="dropdown-item">
-                             <div class="d-flex align-items-center">
-                                 <div class="flex-grow-1">
-                                    <h6 class="cart-product-title">You don't have products in your cart.</h6>
-                                 </div>
-                             </div>
-                         </div>
-                         `;
-                    mini_cart_items.innerHTML = template_empty_mini_cart;
-                    document.getElementById('btn_checkout_mini_cart').disabled = true;
-                }
-            });
-        });
-
-        // const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
-        // btn_remove_product_item.forEach(btn_remove => {
-        //     btn_remove.addEventListener('click', () => {
-        //         let template_empty_mini_cart = '';
-        //         let product_id_remove = btn_remove.getAttribute('product_id');
-        //         console.log(product_id_remove);
-        //         delete cart[product_id_remove];
-        //         storage_local.setItem('cart', JSON.stringify(cart));
-        //         count--;
-        //         update_icon_cart();
-        //         update_mini_cart(array_products);
-        //         if (Object.entries(cart).length === 0) {
-        //             console.log('el mini cart esta vacio');
-        //             template_empty_mini_cart+= `
-        //             <div class="dropdown-item">
-        //                 <div class="d-flex align-items-center">
-        //                     <div class="flex-grow-1">
-        //                         <h6 class="cart-product-title">You don't have products in your cart.</h6>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //             `;
-        //             mini_cart_items.innerHTML = template_empty_mini_cart;
-        //             document.getElementById('btn_checkout_mini_cart').disabled = true;
-        //         }
-        //     });
-        // });
-
-        if (Object.entries(cart).length === 0) {
-            let template_empty_mini_cart = '';
-            console.log('el mini cart esta vacio');
-            template_empty_mini_cart+= `
-                    <div class="dropdown-item">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
-                            </div>
-                        </div>
-                    </div>
-                    `;
-            mini_cart_items.innerHTML = template_empty_mini_cart;
-            document.getElementById('btn_checkout_mini_cart').disabled = true;
-        }
-
-    };
+    // const mini_cart_render = (array_products) => {
+    //
+    //     let template_item_mini_cart = '';
+    //
+    //     console.log(cart);
+    //
+    //     for (let product in cart) {
+    //
+    //         console.log(product);
+    //         console.log(cart);
+    //
+    //         let information_product = array_products.find(item => item.id === cart[product].product_id);
+    //         console.log(information_product);
+    //
+    //         template_item_mini_cart += `
+    //         <div class="dropdown-item">
+    //             <div class="d-flex align-items-center">
+    //                 <div class="flex-grow-1">
+    //                     <h6 class="cart-product-title">${information_product.name}</h6>
+    //                     <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
+    //                 </div>
+    //                 <div class="position-relative">
+    //                     <button class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
+    //                         <i class='bx bx-x'></i>
+    //                     </button>
+    //                     <div class="cart-product">
+    //                         <img src="${information_product.image}" class="" alt="product image">
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //         `;
+    //
+    //         mini_cart_items.innerHTML = template_item_mini_cart;
+    //
+    //         document.getElementById('btn_checkout_mini_cart').disabled = false;
+    //     }
+    //     view_items_mini_cart.textContent= `${count} ITEMS`;
+    //
+    //     let btn_remove_item_mini_cart = document.querySelectorAll('#btn-remove-item');
+    //     btn_remove_item_mini_cart.forEach( btn_remove => {
+    //         console.log(btn_remove);
+    //         btn_remove.addEventListener('click', () => {
+    //             let get_product_id = btn_remove.getAttribute('product_id');
+    //             console.log(get_product_id);
+    //             let template_empty_mini_cart = '';
+    //             //let product_id_remove = btn_remove.getAttribute('product_id');
+    //             //console.log(get_product_id);
+    //             delete cart[get_product_id];
+    //             storage_local.setItem('cart', JSON.stringify(cart));
+    //             count--;
+    //             update_icon_cart();
+    //             //update_mini_cart(array_products);
+    //             if (Object.entries(cart).length === 0) {
+    //                 console.log('el mini cart esta vacio');
+    //                 template_empty_mini_cart+= `
+    //                      <div class="dropdown-item">
+    //                          <div class="d-flex align-items-center">
+    //                              <div class="flex-grow-1">
+    //                                 <h6 class="cart-product-title">You don't have products in your cart.</h6>
+    //                              </div>
+    //                          </div>
+    //                      </div>
+    //                      `;
+    //                 mini_cart_items.innerHTML = template_empty_mini_cart;
+    //                 document.getElementById('btn_checkout_mini_cart').disabled = true;
+    //             }
+    //         });
+    //     });
+    //
+    //     // const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
+    //     // btn_remove_product_item.forEach(btn_remove => {
+    //     //     btn_remove.addEventListener('click', () => {
+    //     //         let template_empty_mini_cart = '';
+    //     //         let product_id_remove = btn_remove.getAttribute('product_id');
+    //     //         console.log(product_id_remove);
+    //     //         delete cart[product_id_remove];
+    //     //         storage_local.setItem('cart', JSON.stringify(cart));
+    //     //         count--;
+    //     //         update_icon_cart();
+    //     //         update_mini_cart(array_products);
+    //     //         if (Object.entries(cart).length === 0) {
+    //     //             console.log('el mini cart esta vacio');
+    //     //             template_empty_mini_cart+= `
+    //     //             <div class="dropdown-item">
+    //     //                 <div class="d-flex align-items-center">
+    //     //                     <div class="flex-grow-1">
+    //     //                         <h6 class="cart-product-title">You don't have products in your cart.</h6>
+    //     //                     </div>
+    //     //                 </div>
+    //     //             </div>
+    //     //             `;
+    //     //             mini_cart_items.innerHTML = template_empty_mini_cart;
+    //     //             document.getElementById('btn_checkout_mini_cart').disabled = true;
+    //     //         }
+    //     //     });
+    //     // });
+    //
+    //     if (Object.entries(cart).length === 0) {
+    //         let template_empty_mini_cart = '';
+    //         console.log('el mini cart esta vacio');
+    //         template_empty_mini_cart+= `
+    //                 <div class="dropdown-item">
+    //                     <div class="d-flex align-items-center">
+    //                         <div class="flex-grow-1">
+    //                             <h6 class="cart-product-title">You don't have products in your cart.</h6>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 `;
+    //         mini_cart_items.innerHTML = template_empty_mini_cart;
+    //         document.getElementById('btn_checkout_mini_cart').disabled = true;
+    //     }
+    //
+    // };
 
     const update_mini_cart = (arreglo_productos) => {
         let template_item_mini_cart = '';
@@ -942,6 +1014,191 @@ window.addEventListener('DOMContentLoaded', async () => {
             // });
             // });
     };
+
+    const AddCartItem = (id_store, checkout_id_store, product_id, value_quantity, value_weight, array_products) => {
+
+        if (product_id in cart) {
+
+
+            if (value_quantity === 1 ) {
+                cart[product_id].value_quantity++;
+                cart[product_id].value_weight = value_weight;
+                storage_local.setItem('cart', JSON.stringify(cart));
+                let card_view_product = array_products.find(item => item.id === product_id);
+                Swal.fire({
+                    title: 'Update product!',
+                    text: `${card_view_product.name}`,
+                    imageUrl: `${card_view_product.image}`,
+                    imageWidth: 250,
+                    imageHeight: 300,
+                    imageAlt: `${card_view_product.name}`,
+                });
+            }else {
+                cart[product_id].value_quantity = value_quantity;
+                cart[product_id].value_weight = value_weight;
+                storage_local.setItem('cart', JSON.stringify(cart));
+                let card_view_product = array_products.find(item => item.id === product_id);
+                Swal.fire({
+                    title: 'Update product!',
+                    text: `${card_view_product.name}`,
+                    imageUrl: `${card_view_product.image}`,
+                    imageWidth: 250,
+                    imageHeight: 300,
+                    imageAlt: `${card_view_product.name}`,
+                });
+            }
+
+
+
+            // if (value_quantity !== cart[product_id].value_quantity ) {
+            //     cart[product_id].value_quantity = value_quantity;
+            //     cart[product_id].value_weight = value_weight;
+            //     storage_local.setItem('cart', JSON.stringify(cart));
+            //     let card_view_product = array_products.find(item => item.id === product_id);
+            //     Swal.fire({
+            //         title: 'Update product!',
+            //         text: `${card_view_product.name}`,
+            //         imageUrl: `${card_view_product.image}`,
+            //         imageWidth: 250,
+            //         imageHeight: 300,
+            //         imageAlt: `${card_view_product.name}`,
+            //     });
+            // }else if (cart[product_id].value_quantity === value_quantity ) {
+            //     cart[product_id].value_quantity++;
+            //     cart[product_id].value_weight = value_weight;
+            //     storage_local.setItem('cart', JSON.stringify(cart));
+            //     let card_view_product = array_products.find(item => item.id === product_id);
+            //     Swal.fire({
+            //         title: 'Update product!',
+            //         text: `${card_view_product.name}`,
+            //         imageUrl: `${card_view_product.image}`,
+            //         imageWidth: 250,
+            //         imageHeight: 300,
+            //         imageAlt: `${card_view_product.name}`,
+            //     });
+            // }
+
+        }else {
+            let data_product = {
+                id_store,
+                checkout_id_store,
+                product_id,
+                value_quantity,
+                value_weight
+            };
+            console.log('Objeto json a enviar a mini cart', data_product);
+
+            // cart[product_id].push(add_item_cart);
+            cart[product_id] = data_product;
+            count ++;
+            storage_local.setItem('cart', JSON.stringify(cart));
+            console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
+            update_icon_cart();
+
+            let card_view_product = array_products.find(item => item.id === product_id);
+            console.log(card_view_product);
+
+            Swal.fire({
+                title: 'Added to cart!',
+                text: `${card_view_product.name}`,
+                imageUrl: `${card_view_product.image}`,
+                imageWidth: 250,
+                imageHeight: 300,
+                imageAlt: `${card_view_product.name}`,
+            });
+
+        }                if (product_id in cart) {
+
+
+            if (value_quantity === 1 ) {
+                cart[product_id].value_quantity++;
+                cart[product_id].value_weight = value_weight;
+                storage_local.setItem('cart', JSON.stringify(cart));
+                let card_view_product = array_products.find(item => item.id === product_id);
+                Swal.fire({
+                    title: 'Update product!',
+                    text: `${card_view_product.name}`,
+                    imageUrl: `${card_view_product.image}`,
+                    imageWidth: 250,
+                    imageHeight: 300,
+                    imageAlt: `${card_view_product.name}`,
+                });
+            }else {
+                cart[product_id].value_quantity = value_quantity;
+                cart[product_id].value_weight = value_weight;
+                storage_local.setItem('cart', JSON.stringify(cart));
+                let card_view_product = array_products.find(item => item.id === product_id);
+                Swal.fire({
+                    title: 'Update product!',
+                    text: `${card_view_product.name}`,
+                    imageUrl: `${card_view_product.image}`,
+                    imageWidth: 250,
+                    imageHeight: 300,
+                    imageAlt: `${card_view_product.name}`,
+                });
+            }
+
+
+
+            // if (value_quantity !== cart[product_id].value_quantity ) {
+            //     cart[product_id].value_quantity = value_quantity;
+            //     cart[product_id].value_weight = value_weight;
+            //     storage_local.setItem('cart', JSON.stringify(cart));
+            //     let card_view_product = array_products.find(item => item.id === product_id);
+            //     Swal.fire({
+            //         title: 'Update product!',
+            //         text: `${card_view_product.name}`,
+            //         imageUrl: `${card_view_product.image}`,
+            //         imageWidth: 250,
+            //         imageHeight: 300,
+            //         imageAlt: `${card_view_product.name}`,
+            //     });
+            // }else if (cart[product_id].value_quantity === value_quantity ) {
+            //     cart[product_id].value_quantity++;
+            //     cart[product_id].value_weight = value_weight;
+            //     storage_local.setItem('cart', JSON.stringify(cart));
+            //     let card_view_product = array_products.find(item => item.id === product_id);
+            //     Swal.fire({
+            //         title: 'Update product!',
+            //         text: `${card_view_product.name}`,
+            //         imageUrl: `${card_view_product.image}`,
+            //         imageWidth: 250,
+            //         imageHeight: 300,
+            //         imageAlt: `${card_view_product.name}`,
+            //     });
+            // }
+
+        }else {
+            let data_product = {
+                id_store,
+                checkout_id_store,
+                product_id,
+                value_quantity,
+                value_weight
+            };
+            console.log('Objeto json a enviar a mini cart', data_product);
+
+            // cart[product_id].push(add_item_cart);
+            cart[product_id] = data_product;
+            count ++;
+            storage_local.setItem('cart', JSON.stringify(cart));
+            console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
+            update_icon_cart();
+
+            let card_view_product = array_products.find(item => item.id === product_id);
+            console.log(card_view_product);
+
+            Swal.fire({
+                title: 'Added to cart!',
+                text: `${card_view_product.name}`,
+                imageUrl: `${card_view_product.image}`,
+                imageWidth: 250,
+                imageHeight: 300,
+                imageAlt: `${card_view_product.name}`,
+            });
+
+        }
+    }
 
 
     function ViewWeigthsSpecial(array_products, variant) {
