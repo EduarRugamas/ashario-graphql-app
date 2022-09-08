@@ -553,41 +553,43 @@ const cartProduct = (container_products, array_products) => {
     });
     btn_checkout_mini_cart.addEventListener('click', () => {
 
-        for (let item in cart) {
-            console.log(item);
-            addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
-                console.log(result);
-                if (result.data.addItem === null) {
-                    const error = result.errors[0];
-                    console.log(error);
-                    Swal.fire({
-                        icon: 'error',
-                        text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
-                        confirmButtonColor: '#3e3e3e',
-                    });
-                }
+        window.location.href = '../views/shop-cart.html';
 
-
-                window.location.href = `${checkout_id.redirectUrl}`;
-
-                // const results = result.data.addItem.items;
-                //
-                // let card_view_product = results.find(item => item.productId === product_id);
-                //
-                // count++;
-                // update_icon_cart();
-                //
-                // Swal.fire({
-                //     title: 'Added to cart!',
-                //     text: `${card_view_product.product.name}`,
-                //     imageUrl: `${card_view_product.product.image}`,
-                //     imageWidth: 250,
-                //     imageHeight: 300,
-                //     imageAlt: `${card_view_product.product.name}`,
-                // });
-            });
-
-        }
+        // for (let item in cart) {
+        //     console.log(item);
+        //     addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
+        //         console.log(result);
+        //         if (result.data.addItem === null) {
+        //             const error = result.errors[0];
+        //             console.log(error);
+        //             Swal.fire({
+        //                 icon: 'error',
+        //                 text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+        //                 confirmButtonColor: '#3e3e3e',
+        //             });
+        //         }
+        //
+        //
+        //         window.location.href = `${checkout_id.redirectUrl}`;
+        //
+        //         // const results = result.data.addItem.items;
+        //         //
+        //         // let card_view_product = results.find(item => item.productId === product_id);
+        //         //
+        //         // count++;
+        //         // update_icon_cart();
+        //         //
+        //         // Swal.fire({
+        //         //     title: 'Added to cart!',
+        //         //     text: `${card_view_product.product.name}`,
+        //         //     imageUrl: `${card_view_product.product.image}`,
+        //         //     imageWidth: 250,
+        //         //     imageHeight: 300,
+        //         //     imageAlt: `${card_view_product.product.name}`,
+        //         // });
+        //     });
+        //
+        // }
 
 
     });
