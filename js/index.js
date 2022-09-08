@@ -611,7 +611,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('btn_checkout_mini_cart').disabled = true;
             }
 
-            update_mini_cart(array_products);
+            //update_mini_cart(array_products);
             // let template_item_mini_cart = '';
             //     for (let product in cart) {
             //
