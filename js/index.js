@@ -948,9 +948,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                         <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
                     </div>
                     <div class="position-relative">
-                        <div class="cart-product-cancel position-absolute" onclick="delete_item_mini_cart(${information_product.id}, ${arreglo_productos})" product_id="${information_product.id}" id="btn_remove_item" >
+                        <button class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn_remove_item" >
                             <i class='bx bx-x'></i>
-                        </div>
+                        </button>
                         <div class="cart-product">
                             <img src="${information_product.image}" class="" alt="product image">
                         </div>
@@ -960,9 +960,12 @@ window.addEventListener('DOMContentLoaded', async () => {
             `;
 
             mini_cart_items.innerHTML = template_item_mini_cart;
+            const button_delete = document.querySelector('#btn_remove_item');
+            button_delete.addEventListener('click', delete_item_mini_cart(information_product.id, arreglo_productos));
         }
         document.getElementById('btn_checkout_mini_cart').disabled = false;
         view_items_mini_cart.textContent= `${count} ITEMS`;
+
 
     };
 
