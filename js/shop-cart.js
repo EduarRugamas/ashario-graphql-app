@@ -27,14 +27,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         if (storage_local.getItem('cart')) {
             cart = JSON.parse(storage_local.getItem('cart'));
-        }else {
-            storage_local.setItem('cart', cart);
         }
 
         if (storage_local.getItem('count')) {
             count = parseInt(storage_local.getItem('count'));
-        }else {
-            storage_local.setItem('count', count);
         }
 
         console.log(cart);
