@@ -3,7 +3,7 @@ import {FadeOut} from "../utils/utils.js";
 const storage_local = window.localStorage;
 let count = 0;
 let cart = {};
-
+storage_local.getItem('cart', cart);
 
 const btn_action_dropdown_mini_cart = document.getElementById('btn_mini_cart_action');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
@@ -74,7 +74,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
 const render_products_cart = (contenedor, arreglo_productos) => {
-    storage_local.getItem('cart', cart);
     let template_items_products = '';
     for (let product in cart) {
 
