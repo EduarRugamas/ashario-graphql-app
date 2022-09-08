@@ -20,7 +20,9 @@ const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-        const quantity_product = await get_count_product(store_centre_point_mall.id);
+        let quantity_product = await get_count_product(store_centre_point_mall.id);
+        let data = await getAllProducts(store_centre_point_mall.id, 0, quantity_product);
+
         if (storage_local.getItem('cart')) {
             cart = JSON.parse(storage_local.getItem('cart'));
         }else {
@@ -34,14 +36,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
 
         console.log(cart);
-
-        quantity_product.then( async (quantity) => {
-            let data = await getAllProducts(store_centre_point_mall.id, 0, quantity);
-
-            render_products_cart(contenedor_products, data.products);
-
-
-        }).catch(error => console.log(error));
+        console.log(quantity_product);
+        render_products_cart(contenedor_products, data.products);
 
 });
 
