@@ -797,7 +797,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
         view_items_mini_cart.textContent= `${count} ITEMS`;
 
-        const btn_remove_product_item = document.getElementById('btn-remove-item');
+        const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
         btn_remove_product_item.forEach(btn_remove => {
             btn_remove.addEventListener('click', () => {
                 let template_empty_mini_cart = '';
