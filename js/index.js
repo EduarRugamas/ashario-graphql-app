@@ -879,6 +879,36 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
+
+        view_items_mini_cart.textContent= `${count} ITEMS`;
+
+        const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
+        btn_remove_product_item.forEach(btn_remove => {
+            btn_remove.addEventListener('click', () => {
+                let template_empty_mini_cart = '';
+                let product_id_remove = btn_remove.getAttribute('product_id');
+                console.log(product_id_remove);
+                delete cart[product_id_remove];
+                storage_local.setItem('cart', JSON.stringify(cart));
+                count--;
+                update_icon_cart();
+                update_mini_cart(arreglo_productos);
+                if (Object.entries(cart).length === 0) {
+                    console.log('el mini cart esta vacio');
+                    template_empty_mini_cart+= `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    mini_cart_items.innerHTML = template_empty_mini_cart;
+                    document.getElementById('btn_checkout_mini_cart').disabled = true;
+                }
+            });
+        });
     };
 
 
