@@ -185,19 +185,20 @@ const renderProduct = (container, informatio_product, array_products_all) => {
         const value_weight = document.getElementById('select-weight').value;
 
         if (product_id in cart) {
-            if (value_quantity === cart[product_id].value_quantity) {
-                cart[product_id].value_quantity++;
-                cart[product_id].value_weight = value_weight;
-                storage_local.setItem('cart', JSON.stringify(cart));
-                Swal.fire({
-                    title: 'Update product!',
-                    text: `${informatio_product.name}`,
-                    imageUrl: `${informatio_product.image}`,
-                    imageWidth: 250,
-                    imageHeight: 300,
-                    imageAlt: `${informatio_product.name}`,
-                });
-            }else {
+            cart[product_id].value_quantity++;
+            cart[product_id].value_weight = value_weight;
+            storage_local.setItem('cart', JSON.stringify(cart));
+            Swal.fire({
+                title: 'Update product!',
+                text: `${informatio_product.name}`,
+                imageUrl: `${informatio_product.image}`,
+                imageWidth: 250,
+                imageHeight: 300,
+                imageAlt: `${informatio_product.name}`,
+            });
+
+
+            if (value_quantity !== cart[product_id].value_quantity) {
                 cart[product_id].value_quantity = value_quantity;
                 cart[product_id].value_weight = value_weight;
                 storage_local.setItem('cart', JSON.stringify(cart));
