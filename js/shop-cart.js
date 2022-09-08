@@ -37,9 +37,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         console.log(cart);
         console.log(quantity_product);
-        storage_local.getItem('cart', cart);
         if (data !== undefined && data.length !== 0) {
-            div_loader.style = 'display: none;'
+            FadeOut(div_loader);
         }
         render_products_cart(contenedor_products, data.products);
         update_icon_cart();
@@ -75,6 +74,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
 const render_products_cart = (contenedor, arreglo_productos) => {
+    storage_local.getItem('cart', cart);
     let template_items_products = '';
     for (let product in cart) {
 
