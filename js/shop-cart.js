@@ -17,6 +17,7 @@ const view_total_pay_products = document.getElementById('total_price_pay');
 const btn_checkout_cart = document.getElementById('btn-checkout-cart');
 const contenedor_products = document.getElementById('contenedor_products_cart');
 const div_loader = document.querySelector('.content-loader');
+const content_price_total_subtotal = document.getElementById('content_total_subtotal');
 
 const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
@@ -54,7 +55,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>`;
             contenedor_products.innerHTML = template_empty_mini_cart;
-            document.getElementById('btn-checkout-cart').disabled = true;
+            content_price_total_subtotal.style = 'display: none;';
         } else {
             render_products_cart(contenedor_products, data.products);
             update_icon_cart();
@@ -77,7 +78,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     document.getElementById('btn_checkout_mini_cart').disabled = false;
                 }
             });
-            document.getElementById('btn-checkout-cart').disabled = false;
         }
 
 
@@ -134,8 +134,6 @@ const render_products_cart = (contenedor, arreglo_productos) => {
          contenedor.innerHTML = template_items_products;
     }
     remove_item_cart('remove_item_product', arreglo_productos);
-
-
 };
 
 const mini_cart_render = (array_productos) => {
