@@ -758,7 +758,6 @@ const mini_cart_render = (array_productos) => {
     let template_item_mini_cart = '';
     for (let product in cart) {
         let information_product = array_productos.find(item => item.id === cart[product].product_id);
-
         template_item_mini_cart += `
             <div class="dropdown-item">
                 <div class="d-flex align-items-center">
@@ -776,10 +775,9 @@ const mini_cart_render = (array_productos) => {
                     </div>
                 </div>
             </div>`;
-
         mini_cart_items.innerHTML = template_item_mini_cart;
-
     }
+    view_items_mini_cart.textContent= `${count} ITEMS`;
 };
 
 function ViewWeigthsSpecial(array_products, variant) {
