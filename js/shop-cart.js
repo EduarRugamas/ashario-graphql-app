@@ -37,8 +37,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         console.log(cart);
         console.log(quantity_product);
+
+        if (data === undefined && data.length === 0) {
+            FadeOut(div_loader);
+        }
         render_products_cart(contenedor_products, data.products);
-        FadeOut(div_loader);
         update_icon_cart();
         btn_action_dropdown_mini_cart.addEventListener('click', () => {
             if (Object.entries(cart).length === 0) {
