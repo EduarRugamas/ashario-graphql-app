@@ -70,16 +70,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     if (storage_local.getItem('cart')) {
         cart = JSON.parse(storage_local.getItem('cart'));
-    } else {
-        storage_local.setItem('cart', JSON.stringify(cart));
     }
 
     if (storage_local.getItem('count')) {
         count = parseInt(storage_local.getItem('count'));
-    } else {
-        storage_local.setItem('count', count);
     }
-
+    storage_local.setItem('cart', JSON.stringify(cart));
+    storage_local.setItem('count', count);
     await getRetailersIds().then(async result => {
 
         result.find(item => {
