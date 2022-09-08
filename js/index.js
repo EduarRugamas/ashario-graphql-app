@@ -75,8 +75,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (storage_local.getItem('count')) {
         count = parseInt(storage_local.getItem('count'));
     }
-    storage_local.setItem('cart', JSON.stringify(cart));
-    storage_local.setItem('count', count);
     await getRetailersIds().then(async result => {
 
         result.find(item => {
@@ -457,7 +455,7 @@ const cartProduct = (container_products, array_products) => {
     const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
     const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
     const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-    // storage_local.setItem('cart', JSON.stringify(cart));
+    storage_local.setItem('cart', JSON.stringify(cart));
 
     btn_add_cart_grid.forEach(btn => {
         btn.addEventListener('click', () => {
