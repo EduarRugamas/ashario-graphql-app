@@ -77,14 +77,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     document.getElementById('btn_checkout_mini_cart').disabled = false;
                 }
             });
-            btn_clear_cart.addEventListener('click', () => {
-                console.log('click clear btn');
-                storage_local.removeItem('cart');
-                storage_local.removeItem('count');
-                render_products_cart(contenedor_products, data.products);
-                mini_cart_render(data.products);
-                update_icon_cart();
-            });
             document.getElementById('btn-checkout-cart').disabled = false;
         }
 
@@ -199,6 +191,7 @@ const remove_item_mini_cart = (id_btn_remove, array_productos) => {
                     </div>
                 </div>
             `;
+                contenedor_products.innerHTML = template_empty_mini_cart;
                 mini_cart_items.innerHTML = template_empty_mini_cart;
                 document.getElementById('btn_checkout_mini_cart').disabled = true;
             }
