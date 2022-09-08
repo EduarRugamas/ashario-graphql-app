@@ -38,8 +38,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.log(cart);
         console.log(quantity_product);
 
-        if (data === undefined && data.length === 0) {
-            FadeOut(div_loader);
+        if (data !== undefined && data.length !== 0) {
+            div_loader.style = 'display: none;'
         }
         render_products_cart(contenedor_products, data.products);
         update_icon_cart();
