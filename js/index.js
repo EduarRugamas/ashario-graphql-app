@@ -595,10 +595,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         });
-        let btn_remove_item_mini_cart = document.querySelectorAll('#btn-remove-item');
-        btn_remove_item_mini_cart.forEach( btn_remove => {
-            console.log(btn_remove);
-        });
         btn_checkout_mini_cart.addEventListener('click', () => {
 
             for (let item in cart) {
@@ -800,6 +796,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('btn_checkout_mini_cart').disabled = false;
         }
         view_items_mini_cart.textContent= `${count} ITEMS`;
+
+        let btn_remove_item_mini_cart = document.querySelectorAll('#btn-remove-item');
+        btn_remove_item_mini_cart.forEach( btn_remove => {
+            console.log(btn_remove);
+        });
 
         // const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
         // btn_remove_product_item.forEach(btn_remove => {
