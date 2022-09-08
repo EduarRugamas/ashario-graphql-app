@@ -67,7 +67,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 const render_products_cart = (contenedor, arreglo_productos) => {
     let template_items_products = '';
-
     for (let product in cart) {
 
         let get_information_product = arreglo_productos.find(item => item.id === cart[product].product_id);
@@ -81,13 +80,13 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                      </div>
                      <div class="cart-detail text-center text-lg-start">
                         <h6 class="mb-2">${get_information_product.name}</h6>
-                        <p class="mb-0">Size: 
-                            <span>Medium</span>
+                        <p class="mb-0">quantity: 
+                            <span id="string_quantity">0</span>
                         </p>
                         <p class="mb-2">Color: 
                             <span>Black</span>
                         </p>
-                        <h5 class="mb-0">$14.00</h5>
+                        <h5 class="mb-0" id="string_price_variant">$</h5>
                      </div>
                  </div>
              </div>
@@ -99,7 +98,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
              <div class="col-12 col-lg-3">
                  <div class="text-center">
                      <div class="d-flex gap-2 justify-content-center justify-content-lg-end">
-                        <a class="btn btn-dark rounded-0 btn-ecomm" id="remove_item_product">
+                        <a class="btn btn-dark rounded-0 btn-ecomm" id="remove_item_product" product_id="${get_information_product.id}">
                             <i class='bx bx-x-circle'></i>
                             Remove
                         </a>
@@ -112,6 +111,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
          contenedor.innerHTML = template_items_products;
     }
+    remove_item_cart('remove_item_product', arreglo_productos);
 
 
 };
@@ -173,6 +173,36 @@ const remove_item_mini_cart = (id_btn_remove, array_productos) => {
                 document.getElementById('btn_checkout_mini_cart').disabled = true;
             }
 
+        });
+    });
+};
+const remove_item_cart = (id_btn_remove, array_productos) => {
+    const btn_remove_item_cart = document.querySelectorAll(`#${id_btn_remove}`);
+    btn_remove_item_cart.forEach(btn => {
+        const get_product_id_remove = btn.getAttribute('product_id');
+        btn.addEventListener('click', () => {
+            console.log('product a elimminar', get_product_id_remove);
+            let template_empty_mini_cart = '';
+            delete cart[get_product_id_remove];
+            storage_local.setItem('cart', JSON.stringify(cart));
+            count--;
+            update_icon_cart();
+            mini_cart_render(array_productos);
+            render_products_cart(contenedor_products, array_productos);
+            if (Object.entries(cart).length === 0) {
+                console.log('el mini cart esta vacio');
+                template_empty_mini_cart+= `
+                <div class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                        </div>
+                    </div>
+                </div>
+            `;
+                mini_cart_items.innerHTML = template_empty_mini_cart;
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
+            }
         });
     });
 };
