@@ -595,40 +595,43 @@ window.addEventListener('DOMContentLoaded', async () => {
         update_icon_cart();
         //mini_cart_render(array_products);
         btn_shop_cart_link.addEventListener('click', () => {
-            let template_item_mini_cart = '';
-                for (let product in cart) {
 
-                    console.log(product);
-                    console.log(cart);
 
-                    let information_product = array_products.find(item => item.id === cart[product].product_id);
-                    console.log(information_product);
 
-                    template_item_mini_cart += `
-                    <div class="dropdown-item">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <h6 class="cart-product-title">${information_product.name}</h6>
-                                <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
-                            </div>
-                            <div class="position-relative">
-                                <a class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
-                                    <i class='bx bx-x'></i>
-                                </a>
-                                <div class="cart-product">
-                                    <img src="${information_product.image}" class="" alt="product image">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    `;
-
-                    mini_cart_items.innerHTML = template_item_mini_cart;
-
-                    document.getElementById('btn_checkout_mini_cart').disabled = false;
-                }
-
-                view_items_mini_cart.textContent= `${count} ITEMS`;
+            // let template_item_mini_cart = '';
+            //     for (let product in cart) {
+            //
+            //         console.log(product);
+            //         console.log(cart);
+            //
+            //         let information_product = array_products.find(item => item.id === cart[product].product_id);
+            //         console.log(information_product);
+            //
+            //         template_item_mini_cart += `
+            //         <div class="dropdown-item">
+            //             <div class="d-flex align-items-center">
+            //                 <div class="flex-grow-1">
+            //                     <h6 class="cart-product-title">${information_product.name}</h6>
+            //                     <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
+            //                 </div>
+            //                 <div class="position-relative">
+            //                     <a class="cart-product-cancel position-absolute delete-product" product_id="${information_product.id}" id="btn-remove-item">
+            //                         <i class='bx bx-x'></i>
+            //                     </a>
+            //                     <div class="cart-product">
+            //                         <img src="${information_product.image}" class="" alt="product image">
+            //                     </div>
+            //                 </div>
+            //             </div>
+            //         </div>
+            //         `;
+            //
+            //         mini_cart_items.innerHTML = template_item_mini_cart;
+            //
+            //         document.getElementById('btn_checkout_mini_cart').disabled = false;
+            //     }
+            //
+            //     view_items_mini_cart.textContent= `${count} ITEMS`;
 
                 let btn_remove_item_mini_cart = document.querySelectorAll('#btn-remove-item');
                 btn_remove_item_mini_cart.forEach( btn_remove => {
@@ -991,39 +994,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             mini_cart_items.innerHTML = template_item_mini_cart;
 
-            document.getElementById('btn_checkout_mini_cart').disabled = false;
-        }
 
+        }
+        document.getElementById('btn_checkout_mini_cart').disabled = false;
         view_items_mini_cart.textContent= `${count} ITEMS`;
 
-            const btn_remove_product_item = document.querySelectorAll('#btn-remove-item');
-            btn_remove_product_item.forEach(btn_remove => {
-                 console.log('')
-            btn_remove.addEventListener('click', () => {
-                let template_empty_mini_cart = '';
-                let product_id_remove = btn_remove.getAttribute('product_id');
-                console.log(product_id_remove);
-                delete cart[product_id_remove];
-                storage_local.setItem('cart', JSON.stringify(cart));
-                count--;
-                update_icon_cart();
-                update_mini_cart(arreglo_productos);
-                if (Object.entries(cart).length === 0) {
-                    console.log('el mini cart esta vacio');
-                    template_empty_mini_cart+= `
-                    <div class="dropdown-item">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
-                            </div>
-                        </div>
-                    </div>
-                    `;
-                    mini_cart_items.innerHTML = template_empty_mini_cart;
-                    document.getElementById('btn_checkout_mini_cart').disabled = true;
-                }
-            });
-            });
     };
 
 
