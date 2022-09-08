@@ -591,7 +591,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
         badge_strainType(array_products);
         update_icon_cart();
-        mini_cart_render(array_products);
+        //mini_cart_render(array_products);
         btn_shop_cart_link.addEventListener('click', () => {
             mini_cart_render(array_products);
         });
