@@ -62,8 +62,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
         btn_clear_cart.addEventListener('click', () => {
             console.log('click clear btn');
-            storage_local.removeItem('cart');
-            storage_local.removeItem('count');
+            storage_local.clear();
             render_products_cart(contenedor_products, data.products);
             mini_cart_render(data.products);
         });
