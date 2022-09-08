@@ -188,6 +188,7 @@ const remove_item_mini_cart = (id_btn_remove, array_productos) => {
 const remove_item_cart = (id_btn_remove, array_productos) => {
     const btn_remove_item_cart = document.querySelectorAll(`#${id_btn_remove}`);
     btn_remove_item_cart.forEach(btn => {
+
         const get_product_id_remove = btn.getAttribute('product_id');
         btn.addEventListener('click', () => {
             console.log('product a elimminar', get_product_id_remove);
@@ -196,12 +197,12 @@ const remove_item_cart = (id_btn_remove, array_productos) => {
             storage_local.setItem('cart', JSON.stringify(cart));
             count--;
             update_icon_cart();
-            mini_cart_render(array_productos);
             render_products_cart(contenedor_products, array_productos);
+            mini_cart_render(array_productos);
             if (Object.entries(cart).length === 0) {
                 console.log('el mini cart esta vacio');
                 template_empty_mini_cart+= `
-                <div class="dropdown-item">
+                <div>
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <h6 class="cart-product-title">You don't have products in your cart.</h6>
@@ -209,8 +210,8 @@ const remove_item_cart = (id_btn_remove, array_productos) => {
                     </div>
                 </div>
             `;
-                mini_cart_items.innerHTML = template_empty_mini_cart;
-                document.getElementById('btn_checkout_mini_cart').disabled = true;
+                contenedor_products.innerHTML = template_empty_mini_cart;
+                //document.getElementById('btn_checkout_mini_cart').disabled = true;
             }
         });
     });
