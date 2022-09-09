@@ -140,14 +140,12 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     get_string_price.forEach( span => {
        const get_value_product_id = span.getAttribute('product_id');
        console.log(get_value_product_id);
-
        const get_value_weight = cart[get_value_product_id].value_weight;
-       console.log(get_value_weight);
-       console.log(arreglo_productos);
-       const get_information_price = arreglo_productos.variants.find(item => item.option === get_value_weight);
+       let get_information_product = arreglo_productos.find(item => item.id === get_value_product_id);
+       console.log(get_information_product);
+       let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
        console.log(get_information_price);
-
-
+       span.textContent = `$${get_information_price.priceRec}`;
     })
 
 
