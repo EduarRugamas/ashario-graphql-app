@@ -40,7 +40,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.log(quantity_product);
         if (data !== undefined && data.length !== 0) {
             FadeOut(div_loader);
-
         }
 
         if (Object.entries(cart).length === 0) {
@@ -55,7 +54,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>`;
             contenedor_products.innerHTML = template_empty_mini_cart;
-            content_price_total_subtotal.style = 'display: none;';
+            btn_checkout_cart.disabled = true;
         } else {
             render_products_cart(contenedor_products, data.products);
             update_icon_cart();

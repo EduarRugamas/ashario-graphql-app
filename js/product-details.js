@@ -185,6 +185,7 @@ const renderProduct = (container, informatio_product, array_products_all) => {
         const value_weight = document.getElementById('select-weight').value;
 
         if (product_id in cart) {
+
             cart[product_id].value_quantity++;
             cart[product_id].value_weight = value_weight;
             storage_local.setItem('cart', JSON.stringify(cart));
