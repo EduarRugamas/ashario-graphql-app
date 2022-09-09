@@ -145,12 +145,18 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        console.log(get_information_product);
        let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
        console.log(get_information_price);
-       span.textContent = `$${get_information_price.priceRec}`;
+       span.textContent = `$${(cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2)}`;
     });
 
     const inputs_quantity = document.querySelectorAll('.input_quantity');
     inputs_quantity.forEach(input => {
         console.log(input.value);
+        input.addEventListener('change', () => {
+
+        });
+
+
+
     })
 
 
