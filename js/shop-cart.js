@@ -140,6 +140,12 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     get_string_price.forEach( span => {
        const get_value_product_id = span.getAttribute('product_id');
        console.log(get_value_product_id);
+
+       const get_value_weight = cart[get_value_product_id].value_weight;
+       console.log(get_value_weight);
+
+
+
     })
 
 
