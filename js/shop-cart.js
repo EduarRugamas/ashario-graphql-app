@@ -183,7 +183,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
                 span.setAttribute('total_price_item', calc.toString());
                 span.textContent = `$${calc}`;
-                let calc_total = span.getAttribute('total_price_item')
+                let calc_total = parseFloat(span.getAttribute('total_price_item'));
                 total += calc_total;
                 view_subtotal_pay_products.textContent = `$${total}`;
             });
