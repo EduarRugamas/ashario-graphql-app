@@ -139,6 +139,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
     const get_string_price = document.querySelectorAll('#string_price_variant');
     const get_string_quantity = document.querySelectorAll('#string_quantity');
+    let total = 0;
 
     get_string_price.forEach( span => {
        const get_value_product_id = span.getAttribute('product_id');
@@ -149,13 +150,10 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
        console.log(get_information_price);
        let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
-       span.setAttribute('total_price_item', calc.toString());
        span.textContent = `$${calc}`;
-       const get_cantidad_price = span.getAttribute('total_price_item');
-       console.log(get_cantidad_price);
 
-       const subtotal = get_cantidad_price + get_cantidad_price;
-       console.log(subtotal);
+       total += calc;
+       view_subtotal_pay_products.textContent = `$${total}`;
     });
 
     get_string_quantity.forEach(span => {
@@ -183,8 +181,9 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
                 console.log(get_information_price);
                 let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
-                span.setAttribute('total_price_item', calc.toString());
                 span.textContent = `$${calc}`;
+                total += calc;
+                view_subtotal_pay_products.textContent = `$${total}`;
             });
 
             get_string_quantity.forEach(span => {
