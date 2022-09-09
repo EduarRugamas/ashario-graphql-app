@@ -1,5 +1,6 @@
-import {getAllProducts, get_count_product} from '../utils/querys.js';
+import {get_count_product, getAllProducts} from '../utils/querys.js';
 import {FadeOut} from "../utils/utils.js";
+
 const storage_local = window.localStorage;
 let count = 0;
 let cart = {};
@@ -136,6 +137,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     }
 
     const get_string_price = document.querySelectorAll('#string_price_variant');
+    const get_string_quantity = document.querySelectorAll('#string_quantity');
 
     get_string_price.forEach( span => {
        const get_value_product_id = span.getAttribute('product_id');
@@ -147,6 +149,12 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        console.log(get_information_price);
        span.textContent = `$${(cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2)}`;
     });
+
+    get_string_quantity.forEach(span => {
+        const get_value_product_id = span.getAttribute('product_id');
+        span.textContent = cart[get_value_product_id].value_quantity;
+    });
+
 
     const inputs_quantity = document.querySelectorAll('.input_quantity');
     inputs_quantity.forEach(input => {
@@ -168,7 +176,10 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 span.textContent = `$${(cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2)}`;
             });
 
-
+            get_string_quantity.forEach(span => {
+                const get_value_product_id = span.getAttribute('product_id');
+                span.textContent = cart[get_value_product_id].value_quantity;
+            });
         });
 
 
