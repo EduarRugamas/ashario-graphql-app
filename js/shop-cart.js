@@ -115,7 +115,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
              </div>
              <div class="col-12 col-lg-3">
                  <div class="cart-action text-center">
-                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1">
+                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1" id="input_quantity">
                  </div>
              </div>
              <div class="col-12 col-lg-3">
@@ -134,6 +134,10 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
          contenedor.innerHTML = template_items_products;
     }
+    const change_input_number = document.getElementById('input_quantity');
+    change_input_number.addEventListener('change', () => {
+        console.log('cambio el number', change_input_number.value);
+    });
     remove_item_cart('remove_item_product', arreglo_productos);
 };
 
