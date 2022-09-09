@@ -154,7 +154,8 @@ const render_products_cart = (contenedor, arreglo_productos) => {
         const get_id_product = input.getAttribute('product_id');
         console.log(get_id_product);
         input.addEventListener('change', () => {
-
+            cart[get_id_product].value_quantity = input.value;
+            storage_local.setItem('cart', JSON.stringify(cart));
         });
 
 
