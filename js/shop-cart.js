@@ -4,7 +4,7 @@ import {FadeOut} from "../utils/utils.js";
 const storage_local = window.localStorage;
 let count = 0;
 let cart = {};
-let sum = 0;
+
 
 
 const btn_action_dropdown_mini_cart = document.getElementById('btn_mini_cart_action');
@@ -93,6 +93,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 const render_products_cart = (contenedor, arreglo_productos) => {
     let template_items_products = '';
+    let sum = 0;
     for (let product in cart) {
 
         let get_information_product = arreglo_productos.find(item => item.id === cart[product].product_id);
