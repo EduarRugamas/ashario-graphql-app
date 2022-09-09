@@ -104,18 +104,18 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                      <div class="cart-detail text-center text-lg-start">
                         <h6 class="mb-2">${get_information_product.name}</h6>
                         <p class="mb-0">Quantity: 
-                            <span id="string_quantity">${cart[product].value_quantity}</span>
+                            <span id="string_quantity_${get_information_product.id}">${cart[product].value_quantity}</span>
                         </p>
                         <p class="mb-2">Weight: 
                             <span>${cart[product].value_weight}</span>
                         </p>
-                        <h5 class="mb-0" id="string_price_variant">$</h5>
+                        <h5 class="mb-0" id="string_price_variant_${get_information_product.id}">$</h5>
                      </div>
                  </div>
              </div>
              <div class="col-12 col-lg-3">
                  <div class="cart-action text-center">
-                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1" id="input_quantity">
+                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1" id="input_quantity_${get_information_product.id}">
                  </div>
              </div>
              <div class="col-12 col-lg-3">
@@ -134,18 +134,25 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
          contenedor.innerHTML = template_items_products;
     }
-    const change_input_number = document.querySelectorAll('#input_quantity');
-    const string_quantity = document.querySelectorAll('#string_quantity');
-    change_input_number.forEach( input => {
-        input.addEventListener('change', () => {
-            console.log('cambio el number', input.value);
-            string_quantity.forEach(span => {
-                span.textContent = `${input.value}`;
-            });
 
-
-        });
+    arreglo_productos.forEach( product => {
+        const input_number_quantity = document.getElementById('input_quantity_'+product.id);
+        console.log(input_number_quantity);
     });
+
+
+    // const change_input_number = document.querySelectorAll('#input_quantity');
+    // const string_quantity = document.querySelectorAll('#string_quantity');
+    // change_input_number.forEach( input => {
+    //     input.addEventListener('change', () => {
+    //         console.log('cambio el number', input.value);
+    //         string_quantity.forEach(span => {
+    //             span.textContent = `${input.value}`;
+    //         });
+    //
+    //
+    //     });
+    // });
 
     // string_quantity.forEach( span => {
     //     span.textContent = ``
