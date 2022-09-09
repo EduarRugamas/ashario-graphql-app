@@ -93,6 +93,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 const render_products_cart = (contenedor, arreglo_productos) => {
     let template_items_products = '';
+    let sum = 0;
     for (let product in cart) {
 
         let get_information_product = arreglo_productos.find(item => item.id === cart[product].product_id);
@@ -142,7 +143,6 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     const get_string_quantity = document.querySelectorAll('#string_quantity');
 
     get_string_price.forEach( span => {
-       let sum = 0;
        const get_value_product_id = span.getAttribute('product_id');
        console.log(get_value_product_id);
        const get_value_weight = cart[get_value_product_id].value_weight;
@@ -173,7 +173,6 @@ const render_products_cart = (contenedor, arreglo_productos) => {
             storage_local.setItem('cart', JSON.stringify(cart));
 
             get_string_price.forEach( span => {
-                let sum = 0;
                 const get_value_product_id = span.getAttribute('product_id');
                 console.log(get_value_product_id);
                 const get_value_weight = cart[get_value_product_id].value_weight;
