@@ -140,7 +140,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
         input.addEventListener('change', () => {
             console.log('cambio el number', input.value);
             string_quantity.forEach(span => {
-                console.log('sring',input.value);
+                span.textContent = `${input.value}`;
             });
 
 
