@@ -143,7 +143,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
        const get_value_weight = cart[get_value_product_id].value_weight;
        console.log(get_value_weight);
-
+       console.log(arreglo_productos);
        const get_information_price = arreglo_productos.variants.find(item => item.option === get_value_weight);
        console.log(get_information_price);
 
