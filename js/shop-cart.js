@@ -99,7 +99,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
              <div class="col-12 col-lg-6">
                  <div class="d-lg-flex align-items-center gap-2">
                      <div class="cart-img text-center text-lg-start">
-                        <img src="${get_information_product.image}" width="130" alt="${get_information_product.name}">
+                        <img src="${get_information_product.image}" width="110" alt="${get_information_product.name}">
                      </div>
                      <div class="cart-detail text-center text-lg-start">
                         <h6 class="mb-2">${get_information_product.name}</h6>
@@ -115,7 +115,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
              </div>
              <div class="col-12 col-lg-3">
                  <div class="cart-action text-center">
-                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1" product_id="${get_information_product.id}">
+                    <input type="number" class="form-control rounded-0 input_quantity" id="input_quantity_${get_information_product.id}" value="${cart[product].value_quantity}" min="1" product_id="${get_information_product.id}">
                  </div>
              </div>
              <div class="col-12 col-lg-3">
@@ -145,9 +145,13 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        console.log(get_information_product);
        let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
        console.log(get_information_price);
-       span.textContent = `${get_information_price.priceRec}`;
-
+       span.textContent = `$${get_information_price.priceRec}`;
     });
+
+    const inputs_quantity = document.querySelectorAll('.input_quantity');
+    inputs_quantity.forEach(input => {
+        console.log(input.value);
+    })
 
 
     // const change_input_number = document.querySelectorAll('#input_quantity');
