@@ -153,6 +153,9 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        span.textContent = `$${calc}`;
        const get_cantidad_price = span.getAttribute('total_price_item');
        console.log(get_cantidad_price);
+
+       const subtotal = get_cantidad_price + get_cantidad_price;
+       console.log(subtotal);
     });
 
     get_string_quantity.forEach(span => {
