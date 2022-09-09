@@ -144,6 +144,9 @@ const render_products_cart = (contenedor, arreglo_productos) => {
         console.log(string_value_price);
         console.log(input_number_quantity);
 
+        input_number_quantity.addEventListener('change', () => {
+            string_value_quantity.textContent = `${input_number_quantity.value}`;
+        });
 
     });
 
