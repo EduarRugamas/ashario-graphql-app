@@ -80,6 +80,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
             });
             btn_checkout_cart.classList.remove('disabled');
+
         }
 
 
@@ -147,11 +148,16 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        console.log(get_information_product);
        let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
        console.log(get_information_price);
-       span.textContent = `$${(cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2)}`;
+       let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
+       span.setAttribute('total_price_item', calc.toString());
+       span.textContent = `$${calc}`;
+       const get_cantidad_price = span.getAttribute('total_price_item');
+       console.log(get_cantidad_price);
     });
 
     get_string_quantity.forEach(span => {
         const get_value_product_id = span.getAttribute('product_id');
+        span.setAttribute('quantity_item', cart[get_value_product_id].value_quantity);
         span.textContent = cart[get_value_product_id].value_quantity;
     });
 
@@ -173,49 +179,19 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 console.log(get_information_product);
                 let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
                 console.log(get_information_price);
-                span.textContent = `$${(cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2)}`;
+                let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
+                span.setAttribute('total_price_item', calc.toString());
+                span.textContent = `$${calc}`;
             });
 
             get_string_quantity.forEach(span => {
                 const get_value_product_id = span.getAttribute('product_id');
+                span.setAttribute('quantity_item', cart[get_value_product_id].value_quantity);
                 span.textContent = cart[get_value_product_id].value_quantity;
             });
         });
 
-
-
-    })
-
-
-    // const change_input_number = document.querySelectorAll('#input_quantity');
-    // const string_quantity = document.querySelectorAll('#string_quantity');
-    // change_input_number.forEach( input => {
-    //     input.addEventListener('change', () => {
-    //         console.log('cambio el number', input.value);
-    //         string_quantity.forEach(span => {
-    //             span.textContent = `${input.value}`;
-    //         });
-    //
-    //
-    //     });
-    // });
-
-    // string_quantity.forEach( span => {
-    //     span.textContent = ``
-    // });
-
-
-
-    // change_input_number.addEventListener('change', () => {
-    //
-    //     const string_value_quantity = document.getElementById('string_quantity');
-    //     string_value_quantity
-    // });
-
-
-
-
-
+    });
 
     remove_item_cart('remove_item_product', arreglo_productos);
 };
