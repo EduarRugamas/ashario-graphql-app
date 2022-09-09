@@ -145,8 +145,9 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        console.log(get_information_product);
        let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
        console.log(get_information_price);
-       span.textContent = `$${get_information_price.priceRec}`;
-    })
+       span.textContent = `${get_information_price.priceRec}`;
+
+    });
 
 
     // const change_input_number = document.querySelectorAll('#input_quantity');
