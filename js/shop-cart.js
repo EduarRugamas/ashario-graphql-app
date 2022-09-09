@@ -185,7 +185,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 span.textContent = `$${calc}`;
                 let calc_total = parseFloat(span.getAttribute('total_price_item'));
                 total += calc_total;
-                view_subtotal_pay_products.textContent = `$${total}`;
+
             });
 
             get_string_quantity.forEach(span => {
@@ -193,6 +193,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 span.setAttribute('quantity_item', cart[get_value_product_id].value_quantity);
                 span.textContent = cart[get_value_product_id].value_quantity;
             });
+            view_subtotal_pay_products.textContent = `$${total}`;
         });
 
     });
