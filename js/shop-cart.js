@@ -77,6 +77,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     document.getElementById('btn_checkout_mini_cart').disabled = false;
                 }
             });
+            btn_checkout_cart.classList.remove('disabled');
         }
 
 
