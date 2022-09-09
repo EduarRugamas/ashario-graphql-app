@@ -104,18 +104,18 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                      <div class="cart-detail text-center text-lg-start">
                         <h6 class="mb-2">${get_information_product.name}</h6>
                         <p class="mb-0">Quantity: 
-                            <span id="string_quantity_${get_information_product.id}">${cart[product].value_quantity}</span>
+                            <span id="string_quantity" product_id="${get_information_product.id}">${cart[product].value_quantity}</span>
                         </p>
                         <p class="mb-2">Weight: 
                             <span>${cart[product].value_weight}</span>
                         </p>
-                        <h5 class="mb-0" id="string_price_variant_${get_information_product.id}">$</h5>
+                        <h5 class="mb-0" id="string_price_variant" product_id="${get_information_product.id}">$</h5>
                      </div>
                  </div>
              </div>
              <div class="col-12 col-lg-3">
                  <div class="cart-action text-center">
-                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1" id="input_quantity_${get_information_product.id}">
+                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1" product_id="${get_information_product.id}">
                  </div>
              </div>
              <div class="col-12 col-lg-3">
@@ -135,20 +135,12 @@ const render_products_cart = (contenedor, arreglo_productos) => {
          contenedor.innerHTML = template_items_products;
     }
 
-    arreglo_productos.forEach( product => {
-        const input_number_quantity = document.getElementById('input_quantity_'+ product.id);
-        const string_value_quantity = document.getElementById('string_quantity_' + product.id);
-        const string_value_price = document.getElementById('string_price_variant_' + product.id);
+    const get_string_price = document.querySelectorAll('#string_price_variant');
 
-        console.log(string_value_quantity);
-        console.log(string_value_price);
-        console.log(input_number_quantity);
-
-        input_number_quantity.addEventListener('change', () => {
-            string_value_quantity.textContent = `${input_number_quantity.value}`;
-        });
-
-    });
+    get_string_price.forEach( span => {
+       const get_value_product_id = span.getAttribute('product_id');
+       console.log(get_value_product_id);
+    })
 
 
     // const change_input_number = document.querySelectorAll('#input_quantity');
