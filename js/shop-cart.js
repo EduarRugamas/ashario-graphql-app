@@ -156,6 +156,19 @@ const render_products_cart = (contenedor, arreglo_productos) => {
         input.addEventListener('change', () => {
             cart[get_id_product].value_quantity = input.value;
             storage_local.setItem('cart', JSON.stringify(cart));
+
+            get_string_price.forEach( span => {
+                const get_value_product_id = span.getAttribute('product_id');
+                console.log(get_value_product_id);
+                const get_value_weight = cart[get_value_product_id].value_weight;
+                let get_information_product = arreglo_productos.find(item => item.id === get_value_product_id);
+                console.log(get_information_product);
+                let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
+                console.log(get_information_price);
+                span.textContent = `$${(cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2)}`;
+            });
+
+
         });
 
 
