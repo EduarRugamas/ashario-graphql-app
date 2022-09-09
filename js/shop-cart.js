@@ -104,7 +104,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                      <div class="cart-detail text-center text-lg-start">
                         <h6 class="mb-2">${get_information_product.name}</h6>
                         <p class="mb-0">Quantity: 
-                            <span id="string_quantity">0</span>
+                            <span id="string_quantity">${cart[product].value_quantity}</span>
                         </p>
                         <p class="mb-2">Weight: 
                             <span>${cart[product].value_weight}</span>
@@ -139,6 +139,11 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     change_input_number.forEach( input => {
         input.addEventListener('change', () => {
             console.log('cambio el number', input.value);
+            string_quantity.forEach(span => {
+                console.log('sring',input.value);
+            });
+
+
         });
     });
 
