@@ -191,7 +191,7 @@ const remove_item_mini_cart = (id_btn_remove, array_productos) => {
             `;
                 contenedor_products.innerHTML = template_empty_mini_cart;
                 mini_cart_items.innerHTML = template_empty_mini_cart;
-                document.getElementById('btn_checkout_mini_cart').disabled = true;
+                btn_checkout_mini_cart.classList.add('disabled');
             }
 
         });
@@ -223,7 +223,7 @@ const remove_item_cart = (id_btn_remove, array_productos) => {
                 </div>
             `;
                 contenedor_products.innerHTML = template_empty_mini_cart;
-                document.getElementById('btn-checkout-cart').disabled = true;
+                btn_checkout_cart.classList.add('disabled');
             }
         });
     });
