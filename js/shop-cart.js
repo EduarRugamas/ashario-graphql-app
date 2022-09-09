@@ -115,7 +115,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
              </div>
              <div class="col-12 col-lg-3">
                  <div class="cart-action text-center">
-                    <input type="number" class="form-control rounded-0" value="1" min="1">
+                    <input type="number" class="form-control rounded-0" value="${cart[product].value_quantity}" min="1">
                  </div>
              </div>
              <div class="col-12 col-lg-3">
@@ -252,9 +252,6 @@ const update_icon_cart = () => {
 //     mini_cart_render(array_products);
 //     document.getElementById('btn_checkout_mini_cart').disabled = false;
 // }
-
-
-
 
 // template for cart items
 
