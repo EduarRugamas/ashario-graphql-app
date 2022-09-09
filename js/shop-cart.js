@@ -152,7 +152,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     inputs_quantity.forEach(input => {
         console.log(input.value);
         input.addEventListener('change', () => {
-
+            console.log(input.value);
         });
 
 
