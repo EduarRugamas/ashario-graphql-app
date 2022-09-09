@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>`;
             contenedor_products.innerHTML = template_empty_mini_cart;
-            btn_checkout_cart.className = 'btn btn-dark btn-ecomm disabled';
+            btn_checkout_cart.classList.add('disabled');
         } else {
             render_products_cart(contenedor_products, data.products);
             update_icon_cart();
