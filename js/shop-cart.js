@@ -4,6 +4,7 @@ import {FadeOut} from "../utils/utils.js";
 const storage_local = window.localStorage;
 let count = 0;
 let cart = {};
+let sum = 0;
 
 
 const btn_action_dropdown_mini_cart = document.getElementById('btn_mini_cart_action');
@@ -139,7 +140,6 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
     const get_string_price = document.querySelectorAll('#string_price_variant');
     const get_string_quantity = document.querySelectorAll('#string_quantity');
-    let total = 0;
 
     get_string_price.forEach( span => {
        const get_value_product_id = span.getAttribute('product_id');
@@ -151,9 +151,8 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        console.log(get_information_price);
        let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
        span.textContent = `$${calc}`;
-
-       total += calc;
-       view_subtotal_pay_products.textContent = `$${total}`;
+       sum += parseFloat(calc);
+       view_subtotal_pay_products.textContent = `$${sum}`;
     });
 
     get_string_quantity.forEach(span => {
@@ -183,8 +182,8 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
                 span.setAttribute('total_price_item', calc.toString());
                 span.textContent = `$${calc}`;
-                let calc_total = parseFloat(span.getAttribute('total_price_item'));
-                total += calc_total;
+                sum += parseFloat(calc);
+                view_subtotal_pay_products.textContent = `$${sum}`;
 
             });
 
