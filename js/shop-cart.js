@@ -151,8 +151,10 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     const inputs_quantity = document.querySelectorAll('.input_quantity');
     inputs_quantity.forEach(input => {
         console.log(input.value);
+        const get_id_product = input.getAttribute('product_id');
+        console.log(get_id_product);
         input.addEventListener('change', () => {
-            console.log(input.value);
+
         });
 
 
