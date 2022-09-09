@@ -103,11 +103,11 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                      </div>
                      <div class="cart-detail text-center text-lg-start">
                         <h6 class="mb-2">${get_information_product.name}</h6>
-                        <p class="mb-0">quantity: 
+                        <p class="mb-0">Quantity: 
                             <span id="string_quantity">0</span>
                         </p>
-                        <p class="mb-2">Color: 
-                            <span>Black</span>
+                        <p class="mb-2">Weight: 
+                            <span>${cart[product].value_weight}</span>
                         </p>
                         <h5 class="mb-0" id="string_price_variant">$</h5>
                      </div>
@@ -134,10 +134,31 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
          contenedor.innerHTML = template_items_products;
     }
-    const change_input_number = document.getElementById('input_quantity');
-    change_input_number.addEventListener('change', () => {
-        console.log('cambio el number', change_input_number.value);
+    const change_input_number = document.querySelectorAll('#input_quantity');
+    const string_quantity = document.querySelectorAll('#string_quantity');
+    change_input_number.forEach( input => {
+        input.addEventListener('change', () => {
+            console.log('cambio el number', input.value);
+        });
     });
+
+    // string_quantity.forEach( span => {
+    //     span.textContent = ``
+    // });
+
+
+
+    // change_input_number.addEventListener('change', () => {
+    //
+    //     const string_value_quantity = document.getElementById('string_quantity');
+    //     string_value_quantity
+    // });
+
+
+
+
+
+
     remove_item_cart('remove_item_product', arreglo_productos);
 };
 
