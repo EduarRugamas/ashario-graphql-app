@@ -136,8 +136,15 @@ const render_products_cart = (contenedor, arreglo_productos) => {
     }
 
     arreglo_productos.forEach( product => {
-        const input_number_quantity = document.getElementById('input_quantity_'+product.id);
+        const input_number_quantity = document.getElementById('input_quantity_'+ product.id);
+        const string_value_quantity = document.getElementById('string_quantity_' + product.id);
+        const string_value_price = document.getElementById('string_price_variant_' + product.id);
+
+        console.log(string_value_quantity);
+        console.log(string_value_price);
         console.log(input_number_quantity);
+
+
     });
 
 
