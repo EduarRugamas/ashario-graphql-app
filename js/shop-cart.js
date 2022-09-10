@@ -86,17 +86,17 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log(cart);
                 console.log(checkoutId);
 
-                for (let item in cart) {
-
-                    console.log(item);
-
-                    console.log(cart[item].value_quantity);
-                    console.log(cart[item].value_weight);
-
-                    await addItemCart(id_store_centre_point_mall.id, checkoutId.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
-                        window.location.href = `${checkoutId.redirectUrl}`;
-                    });
-                }
+                // for (let item in cart) {
+                //
+                //     console.log(item);
+                //
+                //     console.log(cart[item].value_quantity);
+                //     console.log(cart[item].value_weight);
+                //
+                //     await addItemCart(id_store_centre_point_mall.id, checkoutId.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
+                //         window.location.href = `${checkoutId.redirectUrl}`;
+                //     });
+                // }
 
                 // for (let item in cart) {
                 //     console.log(item);
