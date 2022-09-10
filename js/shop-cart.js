@@ -205,7 +205,7 @@ const render_products_cart = (contenedor, arreglo_productos) => {
         console.log(get_id_product);
         input.addEventListener('change', () => {
             console.log(input.value)
-            cart[get_id_product].value_quantity = input.value;
+            cart[get_id_product].value_quantity = parseInt(input.value);
             storage_local.setItem('cart', JSON.stringify(cart));
             console.log(cart);
             get_string_price.forEach( span => {
