@@ -85,8 +85,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 for (let item in cart) {
                     addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
-                        if (result.data.addItem === null) {
-                            const error = result.errors[0];
+                        if (response.data.addItem === null) {
+                            const error = response.errors[0];
                             console.log(error);
                             Swal.fire({
                              icon: 'error',
