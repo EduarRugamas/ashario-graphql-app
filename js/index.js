@@ -320,7 +320,7 @@ const cartProduct = (container_products, array_products) => {
                             <div class="product-info">
                                 <a href="/views/product-details.html?id=${product.id}" id="content_text_brand">
                                     <p class="product-catergory font-13 mb-1 content-badge-strain" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
-                                    <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p>
+                                    <!-- <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p> -->
                                     <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                                 </a>
                                 <a href="/views/product-details.html?id=${product.id}">
