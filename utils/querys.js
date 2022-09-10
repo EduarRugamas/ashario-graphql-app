@@ -470,10 +470,15 @@ const createCheckout = async (retailerId, orderType, pricingType) => {
     return result.data.createCheckout;
 };
 
-async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, option) {
+ const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, option) => {
+
+    let Int_quantity = parseInt(quantity);
+    let string_option = option.toString();
+
+
     const query_add_item_cart = `
         
-       mutation AddItemToCart ($retailerId: ID="${retailer_Id}", $checkoutId: ID="${checkout_Id}", $productId:ID="${product_Id}", $quantity: Int=${quantity}, $option: String="${option}") {
+       mutation AddItemToCart ($retailerId: ID="${retailer_Id}", $checkoutId: ID="${checkout_Id}", $productId:ID="${product_Id}", $quantity: Int=${Int_quantity}, $option: String="${string_option}") {
           addItem (retailerId: $retailerId, checkoutId: $checkoutId, productId: $productId, quantity: $quantity, option: $option) {
             id,
             orderType,
@@ -489,6 +494,7 @@ async function addItemCart (retailer_Id, checkout_Id, product_Id, quantity, opti
                 total,
                 sales
               },
+              quantity,
               product {
                 id,
                 name,

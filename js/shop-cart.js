@@ -90,6 +90,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     console.log(item);
 
                     console.log(cart[item].value_quantity);
+                    console.log(cart[item].value_weight)
 
                     // addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
                     //     console.log(response);
