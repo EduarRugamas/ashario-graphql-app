@@ -84,6 +84,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             btn_checkout_cart.addEventListener('click', () => {
 
                 for (let item in cart) {
+
+                    console.log(cart)
+
                     addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
                         if (response.data.addItem === null) {
                             const error = response.errors[0];
@@ -201,9 +204,10 @@ const render_products_cart = (contenedor, arreglo_productos) => {
         const get_id_product = input.getAttribute('product_id');
         console.log(get_id_product);
         input.addEventListener('change', () => {
+            console.log(input.value)
             cart[get_id_product].value_quantity = input.value;
             storage_local.setItem('cart', JSON.stringify(cart));
-
+            console.log(cart);
             get_string_price.forEach( span => {
                 const get_value_product_id = span.getAttribute('product_id');
                 console.log(get_value_product_id);
