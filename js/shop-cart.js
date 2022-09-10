@@ -90,7 +90,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                     console.log(item);
 
                     addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
-
+                        console.log(response);
+                    }).catch(error => {
+                        console.log('error shop-cart.js', error)
                     })
 
 

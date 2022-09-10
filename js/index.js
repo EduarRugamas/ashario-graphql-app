@@ -143,10 +143,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             // });
 
             let data = await getAllProducts(store_centre_point_mall.id, start, c);
-            let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica', start, c);
-            let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa',  start, c);
-            let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid',  start, c);
-            let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'high_cbd',  start, c);
+            let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'INDICA', start, c);
+            let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'SATIVA',  start, c);
+            let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'HYBRID',  start, c);
+            let filter_high_cbd = await filter_strain_type_lineage(store_centre_point_mall.id, 'HIGH_CBD',  start, c);
             let filter_not_applicable = await filter_strain_type_lineage(store_centre_point_mall.id, 'not_applicable',  start, c);
 
             let filter_35G = await filter_weights(store_centre_point_mall.id, 3.5);
