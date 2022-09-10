@@ -27,8 +27,8 @@ const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-        let quantity_product = await get_count_product(store_centre_point_mall.id);
-        let data = await getAllProducts(store_centre_point_mall.id, 0, quantity_product);
+        let quantity_product = await get_count_product(id_store_centre_point_mall.id);
+        let data = await getAllProducts(id_store_centre_point_mall.id, 0, quantity_product);
 
         if (storage_local.getItem('cart')) {
             cart = JSON.parse(storage_local.getItem('cart'));
