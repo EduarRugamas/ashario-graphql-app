@@ -91,6 +91,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                     addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
                         console.log(response);
+                        window.location.href = `${checkout_id.redirectUrl}`;
                     }).catch(error => {
                         console.log('error shop-cart.js', error)
                     })
