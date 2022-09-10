@@ -84,6 +84,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             btn_checkout_cart.addEventListener('click', async () => {
 
                 console.log(cart);
+                console.log(checkoutId);
 
                 for (let item in cart) {
 
