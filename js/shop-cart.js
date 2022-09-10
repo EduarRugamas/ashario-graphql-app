@@ -85,22 +85,22 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 for (let item in cart) {
 
-                    console.log(cart)
+                    console.log(cart);
 
-                    addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
-                        if (response.data.addItem === null) {
-                            const error = response.errors[0];
-                            console.log(error);
-                            Swal.fire({
-                             icon: 'error',
-                             text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
-                             confirmButtonColor: '#3e3e3e',
-                             });
-                        }else {
-                            window.location.href = `${checkout_id.redirectUrl}`;
-                        }
-
-                    }).catch(error => console.log(error));
+                    // addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
+                    //     if (response.data.addItem === null) {
+                    //         const error = response.errors[0];
+                    //         console.log(error);
+                    //         Swal.fire({
+                    //          icon: 'error',
+                    //          text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+                    //          confirmButtonColor: '#3e3e3e',
+                    //          });
+                    //     }else {
+                    //         window.location.href = `${checkout_id.redirectUrl}`;
+                    //     }
+                    //
+                    // }).catch(error => console.log(error));
                 }
 
                 // for (let item in cart) {
