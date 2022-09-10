@@ -405,7 +405,7 @@ const getAllProducts = async (retailerID, page_previous, page_next) => {
                 products {
                     id,
                     name,
-                    brand{
+                    brand {
                       name
                     },
                     image,
@@ -418,8 +418,7 @@ const getAllProducts = async (retailerID, page_previous, page_next) => {
                       quantity,
                       id
                     }
-                },
-                productsCount
+                }
             }
         }
     `;

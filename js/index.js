@@ -162,6 +162,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     FadeOut(div_loader);
                 }
 
+                console.log(data);
                 cartProduct(container_products, data.products);
 
 
