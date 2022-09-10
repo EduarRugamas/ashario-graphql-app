@@ -21,8 +21,8 @@ const contenedor_products = document.getElementById('contenedor_products_cart');
 const div_loader = document.querySelector('.content-loader');
 const content_price_total_subtotal = document.getElementById('content_total_subtotal');
 
-const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
-const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
+const id_store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
+const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
             });
             btn_checkout_cart.classList.remove('disabled');
-            btn_checkout_cart.addEventListener('click', () => {
+            btn_checkout_cart.addEventListener('click', async () => {
 
                 console.log(cart);
 
@@ -90,30 +90,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                     console.log(item);
 
                     console.log(cart[item].value_quantity);
-                    console.log(cart[item].value_weight)
+                    console.log(cart[item].value_weight);
 
-                    addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, parseInt(cart[item].value_quantity), cart[item].value_weight.toString()).then( response => {
-                        console.log(response);
-                        window.location.href = `${checkout_id.redirectUrl}`;
-                    }).catch(error => {
-                        console.log('error shop-cart.js', error)
+                    await addItemCart(id_store_centre_point_mall.id, checkoutId.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
+                        window.location.href = `${checkoutId.redirectUrl}`;
                     });
-
-
-                    // addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
-                    //     if (response.data.addItem === null) {
-                    //         const error = response.errors[0];
-                    //         console.log(error);
-                    //         Swal.fire({
-                    //          icon: 'error',
-                    //          text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
-                    //          confirmButtonColor: '#3e3e3e',
-                    //          });
-                    //     }else {
-                    //         window.location.href = `${checkout_id.redirectUrl}`;
-                    //     }
-                    //
-                    // }).catch(error => console.log(error));
                 }
 
                 // for (let item in cart) {
