@@ -96,8 +96,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                              text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
                              confirmButtonColor: '#3e3e3e',
                              });
+                        }else {
+                            window.location.href = `${checkout_id.redirectUrl}`;
                         }
-                        window.location.href = `${checkout_id.redirectUrl}`;
+
                     }).catch(error => console.log(error));
                 }
 
