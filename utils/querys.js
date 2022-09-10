@@ -172,13 +172,13 @@ const getProduct = async (retailerID, id_product) => {
 }
 
 // fetch de filters brand and category
-const filter_strain_type_lineage = async (retailerID, strain_type) => {
+const filter_strain_type_lineage = async (retailerID, strain_type, page_previous, page_next) => {
 
     let strain_type_uppercase = strain_type.toUpperCase();
 
     const query_filter_strain_type = `
         query FilterAllLineage ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER, strainType: ${strain_type_uppercase} }, pagination: { offset: 0, limit: 5 } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, strainType: ${strain_type_uppercase} }, pagination: { offset: ${page_previous}, limit: ${page_next} } ) {
                 products {
                     id,
                     name,
