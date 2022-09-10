@@ -83,9 +83,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             btn_checkout_cart.classList.remove('disabled');
             btn_checkout_cart.addEventListener('click', () => {
 
+                console.log(cart);
+
                 for (let item in cart) {
 
-                    console.log(cart);
+
 
                     // addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
                     //     if (response.data.addItem === null) {
