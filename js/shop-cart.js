@@ -1,4 +1,4 @@
-import {get_count_product, getAllProducts} from '../utils/querys.js';
+import {get_count_product, getAllProducts, addItemCart} from '../utils/querys.js';
 import {FadeOut} from "../utils/utils.js";
 
 const storage_local = window.localStorage;
@@ -81,6 +81,40 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
             });
             btn_checkout_cart.classList.remove('disabled');
+            btn_checkout_cart.addEventListener('click', () => {
+
+                for (let item in cart) {
+                    addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then( response => {
+                        if (result.data.addItem === null) {
+                            const error = result.errors[0];
+                            console.log(error);
+                            Swal.fire({
+                             icon: 'error',
+                             text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+                             confirmButtonColor: '#3e3e3e',
+                             });
+                        }
+                        window.location.href = `${checkout_id.redirectUrl}`;
+                    }).catch(error => console.log(error));
+                }
+
+                // for (let item in cart) {
+                //     console.log(item);
+                //     addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
+                //         console.log(result);
+                //         if (result.data.addItem === null) {
+                //             const error = result.errors[0];
+                //             console.log(error);
+                //             Swal.fire({
+                //                 icon: 'error',
+                //                 text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+                //                 confirmButtonColor: '#3e3e3e',
+                //             });
+                //         }
+                //
+                //
+                //         window.location.href = `${checkout_id.redirectUrl}`;
+            });
 
         }
 
@@ -152,8 +186,6 @@ const render_products_cart = (contenedor, arreglo_productos) => {
        console.log(get_information_price);
        let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
        span.textContent = `$${calc}`;
-       sum += parseFloat(calc);
-       view_subtotal_pay_products.textContent = `$${sum}`;
     });
 
     get_string_quantity.forEach(span => {
@@ -182,9 +214,6 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 console.log(get_information_price);
                 let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
                 span.textContent = `$${calc}`;
-                sum += parseFloat(calc);
-                view_subtotal_pay_products.textContent = `$${sum}`;
-
             });
 
             get_string_quantity.forEach(span => {
