@@ -132,16 +132,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         count_Products.then(async (c) => {
             console.log(c);
 
-            // window.addEventListener('scroll', async () => {
-            //     if (window.scrollY === document.documentElement.scrollHeight - window.innerHeight) {
-            //         start += 20;
-            //         limit += 20;
-            //         console.log(start, limit);
-            //         let data = await getAllProducts(store_centre_point_mall.id, start, limit);
-            //         cartProduct(container_products, data.products);
-            //     }
-            // });
-
             let data = await getAllProducts(store_centre_point_mall.id, start, c);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'INDICA', start, c);
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'SATIVA',  start, c);
@@ -321,7 +311,7 @@ const cartProduct = (container_products, array_products) => {
                             <div class="product-info">
                                 <a href="/views/product-details.html?id=${product.id}" id="content_text_brand">
                                     <p class="product-catergory font-13 mb-1 content-badge-strain" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
-                                    <!-- <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p> -->
+                                    <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p> 
                                     <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
                                 </a>
                                 <a href="/views/product-details.html?id=${product.id}">
