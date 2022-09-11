@@ -190,7 +190,7 @@ const renderProduct = (container, informatio_product, array_products_all) => {
             cart[product_id].value_weight = value_weight;
             storage_local.setItem('cart', JSON.stringify(cart));
             Swal.fire({
-                title: 'Update product!',
+                title: 'Your cart has been updated.',
                 text: `${informatio_product.name}`,
                 imageUrl: `${informatio_product.image}`,
                 imageWidth: 250,

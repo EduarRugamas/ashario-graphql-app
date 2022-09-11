@@ -482,7 +482,7 @@ const cartProduct = (container_products, array_products) => {
                         storage_local.setItem('cart', JSON.stringify(cart));
                         let card_view_product = array_products.find(item => item.id === product_id);
                         Swal.fire({
-                            title: 'Update product!',
+                            title: 'Your cart has been updated.',
                             text: `${card_view_product.name}`,
                             imageUrl: `${card_view_product.image}`,
                             imageWidth: 250,
@@ -495,7 +495,7 @@ const cartProduct = (container_products, array_products) => {
                         storage_local.setItem('cart', JSON.stringify(cart));
                         let card_view_product = array_products.find(item => item.id === product_id);
                         Swal.fire({
-                            title: 'Update product!',
+                            title: 'Your cart has been updated.',
                             text: `${card_view_product.name}`,
                             imageUrl: `${card_view_product.image}`,
                             imageWidth: 250,

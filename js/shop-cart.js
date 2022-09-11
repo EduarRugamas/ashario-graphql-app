@@ -88,33 +88,22 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 for (let item in cart) {
 
-                    console.log(item);
-
-                    console.log(cart[item].value_quantity);
-                    console.log(cart[item].value_weight);
-
                     await addItemCart(id_store_centre_point_mall.id, checkoutId.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
-                        window.location.href = `${checkoutId.redirectUrl}`;
+
+                        if (result.data.addItem === null) {
+                          const error = result.errors[0];
+                          console.log(error);
+                          Swal.fire({
+                            icon: 'error',
+                            text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+                            confirmButtonColor: '#3e3e3e',
+                          });
+                        }else {
+                            window.location.href = `${checkoutId.redirectUrl}`;
+                        }
                         console.log(checkoutId);
                     });
                 }
-
-                // for (let item in cart) {
-                //     console.log(item);
-                //     addItemCart(store_centre_point_mall.id, checkout_id.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
-                //         console.log(result);
-                //         if (result.data.addItem === null) {
-                //             const error = result.errors[0];
-                //             console.log(error);
-                //             Swal.fire({
-                //                 icon: 'error',
-                //                 text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
-                //                 confirmButtonColor: '#3e3e3e',
-                //             });
-                //         }
-                //
-                //
-                //         window.location.href = `${checkout_id.redirectUrl}`;
             });
 
         }
