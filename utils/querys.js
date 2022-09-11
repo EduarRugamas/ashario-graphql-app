@@ -99,7 +99,7 @@ const getRetailersIds = async () => {
         }
     }`;
 
-    return await new Promise( (resolve, reject) => {
+    return await new Promise((resolve, reject) => {
         fetch(`${url_base}`, {
             method: 'POST',
             headers: headers,
@@ -204,14 +204,14 @@ const filter_strain_type_lineage = async (retailerID, strain_type, page_previous
     const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify( { query: query_filter_strain_type } )
+        body: JSON.stringify({query: query_filter_strain_type})
     });
 
     const data = await response.json();
     return data.data.menu;
 };
 const filter_weights = async (retailerID, weigths) => {
-    let weight_transform = weigths+"g"
+    let weight_transform = weigths + "g"
     const query_filter_weights = `
             query FilterWeights ($retailerId: ID="${retailerID}"){
             menu (retailerId: $retailerId, filter: { category: FLOWER, weights: ["${weight_transform}"] }, pagination: { offset: 0, limit: 20 } ) {
@@ -279,7 +279,7 @@ const filter_thc = async (retailerID, min, max) => {
     const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify( { query: query_filter_thc } )
+        body: JSON.stringify({query: query_filter_thc})
     });
 
     const data = await response.json();
@@ -314,7 +314,7 @@ const filter_cbd = async (retailerID, min, max) => {
     const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify( { query: query_filter_cbd } )
+        body: JSON.stringify({query: query_filter_cbd})
     });
 
     const data = await response.json();
@@ -389,7 +389,7 @@ const get_products_carrousel = async (retailerID, category, page_previous, page_
     const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify( { query: query_get_products_carrousel } )
+        body: JSON.stringify({query: query_get_products_carrousel})
     });
     const data = await response.json();
     return data.data.menu;
@@ -412,21 +412,41 @@ const getAllProducts = async (retailerID, page_previous, page_next) => {
                     category,
                     subcategory,
                     strainType,
-                    variants {
-                      option,
-                      priceRec,
-                      quantity,
-                      id
-                    }
-                }
+                    potencyCbd {
+              formatted,
+              unit,
+              range
+            },
+            potencyThc {
+              formatted,
+              range,
+              unit
+            },
+            potencyCbd {
+                        formatted,
+                        unit,
+                        range
+            },
+            potencyThc {
+               formatted,
+               range,
+               unit
+            },
+            variants {
+               option,
+               priceRec,
+               quantity,
+               id
             }
+           }
+          }
         }
     `;
 
     const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify( { query: query_get_all_products } )
+        body: JSON.stringify({query: query_get_all_products})
     });
     const data = await response.json();
     return data.data.menu;
@@ -469,7 +489,7 @@ const createCheckout = async (retailerId, orderType, pricingType) => {
     return result.data.createCheckout;
 };
 
- const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, option) => {
+const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, option) => {
 
     let Int_quantity = parseInt(quantity);
     let string_option = option.toString();
@@ -519,14 +539,14 @@ const createCheckout = async (retailerId, orderType, pricingType) => {
         
     `;
 
-    return await new Promise( (resolve, reject) =>  {
+    return await new Promise((resolve, reject) => {
         fetch(`${url_base}`, {
             method: 'POST',
             headers: headers,
-            body: JSON.stringify( { query: query_add_item_cart } )
-        }).then( response => {
+            body: JSON.stringify({query: query_add_item_cart})
+        }).then(response => {
             return response.json();
-        }).then( result => {
+        }).then(result => {
             resolve(result)
         }).catch(error => reject(error.message))
     });
