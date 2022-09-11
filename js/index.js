@@ -326,16 +326,15 @@ const cartProduct = (container_products, array_products) => {
                                         </span>
                                         <span class="fs-5 jcpricingnw"></span>
                                         <span class="er-each jceachformat" style="align-items: flex-end;"></span>
-                                        
-                                        <dl class="mt-3" id="container-details-dl">
-                                                <dt class="col-sm-3">THC</dt>
-                                                <dd class="col-sm-9 badge_strain">${product.potencyThc.formatted}</dd>
-                                                <dt class="col-sm-3">CBD</dt>
-                                                <dd class="col-sm-9 badge_strain">${product.potencyCbd.formatted}</dd>
-                                        </dl>
+                                    
                                     </div>
-                             
                                 </div>
+                                <dl class="mt-3" id="container-details-dl">
+                                    <dt class="col-sm-3">THC</dt>
+                                    <dd class="col-sm-9 badge_strain">${product.potencyThc.formatted}</dd>
+                                    <dt class="col-sm-3">CBD</dt>
+                                    <dd class="col-sm-9 badge_strain">${product.potencyCbd.formatted}</dd>
+                                </dl>
                                 <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                     <div class="me-4" id="container_quantity">
                                         <label class="form-label">Quantity</label>
