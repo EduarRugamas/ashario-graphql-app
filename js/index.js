@@ -330,14 +330,14 @@ const cartProduct = (container_products, array_products) => {
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-column">
+                                    <div class="d-flex">
                                         <span>THC</span>
                                         <span>${product.potencyThc.formatted}</span>
                                     </div>
             
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-column">
+                                    <div class="d-flex">
                                         <span>CBD</span>
                                         <span>${product.potencyCbd.formatted}</span>
                                     </div>
