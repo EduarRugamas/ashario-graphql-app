@@ -650,7 +650,7 @@ const render_search_products = (container_products, retailerId, id_container_sea
         document.getElementById('input_search_text').value = "";
         cartProduct(container_products, array_all_products.products);
     });
-    
+
     // const input_search = document.getElementById('input_search_text');
     // input_search.addEventListener('keyup', (event) => {
     //     console.log(input_search.value);

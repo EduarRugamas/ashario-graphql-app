@@ -332,6 +332,16 @@ const filter_search_product = async (retailerId, search, page_previous, page_nex
                 brand{
                 name
                 },
+                potencyCbd {
+              formatted,
+              unit,
+              range
+            },
+            potencyThc {
+              formatted,
+              range,
+              unit
+            },
                 image,
                 category,
                 subcategory,
@@ -402,17 +412,17 @@ const getAllProducts = async (retailerID, page_previous, page_next) => {
     const query_get_all_products = `
         query GetAllProducts($retailerId: ID="${retailerID}" ) {
             menu(retailerId: $retailerId, filter: { category: FLOWER}, pagination: { offset: ${page_previous}, limit: ${page_next} }) {
-                products {
+           products {
                     id,
                     name,
                     brand {
                       name
-                    },
+            },
                     image,
                     category,
                     subcategory,
                     strainType,
-                    potencyCbd {
+            potencyCbd {
               formatted,
               unit,
               range
@@ -421,16 +431,6 @@ const getAllProducts = async (retailerID, page_previous, page_next) => {
               formatted,
               range,
               unit
-            },
-            potencyCbd {
-                        formatted,
-                        unit,
-                        range
-            },
-            potencyThc {
-               formatted,
-               range,
-               unit
             },
             variants {
                option,
