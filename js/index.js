@@ -326,9 +326,7 @@ const cartProduct = (container_products, array_products) => {
                                         </span>
                                         <span class="fs-5 jcpricingnw"></span>
                                         <span class="er-each jceachformat" style="align-items: flex-end;"></span>
-                                    </div>
-                                    
-                                    <div class="mb-1">
+                                        
                                         <dl class="mt-3" id="container-details-dl">
                                                 <dt class="col-sm-3">THC</dt>
                                                 <dd class="col-sm-9 badge_strain">${product.potencyThc.formatted}</dd>
@@ -336,6 +334,7 @@ const cartProduct = (container_products, array_products) => {
                                                 <dd class="col-sm-9 badge_strain">${product.potencyCbd.formatted}</dd>
                                         </dl>
                                     </div>
+                             
                                 </div>
                                 <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
                                     <div class="me-4" id="container_quantity">
