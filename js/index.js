@@ -329,7 +329,7 @@ const cartProduct = (container_products, array_products) => {
                                     </div>
                                     
                                     <div class="mb-1">
-                                        <dl class="row mt-3" id="container-details-dl">
+                                        <dl class="mt-3" id="container-details-dl">
                                                 <dt class="col-sm-3">THC</dt>
                                                 <dd class="col-sm-9 badge_strain">${product.potencyThc.formatted}</dd>
                                                 <dt class="col-sm-3">CBD</dt>
