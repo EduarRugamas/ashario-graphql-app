@@ -329,16 +329,16 @@ const cartProduct = (container_products, array_products) => {
                                     
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center justify-content-center">
                                     <div class="d-flex">
-                                        <span style="margin-right: 5px; font-weight: bold;">THC</span>
+                                        <span style="margin-right: 10px; font-weight: bold;">THC</span>
                                         <span>${product.potencyThc.formatted}</span>
                                     </div>
             
                                 </div>
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center justify-content-center">
                                     <div class="d-flex">
-                                        <span style="margin-right: 5px; font-weight: bold;">CBD</span>
+                                        <span style="margin-right: 10px; font-weight: bold;">CBD</span>
                                         <span>${product.potencyCbd.formatted}</span>
                                     </div>
                                 </div>
