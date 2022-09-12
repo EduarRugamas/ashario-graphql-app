@@ -215,18 +215,10 @@ const render_products_cart = (contenedor, arreglo_productos) => {
 
 
             renderInvoice(get_string_price);
-
-            get_string_quantity.forEach(span => {
-                const get_value_product_id = span.getAttribute('product_id');
-                span.setAttribute('quantity_item', cart[get_value_product_id].value_quantity);
-                span.textContent = cart[get_value_product_id].value_quantity;
-            });
-
-            renderInvoice(get_string_price);
         });
 
     });
-    renderInvoice();
+    renderInvoice(get_string_price);
     remove_item_cart('remove_item_product', arreglo_productos);
 };
 
