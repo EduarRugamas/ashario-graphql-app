@@ -212,10 +212,21 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 span.setAttribute('quantity_item', cart[get_value_product_id].value_quantity);
                 span.textContent = cart[get_value_product_id].value_quantity;
             });
+
+
+            renderInvoice(get_string_price);
+
+            get_string_quantity.forEach(span => {
+                const get_value_product_id = span.getAttribute('product_id');
+                span.setAttribute('quantity_item', cart[get_value_product_id].value_quantity);
+                span.textContent = cart[get_value_product_id].value_quantity;
+            });
+
+            renderInvoice(get_string_price);
         });
 
     });
-
+    renderInvoice();
     remove_item_cart('remove_item_product', arreglo_productos);
 };
 
@@ -316,6 +327,23 @@ const update_icon_cart = () => {
     icon_cart_count.textContent = count;
     storage_local.setItem('count', count);
 };
+
+const renderInvoice = (get_string_price) => {
+    let subtotal = 0;
+    let taxes = 0;
+
+    get_string_price.forEach(quantity => {
+        subtotal += parseFloat(quantity.innerHTML.replace("$", ""));
+    });
+
+    view_subtotal_pay_products.innerHTML = numberToMonery(subtotal);
+    view_total_pay_products.innerHTML = numberToMonery(subtotal + taxes);
+};
+
+const numberToMonery = (number) => {
+    return "$" + (number).toFixed(2);
+};
+
 
 // if (Object.entries(cart).length === 0) {
 //     let template_empty_mini_cart = '';

@@ -856,7 +856,8 @@ function FormatWeigths(variant) {
 
         }
     });
-}
+};
+
 
 
 //  item de mini cart
