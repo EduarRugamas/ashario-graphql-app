@@ -365,27 +365,33 @@ window.addEventListener('DOMContentLoaded', async () => {
                 btn_sort_a_z.addEventListener('click', async () => {
                     const sort_a_z = await filter_sort(store_centre_point_mall.id, 'FLOWER','ASC', 'NAME');
                     console.log(sort_a_z);
+                    cartProduct(container_products, sort_a_z.products);
                 });
                 btn_sort_z_a.addEventListener('click', async () => {
                     const sort_z_a = await filter_sort(store_centre_point_mall.id, 'FLOWER','DESC', 'NAME');
                     console.log(sort_z_a);
+                    cartProduct(container_products, sort_z_a.products);
                 });
 
                 btn_sort_price_low_high.addEventListener('click', async () => {
                     const sort_price_low_high = await filter_sort(store_centre_point_mall.id, 'FLOWER', 'ASC', 'PRICE');
                     console.log(sort_price_low_high);
+                    cartProduct(container_products, sort_price_low_high.products);
                 });
                 btn_sort_price_high_low.addEventListener('click', async () => {
                     const sort_price_high_low = await filter_sort(store_centre_point_mall.id, 'FLOWER', 'DESC', 'PRICE');
                     console.log(sort_price_high_low);
+                    cartProduct(container_products, sort_price_high_low.products);
                 });
                 btn_sort_potency_low_high.addEventListener('click', async () => {
                     const sort_potency_low_high = await filter_sort(store_centre_point_mall.id, 'FLOWER', 'ASC', 'POTENCY');
                     console.log(sort_potency_low_high);
+                    cartProduct(container_products, sort_potency_low_high.products);
                 });
                 btn_sort_potency_high_low.addEventListener('click', async () => {
                     const sort_potency_high_low = await filter_sort(store_centre_point_mall.id, 'FLOWER', 'DESC', 'POTENCY');
                     console.log(sort_potency_high_low);
+                    cartProduct(container_products, sort_potency_high_low.products);
                 });
 
 
