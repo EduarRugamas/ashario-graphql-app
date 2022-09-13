@@ -178,7 +178,7 @@ const filter_strain_type_lineage = async (retailerID, strain_type, page_previous
 
     const query_filter_strain_type = `
         query FilterAllLineage ($retailerId: ID="${retailerID}"){
-            menu (retailerId: $retailerId, filter: { category: FLOWER, strainType: ${strain_type_uppercase} }, pagination: { offset: ${page_previous}, limit: ${page_next} } ) {
+            menu (retailerId: $retailerId, filter: { category: FLOWER, strainType: ${strain_type_uppercase} }, pagination: { offset: 0, limit: 300 } ) {
                 products {
                     id,
                     name,
@@ -552,7 +552,7 @@ const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, optio
     });
 }
 
-const filter_name_sort = async (retailer_Id, direction, key ) => {
+const filter_sort = async (retailer_Id, direction, key ) => {
     const query_sortby = `
           query SortedMenu($retailerId: ID="${retailer_Id}") {
               menu(retailerId: $retailerId sort: { direction: ${direction}, key:  ${key} ) {
@@ -608,9 +608,11 @@ export {
     filter_weights,
     filter_thc,
     filter_cbd,
+    filter_sort,
     filter_search_product,
     createCheckout,
-    addItemCart
+    addItemCart,
+
 }
 
 
