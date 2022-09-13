@@ -558,7 +558,7 @@ const filter_sort = async (retailer_Id, direction, key ) => {
     let value_key = key.toUpperCase();
     const query_sortby = `
           query SortedMenu($retailerId: ID="${retailer_Id}") {
-              menu(retailerId: $retailerId, sort: { direction: ${value_direction}, key:  ${value_key} }) {
+              menu(retailerId: $retailerId, sort: { direction: ${value_direction}, key:  ${value_key} }, pagination: {offset: 0, limit: 500} ) {
                 products {
                     id,
                     name,
