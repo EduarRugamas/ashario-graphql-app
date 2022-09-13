@@ -552,13 +552,14 @@ const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, optio
     });
 }
 
-const filter_sort = async (retailer_Id, direction, key ) => {
+const filter_sort = async (retailer_Id, category, direction, key ) => {
 
     let value_direction = direction.toUpperCase();
     let value_key = key.toUpperCase();
+    let value_category = category.toUpperCase();
     const query_sortby = `
           query SortedMenu($retailerId: ID="${retailer_Id}") {
-              menu(retailerId: $retailerId, sort: { direction: ${value_direction}, key:  ${value_key} }, pagination: {offset: 0, limit: 500} ) {
+              menu(retailerId: $retailerId, filter: { category: ${value_category} }, sort: { direction: ${value_direction}, key:  ${value_key} }, pagination: {offset: 0, limit: 500} ) {
                 products {
                     id,
                     name,
