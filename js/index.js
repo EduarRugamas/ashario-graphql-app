@@ -153,28 +153,23 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             if (radio_indica.checked && radio_indica.value === 'indica') {
                 cartProduct(container_products, filter_indica.products);
-                ViewQuantity();
-                ViewWeigths(filter_indica);
+                render_quantity_weights(filter_indica.products);
             }
             if (radio_sativa.checked && radio_sativa.value === 'sativa') {
                 cartProduct(container_products, filter_sativa.products);
-                ViewQuantity();
-                ViewWeigths(filter_sativa);
+                render_quantity_weights(filter_sativa.products);
             }
             if (radio_hybrid.checked && radio_hybrid.value === 'hybrid') {
                 cartProduct(container_products, filter_hybrid.products);
-                ViewQuantity();
-                ViewWeigths(filter_hybrid.products);
+                render_quantity_weights(filter_hybrid.products);
             }
             if (radio_high_cbd.checked && radio_high_cbd.value === 'high_cbd') {
                 cartProduct(container_products, filter_high_cbd.products);
-                ViewQuantity();
-                ViewWeigths(filter_high_cbd);
+                render_quantity_weights(filter_high_cbd.products);
             }
             if (radio_not_applicable.checked && radio_not_applicable.value === 'not_applicable') {
                 cartProduct(container_products, filter_not_applicable.products);
-                ViewQuantity();
-                ViewWeigths(filter_not_applicable);
+                render_quantity_weights(filter_not_applicable.products);
             }
 
 
@@ -186,30 +181,24 @@ window.addEventListener('DOMContentLoaded', async () => {
                     }
                     if (radio.value === 'indica' && radio.checked) {
                         cartProduct(container_products, filter_indica.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_indica);
+                        render_quantity_weights(filter_indica.products);
                     }
                     if (radio.value === 'sativa' && radio.checked){
                         cartProduct(container_products, filter_sativa.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_sativa);
+                        render_quantity_weights(filter_sativa.products);
                     }
                     if (radio.value === 'hybrid' && radio.checked) {
                         cartProduct(container_products, filter_hybrid.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_hybrid);
+                        render_quantity_weights(filter_hybrid.products);
                     }
                     if (radio.value === 'high_cbd' && radio.checked) {
                         console.log('entro a high_cbd');
                         cartProduct(container_products, filter_high_cbd.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_high_cbd);
+                        render_quantity_weights(filter_high_cbd.products);
                     }
                     if (radio.value === 'not_applicable' && radio.checked) {
                         console.log('entro a not applicable');
                         cartProduct(container_products, filter_not_applicable.products);
-                        ViewQuantity();
-                        ViewWeigths(filter_not_applicable);
                     }
                 })
             });

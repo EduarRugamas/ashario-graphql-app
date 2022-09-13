@@ -553,19 +553,22 @@ const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, optio
 }
 
 const filter_sort = async (retailer_Id, direction, key ) => {
+
+    let value_direction = direction.toUpperCase();
+    let value_key = key.toUpperCase();
     const query_sortby = `
           query SortedMenu($retailerId: ID="${retailer_Id}") {
-              menu(retailerId: $retailerId sort: { direction: ${direction}, key:  ${key} ) {
+              menu(retailerId: $retailerId sort: { direction: ${value_direction}, key:  ${value_key} ) {
                 products {
                     id,
                     name,
                     brand {
                       name
                    },
-                    image,
-                    category,
-                    subcategory,
-                    strainType,
+                   image,
+                   category,
+                   subcategory,
+                   strainType,
                    potencyCbd {
                     formatted,
                     unit,
@@ -586,6 +589,7 @@ const filter_sort = async (retailer_Id, direction, key ) => {
               }
         }
     `;
+
     const response = await fetch(`${url_base}`, {
         method: 'POST',
         headers: headers,
