@@ -363,7 +363,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 btn_sort_a_z.addEventListener('click', async () => {
-                    const sort_a_z = await filter_sort(store_centre_point_mall.id, 'DES', 'NAME');
+                    const sort_a_z = await filter_sort(store_centre_point_mall.id, 'DESC', 'NAME');
                     console.log(sort_a_z);
                 });
 
