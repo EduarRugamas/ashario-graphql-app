@@ -8,7 +8,8 @@ import {
     filter_search_product,
     getAllProducts,
     getRetailersIds,
-    get_count_product
+    get_count_product,
+    filter_sort
 } from '../utils/querys.js';
 import {FadeOut, FadeIn} from '../utils/utils.js'
 import {appendElementHtml, createElementHtml} from "../utils/elements_html.js";
@@ -28,6 +29,18 @@ let radio_hybrid = document.querySelector('#filter_hybrid');
 let radio_high_cbd = document.querySelector('#filter_high_cbd');
 let radio_not_applicable = document.querySelector('#filter_not_applicable');
 // fin declacion de botones de filtro lineage and weights
+
+// filtro sort
+
+const btn_sort_a_z = document.getElementById('filter_sort_a_z');
+const btn_sort_z_a = document.getElementById('filter_sort_z_a');
+const btn_sort_price_low_high = document.getElementById('filter_sort_price_low_high');
+const btn_sort_price_high_low = document.getElementById('filter_sort_price_high_low');
+const btn_sort_potency_low_high = document.getElementById('filter_sort_potency_low_high');
+const btn_sort_potency_high_low = document.getElementById('filter_sort_potency_high_low');
+
+
+//fin de filtro sort
 
 //declaracion de botones o contenedores no principales
 
@@ -348,6 +361,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                         });
                     });
                 });
+
+                btn_sort_a_z.addEventListener('click', async () => {
+                    const sort_a_z = await filter_sort(store_centre_point_mall.id, 'DES', 'NAME');
+                    console.log(sort_a_z);
+                });
+
+
+
 
 
         }).catch(error => {
