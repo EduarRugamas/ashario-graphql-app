@@ -552,6 +552,52 @@ const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, optio
     });
 }
 
+const filter_name_sort = async (retailer_Id, direction, key ) => {
+    const query_sortby = `
+          query SortedMenu($retailerId: ID="${retailer_Id}") {
+              menu(retailerId: $retailerId sort: { direction: ${direction}, key:  ${key} ) {
+                products {
+                    id,
+                    name,
+                    brand {
+                      name
+                   },
+                    image,
+                    category,
+                    subcategory,
+                    strainType,
+                   potencyCbd {
+                    formatted,
+                    unit,
+                    range
+                   },
+                   potencyThc {
+                    formatted,
+                    range,
+                    unit
+                   },
+                   variants {
+                    option,
+                    priceRec,
+                    quantity,
+                    id
+                    }
+                }
+              }
+        }
+    `;
+    const response = await fetch(`${url_base}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({query: query_sortby})
+    });
+
+    const data = await response.json();
+    return data;
+};
+
+
+
 export {
     getRetailersIds,
     get_count_product,
