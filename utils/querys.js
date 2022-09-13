@@ -598,7 +598,7 @@ const filter_sort = async (retailer_Id, category, direction, key ) => {
     });
 
     const data = await response.json();
-    return data;
+    return data.data.menu;
 };
 
 
