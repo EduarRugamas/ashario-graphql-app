@@ -177,7 +177,7 @@ const filter_strain_type_lineage = async (retailerID, strain_type, page_previous
     let strain_type_uppercase = strain_type.toUpperCase();
 
     const query_filter_strain_type = `
-        query FilterAllLineage ($retailerId: ID="${retailerID}"){
+        query FilterStrainType ($retailerId: ID="${retailerID}"){
             menu (retailerId: $retailerId, filter: { category: FLOWER, strainType: ${strain_type_uppercase} }, pagination: { offset: 0, limit: 300 } ) {
                 products {
                     id,
