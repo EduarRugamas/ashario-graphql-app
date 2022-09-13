@@ -182,8 +182,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 radio.addEventListener('change', () => {
                     if (radio.checked  && radio.value === 'all') {
                         cartProduct(container_products, data.products);
-                        ViewQuantity();
-                        ViewWeigths(data);
+                        render_quantity_weights(data.products);
                     }
                     if (radio.value === 'indica' && radio.checked) {
                         cartProduct(container_products, filter_indica.products);
@@ -366,7 +365,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log('Error query', error.message);
             ViewEmpty(container_products);
         });
-    
+
 });
 
     const ViewEmpty = (container_products) => {
