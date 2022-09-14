@@ -6,88 +6,6 @@ const headers = {
     "Authorization": "Bearer " + secret_key,
 };
 
-
-// const GetAllRetailerIds = () => {
-//
-//     const query_retailers = `
-//     query GetRetailers {
-//         retailers {
-//            name,
-//            id,
-//            menuTypes,
-//            address
-//         }
-//     }
-//     `
-//     fetch(`${url_base}`, {
-//         method: 'POST',
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json",
-//             "Authorization": "Bearer " + secret_key,
-//         },
-//         body: JSON.stringify({
-//             query: query_retailers
-//         })
-//     }).then( (response) => {
-//         if (response.ok) {
-//             return response.json();
-//         }
-//     })
-//     .then( (retailers) => {
-//         console.log(retailers)
-//
-//         const array = retailers.data.retailers;
-//
-//         array.find( item => {
-//             if (item.name === 'Ashario - Centrepoint Mall') {
-//                 let store_centre_point_mall = {
-//                     name: item.name,
-//                     id: item.id,
-//                     menuTypes: item.menuTypes,
-//                     address: item.address
-//                 }
-//
-//                 console.log(item);
-//
-//                 local_storage.setItem('Ashario_Centrepoint_Mall', JSON.stringify(store_centre_point_mall));
-//                 console.log('se guardo en el local storage');
-//             }
-//
-//             if (item.name === 'Ashario - Aurora') {
-//                 let store_aurora = {
-//                     name: item.name,
-//                     id: item.id,
-//                     menuTypes: item.menuTypes,
-//                     address: item.address
-//                 }
-//
-//                 console.log(item);
-//
-//                 local_storage.setItem('Ashario_Aurora', JSON.stringify(store_aurora));
-//                 console.log('se guardo en el local storage');
-//             }
-//
-//             if (item.name === 'Ashario - North York') {
-//                 let store_north_york = {
-//                     name: item.name,
-//                     id: item.id,
-//                     menuTypes: item.menuTypes,
-//                     address: item.address
-//                 }
-//
-//                 console.log(item);
-//
-//                 local_storage.setItem('Ashario_North_York', JSON.stringify(store_north_york));
-//                 console.log('se guardo en el local storage');
-//             }
-//         });
-//
-//     })
-//     .catch(error => console.log(error.message));
-// };
-
-
 const getRetailersIds = async () => {
     const query_retailers = `
     query GetRetailers {
@@ -185,6 +103,16 @@ const filter_strain_type_lineage = async (retailerID, strain_type, page_previous
                     brand{
                       name
                     },
+                    potencyCbd {
+                      formatted,
+                      unit,
+                      range
+                    },
+                    potencyThc {
+                      formatted,
+                      range,
+                      unit
+                    },
                     image,
                     category,
                     subcategory,
@@ -221,10 +149,21 @@ const filter_weights = async (retailerID, weigths) => {
                     brand{
                       name
                     },
+                    potencyCbd {
+                      formatted,
+                      unit,
+                      range
+                    },
+                    potencyThc {
+                      formatted,
+                      range,
+                      unit
+                    },
                     image,
                     category,
                     subcategory,
                     strainType,
+                    effects,
                     variants {
                       option,
                       priceRec,
@@ -260,10 +199,21 @@ const filter_thc = async (retailerID, min, max) => {
                     brand{
                       name
                     },
+                    potencyCbd {
+                      formatted,
+                      unit,
+                      range
+                    },
+                    potencyThc {
+                      formatted,
+                      range,
+                      unit
+                    },
                     image,
                     category,
                     subcategory,
                     strainType,
+                    effects,
                     variants {
                       option,
                       priceRec,
@@ -297,8 +247,19 @@ const filter_cbd = async (retailerID, min, max) => {
                     },
                     image,
                     category,
+                    potencyCbd {
+                      formatted,
+                      unit,
+                      range
+                    },
+                    potencyThc {
+                      formatted,
+                      range,
+                      unit
+                    },
                     subcategory,
                     strainType,
+                    effects,
                     variants {
                       option,
                       priceRec,
@@ -332,7 +293,7 @@ const filter_search_product = async (retailerId, search, page_previous, page_nex
                 brand{
                 name
                 },
-                potencyCbd {
+              potencyCbd {
               formatted,
               unit,
               range
@@ -346,7 +307,7 @@ const filter_search_product = async (retailerId, search, page_previous, page_nex
                 category,
                 subcategory,
                 strainType,
-                effects
+                effects,
                 variants {
                     option,
                     priceRec,
@@ -383,6 +344,16 @@ const get_products_carrousel = async (retailerID, category, page_previous, page_
                     category,
                     subcategory,
                     strainType,
+                    potencyCbd {
+                      formatted,
+                      unit,
+                      range
+                    },
+                    potencyThc {
+                      formatted,
+                      range,
+                      unit
+                    },
                     description,
                     variants {
                       option,
@@ -463,6 +434,16 @@ const createCheckout = async (retailerId, orderType, pricingType) => {
                       name,
                       category,
                       strainType,
+                      potencyCbd {
+                        formatted,
+                        unit,
+                        range
+                      },
+                      potencyThc {
+                        formatted,
+                        range,
+                        unit
+                      },
                       variants {
                         option,
                         priceRec
@@ -519,6 +500,16 @@ const addItemCart = async (retailer_Id, checkout_Id, product_Id, quantity, optio
                 name,
                 category,
                 image,
+                potencyCbd {
+                  formatted,
+                  unit,
+                  range
+                },
+                potencyThc {
+                  formatted,
+                  range,
+                  unit
+                },
                 variants {
                   id,
                   option,
