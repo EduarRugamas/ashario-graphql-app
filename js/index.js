@@ -413,54 +413,193 @@ window.addEventListener('DOMContentLoaded', async () => {
     };
 
     const cartProduct = (container_products, array_products) => {
-        container_products.innerHTML = `
-        
-            ${ array_products.map( product => `
-            
-             <div class="col">
-                <div class="card rounded-0 product-card">
-                        <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
-                            <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
-                        </a>
-                    <div class="card-body">
-                        <div class="product-info">
-                            <a href="/views/product-details.html?id=${product.id}">
-                                <p class="product-catergory font-13 mb-1 itembrand">${product.brand.name}</p>
-                                <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
-                            </a>
-                            <a href="/views/product-details.html?id=${product.id}">
-                                <h6 class="product-name mb-2 itemname">${product.name}</h6>
-                            </a>
-                            <div class="d-flex align-items-center content_item_price">
-                                <div class="mb-1 product-price itemprice jcitemprice">
-                                    <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-                                    <span class="fs-5 jcpricingnw"></span>
-                                    <span class="er-each jceachformat" style="align-items: flex-end;"></span>
+        let template_grid_products = '';
+    
+        array_products.forEach(product => {
+            template_grid_products += `
+                    
+                    <div class="col">
+                        <div class="card rounded-0 product-card">
+                                <a href="/views/product-details.html?id=${product.id}" id="container_carrousel_imgs">
+                                    <img src="${product.image !== null ? product.image : '../assets/images/errors-images/image-not-found.jpeg'}" class="card-img-top" alt="${product.name}" id="imagen-product">
+                                </a>
+                            <div class="card-body">
+                                <div class="product-info">
+                                    <a href="/views/product-details.html?id=${product.id}" id="content_text_brand">
+                                        <p class="product-catergory font-13 mb-1 content-badge-strain" badge_id="${product.id}" id="badge-straint-${product.id}"></p>
+                                        <p class="product-catergory font-13 mb-1 itembrand text-center">${product.brand.name}</p> 
+                                        <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype"></p>
+                                    </a>
+                                    <a href="/views/product-details.html?id=${product.id}">
+                                        <h6 class="product-name mb-2 itemname">${product.name}</h6>
+                                    </a>
+                                    <div class="d-flex align-items-center content_item_price">
+                                        <div class="mb-1 product-price itemprice jcitemprice">
+                                            <span class="fs-5 currencyformat jcpriceformat">CAD 
+                                                <span id="cad-${product.id}" style="font-weight: 700; color: #000; font-size: 1.25rem!important;"></span>
+                                                 / 
+                                                 <span id="current-weight-${product.id}"></span></span>
+                                            </span>
+                                            <span class="fs-5 jcpricingnw"></span>
+                                            <span class="er-each jceachformat" style="align-items: flex-end;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
+                                        <div class="me-4" id="container_quantity">
+                                            <label class="form-label">Quantity</label>
+                                            <select class="form-select form-select-sm select-quantity" id="quantity-${product.id}" product_id="${product.id}">
+                                                ${numberToArray(parseInt(product.variants[0].quantity) + 1).map(q => `<option>${q}</option>`)}
+                                            </select>
+                                        </div>
+                                        <div class="" id="container_weight">
+                                            <label class="form-label">weight</label>
+                                            <select class="form-select form-select-sm select-weight" id="select-weight-${product.id}" product_id="${product.id}">
+                                                ${product.variants.map(variant => `<option>${variant.option}</option>`)}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="product-action mt-2" id="content">
+                                       <div class="d-grid gap-2">
+                                            <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}"><i class="bx bxs-cart-add"></i>add to cart</a>
+                                            <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
+                                       </div> 
+                                    </div> 
                                 </div>
                             </div>
-                            <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
-                                <div class="me-4" id="container_quantity">
-                                    <label class="form-label">Quantity</label>
-                                    <select class="form-select form-select-sm" id="quantity" product_id="${product.id}"></select>
-                                </div>
-                                <div class="" id="container_weight">
-                                    <label class="form-label">weight</label>
-                                    <select class="form-select form-select-sm" id="select-weight" product_id="${product.id}"></select>
-                                </div>
-                            </div>
-                            <div class="product-action mt-2" id="content">
-                               <div class="d-grid gap-2">
-                                    <a class="btn btn-dark btn-ecomm" id="add_to_cart_btn" id_product="${product.id}" option_product="${product.variants[0].option}"><i class="bx bxs-cart-add"></i>add to cart</a>
-                                    <a href="/views/product-details.html?id=${product.id}" class="btn btn-light btn-ecomm">Product Details</a>
-                               </div> 
-                            </div> 
                         </div>
-                    </div>
-                </div>
-             </div>  
-            
-            `
-        ).join('')}`;
+                 </div>
+                `;
+        });
+    
+        container_products.innerHTML = template_grid_products;
+    
+        array_products.forEach(item => {
+            const tmpSelectQuantity = document.getElementById("quantity-" + item.id);
+            const tmpSelectWeight = document.getElementById("select-weight-" + item.id);
+            const tmpLabelCAD = document.getElementById("cad-" + item.id);
+            const tmpLabelCurrentWeight = document.getElementById("current-weight-" + item.id);
+    
+            const UpdateCad = () => {
+                const priceInstance = item.variants.filter(variant => variant.option.toLowerCase() === tmpSelectWeight.value.toLowerCase());
+    
+                let price;
+                if (priceInstance != null) {
+                    price = parseFloat(priceInstance[0].priceRec);
+                }
+    
+                const total = price * parseInt(tmpSelectQuantity.value);
+    
+                tmpLabelCAD.innerHTML = '$' + (Math.round(total * 100) / 100).toFixed(2);
+                tmpLabelCurrentWeight.innerHTML = (tmpSelectWeight.value).toUpperCase();
+            };
+    
+            tmpSelectQuantity.addEventListener("change", UpdateCad);
+            tmpSelectWeight.addEventListener("change", UpdateCad);
+    
+            UpdateCad();
+    
+        });
+    
+    
+        const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
+        const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
+        const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
+        storage_local.setItem('cart', JSON.stringify(cart));
+    
+        btn_add_cart_grid.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const product_id = btn.getAttribute('id_product');
+                const get_select_quantity = document.getElementById('quantity-' + product_id);
+                const get_select_weight = document.getElementById('select-weight-' + product_id);
+    
+                console.log(`${store_centre_point_mall.id}, ${checkout_id.id}, ${product_id}, quantity:${get_select_quantity.value}, option: ${get_select_weight.value}`);
+                const id_store = store_centre_point_mall.id;
+                const checkout_id_store = checkout_id.id;
+                const value_quantity = parseInt(get_select_quantity.value);
+                const value_weight = get_select_weight.value;
+    
+                if (product_id in cart) {
+    
+                    if (value_quantity === cart[product_id].value_quantity) {
+                            cart[product_id].value_quantity++;
+                            cart[product_id].value_weight = value_weight;
+                            storage_local.setItem('cart', JSON.stringify(cart));
+                            let card_view_product = array_products.find(item => item.id === product_id);
+                            Swal.fire({
+                                title: 'Update product!',
+                                text: `${card_view_product.name}`,
+                                imageUrl: `${card_view_product.image}`,
+                                imageWidth: 250,
+                                imageHeight: 300,
+                                imageAlt: `${card_view_product.name}`,
+                            });
+                    }else {
+                            cart[product_id].value_quantity = value_quantity;
+                            cart[product_id].value_weight = value_weight;
+                            storage_local.setItem('cart', JSON.stringify(cart));
+                            let card_view_product = array_products.find(item => item.id === product_id);
+                            Swal.fire({
+                                title: 'Update product!',
+                                text: `${card_view_product.name}`,
+                                imageUrl: `${card_view_product.image}`,
+                                imageWidth: 250,
+                                imageHeight: 300,
+                                imageAlt: `${card_view_product.name}`,
+                            });
+                    }
+                } else {
+                    let data_product = {
+                        id_store,
+                        checkout_id_store,
+                        product_id,
+                        value_quantity,
+                        value_weight
+                    };
+                    console.log('Objeto json a enviar a mini cart', data_product);
+                    cart[product_id] = data_product;
+                    count++;
+                    storage_local.setItem('cart', JSON.stringify(cart));
+                    console.log(`Se guardo en el local_storage key --> ${JSON.stringify(cart[product_id])}`);
+                    update_icon_cart();
+                    let card_view_product = array_products.find(item => item.id === product_id);
+                    console.log(card_view_product);
+                    Swal.fire({
+                        title: 'Added to cart!',
+                        text: `${card_view_product.name}`,
+                        imageUrl: `${card_view_product.image}`,
+                        imageWidth: 250,
+                        imageHeight: 300,
+                        imageAlt: `${card_view_product.name}`,
+                    });
+                }
+            });
+        });
+        badge_strainType(array_products);
+        update_icon_cart();
+        btn_shop_cart_link.addEventListener('click', () => {
+            if (Object.entries(cart).length === 0) {
+                let template_empty_mini_cart = '';
+                console.log('el mini cart esta vacio');
+                template_empty_mini_cart += `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                            </div>
+                        </div>
+                    </div>`;
+                mini_cart_items.innerHTML = template_empty_mini_cart;
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
+            } else {
+                mini_cart_render(array_products);
+                document.getElementById('btn_checkout_mini_cart').disabled = false;
+            }
+        });
+        btn_checkout_mini_cart.addEventListener('click', () => {
+    
+            window.location.href = '../views/shop-cart.html';
+        });
+    
     };
 
     function ViewQuantity (array_products) {
