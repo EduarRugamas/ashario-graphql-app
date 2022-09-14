@@ -30,6 +30,13 @@ let radio_high_cbd = document.querySelector('#filter_high_cbd');
 let radio_not_applicable = document.querySelector('#filter_not_applicable');
 // fin declacion de botones de filtro lineage and weights
 
+const btn_shop_cart_link = document.querySelector('#btn_mini_cart_action');
+const icon_cart_count = document.querySelector('.alert-count');
+const mini_cart_items = document.getElementById('content_items_list_mini_cart');
+const view_items_mini_cart = document.getElementById('items_in_mini_cart');
+const btn_checkout_mini_cart = document.getElementById('btn_checkout_mini_cart');
+
+
 // filtro sort
 
 const btn_sort_a_z = document.getElementById('filter_sort_a_z');
@@ -45,7 +52,6 @@ const btn_sort_potency_high_low = document.getElementById('filter_sort_potency_h
 //declaracion de botones o contenedores no principales
 
 // fin declaracion de botones o contenedores no principales
-const btn_shop_cart_link = document.querySelector('.cart-link');
 // declaracion de variable local storage
 const storage_local = window.localStorage;
 // fin declaracion de variable local storage
@@ -61,6 +67,10 @@ let cbd = document.querySelector('#title_slider_cbd');
 let btn_cbd = document.querySelector('#btn-filter-cbd');
 let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 // fin declaraciones de filtros range thc and cbd
+
+let count = 0;
+let cart = {};
+
 //variables de paginacion
 let page_previous = 0;
 let page_next = 20;
@@ -404,14 +414,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 });
 
-    const ViewEmpty = (container_products) => {
-        container_products.innerHTML= `
-            <div class=" d-flex justify-content-center align-content-center align-items-center">
-                <p class="text-uppercase font-18 text-black ">Empty Result</p>
-            </div>
-            `;
-    };
-
     const cartProduct = (container_products, array_products) => {
         let template_grid_products = '';
     
@@ -612,6 +614,179 @@ window.addEventListener('DOMContentLoaded', async () => {
         return tmp;
     };
 
+    const update_icon_cart = () => {
+        icon_cart_count.textContent = count;
+        storage_local.setItem('count', count);
+    };
+    
+    const mini_cart_render = (array_productos) => {
+        let template_item_mini_cart = '';
+        for (let product in cart) {
+            let information_product = array_productos.find(item => item.id === cart[product].product_id);
+            template_item_mini_cart += `
+                <div class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="cart-product-title">${information_product.name}</h6>
+                            <p class="cart-product-price">${cart[product].value_quantity} X $${(cart[product].value_quantity * information_product.variants[0].priceRec).toFixed(2)}</p>
+                        </div>
+                        <div class="position-relative">
+                            <a class="cart-product-cancel position-absolute" product_id="${information_product.id}" id="btn-remove-item">
+                                <i class='bx bx-x'></i>
+                            </a>
+                            <div class="cart-product">
+                                <img src="${information_product.image}" class="" alt="product image">
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            mini_cart_items.innerHTML = template_item_mini_cart;
+        }
+        view_items_mini_cart.textContent= `${count} ITEMS`;
+        remove_item_mini_cart('btn-remove-item', array_productos);
+    
+    };
+    
+    const remove_item_mini_cart = (id_btn_remove, array_productos) => {
+        const button_remove_mini_cart = document.querySelectorAll(`#${id_btn_remove}`);
+        button_remove_mini_cart.forEach( btn => {
+    
+            const get_product_id_remove = btn.getAttribute('product_id');
+            btn.addEventListener('click', () => {
+                console.log('product a elimminar', get_product_id_remove);
+                let template_empty_mini_cart = '';
+                delete cart[get_product_id_remove];
+                storage_local.setItem('cart', JSON.stringify(cart));
+                count--;
+                update_icon_cart();
+                mini_cart_render(array_productos);
+    
+                if (Object.entries(cart).length === 0) {
+                    console.log('el mini cart esta vacio');
+                    template_empty_mini_cart+= `
+                    <div class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="cart-product-title">You don't have products in your cart.</h6>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    mini_cart_items.innerHTML = template_empty_mini_cart;
+                    document.getElementById('btn_checkout_mini_cart').disabled = true;
+                }
+    
+            });
+        });
+    };
+
+    const badge_strainType = (array_products) => {
+        const content_strain_badge = document.querySelectorAll('.content-badge-strain');
+    
+        content_strain_badge.forEach(p => {
+            const id_product = p.getAttribute('badge_id');
+            const get_element_strain = document.getElementById('badge-straint-' + id_product);
+            const get_information_strainType = array_products.find(item => item.id === id_product);
+            p.setAttribute('strainType', get_information_strainType.strainType);
+            const get_strainType = p.getAttribute('strainType');
+    
+            if (get_strainType === 'SATIVA') {
+                p.className = 'badge bg-badge-strainType-sativa font-13 text-center';
+                p.textContent = 'Uplift (SATIVA)';
+            } else if (get_strainType === 'INDICA') {
+                p.className = 'badge bg-badge-strainType-indica font-13 text-center';
+                p.textContent = 'Unwind (INDICA)';
+            } else if (get_strainType === 'HYBRID') {
+                p.className = 'badge bg-badge-strainType-hybrid font-13 text-center';
+                p.textContent = 'Connect (HYBRID/BLEND)';
+            } else if (get_strainType === 'HIGH_CBD') {
+                p.className = 'badge bg-badge-strainType-high-cbd font-13 text-center';
+                p.textContent = 'Renew (HIGH CBD)';
+            }
+    
+    
+        });
+    };
+
+    const render_search_products = (container_products, retailerId, id_container_search, array_all_products) => {
+        let search = '';
+        const filter_search = document.getElementById(`${id_container_search}`);
+
+        search += `
+           <div class="input-group mb-3 ms-1 me-1">
+              <input type="text" class="form-control shadow-none" style="outline: none; border-color: #000000;" placeholder="Search for products" id="input_search_text">
+              <button class="btn btn-outline-dark shadow-none" style="outline: none;" type="button" id="clear_filter_search"><i class='bx bx-x'></i></button>
+              <button class="btn btn-outline-dark shadow-none" style="outline: none;" type="button" id="button_search_products"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
+           </div>
+        `;
+
+        filter_search.innerHTML = search;
+
+        const btn_search = document.getElementById('button_search_products');
+        btn_search.addEventListener('click', () => {
+            let get_text_input_search = document.getElementById('input_search_text').value;
+
+            if (get_text_input_search === "") {
+                console.log('El input esta vacio');
+            }
+
+            const result = filter_search_product(retailerId, get_text_input_search.toString(), 0, 50);
+
+            result.then( response => {
+                if (response.products.length === 0 ){
+                    console.log('sin resultados');
+                    ViewEmpty(container_products);
+                }
+                console.log(response.products);
+                cartProduct(container_products, response.products);
+
+
+
+            }).catch(error => {
+                console.log('error en el search', error);
+                ViewEmpty(container_products);
+            });
+
+        });
+        const btn_clear_search = document.getElementById('clear_filter_search');
+        btn_clear_search.addEventListener('click', () => {
+            document.getElementById('input_search_text').value="";
+            cartProduct(container_products, array_all_products.products);
+        });
+        const input_search = document.getElementById('input_search_text');
+        input_search.addEventListener('keyup', (event) => {
+            console.log(input_search.value);
+            const result = filter_search_product(retailerId, input_search.value.toString(), 0, 50);
+            result.then( response => {
+                if (response.products.length === 0 ){
+                    console.log('sin resultados');
+                    ViewEmpty(container_products);
+                }
+                console.log(response);
+                cartProduct(container_products, response.products);
+
+
+
+            }).catch(error => {
+                console.log('error en el search', error.message);
+                ViewEmpty(container_products);
+            });
+        });
+
+
+
+
+    };
+
+    const ViewEmpty = (container_products) => {
+        container_products.innerHTML= `
+            <div class=" d-flex justify-content-center align-content-center align-items-center">
+                <p class="text-uppercase font-18 text-black ">Empty Result</p>
+            </div>
+            `;
+    };
+
+
     function ViewQuantity (array_products) {
         const container_select_quantitys = document.querySelectorAll('#quantity');
 
@@ -743,75 +918,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    const render_search_products = (container_products, retailerId, id_container_search, array_all_products) => {
-        let search = '';
-        const filter_search = document.getElementById(`${id_container_search}`);
-
-        search += `
-           <div class="input-group mb-3 ms-1 me-1">
-              <input type="text" class="form-control shadow-none" style="outline: none; border-color: #000000;" placeholder="Search for products" id="input_search_text">
-              <button class="btn btn-outline-dark shadow-none" style="outline: none;" type="button" id="clear_filter_search"><i class='bx bx-x'></i></button>
-              <button class="btn btn-outline-dark shadow-none" style="outline: none;" type="button" id="button_search_products"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
-           </div>
-        `;
-
-        filter_search.innerHTML = search;
-
-        const btn_search = document.getElementById('button_search_products');
-        btn_search.addEventListener('click', () => {
-            let get_text_input_search = document.getElementById('input_search_text').value;
-
-            if (get_text_input_search === "") {
-                console.log('El input esta vacio');
-            }
-
-            const result = filter_search_product(retailerId, get_text_input_search.toString(), 0, 50);
-
-            result.then( response => {
-                if (response.products.length === 0 ){
-                    console.log('sin resultados');
-                    ViewEmpty(container_products);
-                }
-                console.log(response.products);
-                cartProduct(container_products, response.products);
-
-
-
-            }).catch(error => {
-                console.log('error en el search', error);
-                ViewEmpty(container_products);
-            });
-
-        });
-        const btn_clear_search = document.getElementById('clear_filter_search');
-        btn_clear_search.addEventListener('click', () => {
-            document.getElementById('input_search_text').value="";
-            cartProduct(container_products, array_all_products.products);
-        });
-        const input_search = document.getElementById('input_search_text');
-        input_search.addEventListener('keyup', (event) => {
-            console.log(input_search.value);
-            const result = filter_search_product(retailerId, input_search.value.toString(), 0, 50);
-            result.then( response => {
-                if (response.products.length === 0 ){
-                    console.log('sin resultados');
-                    ViewEmpty(container_products);
-                }
-                console.log(response);
-                cartProduct(container_products, response.products);
-
-
-
-            }).catch(error => {
-                console.log('error en el search', error.message);
-                ViewEmpty(container_products);
-            });
-        });
-
-
-
-
-    };
+   
 
     const render_quantity_weights = (array_products) => {
         const container_select_quantitys = document.querySelectorAll('#quantity');
@@ -890,21 +997,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     };
 
-    const view_item_price = (container) => {
-        container.innerHTML=`
-        
-        <div class="mb-1 product-price itemprice jcitemprice">
-            <span class="fs-5 currencyformat jcpriceformat">CAD </span>
-            <span class="fs-5 jcpricingnw"></span>
-            <span class="er-each jceachformat" style="align-items: flex-end;"></span>
-        </div>
-            
-        `
-    };
 
-
-
-  // <p class="product-catergory font-13 mb-1 itemsubtype" id="itemsubtype">${(item.brand_subtype) === null || undefined ? '' : item.brand_subtype}</p>
 
 
 
