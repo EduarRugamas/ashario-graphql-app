@@ -602,6 +602,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     
     };
 
+    const numberToArray = (number) => {
+        const tmp = [];
+    
+        for (let i = 1; i <= number; i++) {
+            tmp.push(i);
+        }
+    
+        return tmp;
+    };
+
     function ViewQuantity (array_products) {
         const container_select_quantitys = document.querySelectorAll('#quantity');
 
