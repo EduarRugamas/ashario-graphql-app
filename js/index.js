@@ -169,11 +169,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 }
 
                 cartProduct(container_products, data.products);
-                // ViewWeigths(data);
-                // ViewQuantity(data);
-                render_quantity_weights(data);
-
-
             }
 
             if (radio_indica.checked && radio_indica.value === 'indica') {
@@ -202,24 +197,24 @@ window.addEventListener('DOMContentLoaded', async () => {
                 radio.addEventListener('change', () => {
                     if (radio.checked  && radio.value === 'all') {
                         cartProduct(container_products, data.products);
-                        render_quantity_weights(data.products);
+                       
                     }
                     if (radio.value === 'indica' && radio.checked) {
                         cartProduct(container_products, filter_indica.products);
-                        render_quantity_weights(filter_indica.products);
+                        
                     }
                     if (radio.value === 'sativa' && radio.checked){
                         cartProduct(container_products, filter_sativa.products);
-                        render_quantity_weights(filter_sativa.products);
+                       
                     }
                     if (radio.value === 'hybrid' && radio.checked) {
                         cartProduct(container_products, filter_hybrid.products);
-                        render_quantity_weights(filter_hybrid.products);
+                        
                     }
                     if (radio.value === 'high_cbd' && radio.checked) {
                         console.log('entro a high_cbd');
                         cartProduct(container_products, filter_high_cbd.products);
-                        render_quantity_weights(filter_high_cbd.products);
+                        
                     }
                     if (radio.value === 'not_applicable' && radio.checked) {
                         console.log('entro a not applicable');
@@ -232,39 +227,22 @@ window.addEventListener('DOMContentLoaded', async () => {
                 weights.addEventListener('change', () => {
                     if (weights.checked  && weights.value === 'all') {
                         cartProduct(container_products, data.products);
-                        ViewQuantity();
-                        ViewWeigths(data);
                     }
                     if (weights.value === '3.5G' && weights.checked) {
                         cartProduct(container_products, filter_35G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_35G);
-                        ViewWeigthsSpecial(filter_35G, "3.5g");
                     }
                     if (weights.value === '28G' && weights.checked) {
                         cartProduct(container_products, filter_28G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_28G);
-                        ViewWeigthsSpecial(filter_28G, "28g");
                     }
 
                     if (weights.value === '1G' && weights.checked) {
                         cartProduct(container_products, filter_1G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_1G);
-                        ViewWeigthsSpecial(filter_1G, "1g");
                     }
                     if (weights.value === '7G' && weights.checked) {
                         cartProduct(container_products, filter_7G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_7G);
-                        ViewWeigthsSpecial(filter_7G, "7g");
                     }
                     if (weights.value === '14G' && weights.checked) {
                         cartProduct(container_products, filter_14G.products);
-                        ViewQuantity();
-                        // ViewWeigths(filter_14G);
-                        ViewWeigthsSpecial(filter_14G, "14g");
                     }
 
                 });
@@ -438,6 +416,18 @@ window.addEventListener('DOMContentLoaded', async () => {
                                             </span>
                                             <span class="fs-5 jcpricingnw"></span>
                                             <span class="er-each jceachformat" style="align-items: flex-end;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="d-flex">
+                                                <span style="margin-right: 10px; font-weight: bold;">THC</span>
+                                                <span>${product.potencyThc.formatted}</span>
+                                        </div>
+                                     </div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="d-flex">
+                                                <span style="margin-right: 10px; font-weight: bold;">CBD</span>
+                                                <span>${product.potencyCbd.formatted}</span>
                                         </div>
                                     </div>
                                     <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
