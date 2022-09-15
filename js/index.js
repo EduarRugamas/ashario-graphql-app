@@ -69,12 +69,13 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 // fin declaraciones de filtros range thc and cbd
 
 let count = 0;
-let start = 0;
+
 let cart = {};
 
 //variables de paginacion
-let page_previous = 0;
-let page_next = 20;
+let init_product = 0;
+let limit_product = 1000;
+
 //fin de variables
 
 
@@ -334,7 +335,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 // search filter
-                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data, start, countProducts);
+                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data, init_product, limit_product);
 
                 const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
                 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
