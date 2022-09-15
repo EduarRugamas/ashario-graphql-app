@@ -148,7 +148,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             let countProducts = get_count_product(store_centre_point_mall.id);
             countProducts.then(response => {console.log(response);} ).catch(error => console.log('Error en el count ', error.message));
-            let data = await getAllProducts(store_centre_point_mall.id, page_previous, page_next);
+            let data = await getAllProducts(store_centre_point_mall.id, init_product, limit_product);
             let filter_indica = await filter_strain_type_lineage(store_centre_point_mall.id, 'indica');
             let filter_sativa = await filter_strain_type_lineage(store_centre_point_mall.id, 'sativa');
             let filter_hybrid = await filter_strain_type_lineage(store_centre_point_mall.id, 'hybrid');
