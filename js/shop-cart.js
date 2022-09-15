@@ -1,11 +1,8 @@
-import {get_count_product, getAllProducts, addItemCart} from '../utils/querys.js';
-import {FadeOut} from "../utils/utils.js";
-
+import { get_count_product, getAllProducts, createCheckout, addItemCart } from '../utils/querys.js';
+import { FadeOut } from "../utils/utils.js";
 const storage_local = window.localStorage;
 let count = 0;
 let cart = {};
-
-
 
 const btn_action_dropdown_mini_cart = document.getElementById('btn_mini_cart_action');
 const mini_cart_items = document.getElementById('content_items_list_mini_cart');
@@ -27,27 +24,27 @@ const checkoutId = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-        let quantity_product = await get_count_product(id_store_centre_point_mall.id);
-        let data = await getAllProducts(id_store_centre_point_mall.id, 0, quantity_product);
+    let quantity_product = await get_count_product(id_store_centre_point_mall.id);
+    let data = await getAllProducts(id_store_centre_point_mall.id, 0, quantity_product);
 
-        if (storage_local.getItem('cart')) {
-            cart = JSON.parse(storage_local.getItem('cart'));
-        }
+    if (storage_local.getItem('cart')) {
+        cart = JSON.parse(storage_local.getItem('cart'));
+    }
 
-        if (storage_local.getItem('count')) {
-            count = parseInt(storage_local.getItem('count'));
-        }
+    if (storage_local.getItem('count')) {
+        count = parseInt(storage_local.getItem('count'));
+    }
 
-        console.log(cart);
-        console.log(quantity_product);
-        if (data !== undefined && data.length !== 0) {
-            FadeOut(div_loader);
-        }
+    console.log(cart);
+    console.log(quantity_product);
+    if (data !== undefined && data.length !== 0) {
+        FadeOut(div_loader);
+    }
 
-        if (Object.entries(cart).length === 0) {
-            let template_empty_mini_cart = '';
-            console.log('el mini cart esta vacio');
-            template_empty_mini_cart += `
+    if (Object.entries(cart).length === 0) {
+        let template_empty_mini_cart = '';
+        console.log('el mini cart esta vacio');
+        template_empty_mini_cart += `
                     <div >
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
@@ -55,17 +52,17 @@ window.addEventListener('DOMContentLoaded', async () => {
                             </div>
                         </div>
                     </div>`;
-            contenedor_products.innerHTML = template_empty_mini_cart;
-            btn_checkout_cart.classList.add('disabled');
-            btn_checkout_mini_cart.classList.add('disabled');
-        } else {
-            render_products_cart(contenedor_products, data.products);
-            update_icon_cart();
-            btn_action_dropdown_mini_cart.addEventListener('click', () => {
-                if (Object.entries(cart).length === 0) {
-                    let template_empty_mini_cart = '';
-                    console.log('el mini cart esta vacio');
-                    template_empty_mini_cart += `
+        contenedor_products.innerHTML = template_empty_mini_cart;
+        btn_checkout_cart.classList.add('disabled');
+        btn_checkout_mini_cart.classList.add('disabled');
+    } else {
+        render_products_cart(contenedor_products, data.products);
+        update_icon_cart();
+        btn_action_dropdown_mini_cart.addEventListener('click', () => {
+            if (Object.entries(cart).length === 0) {
+                let template_empty_mini_cart = '';
+                console.log('el mini cart esta vacio');
+                template_empty_mini_cart += `
                             <div class="dropdown-item">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
@@ -73,51 +70,65 @@ window.addEventListener('DOMContentLoaded', async () => {
                                     </div>
                                 </div>
                             </div>`;
-                    mini_cart_items.innerHTML = template_empty_mini_cart;
-                    document.getElementById('btn_checkout_mini_cart').disabled = true;
-                } else {
-                    mini_cart_render(data.products);
-                    document.getElementById('btn_checkout_mini_cart').disabled = false;
-                }
-            });
-            btn_checkout_cart.classList.remove('disabled');
-            btn_checkout_cart.addEventListener('click', async () => {
+                mini_cart_items.innerHTML = template_empty_mini_cart;
+                document.getElementById('btn_checkout_mini_cart').disabled = true;
+            } else {
+                mini_cart_render(data.products);
+                document.getElementById('btn_checkout_mini_cart').disabled = false;
+            }
+        });
+        btn_checkout_cart.classList.remove('disabled');
+        btn_checkout_cart.addEventListener('click', async () => {
+            openCheckout();
+        });
 
-                console.log(cart);
+    }
+});
 
+const openCheckout = async () => {
+    const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
 
-                for (let item in cart) {
+    let response_checkout = await createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
+    const id_checkout = response_checkout.id;
+    const redirectUrl = response_checkout.redirectUrl;
+    const error = response_checkout.message;
 
-                    await addItemCart(id_store_centre_point_mall.id, checkoutId.id, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
+    if (error !== undefined) {
+        console.warning("An error occurred while processing the order");
 
-                        if (result.data.addItem === null) {
-                          const error = result.errors[0];
-                          console.log(error);
-                          Swal.fire({
-                            icon: 'error',
-                            text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
-                            confirmButtonColor: '#3e3e3e',
-                          });
-                        }else {
-                            window.location.href = `${checkoutId.redirectUrl}`;
-                        }
-                        console.log(checkoutId);
+        Swal.fire({
+            icon: 'error',
+            text: `Sorry, an error occurred while processing your order.`,
+            confirmButtonColor: '#3e3e3e',
+        });
+
+        return;
+    }
+
+    if (id_checkout !== undefined || id_checkout !== null) {
+        for (let item in cart) {
+            addItemCart(store_centre_point_mall.id, id_checkout, cart[item].product_id, cart[item].value_quantity, cart[item].value_weight).then(result => {
+                if (result.data.addItem === null) {
+                    const error = result.errors[0];
+
+                    console.warning(error);
+
+                    Swal.fire({
+                        icon: 'error',
+                        text: `Sorry! You've reached the 30g purchase limit for cannabis due to provincial regulations.`,
+                        confirmButtonColor: '#3e3e3e',
                     });
                 }
             });
-
         }
+    }
 
-
-
-
-
-});
+    window.open(redirectUrl, '_blank').focus();
+};
 
 
 const render_products_cart = (contenedor, arreglo_productos) => {
     let template_items_products = '';
-    let sum = 0;
     for (let product in cart) {
 
         let get_information_product = arreglo_productos.find(item => item.id === cart[product].product_id);
@@ -160,23 +171,24 @@ const render_products_cart = (contenedor, arreglo_productos) => {
          <div class="my-4 border-top"></div>
          `;
 
-         contenedor.innerHTML = template_items_products;
+        contenedor.innerHTML = template_items_products;
     }
 
     const get_string_price = document.querySelectorAll('#string_price_variant');
     const get_string_quantity = document.querySelectorAll('#string_quantity');
 
-    get_string_price.forEach( span => {
-       const get_value_product_id = span.getAttribute('product_id');
-       console.log(get_value_product_id);
-       const get_value_weight = cart[get_value_product_id].value_weight;
-       let get_information_product = arreglo_productos.find(item => item.id === get_value_product_id);
-       console.log(get_information_product);
-       let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
-       console.log(get_information_price);
-       let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
-       span.textContent = `$${calc}`;
+    get_string_price.forEach(span => {
+        const get_value_product_id = span.getAttribute('product_id');
+        // console.log(get_value_product_id);
+        const get_value_weight = cart[get_value_product_id].value_weight;
+        let get_information_product = arreglo_productos.find(item => item.id === get_value_product_id);
+        // console.log(get_information_product);
+        let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
+        // console.log(get_information_price);
+        let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
+        span.textContent = `$${calc}`;
     });
+
 
     get_string_quantity.forEach(span => {
         const get_value_product_id = span.getAttribute('product_id');
@@ -190,19 +202,19 @@ const render_products_cart = (contenedor, arreglo_productos) => {
         console.log(input.value);
         const get_id_product = input.getAttribute('product_id');
         console.log(get_id_product);
+
         input.addEventListener('change', () => {
-            console.log(input.value)
             cart[get_id_product].value_quantity = parseInt(input.value);
             storage_local.setItem('cart', JSON.stringify(cart));
-            console.log(cart);
-            get_string_price.forEach( span => {
+
+            get_string_price.forEach(span => {
                 const get_value_product_id = span.getAttribute('product_id');
-                console.log(get_value_product_id);
+                // console.log(get_value_product_id);
                 const get_value_weight = cart[get_value_product_id].value_weight;
                 let get_information_product = arreglo_productos.find(item => item.id === get_value_product_id);
-                console.log(get_information_product);
+                // console.log(get_information_product);
                 let get_information_price = get_information_product.variants.find(item => item.option === get_value_weight);
-                console.log(get_information_price);
+                // console.log(get_information_price);
                 let calc = (cart[get_value_product_id].value_quantity * get_information_price.priceRec).toFixed(2);
                 span.textContent = `$${calc}`;
             });
@@ -213,13 +225,30 @@ const render_products_cart = (contenedor, arreglo_productos) => {
                 span.textContent = cart[get_value_product_id].value_quantity;
             });
 
-
             renderInvoice(get_string_price);
         });
 
     });
+
     renderInvoice(get_string_price);
+
     remove_item_cart('remove_item_product', arreglo_productos);
+};
+
+const renderInvoice = (get_string_price) => {
+    let subtotal = 0;
+    let taxes = 0;
+
+    get_string_price.forEach(quantity => {
+        subtotal += parseFloat(quantity.innerHTML.replace("$", ""));
+    });
+
+    view_subtotal_pay_products.innerHTML = numberToMonery(subtotal);
+    view_total_pay_products.innerHTML = numberToMonery(subtotal + taxes);
+};
+
+const numberToMonery = (number) => {
+    return "$" + (number).toFixed(2);
 };
 
 const mini_cart_render = (array_productos) => {
@@ -245,14 +274,14 @@ const mini_cart_render = (array_productos) => {
             </div>`;
         mini_cart_items.innerHTML = template_item_mini_cart;
     }
-    view_text_count_items_mini_cart.textContent= `${count} ITEMS`;
+    view_text_count_items_mini_cart.textContent = `${count} ITEMS`;
     remove_item_mini_cart('btn-remove-item', array_productos);
 
 };
 
 const remove_item_mini_cart = (id_btn_remove, array_productos) => {
     const button_remove_mini_cart = document.querySelectorAll(`#${id_btn_remove}`);
-    button_remove_mini_cart.forEach( btn => {
+    button_remove_mini_cart.forEach(btn => {
 
         const get_product_id_remove = btn.getAttribute('product_id');
         btn.addEventListener('click', () => {
@@ -266,7 +295,7 @@ const remove_item_mini_cart = (id_btn_remove, array_productos) => {
             render_products_cart(contenedor_products, array_productos);
             if (Object.entries(cart).length === 0) {
                 console.log('el mini cart esta vacio');
-                template_empty_mini_cart+= `
+                template_empty_mini_cart += `
                 <div class="dropdown-item">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
@@ -299,7 +328,7 @@ const remove_item_cart = (id_btn_remove, array_productos) => {
             mini_cart_render(array_productos);
             if (Object.entries(cart).length === 0) {
                 console.log('el mini cart esta vacio');
-                template_empty_mini_cart+= `
+                template_empty_mini_cart += `
                 <div>
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
@@ -320,73 +349,3 @@ const update_icon_cart = () => {
     storage_local.setItem('count', count);
 };
 
-const renderInvoice = (get_string_price) => {
-    let subtotal = 0;
-    let taxes = 0;
-
-    get_string_price.forEach(quantity => {
-        subtotal += parseFloat(quantity.innerHTML.replace("$", ""));
-    });
-
-    view_subtotal_pay_products.innerHTML = numberToMonery(subtotal);
-    view_total_pay_products.innerHTML = numberToMonery(subtotal + taxes);
-};
-
-const numberToMonery = (number) => {
-    return "$" + (number).toFixed(2);
-};
-
-
-// if (Object.entries(cart).length === 0) {
-//     let template_empty_mini_cart = '';
-//     console.log('el mini cart esta vacio');
-//     template_empty_mini_cart += `
-//                 <div class="dropdown-item">
-//                     <div class="d-flex align-items-center">
-//                         <div class="flex-grow-1">
-//                             <h6 class="cart-product-title">You don't have products in your cart.</h6>
-//                         </div>
-//                     </div>
-//                 </div>`;
-//     mini_cart_items.innerHTML = template_empty_mini_cart;
-//     document.getElementById('btn_checkout_mini_cart').disabled = true;
-// } else {
-//     mini_cart_render(array_products);
-//     document.getElementById('btn_checkout_mini_cart').disabled = false;
-// }
-
-// template for cart items
-
-// <div class="row align-items-center g-3">
-//     <div class="col-12 col-lg-6">
-//         <div class="d-lg-flex align-items-center gap-2">
-//             <div class="cart-img text-center text-lg-start">
-//                 <img src="assets/images/products/09.png" width="130" alt="">
-//             </div>
-//             <div class="cart-detail text-center text-lg-start">
-//                 <h6 class="mb-2">Men Black Hat Cap</h6>
-//                 <p class="mb-0">Size: <span>Medium</span>
-//                 </p>
-//                 <p class="mb-2">Color: <span>Black</span>
-//                 </p>
-//                 <h5 class="mb-0">$14.00</h5>
-//             </div>
-//         </div>
-//     </div>
-//     <div class="col-12 col-lg-3">
-//         <div class="cart-action text-center">
-//             <input type="number" class="form-control rounded-0" value="1" min="1">
-//         </div>
-//     </div>
-//     <div class="col-12 col-lg-3">
-//         <div class="text-center">
-//             <div class="d-flex gap-2 justify-content-center justify-content-lg-end">
-//                 <a class="btn btn-dark rounded-0 btn-ecomm" id="remove_item_product">
-//                     <i class='bx bx-x-circle'></i>
-//                     Remove
-//                 </a>
-//             </div>
-//         </div>
-//     </div>
-// </div>
-// <div class="my-4 border-top"></div>
