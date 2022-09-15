@@ -71,9 +71,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                                 </div>
                             </div>`;
                 mini_cart_items.innerHTML = template_empty_mini_cart;
+                contenedor_products.innerHTML = template_empty_mini_cart;
                 document.getElementById('btn_checkout_mini_cart').disabled = true;
             } else {
                 mini_cart_render(data.products);
+                render_products_cart(contenedor_products, data.products);
                 document.getElementById('btn_checkout_mini_cart').disabled = false;
             }
         });
@@ -338,6 +340,7 @@ const remove_item_cart = (id_btn_remove, array_productos) => {
                 </div>
             `;
                 contenedor_products.innerHTML = template_empty_mini_cart;
+                mini_cart_items.innerHTML = template_empty_mini_cart;
                 btn_checkout_cart.classList.add('disabled');
             }
         });
