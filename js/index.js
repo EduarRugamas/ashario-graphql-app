@@ -313,8 +313,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const filt_thc = await filter_thc(store_centre_point_mall.id, data_thc[0], data_thc[1]);
 
                     cartProduct(container_products, filt_thc.products);
-                    ViewQuantity();
-                    ViewWeigths(filt_thc);
                 });
 
                 btn_cbd.addEventListener('click', async () => {
@@ -323,26 +321,20 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const filt_cbd = await filter_cbd(store_centre_point_mall.id, data_cbd[0], data_cbd[1]);
 
                     cartProduct(container_products, filt_cbd.products);
-                    ViewQuantity();
-                    ViewWeigths(filt_cbd);
                 });
 
                 btn_reset_thc.addEventListener('click', () => {
                     slider_thc.noUiSlider.reset();
                     cartProduct(container_products, data.products);
-                    ViewQuantity();
-                    ViewWeigths(data);
                 });
 
                 btn_reset_cbd.addEventListener('click', () => {
                     slider_cbd.noUiSlider.reset();
                     cartProduct(container_products, data.products);
-                    ViewQuantity();
-                    ViewWeigths(data);
                 });
 
                 // search filter
-                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data, start, c);
+                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data, start, countProducts);
 
                 const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
                 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
@@ -731,7 +723,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log('El input esta vacio');
             }
 
-            const result = filter_search_product(retailerId, get_text_input_search.toString(), init_products, countProducts);
+            const result = filter_search_product(retailerId, get_text_input_search.toString(), init_products, limit_product);
 
             result.then( response => {
                 if (response.products.length === 0 ){
