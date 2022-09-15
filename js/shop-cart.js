@@ -344,6 +344,7 @@ const remove_item_cart = (id_btn_remove, array_productos) => {
                 btn_checkout_cart.classList.add('disabled');
             }
         });
+        render_products_cart(contenedor_products, array_productos);
     });
 };
 
