@@ -69,6 +69,7 @@ let btn_reset_cbd = document.querySelector('#btn-reset-filter-cbd');
 // fin declaraciones de filtros range thc and cbd
 
 let count = 0;
+let start = 0;
 let cart = {};
 
 //variables de paginacion
@@ -341,7 +342,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 // search filter
-                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data);
+                render_search_products( container_products ,store_centre_point_mall.id, 'searchBox', data, start, c);
 
                 const btn_add_cart_grid = document.querySelectorAll('#add_to_cart_btn');
                 const checkout_id = JSON.parse(storage_local.getItem('cart_centre_point_mall'));
@@ -708,7 +709,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
     };
 
-    const render_search_products = (container_products, retailerId, id_container_search, array_all_products) => {
+    const render_search_products = (container_products, retailerId, id_container_search, array_all_products, init_products, limit_product) => {
         let search = '';
         const filter_search = document.getElementById(`${id_container_search}`);
 
@@ -730,7 +731,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 console.log('El input esta vacio');
             }
 
-            const result = filter_search_product(retailerId, get_text_input_search.toString(), 0, 50);
+            const result = filter_search_product(retailerId, get_text_input_search.toString(), init_products, countProducts);
 
             result.then( response => {
                 if (response.products.length === 0 ){
@@ -753,29 +754,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('input_search_text').value="";
             cartProduct(container_products, array_all_products.products);
         });
-        const input_search = document.getElementById('input_search_text');
-        input_search.addEventListener('keyup', (event) => {
-            console.log(input_search.value);
-            const result = filter_search_product(retailerId, input_search.value.toString(), 0, 50);
-            result.then( response => {
-                if (response.products.length === 0 ){
-                    console.log('sin resultados');
-                    ViewEmpty(container_products);
-                }
-                console.log(response);
-                cartProduct(container_products, response.products);
-
-
-
-            }).catch(error => {
-                console.log('error en el search', error.message);
-                ViewEmpty(container_products);
-            });
-        });
-
-
-
-
+    
     };
 
     const ViewEmpty = (container_products) => {
