@@ -128,6 +128,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             });
 
             const store_centre_point_mall = JSON.parse(storage_local.getItem('Ashario_Centre_point_Mall'));
+            const store_aurora = JSON.parse(storage_local.getItem('Ashario_Aurora'));
+            const store_north_york = JSON.parse(storage_local.getItem('Ashario_North_York'));
 
             const response = createCheckout(store_centre_point_mall.id, 'PICKUP', 'RECREATIONAL');
             response.then( result => {
@@ -355,15 +357,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <div class="d-flex">
-                                                <span style="margin-right: 10px; font-weight: bold;">THC</span>
-                                                <span>${product.potencyThc.formatted}</span>
+                                        <div class="d-flex" id="potency-thc">
+                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyThc !== null || undefined ? 'CBD' : ''}</span>
+                                                <span>${product.potencyThc !== null || undefined ? product.potencyThc.formatted : ''}</span>
                                         </div>
                                      </div>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <div class="d-flex">
-                                                <span style="margin-right: 10px; font-weight: bold;">CBD</span>
-                                                <span>${product.potencyCbd.formatted}</span>
+                                        <div class="d-flex"  id="potency-cbd">
+                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyCbd !== null || undefined ? 'CBD' : ''  }</span>
+                                                <span>${product.potencyCbd !== null || undefined ? product.potencyCbd.formatted : ''}</span>
                                         </div>
                                     </div>
                                     <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
@@ -877,21 +879,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
         });
-
-
-
-
-
-
-
-
-        // container_select_quantitys.forEach(item => {
-        //     const get_product_quantity = item.getAttribute('product_id');
-        //     let quantity_product = array_products.products.find(item => item.id === get_product_quantity);
-        //     console.log(quantity_product);
-        // });
-
-
 
     };
 
