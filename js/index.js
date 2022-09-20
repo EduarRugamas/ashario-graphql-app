@@ -358,14 +358,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <div class="d-flex" id="potency-thc">
-                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyThc !== null || undefined ? 'THC' : ''}</span>
-                                                <span>${product.potencyThc !== null || undefined ? product.potencyThc.formatted : ''}</span>
+                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyThc.formatted !== "" || null ? 'THC' : ""}</span>
+                                                <span>${product.potencyThc.formatted !== "" || null ? product.potencyThc.formatted : ""}</span>
                                         </div>
                                      </div>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <div class="d-flex"  id="potency-cbd">
-                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyCbd !== null || undefined ? 'CBD' : ''  }</span>
-                                                <span>${product.potencyCbd !== null || undefined ? product.potencyCbd.formatted : ''}</span>
+                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyCbd.formatted !== "" || null ? "CBD" : ""  }</span>
+                                                <span>${product.potencyCbd !== "" || null ? product.potencyCbd.formatted : ""}</span>
                                         </div>
                                     </div>
                                     <div class="d-flex align-content-center align-items-center justify-content-center mt-1">
