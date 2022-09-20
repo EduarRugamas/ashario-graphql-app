@@ -358,7 +358,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <div class="d-flex" id="potency-thc">
-                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyThc !== null || undefined ? 'CBD' : ''}</span>
+                                                <span style="margin-right: 10px; font-weight: bold;">${product.potencyThc !== null || undefined ? 'THC' : ''}</span>
                                                 <span>${product.potencyThc !== null || undefined ? product.potencyThc.formatted : ''}</span>
                                         </div>
                                      </div>
